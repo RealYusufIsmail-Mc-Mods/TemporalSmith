@@ -7,8 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.extensions.IForgeItem;
 
-public class GraphiteArmour extends ArmorItem implements IForgeItem {
-    public GraphiteArmour(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
+public class RainbowArmour extends ArmorItem implements IForgeItem {
+    public RainbowArmour(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
         super(materialIn, slot, builder);
     }
 
@@ -17,3 +17,4 @@ public class GraphiteArmour extends ArmorItem implements IForgeItem {
         return true;
     }
 }
+

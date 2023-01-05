@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(ArmourAndItemMod.MOD_ID)
 public class ArmourAndItemMod {
     public static final Logger logger = LogManager.getLogger();
-    public static final String MOD_ID = "armouranditemmod";
+    public static final String MOD_ID = "armourandtoolsmod";
 
     public ArmourAndItemMod() {
         final var bus = FMLJavaModLoadingContext.get().getModEventBus();

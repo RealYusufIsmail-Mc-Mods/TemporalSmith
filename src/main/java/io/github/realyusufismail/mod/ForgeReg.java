@@ -1,7 +1,9 @@
 package io.github.realyusufismail.mod;
 
+import io.github.realyusufismail.mod.core.datagen.DataGen;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
