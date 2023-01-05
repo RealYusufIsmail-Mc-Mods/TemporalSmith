@@ -5,7 +5,6 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +14,11 @@ import java.util.function.Supplier;
 
 public enum ArmourMaterialInit implements ArmorMaterial {
 
-    AMETHYST("amethyst", 10, new int[]{2, 5, 6, 2}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> Ingredient.of(ItemInit.AMETHYST.get()));
+    AMETHYST("amethyst", 11, new int[]{4, 7, 9, 4}, 15, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.2F, 0.2F, () -> Ingredient.of(ItemInit.AMETHYST.get())),
+    RUBY("ruby", 8, new int[]{2, 5, 6, 2}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> Ingredient.of(ItemInit.RUBY.get())),
+    SAPPHIRE("sapphire", 9, new int[]{3, 6, 7, 3}, 12, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.1F, 0.1F, () -> Ingredient.of(ItemInit.SAPPHIRE.get())),
+    GRAPHITE("graphite", 10, new int[]{3, 6, 8, 3}, 14, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.1F, 0.1F, () -> Ingredient.of(ItemInit.GRAPHITE.get())),
+    AQUMARINE("aqumarine", 12, new int[]{4, 7, 9, 4}, 16, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.3F, 0.3F, () -> Ingredient.of(ItemInit.AQUMARINE.get()));
 
     private final String name;
     private final int durabilityMultiplier;
