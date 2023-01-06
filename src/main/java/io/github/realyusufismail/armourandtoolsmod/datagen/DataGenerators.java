@@ -7,18 +7,22 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = ArmourAndToolsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
 
     private DataGenerators() {}
 
-    @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
+        ArmourAndToolsMod.logger.info("Gathering data...");
+
         var gen = event.getGenerator();
         var existingFileHelper = event.getExistingFileHelper();
         var lookup = event.getLookupProvider();
 
-        gen.addProvider(true, new ModLootTables(gen));
-        gen.addProvider(true, new ModEnLangProvider(gen));
+        try {
+            gen.addProvider(true, new ModLootTables(gen));
+            gen.addProvider(true, new ModEnLangProvider(gen));
+        } catch (RuntimeException e) {
+            ArmourAndToolsMod.logger.error("Failed to gather data!", e);
+        }
     }
 }

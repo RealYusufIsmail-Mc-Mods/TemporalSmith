@@ -13,9 +13,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.BLOCKS;
 import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ITEMS;
 
-@Mod.EventBusSubscriber(modid = ArmourAndToolsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ArmourAndToolsGroup {
-    @SubscribeEvent
+
     public static void registerCreativeTab(CreativeModeTabEvent.Register event) {
         event.registerCreativeModeTab(new ResourceLocation(ArmourAndToolsMod.MOD_ID, "creativetab"),
                 ArmourAndToolsGroup::createCreativeTabBuilder);

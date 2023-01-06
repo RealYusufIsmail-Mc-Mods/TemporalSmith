@@ -6,7 +6,7 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-group = 'io.github.realyusufismail'
+group = 'io.github.realyusufismail.armourandtoolsmod'
 version = '1.19.3-1.0.0.alpha'
 archivesBaseName = 'armourandtoolsmod'
 
@@ -16,11 +16,14 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
 minecraft {
-    mappings channel: 'parchment', version: '2022.12.18-1.19.3'
+    //mappings channel: 'parchment', version: '2022.12.18-1.19.3'
+    mappings channel: 'official', version: '1.19.3'
 
     runs {
         client {
             workingDirectory project.file('run')
+
+            property 'forge.logging.console.level', 'debug'
 
             property 'forge.enabledGameTestNamespaces', archivesBaseName
 
@@ -34,6 +37,8 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
+            property 'forge.logging.console.level', 'debug'
+
             property 'forge.enabledGameTestNamespaces', archivesBaseName
 
             mods {
@@ -45,6 +50,8 @@ minecraft {
 
         gameTestServer {
             workingDirectory project.file('run')
+
+            property 'forge.logging.console.level', 'debug'
 
             property 'forge.enabledGameTestNamespaces', archivesBaseName
 
@@ -58,7 +65,9 @@ minecraft {
         data {
             workingDirectory project.file('run')
 
-            args '--mod', archivesBaseName, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'armourandtoolsmod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
                 armourandtoolsmod {
@@ -112,6 +121,13 @@ spotless {
         targetExclude("build/**")
         eclipse('4.19.0').configFile("${rootProject.rootDir}/meta/formatting/google-style-eclipse.xml")
     }
+
+    groovyGradle {
+        target '**/*.gradle'
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
 }
 
 javadoc {
@@ -129,5 +145,3 @@ javadoc {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
-
-
