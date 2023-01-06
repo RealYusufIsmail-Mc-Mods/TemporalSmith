@@ -1,13 +1,15 @@
 name: Feature Request
 description: Request a new feature
+labels: [ enhancement ]
+assignees: [ RealYusufIsmail ]
 body:
   - type: markdown
     attributes:
       value: |-
-        Please join the [Discord Server](https://discord.gg/tDgMMq6Ysr) for questions or ask them in [our Discussions](https://github.com/Programming-Org/Programming/discussions).
-
-        Keep in mind that this isn't the place to learn Java.  
-        Please head over to [StackOverflow](https://stackoverflow.com/questions/tagged/java) for your general programming questions.
+        Please ask questions in [our Discussions](https://github.com/RealYusufIsmail/Armour-and-Tools-Mod/discussions)
+        
+        Keep in mind that this isn't the place to learn Kotlin.  
+        Please head over to [StackOverflow](https://stackoverflow.com/questions/tagged/kotlin) for your general programming questions.
   - type: checkboxes
     attributes:
       label: General Troubleshooting
@@ -15,13 +17,15 @@ body:
       options:
         - label: I have checked for similar issues on the Issue-tracker.
           required: true
+        - label: I have updated to the [latest YDWK version](https://search.maven.org/artifact/io.github.realyusufismail/ydwk)
+          required: true
         - label: I have checked the branches or the maintainers' PRs for upcoming features.
           required: true
   - type: textarea
     attributes:
       label: "Feature Request"
       description: "Provide a small description of the feature you want to have added."
-      placeholder: "Programming should introduce ..."
+      placeholder: "YDWK should get ..."
     validations:
       required: true
   - type: textarea
@@ -30,6 +34,6 @@ body:
       description: |-
         Provide some code or describe a possible use-case for this feature.
         
-        The provided text will be rendered as Java code, so you don't have to provide a Code block for it.
-      placeholder: "public class newCommand { ... }"
-      render: java
+        The provided text will be rendered as Kotlin code, so you don't have to provide a Code block for it.
+      placeholder: "fun newMethod() { ... }"
+      render: kotlin

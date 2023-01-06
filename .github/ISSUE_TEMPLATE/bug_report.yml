@@ -1,0 +1,49 @@
+name: Bug reports
+description: Create a report to help us improve
+labels: [ bug ]
+assignees: [ RealYusufIsmail ]
+body:
+  - type: markdown
+    attributes:
+      value: |-
+        Please ask questions in [our Discussions](https://github.com/RealYusufIsmail/Armour-and-Tools-Mod/discussions)
+        
+        Keep in mind that this isn't the place to learn Kotlin.  
+        Please head over to [StackOverflow](https://stackoverflow.com/questions/tagged/kotlin) for your general programming questions.
+
+        Also try to search for your issue - it may have already been answered or even fixed.
+        However, if you find that an old, closed issue still persists in the latest version,
+        you should open a new issue using the form below instead of commenting on the old issue.
+  - type: checkboxes
+    attributes:
+      label: General Troubleshooting
+      description: You confirm to have made the following checks first.
+      options:
+        - label: I have checked for similar issues on the Issue-tracker.
+          required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: |
+        What do we need to do in order to make the bug happen? Clear and concise reproduction instructions are important for us to be able to triage your issue in a timely manner. Note that you can use [Markdown](https://guides.github.com/features/mastering-markdown/) to format lists and code.
+      placeholder: Steps to reproduce
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: What is expected?
+    validations:
+      required: true
+  - type: textarea
+    id: actually-happening
+    attributes:
+      label: What is actually happening?
+    validations:
+      required: true
+  - type: textarea
+    id: additional-comments
+    attributes:
+      label: Any additional comments?
+      description: e.g. some background/context of how you ran into this bug.

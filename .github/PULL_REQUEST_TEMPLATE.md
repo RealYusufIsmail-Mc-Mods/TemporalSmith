@@ -1,25 +1,33 @@
-[contributing]: https://github.com/Together-Java/TJ-Bot/wiki/Contributing
-[code_guidelines]: https://github.com/Together-Java/TJ-Bot/wiki/Code-Guidelines
-[new_issue]: https://github.com/Together-Java/TJ-Bot/issues/new/choose
+[code_of_conduct]: https://github.com/RealYusufIsmail/Armour-and-Tools-Mod/blob/main/.github/CODE_OF_CONDUCT.md
 
-## Pull-request
+[new_issue]: https://github.com/RealYusufIsmail/Armour-and-Tools-Mod/issues/new/choose
 
-- [ ] I have read the [contributing guidelines][contributing].
-- [ ] I have read the [code guidelines][code_guidelines].
-- [ ] I have created a relating [issue][new_issue].
+## Pull Request Etiquette
+
+<!--
+  There are several guidelines you should follow in order for your
+  Pull Request to be merged.
+-->
+
+- [ ] I have checked the PRs for upcoming features/bug fixes.
+- [ ] I have read the [code of conduct][code_of_conduct].
+
+<!--
+  It is sometimes better to include more changes in a single commit. 
+  If you find yourself having an overwhelming amount of commits, you
+  can **rebase** your branch.
+-->
 
 ### Changes
 
-- [ ] Existing code
-- [ ] New feature
+- [ ] Internal code
+- [ ] Library interface (affecting end-user code)
+- [ ] Documentation
+- [ ] Other: \_____ <!-- Insert other type here -->
 
-<!--
-While an issue isn't required, this is preferred for most changes.
-It helps make it maintainable for us, and will save you from possibly recoding everything :p
-If there's no relating issue, keep it NaN
--->
+<!-- Replace "NaN" with an issue number if this is a response to an issue -->
 
-Closes Issue: NaN
+Closes : NaN
 
 ## Description
 
