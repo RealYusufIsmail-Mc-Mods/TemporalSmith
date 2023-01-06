@@ -15,7 +15,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(ArmourAndToolsMod.MOD_ID)
-@Mod.EventBusSubscriber(modid = ArmourAndToolsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ArmourAndToolsMod {
     public static final Logger logger = LogManager.getLogger();
     public static final String MOD_ID = "armourandtoolsmod";
