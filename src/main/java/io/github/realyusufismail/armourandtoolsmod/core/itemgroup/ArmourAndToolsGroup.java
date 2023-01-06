@@ -8,8 +8,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.CreativeModeTabEvent;
 
-import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.BLOCKS;
-import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ITEMS;
+import static io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit.BLOCKS;
+import static io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit.ITEMS;
 
 public class ArmourAndToolsGroup {
 

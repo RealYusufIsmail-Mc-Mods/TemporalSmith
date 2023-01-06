@@ -17,7 +17,7 @@ public class DataGenerators {
         var lookup = event.getLookupProvider();
 
         try {
-            gen.addProvider(true, new ModLootTables(gen));
+            // gen.addProvider(true, new ModLootTables(gen));
             gen.addProvider(true, new ModEnLangProvider(gen));
         } catch (RuntimeException e) {
             ArmourAndToolsMod.logger.error("Failed to gather data!", e);
