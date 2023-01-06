@@ -1,6 +1,6 @@
-package io.github.realyusufismail.mod.core.material;
+package io.github.realyusufismail.armourandtoolsmod.core.material;
 
-import io.github.realyusufismail.mod.core.init.ItemInit;
+import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

@@ -1,6 +1,5 @@
-package io.github.realyusufismail.mod.core.armour;
+package io.github.realyusufismail.armourandtoolsmod.core.armour;
 
-import io.github.realyusufismail.mod.core.material.ArmourMaterialInit;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -8,8 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.extensions.IForgeItem;
 
-public class AmethystArmour extends ArmorItem implements IForgeItem {
-    public AmethystArmour(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
+public class GraphiteArmour extends ArmorItem implements IForgeItem {
+    public GraphiteArmour(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
         super(materialIn, slot, builder);
     }
 

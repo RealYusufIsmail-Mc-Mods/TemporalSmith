@@ -1,4 +1,4 @@
-package io.github.realyusufismail.mod.core.armour;
+package io.github.realyusufismail.armourandtoolsmod.core.armour;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

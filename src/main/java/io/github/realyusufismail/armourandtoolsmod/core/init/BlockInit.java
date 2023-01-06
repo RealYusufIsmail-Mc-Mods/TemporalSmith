@@ -1,4 +1,4 @@
-package io.github.realyusufismail.mod.core.init;
+package io.github.realyusufismail.armourandtoolsmod.core.init;
 
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock;
 import net.minecraft.world.item.BlockItem;
@@ -11,8 +11,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-import static io.github.realyusufismail.mod.ForgeReg.BLOCKS;
-import static io.github.realyusufismail.mod.ForgeReg.ITEMS;
+import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.BLOCKS;
+import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ITEMS;
 
 public class BlockInit {
 

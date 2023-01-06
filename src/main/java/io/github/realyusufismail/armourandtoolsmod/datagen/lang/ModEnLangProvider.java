@@ -1,8 +1,8 @@
-package io.github.realyusufismail.mod.core.datagen.lang;
+package io.github.realyusufismail.armourandtoolsmod.datagen.lang;
 
-import io.github.realyusufismail.mod.ArmourAndItemMod;
-import io.github.realyusufismail.mod.core.init.BlockInit;
-import io.github.realyusufismail.mod.core.init.ItemInit;
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
+import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
+import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit;
 import io.github.realyusufismail.realyusufismailcore.data.support.lang.ModEnLangProviderSupport;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.network.chat.Component;
@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModEnLangProvider extends ModEnLangProviderSupport {
 
     public ModEnLangProvider(DataGenerator gen) {
-        super(gen, ArmourAndItemMod.MOD_ID, "en_us");
+        super(gen, ArmourAndToolsMod.MOD_ID, "en_us");
     }
 
     @Override
@@ -80,7 +80,7 @@ public class ModEnLangProvider extends ModEnLangProviderSupport {
         addItem(ItemInit.AMETHYST_BOOTS, "Amethyst Boots");
 
         // others
-        add("creativetab.armouranditemmod", "Armour and Item Mod");
+        add("creativetab.armourandtoolsmod", "Armour and Item Mod");
     }
 
     @Override

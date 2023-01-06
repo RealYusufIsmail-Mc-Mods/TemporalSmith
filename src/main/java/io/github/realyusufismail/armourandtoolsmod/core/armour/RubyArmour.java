@@ -1,4 +1,4 @@
-package io.github.realyusufismail.mod.core.armour;
+package io.github.realyusufismail.armourandtoolsmod.core.armour;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
@@ -7,8 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.extensions.IForgeItem;
 
-public class RainbowArmour extends ArmorItem implements IForgeItem {
-    public RainbowArmour(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
+public class RubyArmour extends ArmorItem implements IForgeItem {
+    public RubyArmour(ArmorMaterial materialIn, EquipmentSlot slot, Item.Properties builder) {
         super(materialIn, slot, builder);
     }
 
@@ -17,4 +17,3 @@ public class RainbowArmour extends ArmorItem implements IForgeItem {
         return true;
     }
 }
-
