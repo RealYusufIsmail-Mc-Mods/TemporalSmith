@@ -31,8 +31,7 @@ java {
 }
 
 configure<UserDevExtension> {
-    // mappings channel: "parchment", version: "2022.12.18-1.19.3"
-    mappings("official", "1.19.3")
+    mappings("parchment", "2022.12.18-1.19.3")
 
     runs {
         create("client") {
