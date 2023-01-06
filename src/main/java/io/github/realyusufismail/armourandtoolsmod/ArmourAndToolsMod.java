@@ -13,16 +13,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit.BLOCKS;
+import static io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit.ITEMS;
+
 @Mod(ArmourAndToolsMod.MOD_ID)
 public class ArmourAndToolsMod {
     public static final Logger logger = LogManager.getLogger();
     public static final String MOD_ID = "armourandtoolsmod";
-
-    public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
-
-    public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
 
     public ArmourAndToolsMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

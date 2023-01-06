@@ -1,19 +1,24 @@
 package io.github.realyusufismail.armourandtoolsmod.core.init;
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.BLOCKS;
-import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ITEMS;
+import static io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit.ITEMS;
 
 public class BlockInit {
+
+    public static final DeferredRegister<Block> BLOCKS =
+            DeferredRegister.create(ForgeRegistries.BLOCKS, ArmourAndToolsMod.MOD_ID);
 
     // ores
     public static final RegistryObject<GeneralBlock> RUBY_ORE =
