@@ -2,13 +2,11 @@ package io.github.realyusufismail.armourandtoolsmod.core.itemgroup;
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.CreativeModeTabEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.BLOCKS;
 import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ITEMS;

@@ -4,8 +4,6 @@ import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.datagen.lang.ModEnLangProvider;
 import io.github.realyusufismail.armourandtoolsmod.datagen.loot.ModLootTables;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 public class DataGenerators {
 

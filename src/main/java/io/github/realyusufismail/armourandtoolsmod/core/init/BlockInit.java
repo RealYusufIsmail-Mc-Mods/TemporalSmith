@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.RegistryObject;
 
-
 import java.util.function.Supplier;
 
 import static io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.BLOCKS;

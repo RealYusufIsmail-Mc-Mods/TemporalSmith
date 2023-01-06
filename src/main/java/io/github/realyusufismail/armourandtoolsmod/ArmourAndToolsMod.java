@@ -2,7 +2,6 @@ package io.github.realyusufismail.armourandtoolsmod;
 
 import io.github.realyusufismail.armourandtoolsmod.core.itemgroup.ArmourAndToolsGroup;
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators;
-import io.github.realyusufismail.realyusufismailcore.RealYusufIsmailCore;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
