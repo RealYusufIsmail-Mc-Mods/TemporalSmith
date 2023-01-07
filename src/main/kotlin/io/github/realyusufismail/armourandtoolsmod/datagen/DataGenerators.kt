@@ -19,6 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen
 
 import io.github.realyusufismail.armourandtoolsmod.datagen.lang.ModEnLangProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.loot.ModLootTables
 import io.github.realyusufismail.armourandtoolsmod.logger
 import net.minecraftforge.data.event.GatherDataEvent
 
@@ -37,7 +38,7 @@ object DataGenerators {
         val lookup = event.lookupProvider
 
         try {
-            // gen.addProvider(true, new ModLootTables(gen));
+            gen.addProvider(true, ModLootTables(gen))
             gen.addProvider(true, ModEnLangProvider(gen))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)

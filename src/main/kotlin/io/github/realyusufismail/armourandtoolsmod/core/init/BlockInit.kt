@@ -30,7 +30,7 @@ import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
 
 object BlockInit {
-    val BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID)
+    val BLOCKS: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID)
 
     // ores
     val RUBY_ORE = register("ruby_ore", Blocks.IRON_ORE)

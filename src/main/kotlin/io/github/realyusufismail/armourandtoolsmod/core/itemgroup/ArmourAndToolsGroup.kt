@@ -55,7 +55,7 @@ object ArmourAndToolsGroup {
                 .map { item: RegistryObject<Block> -> item.get().asItem() }
                 .forEach { pItem: Item -> out.accept(pItem) }
         }
-        builder.icon { ItemStack(ItemInit.AMETHYST.get()) }
+        builder.icon { ItemStack(ItemInit.AQUMARINE.get()) }
         builder.title(Component.translatable("creativetab.armourandtoolsmod"))
         builder.withSearchBar()
     }

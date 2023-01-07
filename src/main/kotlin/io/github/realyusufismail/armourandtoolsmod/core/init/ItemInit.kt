@@ -31,7 +31,6 @@ object ItemInit {
     val ITEMS: DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)
 
     // ore ingots
-    val AMETHYST: RegistryObject<Item> = ITEMS.register("amethyst") { Item(Item.Properties()) }
     val RUBY: RegistryObject<Item> = ITEMS.register("ruby") { Item(Item.Properties()) }
     val SAPPHIRE: RegistryObject<Item> = ITEMS.register("sapphire") { Item(Item.Properties()) }
     val GRAPHITE: RegistryObject<Item> = ITEMS.register("graphite") { Item(Item.Properties()) }
