@@ -1,15 +1,20 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import net.minecraftforge.gradle.userdev.UserDevExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    java
+    kotlin("jvm") version "1.8.0"
+    kotlin("plugin.allopen") version "1.8.0"
     id("com.diffplug.spotless") version "6.6.1"
     id("net.minecraftforge.gradle") version "5.1.+"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
+    jacoco // code coverage reports
 }
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.3-1.0.0.alpha.1"
+project.version = "1.19.3-1.0.0.alpha.2"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -20,15 +25,6 @@ println(
         Arch: ${System.getProperty("os.arch")}
     """
         .trimIndent())
-
-java {
-    toolchain {
-        withJavadocJar()
-        withSourcesJar()
-
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
 
 configure<UserDevExtension> {
     mappings("parchment", "2022.12.18-1.19.3")
@@ -97,7 +93,10 @@ configure<UserDevExtension> {
     }
 }
 
-repositories { mavenCentral() }
+repositories {
+    maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
+    mavenCentral()
+}
 
 dependencies {
     "minecraft"(
@@ -105,6 +104,8 @@ dependencies {
         name = "forge",
         version = "1.19.3-44.1.0",
         classifier = "universal")
+    // kotlin forge
+    implementation("thedarkcolour:kotlinforforge:3.9.0")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.5")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.5")
@@ -115,16 +116,38 @@ dependencies {
         group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.6")
 }
 
-tasks.test { useJUnitPlatform() }
+tasks.test {
+    useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
 
 configurations { all { exclude(group = "org.slf4j", module = "slf4j-log4j12") } }
 
 spotless {
-    java {
+    kotlin {
         // Excludes build folder since it contains generated java classes.
         targetExclude("build/**")
-        eclipse("4.19.0")
-            .configFile("${rootProject.rootDir}/meta/formatting/google-style-eclipse.xml")
+        ktfmt("0.42").dropboxStyle()
+
+        licenseHeader(
+            """/*
+ * Copyright 2022 RealYusufIsmail.
+ *
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *
+ * you may not use this file except in compliance with the License.
+ *
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ """)
     }
 
     kotlinGradle {
@@ -145,4 +168,38 @@ tasks.javadoc {
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     dependsOn(tasks["spotlessApply"])
+}
+
+java {
+    toolchain {
+        withJavadocJar()
+        withSourcesJar()
+
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
+
+tasks.jacocoTestReport {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+    finalizedBy("jacocoTestCoverageVerification")
+}
+
+detekt {
+    config = files("gradle/config/detekt.yml")
+    baseline = file("gradle/config/detekt-baseline.xml")
+    allRules = false
+}
+
+tasks.withType<Detekt>().configureEach {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }
