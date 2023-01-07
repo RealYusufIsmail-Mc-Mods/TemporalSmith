@@ -46,7 +46,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.2f,
         0.2f,
-        Supplier<Ingredient> { Ingredient.of(ItemInit.AMETHYST.get()) }),
+        Supplier { Ingredient.of(net.minecraft.world.item.Items.AMETHYST_SHARD) }),
     RUBY(
         "ruby",
         8,
@@ -55,7 +55,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.0f,
         0.0f,
-        Supplier<Ingredient> { Ingredient.of(ItemInit.RUBY.get()) }),
+        Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
     SAPPHIRE(
         "sapphire",
         9,
@@ -64,7 +64,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.1f,
         0.1f,
-        Supplier<Ingredient> { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
+        Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
     GRAPHITE(
         "graphite",
         10,
@@ -73,7 +73,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.1f,
         0.1f,
-        Supplier<Ingredient> { Ingredient.of(ItemInit.GRAPHITE.get()) }),
+        Supplier { Ingredient.of(ItemInit.GRAPHITE.get()) }),
     AQUMARINE(
         "aqumarine",
         12,
@@ -82,7 +82,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.3f,
         0.3f,
-        Supplier<Ingredient> { Ingredient.of(ItemInit.AQUMARINE.get()) }),
+        Supplier { Ingredient.of(ItemInit.AQUMARINE.get()) }),
     RAINBOW(
         "rainbow",
         100,
@@ -91,7 +91,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         100.0f,
         100.0f,
-        Supplier<Ingredient> { Ingredient.of(ItemInit.RAINBOW.get()) });
+        Supplier { Ingredient.of(ItemInit.RAINBOW.get()) });
 
     private val repairIngredient: Ingredient
 
