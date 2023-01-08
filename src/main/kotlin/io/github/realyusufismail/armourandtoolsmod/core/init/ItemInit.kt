@@ -21,8 +21,10 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
+import io.github.realyusufismail.armourandtoolsmod.core.wepons.AqumarineTrident
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.TridentItem
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
@@ -155,4 +157,8 @@ object ItemInit {
         ITEMS.register("rainbow_boots") {
             RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.FEET, Item.Properties())
         }
+
+    // wepons
+    val aqumarineTrident: RegistryObject<TridentItem> =
+        ITEMS.register("aqumarine_trident") { AqumarineTrident() }
 }
