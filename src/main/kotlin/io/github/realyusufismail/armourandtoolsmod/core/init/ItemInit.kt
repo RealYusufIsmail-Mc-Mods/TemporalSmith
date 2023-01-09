@@ -39,6 +39,17 @@ object ItemInit {
     val AQUMARINE: RegistryObject<Item> = ITEMS.register("aqumarine") { Item(Item.Properties()) }
     val RAINBOW: RegistryObject<Item> = ITEMS.register("rainbow") { Item(Item.Properties()) }
 
+    // raw ores
+    val RAW_RUBY: RegistryObject<Item> = ITEMS.register("raw_ruby") { Item(Item.Properties()) }
+    val RAW_SAPPHIRE: RegistryObject<Item> =
+        ITEMS.register("raw_sapphire") { Item(Item.Properties()) }
+    val RAW_GRAPHITE: RegistryObject<Item> =
+        ITEMS.register("raw_graphite") { Item(Item.Properties()) }
+    val RAW_AQUMARINE: RegistryObject<Item> =
+        ITEMS.register("raw_aqumarine") { Item(Item.Properties()) }
+    val RAW_RAINBOW: RegistryObject<Item> =
+        ITEMS.register("raw_rainbow") { Item(Item.Properties()) }
+
     // armour
     val AMETHYST_HELMET: RegistryObject<Item> =
         ITEMS.register("amethyst_helmet") {

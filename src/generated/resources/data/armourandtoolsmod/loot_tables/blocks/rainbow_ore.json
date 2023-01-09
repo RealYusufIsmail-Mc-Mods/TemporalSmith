@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "armourandtoolsmod:rainbow"
+              "name": "armourandtoolsmod:raw_rainbow"
             }
           ]
         }
