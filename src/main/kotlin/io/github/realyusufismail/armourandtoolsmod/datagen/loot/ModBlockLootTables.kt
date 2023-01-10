@@ -32,36 +32,38 @@ import net.minecraftforge.registries.ForgeRegistries
 class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.allFlags()) {
     override fun generate() {
         // normal ores
-        add(BlockInit.RUBY_ORE.get(), createOreDrop(BlockInit.RUBY_ORE.get(), ItemInit.RUBY.get()))
+        add(
+            BlockInit.RUBY_ORE.get(),
+            createOreDrop(BlockInit.RUBY_ORE.get(), ItemInit.RAW_RUBY.get()))
         add(
             BlockInit.RAINBOW_ORE.get(),
-            createOreDrop(BlockInit.RAINBOW_ORE.get(), ItemInit.RAINBOW.get()))
+            createOreDrop(BlockInit.RAINBOW_ORE.get(), ItemInit.RAW_RAINBOW.get()))
         add(
             BlockInit.SAPPHIRE_ORE.get(),
-            createOreDrop(BlockInit.SAPPHIRE_ORE.get(), ItemInit.SAPPHIRE.get()))
+            createOreDrop(BlockInit.SAPPHIRE_ORE.get(), ItemInit.RAW_SAPPHIRE.get()))
         add(
             BlockInit.GRAPHITE_ORE.get(),
-            createOreDrop(BlockInit.GRAPHITE_ORE.get(), ItemInit.GRAPHITE.get()))
+            createOreDrop(BlockInit.GRAPHITE_ORE.get(), ItemInit.RAW_GRAPHITE.get()))
         add(
             BlockInit.AQUMARINE_ORE.get(),
-            createOreDrop(BlockInit.AQUMARINE_ORE.get(), ItemInit.AQUMARINE.get()))
+            createOreDrop(BlockInit.AQUMARINE_ORE.get(), ItemInit.RAW_AQUMARINE.get()))
 
         // deepslate ores
         add(
             BlockInit.DEEPSLATE_RUBY_ORE.get(),
-            createOreDrop(BlockInit.DEEPSLATE_RUBY_ORE.get(), ItemInit.RUBY.get()))
+            createOreDrop(BlockInit.DEEPSLATE_RUBY_ORE.get(), ItemInit.RAW_RUBY.get()))
         add(
             BlockInit.DEEPSLATE_RAINBOW_ORE.get(),
-            createOreDrop(BlockInit.DEEPSLATE_RAINBOW_ORE.get(), ItemInit.RAINBOW.get()))
+            createOreDrop(BlockInit.DEEPSLATE_RAINBOW_ORE.get(), ItemInit.RAW_RAINBOW.get()))
         add(
             BlockInit.DEEPSLATE_SAPPHIRE_ORE.get(),
-            createOreDrop(BlockInit.DEEPSLATE_SAPPHIRE_ORE.get(), ItemInit.SAPPHIRE.get()))
+            createOreDrop(BlockInit.DEEPSLATE_SAPPHIRE_ORE.get(), ItemInit.RAW_SAPPHIRE.get()))
         add(
             BlockInit.DEEPSLATE_GRAPHITE_ORE.get(),
-            createOreDrop(BlockInit.DEEPSLATE_GRAPHITE_ORE.get(), ItemInit.GRAPHITE.get()))
+            createOreDrop(BlockInit.DEEPSLATE_GRAPHITE_ORE.get(), ItemInit.RAW_GRAPHITE.get()))
         add(
             BlockInit.DEEPSLATE_AQUMARINE_ORE.get(),
-            createOreDrop(BlockInit.DEEPSLATE_AQUMARINE_ORE.get(), ItemInit.AQUMARINE.get()))
+            createOreDrop(BlockInit.DEEPSLATE_AQUMARINE_ORE.get(), ItemInit.RAW_AQUMARINE.get()))
 
         // blocks
         dropSelf(BlockInit.RUBY_BLOCK.get())

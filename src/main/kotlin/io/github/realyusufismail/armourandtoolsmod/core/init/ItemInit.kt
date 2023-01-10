@@ -21,8 +21,10 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
+import io.github.realyusufismail.armourandtoolsmod.core.wepons.AqumarineTrident
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.TridentItem
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
@@ -36,6 +38,17 @@ object ItemInit {
     val GRAPHITE: RegistryObject<Item> = ITEMS.register("graphite") { Item(Item.Properties()) }
     val AQUMARINE: RegistryObject<Item> = ITEMS.register("aqumarine") { Item(Item.Properties()) }
     val RAINBOW: RegistryObject<Item> = ITEMS.register("rainbow") { Item(Item.Properties()) }
+
+    // raw ores
+    val RAW_RUBY: RegistryObject<Item> = ITEMS.register("raw_ruby") { Item(Item.Properties()) }
+    val RAW_SAPPHIRE: RegistryObject<Item> =
+        ITEMS.register("raw_sapphire") { Item(Item.Properties()) }
+    val RAW_GRAPHITE: RegistryObject<Item> =
+        ITEMS.register("raw_graphite") { Item(Item.Properties()) }
+    val RAW_AQUMARINE: RegistryObject<Item> =
+        ITEMS.register("raw_aqumarine") { Item(Item.Properties()) }
+    val RAW_RAINBOW: RegistryObject<Item> =
+        ITEMS.register("raw_rainbow") { Item(Item.Properties()) }
 
     // armour
     val AMETHYST_HELMET: RegistryObject<Item> =
@@ -155,4 +168,8 @@ object ItemInit {
         ITEMS.register("rainbow_boots") {
             RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.FEET, Item.Properties())
         }
+
+    // wepons
+    val aqumarineTrident: RegistryObject<TridentItem> =
+        ITEMS.register("aqumarine_trident") { AqumarineTrident() }
 }
