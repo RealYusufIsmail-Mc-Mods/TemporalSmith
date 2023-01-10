@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.datagen
 
 import io.github.realyusufismail.armourandtoolsmod.datagen.lang.ModEnLangProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.loot.ModLootTables
+import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
 import io.github.realyusufismail.armourandtoolsmod.logger
 import net.minecraftforge.data.event.GatherDataEvent
 
@@ -40,6 +41,7 @@ object DataGenerators {
         try {
             gen.addProvider(true, ModLootTables(gen))
             gen.addProvider(true, ModEnLangProvider(gen))
+            gen.addProvider(true, ModBlockStateProvider(gen.packOutput, existingFileHelper))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)
         }
