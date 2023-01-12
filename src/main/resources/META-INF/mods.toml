@@ -1,5 +1,5 @@
-modLoader = "kotlinforforge"
-loaderVersion = "[3,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+modLoader = "javafml"
+loaderVersion = "[44,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 license = "Apache 2.0" #mandatory
 issueTrackerURL = "https://github.com/RealYusufIsmail/Armour-and-Tools-Mod/issues"
 updateJSONURL = "https://raw.githubusercontent.com/RealYusufIsmail/Armour-and-Tools-Mod/main/update.json"

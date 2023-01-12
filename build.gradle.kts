@@ -1,10 +1,9 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import net.minecraftforge.gradle.userdev.UserDevExtension
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.0"
-    kotlin("plugin.allopen") version "1.8.0"
+    java
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
     id("com.diffplug.spotless") version "6.12.1"
     id("net.minecraftforge.gradle") version "5.1.+"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
@@ -14,7 +13,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.3-1.0.0.alpha.3"
+project.version = "1.19.3-1.0.0.alpha.4"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -94,7 +93,10 @@ configure<UserDevExtension> {
 }
 
 repositories {
-    maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
+    maven {
+        name = "Kotlin for Forge"
+        setUrl("https://thedarkcolour.github.io/KotlinForForge/")
+    }
     mavenCentral()
 }
 
@@ -105,12 +107,11 @@ dependencies {
         version = "1.19.3-44.1.0",
         classifier = "universal")
     // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:3.9.0")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.5")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.5")
     // test
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     // core
     implementation(
         group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.6")
@@ -124,10 +125,13 @@ tasks.test {
 configurations { all { exclude(group = "org.slf4j", module = "slf4j-log4j12") } }
 
 spotless {
-    kotlin {
-        // Excludes build folder since it contains generated java classes.
+    java {
+        // Excludes build folder since it may contain compiled classes
         targetExclude("build/**")
-        ktfmt("0.42").dropboxStyle()
+        // No need to do spotless on generated code
+        targetExclude("src/main/jooq/**")
+        eclipse("4.21.0")
+            .configFile("${rootProject.rootDir}/meta/formatting/google-style-eclipse.xml")
 
         licenseHeader(
             """/*
@@ -178,8 +182,6 @@ java {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
-
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
 
 tasks.jacocoTestReport {
     group = "Reporting"
