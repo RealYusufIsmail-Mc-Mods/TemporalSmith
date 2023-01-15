@@ -21,155 +21,157 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
-import io.github.realyusufismail.armourandtoolsmod.core.wepons.AqumarineTrident
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.TridentItem
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
-import net.minecraftforge.registries.RegistryObject
+import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
+import thedarkcolour.kotlinforforge.forge.registerObject
 
 object ItemInit {
     val ITEMS: DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)
 
     // ore ingots
-    val RUBY: RegistryObject<Item> = ITEMS.register("ruby") { Item(Item.Properties()) }
-    val SAPPHIRE: RegistryObject<Item> = ITEMS.register("sapphire") { Item(Item.Properties()) }
-    val GRAPHITE: RegistryObject<Item> = ITEMS.register("graphite") { Item(Item.Properties()) }
-    val AQUMARINE: RegistryObject<Item> = ITEMS.register("aqumarine") { Item(Item.Properties()) }
-    val RAINBOW: RegistryObject<Item> = ITEMS.register("rainbow") { Item(Item.Properties()) }
+    val RUBY: ObjectHolderDelegate<Item> = ITEMS.registerObject("ruby") { Item(Item.Properties()) }
+    val SAPPHIRE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("sapphire") { Item(Item.Properties()) }
+    val GRAPHITE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("graphite") { Item(Item.Properties()) }
+    val AQUMARINE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("aqumarine") { Item(Item.Properties()) }
+    val RAINBOW: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("rainbow") { Item(Item.Properties()) }
 
     // raw ores
-    val RAW_RUBY: RegistryObject<Item> = ITEMS.register("raw_ruby") { Item(Item.Properties()) }
-    val RAW_SAPPHIRE: RegistryObject<Item> =
-        ITEMS.register("raw_sapphire") { Item(Item.Properties()) }
-    val RAW_GRAPHITE: RegistryObject<Item> =
-        ITEMS.register("raw_graphite") { Item(Item.Properties()) }
-    val RAW_AQUMARINE: RegistryObject<Item> =
-        ITEMS.register("raw_aqumarine") { Item(Item.Properties()) }
-    val RAW_RAINBOW: RegistryObject<Item> =
-        ITEMS.register("raw_rainbow") { Item(Item.Properties()) }
+    val RAW_RUBY: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("raw_ruby") { Item(Item.Properties()) }
+    val RAW_SAPPHIRE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("raw_sapphire") { Item(Item.Properties()) }
+    val RAW_GRAPHITE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("raw_graphite") { Item(Item.Properties()) }
+    val RAW_AQUMARINE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("raw_aqumarine") { Item(Item.Properties()) }
+    val RAW_RAINBOW: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("raw_rainbow") { Item(Item.Properties()) }
 
     // armour
-    val AMETHYST_HELMET: RegistryObject<Item> =
-        ITEMS.register("amethyst_helmet") {
+    val AMETHYST_HELMET: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_helmet") {
             AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.HEAD, Item.Properties())
         }
 
-    val AMETHYST_CHESTPLATE: RegistryObject<Item> =
-        ITEMS.register("amethyst_chestplate") {
+    val AMETHYST_CHESTPLATE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_chestplate") {
             AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.CHEST, Item.Properties())
         }
 
-    val AMETHYST_LEGGINGS: RegistryObject<Item> =
-        ITEMS.register("amethyst_leggings") {
+    val AMETHYST_LEGGINGS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_leggings") {
             AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.LEGS, Item.Properties())
         }
 
-    val AMETHYST_BOOTS: RegistryObject<Item> =
-        ITEMS.register("amethyst_boots") {
+    val AMETHYST_BOOTS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_boots") {
             AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.FEET, Item.Properties())
         }
 
-    val RUBY_HELMET: RegistryObject<Item> =
-        ITEMS.register("ruby_helmet") {
+    val RUBY_HELMET: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("ruby_helmet") {
             RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.HEAD, Item.Properties())
         }
 
-    val RUBY_CHESTPLATE: RegistryObject<Item> =
-        ITEMS.register("ruby_chestplate") {
+    val RUBY_CHESTPLATE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("ruby_chestplate") {
             RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.CHEST, Item.Properties())
         }
 
-    val RUBY_LEGGINGS: RegistryObject<Item> =
-        ITEMS.register("ruby_leggings") {
+    val RUBY_LEGGINGS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("ruby_leggings") {
             RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.LEGS, Item.Properties())
         }
 
-    val RUBY_BOOTS: RegistryObject<Item> =
-        ITEMS.register("ruby_boots") {
+    val RUBY_BOOTS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("ruby_boots") {
             RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.FEET, Item.Properties())
         }
 
-    val SAPPHIRE_HELMET: RegistryObject<Item> =
-        ITEMS.register("sapphire_helmet") {
+    val SAPPHIRE_HELMET: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("sapphire_helmet") {
             SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.HEAD, Item.Properties())
         }
 
-    val SAPPHIRE_CHESTPLATE: RegistryObject<Item> =
-        ITEMS.register("sapphire_chestplate") {
+    val SAPPHIRE_CHESTPLATE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("sapphire_chestplate") {
             SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.CHEST, Item.Properties())
         }
-    val SAPPHIRE_LEGGINGS: RegistryObject<Item> =
-        ITEMS.register("sapphire_leggings") {
+    val SAPPHIRE_LEGGINGS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("sapphire_leggings") {
             SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.LEGS, Item.Properties())
         }
 
-    val SAPPHIRE_BOOTS: RegistryObject<Item> =
-        ITEMS.register("sapphire_boots") {
+    val SAPPHIRE_BOOTS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("sapphire_boots") {
             SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.FEET, Item.Properties())
         }
-    val GRAPHITE_HELMET: RegistryObject<Item> =
-        ITEMS.register("graphite_helmet") {
+    val GRAPHITE_HELMET: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("graphite_helmet") {
             GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.HEAD, Item.Properties())
         }
 
-    val GRAPHITE_CHESTPLATE: RegistryObject<Item> =
-        ITEMS.register("graphite_chestplate") {
+    val GRAPHITE_CHESTPLATE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("graphite_chestplate") {
             GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.CHEST, Item.Properties())
         }
 
-    val GRAPHITE_LEGGINGS: RegistryObject<Item> =
-        ITEMS.register("graphite_leggings") {
+    val GRAPHITE_LEGGINGS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("graphite_leggings") {
             GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.LEGS, Item.Properties())
         }
 
-    val GRAPHITE_BOOTS: RegistryObject<Item> =
-        ITEMS.register("graphite_boots") {
+    val GRAPHITE_BOOTS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("graphite_boots") {
             GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.FEET, Item.Properties())
         }
 
-    val AQUMARINE_HELMET: RegistryObject<Item> =
-        ITEMS.register("aqumarine_helmet") {
+    val AQUMARINE_HELMET: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("aqumarine_helmet") {
             AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.HEAD, Item.Properties())
         }
 
-    val AQUMARINE_CHESTPLATE: RegistryObject<Item> =
-        ITEMS.register("aqumarine_chestplate") {
+    val AQUMARINE_CHESTPLATE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("aqumarine_chestplate") {
             AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.CHEST, Item.Properties())
         }
 
-    val AQUMARINE_LEGGINGS: RegistryObject<Item> =
-        ITEMS.register("aqumarine_leggings") {
+    val AQUMARINE_LEGGINGS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("aqumarine_leggings") {
             AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.LEGS, Item.Properties())
         }
 
-    val AQUMARINE_BOOTS: RegistryObject<Item> =
-        ITEMS.register("aqumarine_boots") {
+    val AQUMARINE_BOOTS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("aqumarine_boots") {
             AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.FEET, Item.Properties())
         }
 
-    val RAINBOW_HELMET: RegistryObject<Item> =
-        ITEMS.register("rainbow_helmet") {
+    val RAINBOW_HELMET: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("rainbow_helmet") {
             RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.HEAD, Item.Properties())
         }
 
-    val RAINBOW_CHESTPLATE: RegistryObject<Item> =
-        ITEMS.register("rainbow_chestplate") {
+    val RAINBOW_CHESTPLATE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("rainbow_chestplate") {
             RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.CHEST, Item.Properties())
         }
 
-    val RAINBOW_LEGGINGS: RegistryObject<Item> =
-        ITEMS.register("rainbow_leggings") {
+    val RAINBOW_LEGGINGS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("rainbow_leggings") {
             RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.LEGS, Item.Properties())
         }
 
-    val RAINBOW_BOOTS: RegistryObject<Item> =
-        ITEMS.register("rainbow_boots") {
+    val RAINBOW_BOOTS: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("rainbow_boots") {
             RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.FEET, Item.Properties())
         }
 
-    // wepons
-    val aqumarineTrident: RegistryObject<TridentItem> =
-        ITEMS.register("aqumarine_trident") { AqumarineTrident() }
+    // TODO: Add tools and weapons including tridents. Maybe custom shields?
 }
