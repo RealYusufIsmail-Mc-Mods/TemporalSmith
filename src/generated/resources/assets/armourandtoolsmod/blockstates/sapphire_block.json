@@ -1,6 +1,15 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "armourandtoolsmod:block/sapphire_block"
+    },
+    "facing=north": {
+      "model": "armourandtoolsmod:block/sapphire_block"
+    },
+    "facing=south": {
+      "model": "armourandtoolsmod:block/sapphire_block"
+    },
+    "facing=west": {
       "model": "armourandtoolsmod:block/sapphire_block"
     }
   }

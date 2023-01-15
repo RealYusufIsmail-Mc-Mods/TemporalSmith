@@ -25,6 +25,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -68,10 +70,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
             return;
         }
 
-        BlockModelBuilder builder =
-                this.models().withExistingParent(name.getPath(), "block/cube_all");
-        builder.texture("all", modLoc("block/" + name.getPath()));
-        this.simpleBlockItem(block, builder);
-        this.simpleBlock(block, builder);
+        String path = name.getPath();
+
+        BlockModelBuilder builder = models().cubeAll(path, modLoc("block/" + path));
+        getVariantBuilder(block)
+            .forAllStates(state -> ConfiguredModel.builder().modelFile(builder).build());
     }
 }

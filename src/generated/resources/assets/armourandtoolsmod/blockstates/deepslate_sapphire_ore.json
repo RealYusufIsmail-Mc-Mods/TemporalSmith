@@ -1,6 +1,15 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "armourandtoolsmod:block/deepslate_sapphire_ore"
+    },
+    "facing=north": {
+      "model": "armourandtoolsmod:block/deepslate_sapphire_ore"
+    },
+    "facing=south": {
+      "model": "armourandtoolsmod:block/deepslate_sapphire_ore"
+    },
+    "facing=west": {
       "model": "armourandtoolsmod:block/deepslate_sapphire_ore"
     }
   }

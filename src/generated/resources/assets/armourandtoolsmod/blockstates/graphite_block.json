@@ -1,6 +1,15 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "armourandtoolsmod:block/graphite_block"
+    },
+    "facing=north": {
+      "model": "armourandtoolsmod:block/graphite_block"
+    },
+    "facing=south": {
+      "model": "armourandtoolsmod:block/graphite_block"
+    },
+    "facing=west": {
       "model": "armourandtoolsmod:block/graphite_block"
     }
   }

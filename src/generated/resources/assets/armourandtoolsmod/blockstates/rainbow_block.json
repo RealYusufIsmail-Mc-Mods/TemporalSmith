@@ -1,6 +1,15 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "armourandtoolsmod:block/rainbow_block"
+    },
+    "facing=north": {
+      "model": "armourandtoolsmod:block/rainbow_block"
+    },
+    "facing=south": {
+      "model": "armourandtoolsmod:block/rainbow_block"
+    },
+    "facing=west": {
       "model": "armourandtoolsmod:block/rainbow_block"
     }
   }
