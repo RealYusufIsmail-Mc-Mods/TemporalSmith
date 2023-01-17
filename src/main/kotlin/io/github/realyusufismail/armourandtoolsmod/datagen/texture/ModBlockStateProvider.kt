@@ -21,7 +21,6 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import net.minecraft.data.PackOutput
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
 import net.minecraftforge.client.model.generators.BlockStateProvider
 import net.minecraftforge.common.data.ExistingFileHelper
@@ -52,12 +51,8 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     private fun normalBlock(block: Block) {
-        val name: ResourceLocation =
-            ForgeRegistries.BLOCKS.getKey(block)
-                ?: error("Could not find block key for " + block.name)
-        val builder = models().withExistingParent(name.path, "block/cube_all")
-        builder.texture("all", modLoc("block/" + name.path))
-        simpleBlockItem(block, builder)
-        this.simpleBlock(block, builder)
+        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        simpleBlock(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
+        simpleBlockItem(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
     }
 }
