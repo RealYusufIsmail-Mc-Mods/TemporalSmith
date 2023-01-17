@@ -21,8 +21,8 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import net.minecraft.data.PackOutput
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraftforge.client.model.generators.BlockStateProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.registries.ForgeRegistries
@@ -49,15 +49,30 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         normalBlock(BlockInit.SAPPHIRE_BLOCK.get())
         normalBlock(BlockInit.GRAPHITE_BLOCK.get())
         normalBlock(BlockInit.AQUMARINE_BLOCK.get())
+
+        customCraftingTable(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+    }
+
+    private fun customCraftingTable(block: Block) {
+        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+
+        val builder = models().withExistingParent(name.path, "block/cube")
+
+        builder.texture(
+            "down", modLoc("block/" + ForgeRegistries.BLOCKS.getKey(Blocks.IRON_BLOCK)!!.path))
+        builder.texture("east", modLoc("block/" + name.path + "_side"))
+        builder.texture("north", modLoc("block/" + name.path + "_front"))
+        builder.texture("particle", modLoc("block/" + name.path + "_front"))
+        builder.texture("south", modLoc("block/" + name.path + "_side"))
+        builder.texture("up", modLoc("block/" + name.path + "_top"))
+        builder.texture("west", modLoc("block/" + name.path + "_front"))
+        simpleBlockItem(block, builder)
+        simpleBlock(block, builder)
     }
 
     private fun normalBlock(block: Block) {
-        val name: ResourceLocation =
-            ForgeRegistries.BLOCKS.getKey(block)
-                ?: error("Could not find block key for " + block.name)
-        val builder = models().withExistingParent(name.path, "block/cube_all")
-        builder.texture("all", modLoc("block/" + name.path))
-        simpleBlockItem(block, builder)
-        this.simpleBlock(block, builder)
+        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        simpleBlock(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
+        simpleBlockItem(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
     }
 }

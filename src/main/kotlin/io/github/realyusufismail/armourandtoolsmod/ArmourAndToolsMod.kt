@@ -18,15 +18,18 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod
 
-import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
-import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableScreen
+import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import io.github.realyusufismail.armourandtoolsmod.core.itemgroup.ArmourAndToolsGroup
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators
+import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
+import thedarkcolour.kotlinforforge.forge.runForDist
 
 val logger: Logger = LoggerFactory.getLogger(ArmourAndToolsMod::class.java)
 
@@ -38,14 +41,35 @@ class ArmourAndToolsMod {
         val bus = KotlinModLoadingContext.get().getKEventBus()
         ItemInit.ITEMS.register(bus)
         BlockInit.BLOCKS.register(bus)
+        MenuTypeInit.MENU.register(bus)
+        RecipeTypeInit.TYPES.register(bus)
+        RecipeSerializerInit.SERIALIZERS.register(bus)
 
         // Register the item to a creative tab
         bus.addListener(ArmourAndToolsGroup::registerCreativeTab)
         // Register the data generators
         bus.addListener(DataGenerators::gatherData)
+        // adds recipe category
+        bus.addListener(RecipeCategoriesInit::registerRecipeCategories)
+
+        // Register the client setup
+        runForDist(
+            clientTarget = { bus.addListener(::clientSetup) },
+            serverTarget = {
+                // do nothing
+            })
 
         // Register ourselves for server and other game events we are interested in
         FORGE_BUS.register(this)
         logger.info("Loaded Armour and Item Mod")
+    }
+
+    private fun regScreens() {
+        MenuScreens.register(
+            MenuTypeInit.CustomArmourCraftingTableMenuType.get(), ::CustomArmourCraftingTableScreen)
+    }
+
+    private fun clientSetup(event: FMLClientSetupEvent) {
+        regScreens()
     }
 }

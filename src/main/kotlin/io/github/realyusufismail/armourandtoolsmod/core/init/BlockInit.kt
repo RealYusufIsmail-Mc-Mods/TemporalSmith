@@ -19,15 +19,16 @@
 package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
-import java.util.function.Supplier
 import net.minecraft.world.item.*
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
-import net.minecraftforge.registries.RegistryObject
+import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
+import thedarkcolour.kotlinforforge.forge.registerObject
 
 object BlockInit {
     val BLOCKS: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID)
@@ -53,27 +54,26 @@ object BlockInit {
     val GRAPHITE_BLOCK = register("graphite_block", Blocks.DIAMOND_BLOCK)
     val AQUMARINE_BLOCK = register("aqumarine_block", Blocks.DIAMOND_BLOCK)
 
-    // helper methods for register both block and BlockItem at the same time.
-    // Instead of put them in main class
+    // custom crafting table
+    val CUSTOM_ARMOUR_CRAFTING_TABLE =
+        registerSpecial("custom_armour_crafting_table", ::CustomArmourCraftingTable)
+
     private fun <T : Block> registerSpecial(
         name: String,
-        supplier: Supplier<T>
-    ): RegistryObject<T> {
-        val blockReg = BLOCKS.register(name, supplier)
-        ItemInit.ITEMS.register(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        supplier: () -> T,
+    ): ObjectHolderDelegate<T> {
+        val blockReg = BLOCKS.registerObject(name, supplier)
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
         return blockReg
     }
 
-    private fun register(
-        name: String,
-        supplier: Supplier<GeneralBlock>
-    ): RegistryObject<GeneralBlock> {
-        val blockReg = BLOCKS.register(name, supplier)
-        ItemInit.ITEMS.register(name) { BlockItem(blockReg.get(), Item.Properties()) }
+    private fun register(name: String, supplier: () -> Block): ObjectHolderDelegate<Block> {
+        val blockReg = BLOCKS.registerObject(name, supplier)
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
         return blockReg
     }
 
-    private fun register(name: String, existingBlock: Block): RegistryObject<GeneralBlock> {
+    private fun register(name: String, existingBlock: Block): ObjectHolderDelegate<Block> {
         return register(name) { GeneralBlock(BlockBehaviour.Properties.copy(existingBlock)) }
     }
 }

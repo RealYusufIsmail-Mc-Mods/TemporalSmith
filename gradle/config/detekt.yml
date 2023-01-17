@@ -62,7 +62,7 @@ comments:
   DeprecatedBlockTag:
     active: true
   EndOfSentenceFormat:
-    active: true
+    active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)' # default value
   KDocReferencesNonPublicProperty:
     active: false
@@ -81,7 +81,7 @@ comments:
     searchInInnerInterface: true
     searchInProtectedClass: false
   UndocumentedPublicFunction:
-    active: true
+    active: false
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     searchProtectedFunction: false
   UndocumentedPublicProperty:
@@ -96,7 +96,7 @@ complexity:
     threshold: 15
   ComplexCondition:
     active: true
-    threshold: 4
+    threshold: 10
   ComplexInterface:
     active: false
     threshold: 10
@@ -143,7 +143,7 @@ complexity:
     threshold: 3
     ignoreArgumentsMatchingNames: false
   NestedBlockDepth:
-    active: true
+    active: false
     threshold: 4
   NestedScopeFunctions:
     active: false

@@ -16,10 +16,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.wepons
+package io.github.realyusufismail.armourandtoolsmod.datagen.recipe
 
-import net.minecraft.world.item.Item
-import net.minecraft.world.item.TridentItem
-
-class AqumarineTrident(pProperties: Properties = Item.Properties().stacksTo(1).durability(250)) :
-    TridentItem(pProperties) {}
+class MainModRecipeProvider {}

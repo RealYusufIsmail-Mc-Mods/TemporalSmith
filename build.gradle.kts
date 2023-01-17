@@ -14,7 +14,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.3-1.0.0.alpha.3"
+project.version = "1.19.3-1.0.0.alpha.4"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -93,6 +93,8 @@ configure<UserDevExtension> {
     }
 }
 
+sourceSets.main { resources.srcDir("src/generated/resources") }
+
 repositories {
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
     mavenCentral()
@@ -113,7 +115,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     // core
     implementation(
-        group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.6")
+        group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.7")
 }
 
 tasks.test {
