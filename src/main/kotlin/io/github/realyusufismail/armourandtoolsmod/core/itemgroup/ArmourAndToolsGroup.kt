@@ -57,6 +57,5 @@ object ArmourAndToolsGroup {
         }
         builder.icon { ItemStack(ItemInit.AQUMARINE.get()) }
         builder.title(Component.translatable("creativetab.armourandtoolsmod"))
-        builder.withSearchBar()
     }
 }

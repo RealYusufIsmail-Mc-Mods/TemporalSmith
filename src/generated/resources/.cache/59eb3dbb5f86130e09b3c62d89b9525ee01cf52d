@@ -1,6 +1,7 @@
-// 1.19.3	2023-01-17T16:49:16.847095	Loot Tables
+// 1.19.3	2023-01-20T18:55:22.318939	Loot Tables
 978fdd88840e03c72998e627647e105ad3e0cc42 data/armourandtoolsmod/loot_tables/blocks/aqumarine_block.json
 b3efcb91567b5e150bbe3796f56e31212e83de19 data/armourandtoolsmod/loot_tables/blocks/aqumarine_ore.json
+0bef922d20a9a0d8ee0b288c145c46ef91dac291 data/armourandtoolsmod/loot_tables/blocks/custom_armour_crafting_table.json
 80d914547bac10ea786e2341d05552df2a10de96 data/armourandtoolsmod/loot_tables/blocks/deepslate_aqumarine_ore.json
 91016faba914273c3b751fcae98316ff16a28511 data/armourandtoolsmod/loot_tables/blocks/deepslate_graphite_ore.json
 66bc52ed3d04517202fdb60b1d7400e4a87573da data/armourandtoolsmod/loot_tables/blocks/deepslate_rainbow_ore.json

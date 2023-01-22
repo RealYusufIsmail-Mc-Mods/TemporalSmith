@@ -86,11 +86,11 @@ enum class ArmourMaterialInit(
     RAINBOW(
         "rainbow",
         100,
-        intArrayOf(100, 100, 100, 100),
+        intArrayOf(5, 8, 10, 5),
         100,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
-        100.0f,
-        100.0f,
+        0.4f,
+        0.4f,
         Supplier { Ingredient.of(ItemInit.RAINBOW.get()) });
 
     private val repairIngredient: Ingredient

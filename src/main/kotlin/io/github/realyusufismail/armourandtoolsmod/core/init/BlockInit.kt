@@ -19,6 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
 import net.minecraft.world.item.*
 import net.minecraft.world.level.block.Block
@@ -53,9 +54,22 @@ object BlockInit {
     val GRAPHITE_BLOCK = register("graphite_block", Blocks.DIAMOND_BLOCK)
     val AQUMARINE_BLOCK = register("aqumarine_block", Blocks.DIAMOND_BLOCK)
 
+    // custom crafting table
+    val CUSTOM_ARMOUR_CRAFTING_TABLE =
+        registerSpecial("custom_armour_crafting_table", ::CustomArmourCraftingTable)
+
+    private fun <T : Block> registerSpecial(
+        name: String,
+        supplier: () -> T,
+    ): ObjectHolderDelegate<T> {
+        val blockReg = BLOCKS.registerObject(name, supplier)
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        return blockReg
+    }
+
     private fun register(name: String, supplier: () -> Block): ObjectHolderDelegate<Block> {
         val blockReg = BLOCKS.registerObject(name, supplier)
-        ItemInit.ITEMS.register(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
         return blockReg
     }
 
