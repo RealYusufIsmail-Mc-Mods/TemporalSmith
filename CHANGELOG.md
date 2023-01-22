@@ -14,7 +14,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.19.3-1.0.0.alpha.3] - 2022-11-01
 
-### Bug Fixes
+### Added update json to mods.toml by @RealYusufIsmail in #5
+###  added Loottables by @RealYusufIsmail in #6
+### Bump junit-jupiter from 5.9.0 to 5.9.1 by @dependabot in #4
+### Bump com.diffplug.spotless from 6.6.1 to 6.12.1 by @dependabot in #3
+### Added block textures by @RealYusufIsmail in #9
+### 1.19.3-1.0.0.alpha.3 by @RealYusufIsmail in #10
 
 ## [1.19.3-1.0.0.alpha.2] - 2022-07-01
 
