@@ -72,7 +72,7 @@ object BlockInit {
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
         return blockReg
     }
-    
+
     private fun register(name: String, existingBlock: Block): ObjectHolderDelegate<Block> {
         return register(name) { GeneralBlock(BlockBehaviour.Properties.copy(existingBlock)) }
     }
