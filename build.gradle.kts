@@ -97,6 +97,7 @@ sourceSets.main { resources.srcDir("src/generated/resources") }
 
 repositories {
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
+    maven { url = uri("https://maven.blamejared.com") }
     mavenCentral()
 }
 
@@ -116,6 +117,9 @@ dependencies {
     // core
     implementation(
         group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.7")
+    // Patchouli
+    // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api"))
+    // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77"))
 }
 
 tasks.test {
