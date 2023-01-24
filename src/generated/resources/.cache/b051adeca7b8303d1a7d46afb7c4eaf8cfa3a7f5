@@ -1,0 +1,26 @@
+// 1.19.3	2023-01-24T17:12:08.688443	Tags for minecraft:item mod id armourandtoolsmod
+f4e0d28b203a60fd241885a727654636c8762650 data/forge/tags/items/deepslate_ores/aqumarine_ores.json
+186e50e522fb2ae91c6e315a523523796b105b56 data/forge/tags/items/deepslate_ores/graphite_ores.json
+d66c065dfb98375b77835223afe692a26c7be84b data/forge/tags/items/deepslate_ores/rainbow_ores.json
+cd94fb683ebafe1cbde0ba3a30280d57b587fc34 data/forge/tags/items/deepslate_ores/ruby_ores.json
+6a274e766194dfaf9c967be14c4b26a4ff637a8b data/forge/tags/items/deepslate_ores/sapphire_ores.json
+04d29499ff85f8124c50ef07269cf25db07ae07d data/forge/tags/items/ingots/aqumarine.json
+c963a5fc1309d90f803cfdfbf05f02ace6abb49b data/forge/tags/items/ingots/graphite.json
+264adb63393b61bea724cadd9fe78dee27f9b867 data/forge/tags/items/ingots/rainbow.json
+a9e8b31cf275be39ab498638115ee072f1c88065 data/forge/tags/items/ingots/ruby.json
+5e8b8285fff705424cf2afb6d0df6e0fdab067ea data/forge/tags/items/ingots/sapphire.json
+1372356eb4655b6d26d8a5a16aaa3032bbb738d4 data/forge/tags/items/ores/aqumarine_ores.json
+974c70b44df044135463b300ebed43eee38001b3 data/forge/tags/items/ores/graphite_ores.json
+fa835a8b8eb217767d6139f02c46edfa27377555 data/forge/tags/items/ores/rainbow_ores.json
+f5b270d5c60fdfc53020be6469026c27bc742f1e data/forge/tags/items/ores/ruby_ores.json
+47d725a30030287aa216532b38ba1d0774dd627f data/forge/tags/items/ores/sapphire_ores.json
+391890e1b9ae2d7446f5fcf238d6626ef060bbb6 data/forge/tags/items/scraps/aqumarine.json
+e620501e7602f2bae9893fef3338caae4c59bef8 data/forge/tags/items/scraps/graphite.json
+7746fe643acaa3e4ca2dde8dbeba5ffa11b0bd94 data/forge/tags/items/scraps/rainbow.json
+3f2a721c1ec9b17da152c6fe2a4d1882478c45fc data/forge/tags/items/scraps/ruby.json
+c11f559b1f357497894a0db592f0633c95dc12bb data/forge/tags/items/scraps/sapphire.json
+b4f0641534858a5001fc966241f11ffc58353dea data/forge/tags/items/storage_blocks/aqumarine.json
+99eaf00e6f62b833263940a7a455f86f9fdb3c49 data/forge/tags/items/storage_blocks/graphite.json
+55c124f845d639b73cb5bffcdcc94bcfd8967966 data/forge/tags/items/storage_blocks/rainbow.json
+bc5ebfcaf115155b63f0817517bdc3efc0934364 data/forge/tags/items/storage_blocks/ruby.json
+2e755598d83145bf0d52488c9d8e3c41331dccc3 data/forge/tags/items/storage_blocks/sapphire.json

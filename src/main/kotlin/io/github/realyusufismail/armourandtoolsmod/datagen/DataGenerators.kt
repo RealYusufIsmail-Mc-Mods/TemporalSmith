@@ -20,6 +20,8 @@ package io.github.realyusufismail.armourandtoolsmod.datagen
 
 import io.github.realyusufismail.armourandtoolsmod.datagen.lang.ModEnLangProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.loot.ModLootTables
+import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModBlockTagsProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
 import io.github.realyusufismail.armourandtoolsmod.logger
 import net.minecraftforge.data.event.GatherDataEvent
@@ -42,6 +44,9 @@ object DataGenerators {
             gen.addProvider(true, ModLootTables(gen))
             gen.addProvider(true, ModEnLangProvider(gen))
             gen.addProvider(true, ModBlockStateProvider(gen.packOutput, existingFileHelper))
+            val blockTag = ModBlockTagsProvider(gen, existingFileHelper, lookup)
+            gen.addProvider(true, blockTag)
+            gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)
         }
