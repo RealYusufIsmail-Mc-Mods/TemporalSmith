@@ -108,7 +108,7 @@ dependencies {
         version = "1.19.3-44.1.0",
         classifier = "universal")
     // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:3.9.0")
+    implementation("thedarkcolour:kotlinforforge:3.9.2")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.5")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.5")
