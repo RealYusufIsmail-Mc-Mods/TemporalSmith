@@ -18,4 +18,45 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
-class NormalCraftingTableRecipeProvider {}
+import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
+import io.github.realyusufismail.armourandtoolsmod.core.util.bName
+import io.github.realyusufismail.armourandtoolsmod.core.util.name
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
+import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder
+import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapelessRecipeBuilder
+import java.util.function.Consumer
+import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.world.item.Items
+import net.minecraft.world.level.block.Blocks
+
+class NormalCraftingTableRecipeProvider(
+    private val mainModRecipeProvider: MainModRecipeProvider,
+    private val pWriter: Consumer<FinishedRecipe>
+) : MainModRecipeProvider(mainModRecipeProvider) {
+
+    fun build() {
+        YusufShapedRecipeBuilder.shaped(
+                RecipeCategory.BUILDING_BLOCKS, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get(), 1)
+            .define('A', Blocks.IRON_BLOCK)
+            .define('B', Blocks.CRAFTING_TABLE)
+            .define('C', Items.IRON_CHESTPLATE)
+            .pattern("ACA")
+            .pattern(" B ")
+            .save(pWriter, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get().bName + "_recipe")
+
+        addOreBlockRecipes()
+    }
+
+    private fun addOreBlockRecipes() {
+        // scan BlockInit for Blocks that return OreBlockObjectHolderDelegate
+        BlockInit.ORE_BLOCKS.forEach { oreBlock ->
+            // create a shapeless recipe for the ore block
+            YusufShapelessRecipeBuilder.shapeless(
+                    RecipeCategory.BUILDING_BLOCKS, oreBlock.value.get(), 9)
+                .requires(oreBlock.key.get())
+                .unlockedBy("has_item", has(oreBlock.value.get()))
+                .save(pWriter, oreBlock.value.get().name + "_block_recipe")
+        }
+    }
+}

@@ -33,26 +33,44 @@ import thedarkcolour.kotlinforforge.forge.registerObject
 object BlockInit {
     val BLOCKS: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID)
 
+    val ORE_BLOCKS: MutableMap<ObjectHolderDelegate<GeneralBlock>, ObjectHolderDelegate<Item>> =
+        mutableMapOf()
+
+    val SMELT_ABLE_BLOCKS:
+        MutableMap<ObjectHolderDelegate<GeneralBlock>, ObjectHolderDelegate<Item>> =
+        mutableMapOf()
+
     // ores
-    val RUBY_ORE = register("ruby_ore", Blocks.IRON_ORE)
-    val RAINBOW_ORE = register("rainbow_ore", Blocks.DIAMOND_ORE)
-    val SAPPHIRE_ORE = register("sapphire_ore", Blocks.GOLD_ORE)
-    val GRAPHITE_ORE = register("graphite_ore", Blocks.DIAMOND_ORE)
-    val AQUMARINE_ORE = register("aqumarine_ore", Blocks.DIAMOND_ORE)
+    val RUBY_ORE = registerSmeltAbleBlock("ruby_ore", ItemInit.RUBY, Blocks.IRON_ORE)
+    val RAINBOW_ORE = registerSmeltAbleBlock("rainbow_ore", ItemInit.RAINBOW, Blocks.DIAMOND_ORE)
+    val SAPPHIRE_ORE = registerSmeltAbleBlock("sapphire_ore", ItemInit.SAPPHIRE, Blocks.GOLD_ORE)
+    val GRAPHITE_ORE = registerSmeltAbleBlock("graphite_ore", ItemInit.GRAPHITE, Blocks.DIAMOND_ORE)
+    val AQUMARINE_ORE =
+        registerSmeltAbleBlock("aqumarine_ore", ItemInit.AQUMARINE, Blocks.DIAMOND_ORE)
 
     // deepslate ores
-    val DEEPSLATE_RUBY_ORE = register("deepslate_ruby_ore", Blocks.DEEPSLATE_IRON_ORE)
-    val DEEPSLATE_RAINBOW_ORE = register("deepslate_rainbow_ore", Blocks.DEEPSLATE_DIAMOND_ORE)
-    val DEEPSLATE_SAPPHIRE_ORE = register("deepslate_sapphire_ore", Blocks.DEEPSLATE_GOLD_ORE)
-    val DEEPSLATE_GRAPHITE_ORE = register("deepslate_graphite_ore", Blocks.DEEPSLATE_DIAMOND_ORE)
-    val DEEPSLATE_AQUMARINE_ORE = register("deepslate_aqumarine_ore", Blocks.DEEPSLATE_DIAMOND_ORE)
+    val DEEPSLATE_RUBY_ORE =
+        registerSmeltAbleBlock("deepslate_ruby_ore", ItemInit.RUBY, Blocks.DEEPSLATE_IRON_ORE)
+    val DEEPSLATE_RAINBOW_ORE =
+        registerSmeltAbleBlock(
+            "deepslate_rainbow_ore", ItemInit.RAINBOW, Blocks.DEEPSLATE_DIAMOND_ORE)
+    val DEEPSLATE_SAPPHIRE_ORE =
+        registerSmeltAbleBlock(
+            "deepslate_sapphire_ore", ItemInit.SAPPHIRE, Blocks.DEEPSLATE_GOLD_ORE)
+    val DEEPSLATE_GRAPHITE_ORE =
+        registerSmeltAbleBlock(
+            "deepslate_graphite_ore", ItemInit.GRAPHITE, Blocks.DEEPSLATE_DIAMOND_ORE)
+    val DEEPSLATE_AQUMARINE_ORE =
+        registerSmeltAbleBlock(
+            "deepslate_aqumarine_ore", ItemInit.AQUMARINE, Blocks.DEEPSLATE_DIAMOND_ORE)
 
     // blocks
-    val RUBY_BLOCK = register("ruby_block", Blocks.IRON_BLOCK)
-    val RAINBOW_BLOCK = register("rainbow_block", Blocks.DIAMOND_BLOCK)
-    val SAPPHIRE_BLOCK = register("sapphire_block", Blocks.GOLD_BLOCK)
-    val GRAPHITE_BLOCK = register("graphite_block", Blocks.DIAMOND_BLOCK)
-    val AQUMARINE_BLOCK = register("aqumarine_block", Blocks.DIAMOND_BLOCK)
+    val RUBY_BLOCK = registerOreBlock("ruby_block", ItemInit.RUBY, Blocks.IRON_BLOCK)
+    val RAINBOW_BLOCK = registerOreBlock("rainbow_block", ItemInit.RAINBOW, Blocks.DIAMOND_BLOCK)
+    val SAPPHIRE_BLOCK = registerOreBlock("sapphire_block", ItemInit.SAPPHIRE, Blocks.GOLD_BLOCK)
+    val GRAPHITE_BLOCK = registerOreBlock("graphite_block", ItemInit.GRAPHITE, Blocks.DIAMOND_BLOCK)
+    val AQUMARINE_BLOCK =
+        registerOreBlock("aqumarine_block", ItemInit.AQUMARINE, Blocks.DIAMOND_BLOCK)
 
     // custom crafting table
     val CUSTOM_ARMOUR_CRAFTING_TABLE =
@@ -70,6 +88,38 @@ object BlockInit {
     private fun register(name: String, supplier: () -> Block): ObjectHolderDelegate<Block> {
         val blockReg = BLOCKS.registerObject(name, supplier)
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        return blockReg
+    }
+
+    private fun registerOreBlock(
+        name: String,
+        associatedOreIngot: ObjectHolderDelegate<Item>,
+        existingBlock: Block
+    ): ObjectHolderDelegate<GeneralBlock> {
+
+        val blockReg =
+            BLOCKS.registerObject(name) {
+                GeneralBlock(BlockBehaviour.Properties.copy(existingBlock))
+            }
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+
+        ORE_BLOCKS[blockReg] = associatedOreIngot
+        return blockReg
+    }
+
+    private fun registerSmeltAbleBlock(
+        name: String,
+        associatedOreIngot: ObjectHolderDelegate<Item>,
+        existingBlock: Block
+    ): ObjectHolderDelegate<GeneralBlock> {
+
+        val blockReg =
+            BLOCKS.registerObject(name) {
+                GeneralBlock(BlockBehaviour.Properties.copy(existingBlock))
+            }
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+
+        SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         return blockReg
     }
 

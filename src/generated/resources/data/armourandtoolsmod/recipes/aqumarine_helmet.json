@@ -1,0 +1,16 @@
+{
+  "type": "armourandtoolsmod:omnitrix_crafter_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aqumarine"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A A"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:aqumarine_helmet"
+  }
+}

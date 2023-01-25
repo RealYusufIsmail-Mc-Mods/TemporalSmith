@@ -32,7 +32,7 @@ object MenuTypeInit {
     val MENU: DeferredRegister<MenuType<*>> =
         DeferredRegister.create(ForgeRegistries.MENU_TYPES, MOD_ID)
 
-    val CustomArmourCraftingTableMenuType:
+    val CUSTOM_ARMOUR_CRAFTING_TABLE_MENU:
         ObjectHolderDelegate<MenuType<CustomArmourCraftingTableMenu>> =
         register("custom_armour_crafting_table", ::CustomArmourCraftingTableMenu)
 

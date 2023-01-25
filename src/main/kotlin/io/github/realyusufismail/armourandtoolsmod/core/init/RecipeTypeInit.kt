@@ -20,30 +20,20 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableRecipe
-import net.minecraft.world.item.crafting.Recipe
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.crafting.RecipeType
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
 import thedarkcolour.kotlinforforge.forge.registerObject
 
+/** @see net.minecraft.stats.RecipeBookSettings */
 object RecipeTypeInit {
-    val TYPES: DeferredRegister<RecipeType<*>> =
+    val RECIPE_TYPES: DeferredRegister<RecipeType<*>> =
         DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, MOD_ID)
 
-    val CustomArmourCraftingTableRecipeType:
-        ObjectHolderDelegate<RecipeType<CustomArmourCraftingTableRecipe>> =
-        register("custom_armour_crafting_table")
-
-    private fun <T : Recipe<*>> register(
-        pIdentifier: String,
-    ): ObjectHolderDelegate<RecipeType<T>> {
-        return TYPES.registerObject(pIdentifier) {
-            object : RecipeType<T> {
-                override fun toString(): String {
-                    return pIdentifier
-                }
-            }
+    val ARMOUR_CRAFTING: ObjectHolderDelegate<RecipeType<CustomArmourCraftingTableRecipe>> =
+        RECIPE_TYPES.registerObject("armour_crafting") {
+            RecipeType.simple(ResourceLocation(MOD_ID, "armour_crafting"))
         }
-    }
 }

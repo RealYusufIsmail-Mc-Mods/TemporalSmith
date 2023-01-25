@@ -3,12 +3,15 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.19.3-1.0.0.alpha.5] - 2023-2-02
 
 ### Added Custom crafting table for armour
 ### Added new texture for aquarium block
+### Added all crafting and smelting recipes
+### Fixed issue where recipe book for custom armour crafting table was not showing
+### Identified issue where custom crafting table was not causing the game to crash. To be fixed in next update.
 
-## [1.19.3-1.0.0.alpha.4] - 2020-13-01
+## [1.19.3-1.0.0.alpha.4] - 2022-13-01
 
 ### Fixed an issue where resources were not generating.
 

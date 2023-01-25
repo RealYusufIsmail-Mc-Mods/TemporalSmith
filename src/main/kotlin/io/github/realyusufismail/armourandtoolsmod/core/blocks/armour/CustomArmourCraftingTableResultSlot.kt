@@ -27,6 +27,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.event.ForgeEventFactory
 
+/** @see net.minecraft.world.inventory.ResultSlot */
 class CustomArmourCraftingTableResultSlot(
     private val player: Player,
     private val craftSlots: CustomArmourCraftingTableContainer,
@@ -86,9 +87,7 @@ class CustomArmourCraftingTableResultSlot(
         ForgeHooks.setCraftingPlayer(pPlayer)
         val nonnulllist =
             pPlayer.level.recipeManager.getRemainingItemsFor(
-                RecipeTypeInit.CustomArmourCraftingTableRecipeType.get(),
-                this.craftSlots,
-                pPlayer.level)
+                RecipeTypeInit.ARMOUR_CRAFTING.get(), this.craftSlots, pPlayer.level)
         ForgeHooks.setCraftingPlayer(null)
         for (i in nonnulllist.indices) {
             var itemstack: ItemStack = this.craftSlots.getItem(i)

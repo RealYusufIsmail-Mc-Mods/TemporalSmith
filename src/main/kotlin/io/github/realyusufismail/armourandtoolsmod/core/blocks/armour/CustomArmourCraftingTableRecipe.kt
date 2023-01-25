@@ -24,6 +24,6 @@ import net.minecraft.world.item.crafting.RecipeType
 
 interface CustomArmourCraftingTableRecipe : Recipe<CustomArmourCraftingTableContainer> {
     override fun getType(): RecipeType<*> {
-        return RecipeTypeInit.CustomArmourCraftingTableRecipeType.get()
+        return RecipeTypeInit.ARMOUR_CRAFTING.get()
     }
 }

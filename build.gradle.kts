@@ -14,7 +14,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.3-1.0.0.alpha.4"
+project.version = "1.19.3-1.0.0.alpha.5"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -118,6 +118,7 @@ dependencies {
     implementation(
         group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.7")
     // Patchouli
+    // TODO: add once 1.19.3 support is added
     // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api"))
     // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77"))
 }

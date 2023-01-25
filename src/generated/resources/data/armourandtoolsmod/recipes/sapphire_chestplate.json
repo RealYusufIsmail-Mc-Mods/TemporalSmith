@@ -1,0 +1,17 @@
+{
+  "type": "armourandtoolsmod:omnitrix_crafter_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/sapphire"
+    }
+  },
+  "pattern": [
+    "A A",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:sapphire_chestplate"
+  }
+}

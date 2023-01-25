@@ -20,37 +20,47 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import com.google.common.base.Supplier
 import com.google.common.base.Suppliers
+import com.google.common.collect.ImmutableList
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableShapedRecipe
 import net.minecraft.client.RecipeBookCategories
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.crafting.Recipe
-import net.minecraft.world.item.crafting.RecipeType
+import net.minecraft.world.item.Items
 import net.minecraftforge.client.event.RegisterRecipeBookCategoriesEvent
 
 object RecipeCategoriesInit {
-    private var ARMOUR_CRAFTING_RECIPE_TYPE: RecipeType<CustomArmourCraftingTableRecipe> =
-        CustomArmourCraftingTableShapedRecipe.CustomArmourCraftingTableType()
 
-    private val ARMOUR_CRAFTING: Supplier<RecipeBookCategories> =
+    private val ARMOUR_CRAFTING_ARMOUR: Supplier<RecipeBookCategories> =
         Suppliers.memoize {
             RecipeBookCategories.create(
-                "ARMOUR_CRAFTING", ItemStack(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get()))
+                "ARMOUR_CRAFTING_ARMOUR", ItemStack(ItemInit.AQUMARINE_CHESTPLATE.get()))
         }
 
-    fun registerRecipeCategories(event: RegisterRecipeBookCategoriesEvent) {
-        event.registerBookCategories(
-            RecipeBookTypeInit.ARMOUR_CRAFTING, listOf(ARMOUR_CRAFTING.get()))
-        event.registerRecipeCategoryFinder(
-            ARMOUR_CRAFTING_RECIPE_TYPE, RecipeCategoriesInit::getForgingCategory)
-    }
+    private val ARMOUR_CRAFTING_SEARCH: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create("ARMOUR_CRAFTING_SEARCH", ItemStack(Items.COMPASS))
+        }
 
-    private fun getForgingCategory(recipe: Recipe<*>): RecipeBookCategories? {
-        val recipeType = recipe.type
-        return if (recipeType == ARMOUR_CRAFTING_RECIPE_TYPE) {
-            ARMOUR_CRAFTING.get()
-        } else {
-            RecipeBookCategories.UNKNOWN
+    private val ARMOUR_CRAFTING_MISC: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create("ARMOUR_CRAFTING_MISC", ItemStack(Items.DIAMOND_SHOVEL))
+        }
+
+    fun registerRecipeBookCategories(event: RegisterRecipeBookCategoriesEvent) {
+        event.registerBookCategories(
+            RecipeBookTypesInit.ARMOUR_CRAFTING,
+            ImmutableList.of(
+                ARMOUR_CRAFTING_ARMOUR.get(),
+                ARMOUR_CRAFTING_SEARCH.get(),
+                ARMOUR_CRAFTING_MISC.get()))
+        event.registerAggregateCategory(
+            ARMOUR_CRAFTING_SEARCH.get(),
+            ImmutableList.of(ARMOUR_CRAFTING_ARMOUR.get(), ARMOUR_CRAFTING_MISC.get()))
+        event.registerRecipeCategoryFinder(RecipeTypeInit.ARMOUR_CRAFTING.get()) {
+            if (it is CustomArmourCraftingTableRecipe) {
+                return@registerRecipeCategoryFinder ARMOUR_CRAFTING_ARMOUR.get()
+            } else {
+                return@registerRecipeCategoryFinder ARMOUR_CRAFTING_MISC.get()
+            }
         }
     }
 }

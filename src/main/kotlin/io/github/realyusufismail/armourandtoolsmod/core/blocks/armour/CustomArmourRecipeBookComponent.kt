@@ -16,12 +16,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.init
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour
 
-import java.util.*
-import net.minecraft.world.inventory.RecipeBookType
+import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent
 
-/** @see net.minecraft.stats.RecipeBookSettings */
-object RecipeBookTypeInit {
-    val ARMOUR_CRAFTING: RecipeBookType = RecipeBookType.create("ARMOUR_CRAFTING")
-}
+class CustomArmourRecipeBookComponent : RecipeBookComponent()
