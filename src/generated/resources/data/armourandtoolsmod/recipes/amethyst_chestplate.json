@@ -1,0 +1,17 @@
+{
+  "type": "armourandtoolsmod:omnitrix_crafter_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "pattern": [
+    "A A",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:amethyst_chestplate"
+  }
+}

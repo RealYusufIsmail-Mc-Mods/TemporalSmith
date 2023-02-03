@@ -27,10 +27,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.StackedContentsCompatible
 import net.minecraft.world.item.ItemStack
 
+/** @see net.minecraft.world.inventory.CraftingContainer */
 class CustomArmourCraftingTableContainer(
-    private var menu: AbstractContainerMenu? = null,
-    private var width: Int = 0,
-    private var height: Int = 0
+    private var menu: AbstractContainerMenu,
+    private var width: Int,
+    private var height: Int
 ) : Container, StackedContentsCompatible {
     private var items: NonNullList<ItemStack> =
         NonNullList.withSize(width * height, ItemStack.EMPTY)

@@ -64,6 +64,13 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.RAINBOW, "Rainbow Ingot")
         addItem(ItemInit.AQUMARINE, "Aqumarine")
 
+        // raw ores
+        addItem(ItemInit.RAW_RUBY, "Raw Ruby")
+        addItem(ItemInit.RAW_SAPPHIRE, "Raw Sapphire")
+        addItem(ItemInit.RAW_GRAPHITE, "Raw Graphite")
+        addItem(ItemInit.RAW_RAINBOW, "Raw Rainbow")
+        addItem(ItemInit.RAW_AQUMARINE, "Raw Aqumarine")
+
         // armor
         addItem(ItemInit.RUBY_HELMET, "Ruby Helmet")
         addItem(ItemInit.RUBY_CHESTPLATE, "Ruby Chestplate")

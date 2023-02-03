@@ -1,0 +1,16 @@
+{
+  "type": "armourandtoolsmod:omnitrix_crafter_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/ruby"
+    }
+  },
+  "pattern": [
+    "A A",
+    "A A"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:ruby_boots"
+  }
+}

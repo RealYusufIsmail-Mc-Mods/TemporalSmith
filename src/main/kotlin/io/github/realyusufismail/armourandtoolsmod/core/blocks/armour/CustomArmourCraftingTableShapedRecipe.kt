@@ -25,7 +25,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonSyntaxException
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import net.minecraft.core.NonNullList
 import net.minecraft.network.FriendlyByteBuf
@@ -34,7 +34,9 @@ import net.minecraft.util.GsonHelper
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.minecraft.world.item.crafting.*
+import net.minecraft.world.item.crafting.Ingredient
+import net.minecraft.world.item.crafting.Recipe
+import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.Level
 import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.crafting.CraftingHelper
@@ -98,7 +100,7 @@ class CustomArmourCraftingTableShapedRecipe(
     }
 
     override fun canCraftInDimensions(pWidth: Int, pHeight: Int): Boolean {
-        return false
+        return true
     }
 
     /** Recipes with equal group are combined into one button in the recipe book */
@@ -123,6 +125,10 @@ class CustomArmourCraftingTableShapedRecipe(
         return this.id
     }
 
+    override fun getToastSymbol(): ItemStack {
+        return ItemStack(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+    }
+
     override fun getSerializer(): RecipeSerializer<*> {
         return RecipeSerializerInit.CUSTOM_ARMOUR_CRAFTER.get()
     }
@@ -134,12 +140,6 @@ class CustomArmourCraftingTableShapedRecipe(
                 .stream()
                 .filter { p_151277_: Ingredient -> !p_151277_.isEmpty }
                 .anyMatch { ingredient: Ingredient? -> ForgeHooks.hasNoElements(ingredient) }
-    }
-
-    class CustomArmourCraftingTableType : RecipeType<CustomArmourCraftingTableRecipe> {
-        override fun toString(): String {
-            return "$MOD_ID:table_recipe"
-        }
     }
 
     companion object {
@@ -276,7 +276,7 @@ class CustomArmourCraftingTableShapedRecipe(
                 for (j in 0 until (pPattern.get(i)?.length ?: 0)) {
                     val s = pPattern[i]?.substring(j, j + 1)
                     val ingredient =
-                        pKeys.get(s)
+                        pKeys[s]
                             ?: throw JsonSyntaxException(
                                 ("Pattern references symbol '" +
                                     s +
@@ -296,9 +296,10 @@ class CustomArmourCraftingTableShapedRecipe(
     class Serializer : RecipeSerializer<CustomArmourCraftingTableShapedRecipe> {
         override fun fromJson(
             pRecipeId: ResourceLocation,
-            pJson: JsonObject
+            pJson: JsonObject,
         ): CustomArmourCraftingTableShapedRecipe {
             val s: String = GsonHelper.getAsString(pJson, "group", "")!!
+
             val map: Map<String, Ingredient> = keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"))
 
             val astring: Array<String?> =
@@ -311,14 +312,13 @@ class CustomArmourCraftingTableShapedRecipe(
             val itemstack: ItemStack =
                 itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"))
 
-            return CustomArmourCraftingTableShapedRecipe(
-                pRecipeId, s, i!!, j, nonnulllist, itemstack)
+            return CustomArmourCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
         }
 
         override fun fromNetwork(
             pRecipeId: ResourceLocation,
-            pBuffer: FriendlyByteBuf
-        ): CustomArmourCraftingTableShapedRecipe? {
+            pBuffer: FriendlyByteBuf,
+        ): CustomArmourCraftingTableShapedRecipe {
             val i = pBuffer.readVarInt()
             val j = pBuffer.readVarInt()
             val s = pBuffer.readUtf()

@@ -18,4 +18,13 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
-class ToolCraftingTableRecipeProvider {}
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
+import java.util.function.Consumer
+import net.minecraft.data.recipes.FinishedRecipe
+
+class ToolCraftingTableRecipeProvider(
+    private val mainModRecipeProvider: MainModRecipeProvider,
+    private val consumer: Consumer<FinishedRecipe>,
+) : MainModRecipeProvider(mainModRecipeProvider) {
+    private val hasItem = "has_item"
+}

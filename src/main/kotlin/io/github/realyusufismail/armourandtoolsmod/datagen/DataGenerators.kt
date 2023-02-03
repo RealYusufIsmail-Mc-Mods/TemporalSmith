@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.datagen
 
 import io.github.realyusufismail.armourandtoolsmod.datagen.lang.ModEnLangProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.loot.ModLootTables
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModBlockTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
@@ -47,6 +48,7 @@ object DataGenerators {
             val blockTag = ModBlockTagsProvider(gen, existingFileHelper, lookup)
             gen.addProvider(true, blockTag)
             gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))
+            gen.addProvider(true, MainModRecipeProvider(gen))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)
         }

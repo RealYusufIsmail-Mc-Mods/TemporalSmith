@@ -20,9 +20,6 @@ package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour
 
 import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.blaze3d.vertex.PoseStack
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
-import io.github.realyusufismail.armourandtoolsmod.core.util.customArmourCraftingTableMenuLocation
-import io.github.realyusufismail.armourandtoolsmod.core.util.recipeButtonLocation
 import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.components.ImageButton
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
@@ -44,9 +41,10 @@ class CustomArmourCraftingTableScreen(
     inv: Inventory,
     title: Component,
 ) : AbstractContainerScreen<CustomArmourCraftingTableMenu>(menu, inv, title), RecipeUpdateListener {
-    private val craftingTable = ResourceLocation(MOD_ID, customArmourCraftingTableMenuLocation)
-    private val recipeButton = ResourceLocation(MOD_ID, recipeButtonLocation)
-    private val recipeBookComponent = RecipeBookComponent()
+    private val CRAFTING_TABLE_LOCATION =
+        ResourceLocation("textures/gui/container/crafting_table.png")
+    private val RECIPE_BUTTON_LOCATION = ResourceLocation("textures/gui/recipe_button.png")
+    private val recipeBookComponent = CustomArmourRecipeBookComponent()
     private var widthTooNarrow = false
 
     override fun init() {
@@ -63,11 +61,11 @@ class CustomArmourCraftingTableScreen(
                 0,
                 0,
                 19,
-                recipeButton,
-            ) { p_98484_: Button ->
+                RECIPE_BUTTON_LOCATION,
+            ) { button: Button ->
                 recipeBookComponent.toggleVisibility()
                 leftPos = recipeBookComponent.updateScreenPosition(width, imageWidth)
-                (p_98484_ as ImageButton).setPosition(leftPos + 5, height / 2 - 49)
+                (button as ImageButton).setPosition(leftPos + 5, height / 2 - 49)
             })
         addWidget(recipeBookComponent)
         setInitialFocus(recipeBookComponent)
@@ -96,7 +94,7 @@ class CustomArmourCraftingTableScreen(
     override fun renderBg(pPoseStack: PoseStack, pPartialTick: Float, pX: Int, pY: Int) {
         RenderSystem.setShader { GameRenderer.getPositionTexShader() }
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-        RenderSystem.setShaderTexture(0, craftingTable)
+        RenderSystem.setShaderTexture(0, CRAFTING_TABLE_LOCATION)
         val i = leftPos
         val j = (height - imageHeight) / 2
         this.blit(pPoseStack, i, j, 0, 0, imageWidth, imageHeight)
@@ -108,7 +106,7 @@ class CustomArmourCraftingTableScreen(
         pWidth: Int,
         pHeight: Int,
         pMouseX: Double,
-        pMouseY: Double
+        pMouseY: Double,
     ): Boolean {
         return (!widthTooNarrow || !recipeBookComponent.isVisible) &&
             super.isHovering(pX, pY, pWidth, pHeight, pMouseX, pMouseY)
@@ -140,8 +138,10 @@ class CustomArmourCraftingTableScreen(
             pMouseX, pMouseY, leftPos, topPos, imageWidth, imageHeight, pMouseButton) && flag
     }
 
+    // TODO : pSlot is nullable, but it's not in the super method
     /** Called when the mouse is clicked over a slot or outside the gui. */
     override fun slotClicked(pSlot: Slot, pSlotId: Int, pMouseButton: Int, pType: ClickType) {
+        if (pSlot == null) throw IllegalStateException("Slot is null in slotClicked")
         super.slotClicked(pSlot, pSlotId, pMouseButton, pType)
         recipeBookComponent.slotClicked(pSlot)
     }

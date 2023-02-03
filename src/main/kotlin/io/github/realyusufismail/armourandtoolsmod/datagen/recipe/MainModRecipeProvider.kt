@@ -18,4 +18,30 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe
 
-class MainModRecipeProvider {}
+import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.ArmourCraftingTableRecipeProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.FurnaceRecipeProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.NormalCraftingTableRecipeProvider
+import java.util.function.Consumer
+import net.minecraft.data.DataGenerator
+import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.data.recipes.RecipeProvider
+import net.minecraft.resources.ResourceLocation
+import net.minecraftforge.common.crafting.conditions.IConditionBuilder
+
+open class MainModRecipeProvider(private val generatorIn: DataGenerator) :
+    RecipeProvider(generatorIn.packOutput), IConditionBuilder {
+
+    constructor(`this`: MainModRecipeProvider) : this(`this`.generatorIn)
+
+    override fun buildRecipes(pWriter: Consumer<FinishedRecipe>) {
+        ArmourCraftingTableRecipeProvider(this, pWriter).build()
+        FurnaceRecipeProvider(this, pWriter).build()
+        NormalCraftingTableRecipeProvider(this, pWriter).build()
+        // ToolCraftingTableRecipeProvider(this, pWriter).build()
+    }
+
+    open fun modId(path: String): ResourceLocation {
+        return ResourceLocation(MOD_ID, path)
+    }
+}

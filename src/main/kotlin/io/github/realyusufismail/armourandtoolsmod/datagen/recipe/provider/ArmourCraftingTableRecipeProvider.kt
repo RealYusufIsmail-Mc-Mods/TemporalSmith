@@ -18,4 +18,221 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
-class ArmourCraftingTableRecipeProvider {}
+import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
+import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder.CustomArmourCraftingTableRecipeBuilder
+import java.util.function.Consumer
+import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.world.item.Items
+
+class ArmourCraftingTableRecipeProvider(
+    private val mainModRecipeProvider: MainModRecipeProvider,
+    private val consumer: Consumer<FinishedRecipe>,
+) : MainModRecipeProvider(mainModRecipeProvider) {
+    private val hasItem = "has_item"
+
+    fun build() {
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AMETHYST_HELMET)
+            .define('A', Items.AMETHYST_SHARD)
+            .pattern("AAA")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_helmet"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AMETHYST_CHESTPLATE)
+            .define('A', Items.AMETHYST_SHARD)
+            .pattern("A A")
+            .pattern("AAA")
+            .pattern("AAA")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_chestplate"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AMETHYST_LEGGINGS)
+            .define('A', Items.AMETHYST_SHARD)
+            .pattern("AAA")
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_leggings"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AMETHYST_BOOTS)
+            .define('A', Items.AMETHYST_SHARD)
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_boots"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RUBY_HELMET)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
+            .pattern("AAA")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_RUBY))
+            .save(consumer, modId("ruby_helmet"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.RUBY_CHESTPLATE)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
+            .pattern("A A")
+            .pattern("AAA")
+            .pattern("AAA")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_RUBY))
+            .save(consumer, modId("ruby_chestplate"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RUBY_LEGGINGS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
+            .pattern("AAA")
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_RUBY))
+            .save(consumer, modId("ruby_leggings"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RUBY_BOOTS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_RUBY))
+            .save(consumer, modId("ruby_boots"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_HELMET)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .pattern("AAA")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_helmet"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_CHESTPLATE)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .pattern("A A")
+            .pattern("AAA")
+            .pattern("AAA")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_chestplate"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_LEGGINGS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .pattern("AAA")
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_leggings"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_BOOTS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_boots"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.GRAPHITE_HELMET)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
+            .pattern("AAA")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_GRAPHITE))
+            .save(consumer, modId("graphite_helmet"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.GRAPHITE_CHESTPLATE)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
+            .pattern("A A")
+            .pattern("AAA")
+            .pattern("AAA")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_GRAPHITE))
+            .save(consumer, modId("graphite_chestplate"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.GRAPHITE_LEGGINGS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
+            .pattern("AAA")
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_GRAPHITE))
+            .save(consumer, modId("graphite_leggings"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.GRAPHITE_BOOTS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_GRAPHITE))
+            .save(consumer, modId("graphite_boots"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.RAINBOW_HELMET)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("AAA")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("rainbow_helmet"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.RAINBOW_CHESTPLATE)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("A A")
+            .pattern("AAA")
+            .pattern("AAA")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("rainbow_chestplate"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.RAINBOW_LEGGINGS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("AAA")
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("rainbow_leggings"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RAINBOW_BOOTS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("rainbow_boots"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AQUMARINE_HELMET)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("AAA")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("aqumarine_helmet"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AQUMARINE_CHESTPLATE)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("A A")
+            .pattern("AAA")
+            .pattern("AAA")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("aqumarine_chestplate"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AQUMARINE_LEGGINGS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("AAA")
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("aqumarine_leggings"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ItemInit.AQUMARINE_BOOTS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
+            .save(consumer, modId("aqumarine_boots"))
+    }
+}
