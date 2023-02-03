@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.8.0"
     kotlin("plugin.allopen") version "1.8.0"
-    id("com.diffplug.spotless") version "6.12.1"
+    id("com.diffplug.spotless") version "6.13.0"
     id("net.minecraftforge.gradle") version "5.1.+"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
@@ -113,7 +113,7 @@ dependencies {
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.5")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.5")
     // test
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     // core
     implementation(
         group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.7")
