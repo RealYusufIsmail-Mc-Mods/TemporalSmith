@@ -31,16 +31,13 @@ import net.minecraft.core.NonNullList
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.GsonHelper
-import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.Level
 import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.crafting.CraftingHelper
-import net.minecraftforge.registries.ForgeRegistries
 
 /** @see io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder */
 class CustomArmourCraftingTableShapedRecipe(
@@ -81,9 +78,9 @@ class CustomArmourCraftingTableShapedRecipe(
                 if ((k >= 0) && (l >= 0) && (k < this.width) && (l < this.height)) {
                     ingredient =
                         if (pMirrored) {
-                            this.recipeItems.get(this.width - k - 1 + l * this.width)
+                            this.recipeItems[this.width - k - 1 + l * this.width]
                         } else {
-                            this.recipeItems.get(k + l * this.width)
+                            this.recipeItems[k + l * this.width]
                         }
                 }
                 if (!ingredient.test(
@@ -138,7 +135,7 @@ class CustomArmourCraftingTableShapedRecipe(
         return nonnulllist.isEmpty() ||
             nonnulllist
                 .stream()
-                .filter { p_151277_: Ingredient -> !p_151277_.isEmpty }
+                .filter { ingredient: Ingredient -> !ingredient.isEmpty }
                 .anyMatch { ingredient: Ingredient? -> ForgeHooks.hasNoElements(ingredient) }
     }
 
@@ -178,7 +175,7 @@ class CustomArmourCraftingTableShapedRecipe(
         }
 
         private fun firstNonSpace(pEntry: String): Int {
-            var i: Int = 0
+            var i = 0
             while (i < pEntry.length && pEntry[i] == ' ') {
                 ++i
             }
@@ -239,30 +236,6 @@ class CustomArmourCraftingTableShapedRecipe(
             return CraftingHelper.getItemStack(pStackObject, true, true)
         }
 
-        fun itemFromJson(pItemObject: JsonObject): Item {
-            val s = GsonHelper.getAsString(pItemObject, "item")
-            val item: Item =
-                ForgeRegistries.ITEMS.getValue(ResourceLocation(s))
-                    ?: throw JsonSyntaxException("Unknown item '$s'")
-            if (item === Items.AIR) {
-                throw JsonSyntaxException("Invalid item: $s")
-            } else {
-                return item
-            }
-        }
-
-        /**
-         * Expand the max width and height allowed in the deserializer. This should be called by
-         * modders who add custom crafting tables that are larger than the vanilla 3x3.
-         *
-         * @param width your max recipe width
-         * @param height your max recipe height
-         */
-        fun setCraftingSize(width: Int, height: Int) {
-            if (MAX_WIDTH < width) MAX_WIDTH = width
-            if (MAX_HEIGHT < height) MAX_HEIGHT = height
-        }
-
         fun dissolvePattern(
             pPattern: Array<String?>,
             pKeys: Map<String, Ingredient>,
@@ -273,7 +246,7 @@ class CustomArmourCraftingTableShapedRecipe(
             val set: MutableSet<String> = Sets.newHashSet(pKeys.keys)
             set.remove(" ")
             for (i in pPattern.indices) {
-                for (j in 0 until (pPattern.get(i)?.length ?: 0)) {
+                for (j in 0 until (pPattern[i]?.length ?: 0)) {
                     val s = pPattern[i]?.substring(j, j + 1)
                     val ingredient =
                         pKeys[s]
@@ -323,7 +296,7 @@ class CustomArmourCraftingTableShapedRecipe(
             val j = pBuffer.readVarInt()
             val s = pBuffer.readUtf()
             val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
-            nonnulllist.replaceAll { ignored: Ingredient -> Ingredient.fromNetwork(pBuffer) }
+            nonnulllist.replaceAll { Ingredient.fromNetwork(pBuffer) }
             val itemstack = pBuffer.readItem()
             return CustomArmourCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
         }

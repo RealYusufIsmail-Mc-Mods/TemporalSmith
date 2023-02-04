@@ -67,7 +67,7 @@ class CustomArmourCraftingTableContainer(
     override fun removeItem(pIndex: Int, pCount: Int): ItemStack {
         val itemstack = ContainerHelper.removeItem(items, pIndex, pCount)
         if (!itemstack.isEmpty) {
-            menu!!.slotsChanged(this)
+            menu.slotsChanged(this)
         }
         return itemstack
     }
@@ -78,11 +78,11 @@ class CustomArmourCraftingTableContainer(
      */
     override fun setItem(pIndex: Int, pStack: ItemStack) {
         items[pIndex] = pStack
-        menu!!.slotsChanged(this)
+        menu.slotsChanged(this)
     }
 
     override fun setChanged() {
-        menu!!.slotsChanged(this)
+        menu.slotsChanged(this)
     }
 
     /** Don't rename this method to canInteractWith due to conflicts with Container */

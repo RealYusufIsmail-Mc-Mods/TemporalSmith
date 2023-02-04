@@ -22,7 +22,6 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.MenuTypeInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeBookTypesInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
-import java.util.*
 import net.minecraft.core.BlockPos
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket
 import net.minecraft.server.level.ServerPlayer
@@ -72,7 +71,7 @@ class CustomArmourCraftingTableMenu(
         }
     }
 
-    protected fun slotChangedCraftingGrid(
+    private fun slotChangedCraftingGrid(
         pMenu: AbstractContainerMenu,
         pLevel: Level,
         pPlayer: Player,
@@ -105,8 +104,8 @@ class CustomArmourCraftingTableMenu(
 
     /** Callback for when the crafting matrix is changed. */
     override fun slotsChanged(pInventory: Container) {
-        access.execute { p_39386_: Level, p_39387_: BlockPos ->
-            slotChangedCraftingGrid(this, p_39386_, player, craftSlots, resultSlots)
+        access.execute { level: Level, _: BlockPos ->
+            slotChangedCraftingGrid(this, level, player, craftSlots, resultSlots)
         }
     }
 
@@ -126,9 +125,7 @@ class CustomArmourCraftingTableMenu(
     /** Called when the container is closed. */
     override fun removed(pPlayer: Player) {
         super.removed(pPlayer)
-        access.execute { p_39371_: Level, p_39372_: BlockPos ->
-            clearContainer(pPlayer, craftSlots)
-        }
+        access.execute { _: Level, _: BlockPos -> clearContainer(pPlayer, craftSlots) }
     }
 
     /** Determines whether supplied player can use this container */
@@ -147,8 +144,8 @@ class CustomArmourCraftingTableMenu(
             val itemstack1 = slot.item
             itemstack = itemstack1.copy()
             if (pIndex == 0) {
-                access.execute { p_39378_: Level?, p_39379_: BlockPos ->
-                    itemstack1.item.onCraftedBy(itemstack1, p_39378_, pPlayer)
+                access.execute { level: Level, _: BlockPos ->
+                    itemstack1.item.onCraftedBy(itemstack1, level, pPlayer)
                 }
                 if (!moveItemStackTo(itemstack1, 10, 46, true)) {
                     return ItemStack.EMPTY

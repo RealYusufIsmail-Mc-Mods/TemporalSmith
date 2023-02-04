@@ -103,7 +103,7 @@ class CustomArmourCraftingTableResultSlot(
                     ItemStack.tagMatches(itemstack, itemstack1)) {
                     itemstack1.grow(itemstack.count)
                     this.craftSlots.setItem(i, itemstack1)
-                } else if (!this.player.getInventory().add(itemstack1)) {
+                } else if (!this.player.inventory.add(itemstack1)) {
                     this.player.drop(itemstack1, false)
                 }
             }
