@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "minecraft:crafting_table"
+    },
+    "C": {
+      "item": "minecraft:iron_chestplate"
+    }
+  },
+  "pattern": [
+    "ACA",
+    " B "
+  ],
+  "result": {
+    "item": "armourandtoolsmod:custom_armour_crafting_table"
+  }
+}

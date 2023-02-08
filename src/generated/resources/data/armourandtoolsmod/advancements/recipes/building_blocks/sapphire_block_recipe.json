@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "armourandtoolsmod:graphite"
+              "armourandtoolsmod:sapphire"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:graphite_block_recipe"
+        "recipe": "armourandtoolsmod:sapphire_block_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:graphite_block_recipe"
+      "armourandtoolsmod:sapphire_block_recipe"
     ]
   }
 }
