@@ -14,7 +14,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.3-1.0.0.alpha.6"
+project.version = "1.19.3-1.0.0.alpha.7"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -33,6 +33,11 @@ configure<UserDevExtension> {
         create("client") {
             workingDirectory(file("run"))
 
+            // add mixin
+            property("mixin.env.remapRefMap", "true")
+            property(
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
+
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
 
@@ -44,6 +49,11 @@ configure<UserDevExtension> {
 
         create("server") {
             workingDirectory(file("run"))
+
+            // add mixin
+            property("mixin.env.remapRefMap", "true")
+            property(
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -57,6 +67,11 @@ configure<UserDevExtension> {
         create("gameTestServer") {
             workingDirectory(file("run"))
 
+            // add mixin
+            property("mixin.env.remapRefMap", "true")
+            property(
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
+
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
 
@@ -68,8 +83,10 @@ configure<UserDevExtension> {
 
         create("data") {
             workingDirectory(file("run"))
-
-            taskName = "datagen"
+            // add mixin
+            property("mixin.env.remapRefMap", "true")
+            property(
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -89,6 +106,9 @@ configure<UserDevExtension> {
                 file("src/main/resources/"))
 
             mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
+
+            // 'runData' is renamed to 'runDataGenerator' to make it more clear what it does.
+            taskName = "runDataGenerator"
         }
     }
 }
@@ -118,9 +138,8 @@ dependencies {
     implementation(
         group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.7")
     // Patchouli
-    // TODO: add once 1.19.3 support is added
-    // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api"))
-    // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77"))
+    compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
+    runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
 }
 
 tasks.test {

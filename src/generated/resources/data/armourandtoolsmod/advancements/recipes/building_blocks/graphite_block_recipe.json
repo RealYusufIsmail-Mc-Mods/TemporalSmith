@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "armourandtoolsmod:ruby"
+              "armourandtoolsmod:graphite"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:ruby_block_recipe"
+        "recipe": "armourandtoolsmod:graphite_block_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:ruby_block_recipe"
+      "armourandtoolsmod:graphite_block_recipe"
     ]
   }
 }

@@ -24,6 +24,7 @@ import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeP
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModBlockTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModItemStateProvider
 import io.github.realyusufismail.armourandtoolsmod.logger
 import net.minecraftforge.data.event.GatherDataEvent
 
@@ -45,6 +46,7 @@ object DataGenerators {
             gen.addProvider(true, ModLootTables(gen))
             gen.addProvider(true, ModEnLangProvider(gen))
             gen.addProvider(true, ModBlockStateProvider(gen.packOutput, existingFileHelper))
+            gen.addProvider(true, ModItemStateProvider(gen.packOutput, existingFileHelper))
             val blockTag = ModBlockTagsProvider(gen, existingFileHelper, lookup)
             gen.addProvider(true, blockTag)
             gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))

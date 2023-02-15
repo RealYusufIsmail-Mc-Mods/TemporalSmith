@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "armourandtoolsmod:aqumarine"
+              "armourandtoolsmod:ruby"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:aqumarine_block_recipe"
+        "recipe": "armourandtoolsmod:ruby_block_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:aqumarine_block_recipe"
+      "armourandtoolsmod:ruby_block_recipe"
     ]
   }
 }

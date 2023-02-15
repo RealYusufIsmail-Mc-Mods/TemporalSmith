@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "armourandtoolsmod:sapphire"
+              "armourandtoolsmod:aqumarine"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:sapphire_block_recipe"
+        "recipe": "armourandtoolsmod:aqumarine_block_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:sapphire_block_recipe"
+      "armourandtoolsmod:aqumarine_block_recipe"
     ]
   }
 }

@@ -19,7 +19,6 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
-import io.github.realyusufismail.armourandtoolsmod.core.util.bName
 import io.github.realyusufismail.armourandtoolsmod.core.util.name
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder
@@ -37,13 +36,14 @@ class NormalCraftingTableRecipeProvider(
 
     fun build() {
         YusufShapedRecipeBuilder.shaped(
-                RecipeCategory.BUILDING_BLOCKS, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get(), 1)
+                RecipeCategory.BUILDING_BLOCKS, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
             .define('A', Blocks.IRON_BLOCK)
             .define('B', Blocks.CRAFTING_TABLE)
             .define('C', Items.IRON_CHESTPLATE)
             .pattern("ACA")
             .pattern(" B ")
-            .save(pWriter, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get().bName + "_recipe")
+            .unlockedBy("has_item", has(Items.IRON_CHESTPLATE))
+            .save(pWriter, modId("custom_armour_crafting_table_recipe"))
 
         addOreBlockRecipes()
     }
@@ -56,7 +56,7 @@ class NormalCraftingTableRecipeProvider(
                     RecipeCategory.BUILDING_BLOCKS, oreBlock.value.get(), 9)
                 .requires(oreBlock.key.get())
                 .unlockedBy("has_item", has(oreBlock.value.get()))
-                .save(pWriter, oreBlock.value.get().name + "_block_recipe")
+                .save(pWriter, modId(oreBlock.value.get().name + "_block_recipe"))
         }
     }
 }

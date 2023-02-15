@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "armourandtoolsmod:rainbow"
+              "minecraft:iron_chestplate"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:rainbow_block_recipe"
+        "recipe": "armourandtoolsmod:custom_armour_crafting_table_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:rainbow_block_recipe"
+      "armourandtoolsmod:custom_armour_crafting_table_recipe"
     ]
   }
 }
