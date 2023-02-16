@@ -3,7 +3,7 @@ import net.minecraftforge.gradle.userdev.UserDevExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.10"
     kotlin("plugin.allopen") version "1.8.0"
     id("com.diffplug.spotless") version "6.14.0"
     id("net.minecraftforge.gradle") version "5.1.+"
