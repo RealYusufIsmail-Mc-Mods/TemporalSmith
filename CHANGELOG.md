@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.19.3-1.0.0.alpha.8] - 2023-2-16
+
+### Bumped kotlinforforge to v 4.0.0 as 3.10.0 supports version 1.19.2 and under only
+
 ## [1.19.3-1.0.0.alpha.7] - 2023-2-15
 
 ### Added new textures for ores and raw ores
