@@ -17,15 +17,13 @@ body:
       options:
         - label: I have checked for similar issues on the Issue-tracker.
           required: true
-        - label: I have updated to the [latest YDWK version](https://search.maven.org/artifact/io.github.realyusufismail/ydwk)
-          required: true
         - label: I have checked the branches or the maintainers' PRs for upcoming features.
           required: true
   - type: textarea
     attributes:
       label: "Feature Request"
       description: "Provide a small description of the feature you want to have added."
-      placeholder: "YDWK should get ..."
+      placeholder: "Armour and Item mod should get ..."
     validations:
       required: true
   - type: textarea
