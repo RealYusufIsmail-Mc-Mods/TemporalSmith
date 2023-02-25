@@ -61,17 +61,30 @@ class ModBlockTagsProvider(
         // use BlockTags.MINEABLE_WITH_PICKAXE
         BlockInit.ORE_BLOCKS.forEach { oreBlock ->
             tag(BlockTags.MINEABLE_WITH_PICKAXE).add(oreBlock.key.get())
-            // TODO: add other tags such as NEEDS_DIAMOND_TOOL
-
-            // Remove this once new system is implemented
-            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(oreBlock.key.get())
         }
 
         BlockInit.SMELT_ABLE_BLOCKS.forEach { oreBlock ->
             tag(BlockTags.MINEABLE_WITH_PICKAXE).add(oreBlock.key.get())
+        }
 
-            // Remove this once new system is implemented
-            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(oreBlock.key.get())
+        BlockInit.MINABLE_STONE_PICKAXE_BLOCKS.forEach { oreBlock ->
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(oreBlock.get())
+        }
+
+        BlockInit.MINABLE_IRON_PICKAXE_BLOCKS.forEach { oreBlock ->
+            tag(BlockTags.NEEDS_IRON_TOOL).add(oreBlock.get())
+        }
+
+        BlockInit.MINABLE_GOLD_PICKAXE_BLOCKS.forEach { oreBlock ->
+            tag(BlockTags.NEEDS_STONE_TOOL).add(oreBlock.get())
+        }
+
+        BlockInit.MINABLE_DIAMOND_PICKAXE_BLOCKS.forEach { oreBlock ->
+            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(oreBlock.get())
+        }
+
+        BlockInit.MINABLE_NETHERITE_PICKAXE_BLOCKS.forEach { oreBlock ->
+            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(oreBlock.get())
         }
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())

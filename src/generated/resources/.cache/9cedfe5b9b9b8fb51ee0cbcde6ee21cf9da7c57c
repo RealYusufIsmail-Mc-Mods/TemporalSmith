@@ -1,4 +1,4 @@
-// 1.19.3	2023-02-25T19:25:55.509295	Tags for minecraft:block mod id armourandtoolsmod
+// 1.19.3	2023-02-25T19:40:27.486371	Tags for minecraft:block mod id armourandtoolsmod
 f4e0d28b203a60fd241885a727654636c8762650 data/forge/tags/blocks/deepslate_ores/aqumarine_ores.json
 186e50e522fb2ae91c6e315a523523796b105b56 data/forge/tags/blocks/deepslate_ores/graphite_ores.json
 d66c065dfb98375b77835223afe692a26c7be84b data/forge/tags/blocks/deepslate_ores/rainbow_ores.json
@@ -14,6 +14,7 @@ b4f0641534858a5001fc966241f11ffc58353dea data/forge/tags/blocks/storage_blocks/a
 55c124f845d639b73cb5bffcdcc94bcfd8967966 data/forge/tags/blocks/storage_blocks/rainbow.json
 bc5ebfcaf115155b63f0817517bdc3efc0934364 data/forge/tags/blocks/storage_blocks/ruby.json
 2e755598d83145bf0d52488c9d8e3c41331dccc3 data/forge/tags/blocks/storage_blocks/sapphire.json
-7476cb858eb1d9736c0d9df25a92443105ffe49c data/minecraft/tags/blocks/mineable/pickaxe.json
-2ce508ea07df37d3f944a59960b29a5a9631842e data/minecraft/tags/blocks/needs_diamond_tool.json
-a9b03e3b99a673d01bb7413cc6092c7a9b5be634 data/minecraft/tags/blocks/needs_stone_tool.json
+43e737e31de831bb0097a298887945bb00d6259e data/minecraft/tags/blocks/mineable/pickaxe.json
+01a2b3176c7a9a62fadd8e5a5c18cfe86c6a4881 data/minecraft/tags/blocks/needs_diamond_tool.json
+305db57c519bc4cfa07a662c8beeffec12ffac38 data/minecraft/tags/blocks/needs_iron_tool.json
+361507018ac4e0d36bd6dab0f7e5336d596b13bf data/minecraft/tags/blocks/needs_stone_tool.json
