@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.blocks
 
+import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
@@ -38,13 +39,30 @@ import net.minecraft.world.level.block.RedstoneTorchBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BooleanProperty
+import net.minecraft.world.level.material.Material
 import net.minecraft.world.phys.BlockHitResult
 
-class LITBlock(properties: Properties) : GeneralBlock(properties) {
+/**
+ * A block that emits light when stepped on.
+ *
+ * @see net.minecraft.world.level.block.RedStoneOreBlock
+ */
+class LITBlock :
+    GeneralBlock(
+        Properties.of(Material.STONE)
+            .requiresCorrectToolForDrops()
+            .randomTicks()
+            .lightLevel(BlockInit.litBlockEmission(11))
+            .strength(3.0f, 3.0f)) {
     private val lit: BooleanProperty = RedstoneTorchBlock.LIT
 
     init {
-        registerDefaultState(defaultBlockState().setValue(lit, false))
+        try {
+            registerDefaultState(
+                defaultBlockState().setValue(lit, java.lang.Boolean.valueOf(false)))
+        } catch (e: Exception) {
+           throw IllegalStateException("Failed to register default state for LITBlock", e)
+        }
     }
 
     @Deprecated("Deprecated in Java")
@@ -179,9 +197,14 @@ class LITBlock(properties: Properties) : GeneralBlock(properties) {
         }
     }
 
-    override fun createBlockStateDefinition(
-        pBuilder: StateDefinition.Builder<Block?, BlockState?>
-    ) {
-        pBuilder.add(lit)
+    override fun createBlockStateDefinition(pBuilder: StateDefinition.Builder<Block, BlockState>) {
+        if (lit == null) {
+            this.registerDefaultState(
+                this.defaultBlockState().setValue(lit, java.lang.Boolean.valueOf(false)))
+
+            createBlockStateDefinition(pBuilder)
+        } else {
+            pBuilder.add(lit)
+        }
     }
 }

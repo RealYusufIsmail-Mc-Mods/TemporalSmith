@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
@@ -45,24 +46,8 @@ object BlockInit {
         mutableMapOf()
 
     // ores
-    val RUBY_ORE =
-        registerSmeltAbleBlock(
-            "ruby_ore",
-            ItemInit.RUBY,
-            LITBlock(
-                BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE)
-                    .requiresCorrectToolForDrops()
-                    .randomTicks()
-                    .lightLevel(litBlockEmission(10))))
-    val RAINBOW_ORE =
-        registerSmeltAbleBlock(
-            "rainbow_ore",
-            ItemInit.RAINBOW,
-            LITBlock(
-                BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
-                    .requiresCorrectToolForDrops()
-                    .randomTicks()
-                    .lightLevel(litBlockEmission(12))))
+    val RUBY_ORE = registerSpecialSmeltAbleBlock("ruby_ore", ItemInit.RUBY, ::LITBlock)
+    val RAINBOW_ORE = registerSpecialSmeltAbleBlock("rainbow_ore", ItemInit.RAINBOW, ::LITBlock)
     val SAPPHIRE_ORE =
         registerSmeltAbleBlock(
             "sapphire_ore",
@@ -81,24 +66,10 @@ object BlockInit {
 
     // deepslate ores
     val DEEPSLATE_RUBY_ORE =
-        registerSmeltAbleBlock(
-            "deepslate_ruby_ore",
-            ItemInit.RUBY,
-            LITBlock(
-                BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_REDSTONE_ORE)
-                    .requiresCorrectToolForDrops()
-                    .randomTicks()
-                    .lightLevel(litBlockEmission(11))))
+        registerSpecialSmeltAbleBlock("deepslate_ruby_ore", ItemInit.RUBY, ::LITBlock)
 
     val DEEPSLATE_RAINBOW_ORE =
-        registerSmeltAbleBlock(
-            "deepslate_rainbow_ore",
-            ItemInit.RAINBOW,
-            LITBlock(
-                BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
-                    .requiresCorrectToolForDrops()
-                    .randomTicks()
-                    .lightLevel(litBlockEmission(12))))
+        registerSpecialSmeltAbleBlock("deepslate_rainbow_ore", ItemInit.RAINBOW, ::LITBlock)
     val DEEPSLATE_SAPPHIRE_ORE =
         registerSmeltAbleBlock(
             "deepslate_sapphire_ore",
@@ -157,9 +128,15 @@ object BlockInit {
         return blockReg
     }
 
-    private fun register(name: String, supplier: () -> Block): ObjectHolderDelegate<Block> {
+    private fun registerSpecialSmeltAbleBlock(
+        name: String,
+        associatedOreIngot: ObjectHolderDelegate<Item>,
+        supplier: () -> GeneralBlock,
+    ): ObjectHolderDelegate<GeneralBlock> {
+
         val blockReg = BLOCKS.registerObject(name, supplier)
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         return blockReg
     }
 
@@ -180,19 +157,6 @@ object BlockInit {
     private fun registerSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        block: GeneralBlock,
-    ): ObjectHolderDelegate<GeneralBlock> {
-
-        val blockReg = BLOCKS.registerObject(name) { block }
-        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
-
-        SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
-        return blockReg
-    }
-
-    private fun registerSmeltAbleBlock(
-        name: String,
-        associatedOreIngot: ObjectHolderDelegate<Item>,
         property: BlockBehaviour.Properties,
     ): ObjectHolderDelegate<GeneralBlock> {
 
@@ -203,7 +167,9 @@ object BlockInit {
         return blockReg
     }
 
-    private fun litBlockEmission(lightValue: Int): ToIntFunction<BlockState> {
-        return ToIntFunction { lightValue }
+    fun litBlockEmission(pLightValue: Int): ToIntFunction<BlockState> {
+        return ToIntFunction { p_50763_: BlockState ->
+            if (p_50763_.getValue(BlockStateProperties.LIT)) pLightValue else 0
+        }
     }
 }
