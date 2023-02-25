@@ -128,15 +128,16 @@ object BlockInit {
         return blockReg
     }
 
-    private fun registerSpecialSmeltAbleBlock(
+    private fun <T : Block> registerSpecialSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        supplier: () -> GeneralBlock,
-    ): ObjectHolderDelegate<GeneralBlock> {
+        supplier: () -> T,
+    ): ObjectHolderDelegate<T> {
 
         val blockReg = BLOCKS.registerObject(name, supplier)
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
-        SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
+
+        SMELT_ABLE_BLOCKS[blockReg as ObjectHolderDelegate<GeneralBlock>] = associatedOreIngot
         return blockReg
     }
 
@@ -151,6 +152,19 @@ object BlockInit {
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
         ORE_BLOCKS[blockReg] = associatedOreIngot
+        return blockReg
+    }
+
+    private fun registerSmeltAbleBlock(
+        name: String,
+        associatedOreIngot: ObjectHolderDelegate<Item>,
+        block: GeneralBlock,
+    ): ObjectHolderDelegate<GeneralBlock> {
+
+        val blockReg = BLOCKS.registerObject(name) { block }
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+
+        SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         return blockReg
     }
 

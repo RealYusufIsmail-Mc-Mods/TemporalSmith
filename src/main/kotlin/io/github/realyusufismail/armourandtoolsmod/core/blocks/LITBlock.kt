@@ -54,14 +54,14 @@ class LITBlock :
             .randomTicks()
             .lightLevel(BlockInit.litBlockEmission(11))
             .strength(3.0f, 3.0f)) {
-    private val lit: BooleanProperty = RedstoneTorchBlock.LIT
+    private val lit: BooleanProperty? = RedstoneTorchBlock.LIT
 
     init {
         try {
-            registerDefaultState(
-                defaultBlockState().setValue(lit, java.lang.Boolean.valueOf(false)))
+            lit?.let { defaultBlockState().setValue(it, java.lang.Boolean.valueOf(false)) }
+                ?.let { registerDefaultState(it) }
         } catch (e: Exception) {
-           throw IllegalStateException("Failed to register default state for LITBlock", e)
+            throw IllegalStateException("Failed to register default state for LITBlock", e)
         }
     }
 
@@ -129,7 +129,7 @@ class LITBlock :
         "Deprecated in Java",
         ReplaceWith(
             "super.spawnAfterBreak(pState, pLevel, pPos, pStack, pDropExperience)",
-            "net.minecraft.world.level.block.Block"))
+            "io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock"))
     override fun spawnAfterBreak(
         pState: BlockState,
         pLevel: ServerLevel,
