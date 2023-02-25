@@ -24,17 +24,24 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
 import java.util.concurrent.CompletableFuture
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.DataGenerator
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.BlockTags
+import net.minecraft.tags.TagKey
+import net.minecraft.world.level.block.Block
 import net.minecraftforge.common.data.BlockTagsProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 
 class ModBlockTagsProvider(
     generatorIn: DataGenerator,
     existingFileHelper: ExistingFileHelper,
-    provider: CompletableFuture<HolderLookup.Provider>
+    provider: CompletableFuture<HolderLookup.Provider>,
 ) : BlockTagsProvider(generatorIn.packOutput, provider, MOD_ID, existingFileHelper) {
 
     override fun addTags(pProvider: HolderLookup.Provider) {
+        // custom tags
+        val goldTage = createForgeTag("forge:needs_gold_tool")
+        val netheriteTag = createForgeTag("forge:needs_netherite_tool")
+
         // ores
         tag(TagsInit.BlockTagsInit.ORES_RUBY_ORES).add(BlockInit.RUBY_ORE.get())
         tag(TagsInit.BlockTagsInit.ORES_RAINBOW_ORES).add(BlockInit.RAINBOW_ORE.get())
@@ -76,7 +83,7 @@ class ModBlockTagsProvider(
         }
 
         BlockInit.MINABLE_GOLD_PICKAXE_BLOCKS.forEach { oreBlock ->
-            tag(BlockTags.NEEDS_STONE_TOOL).add(oreBlock.get())
+            tag(goldTage).add(oreBlock.get())
         }
 
         BlockInit.MINABLE_DIAMOND_PICKAXE_BLOCKS.forEach { oreBlock ->
@@ -84,10 +91,14 @@ class ModBlockTagsProvider(
         }
 
         BlockInit.MINABLE_NETHERITE_PICKAXE_BLOCKS.forEach { oreBlock ->
-            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(oreBlock.get())
+            tag(netheriteTag).add(oreBlock.get())
         }
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         tag(BlockTags.NEEDS_STONE_TOOL).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+    }
+
+    private fun createForgeTag(tagName: String): TagKey<Block> {
+        return BlockTags.create(ResourceLocation(tagName))
     }
 }
