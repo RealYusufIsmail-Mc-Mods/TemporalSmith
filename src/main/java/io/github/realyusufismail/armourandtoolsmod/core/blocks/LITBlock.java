@@ -23,6 +23,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 import java.util.function.ToIntFunction;
 
@@ -33,14 +35,16 @@ import java.util.function.ToIntFunction;
  */
 public class LITBlock extends GeneralBlock {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
+    public static final Vector3f GENERAL_PARTICLE_COLOR = Vec3.fromRGB24(0x00FFFF).toVector3f();
+    public static final DustParticleOptions GENERAL_PARTICLE_OPTIONS = new DustParticleOptions(GENERAL_PARTICLE_COLOR, 1.0F);
 
     public LITBlock() {
         super( Properties.of(Material.STONE)
                 .requiresCorrectToolForDrops()
                 .randomTicks()
-                .lightLevel(litBlockEmission(11))
+                .lightLevel(litBlockEmission(12))
                 .strength(3.0f, 3.0f));
-        this.registerDefaultState(this.defaultBlockState().setValue(LIT, Boolean.valueOf(false)));
+        this.registerDefaultState(this.defaultBlockState().setValue(LIT, Boolean.FALSE));
     }
 
     public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
@@ -124,7 +128,7 @@ public class LITBlock extends GeneralBlock {
                 double d1 = direction$axis == Direction.Axis.X ? 0.5D + 0.5625D * (double)direction.getStepX() : (double)randomsource.nextFloat();
                 double d2 = direction$axis == Direction.Axis.Y ? 0.5D + 0.5625D * (double)direction.getStepY() : (double)randomsource.nextFloat();
                 double d3 = direction$axis == Direction.Axis.Z ? 0.5D + 0.5625D * (double)direction.getStepZ() : (double)randomsource.nextFloat();
-                pLevel.addParticle(DustParticleOptions.REDSTONE, (double)pPos.getX() + d1, (double)pPos.getY() + d2, (double)pPos.getZ() + d3, 0.0D, 0.0D, 0.0D);
+                pLevel.addParticle(GENERAL_PARTICLE_OPTIONS, (double)pPos.getX() + d1, (double)pPos.getY() + d2, (double)pPos.getZ() + d3, 0.0D, 0.0D, 0.0D);
             }
         }
 
