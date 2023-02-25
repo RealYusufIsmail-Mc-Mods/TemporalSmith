@@ -21,10 +21,13 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
-import net.minecraft.world.item.*
+import java.util.function.ToIntFunction
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.block.state.BlockState
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
@@ -41,36 +44,100 @@ object BlockInit {
         mutableMapOf()
 
     // ores
-    val RUBY_ORE = registerSmeltAbleBlock("ruby_ore", ItemInit.RUBY, Blocks.IRON_ORE)
-    val RAINBOW_ORE = registerSmeltAbleBlock("rainbow_ore", ItemInit.RAINBOW, Blocks.DIAMOND_ORE)
-    val SAPPHIRE_ORE = registerSmeltAbleBlock("sapphire_ore", ItemInit.SAPPHIRE, Blocks.GOLD_ORE)
-    val GRAPHITE_ORE = registerSmeltAbleBlock("graphite_ore", ItemInit.GRAPHITE, Blocks.DIAMOND_ORE)
+    val RUBY_ORE =
+        registerSmeltAbleBlock(
+            "ruby_ore",
+            ItemInit.RUBY,
+            BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE)
+                .requiresCorrectToolForDrops()
+                .randomTicks()
+                .lightLevel(litBlockEmission(10)))
+    val RAINBOW_ORE =
+        registerSmeltAbleBlock(
+            "rainbow_ore",
+            ItemInit.RAINBOW,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
+                .requiresCorrectToolForDrops()
+                .randomTicks()
+                .lightLevel(litBlockEmission(12)))
+    val SAPPHIRE_ORE =
+        registerSmeltAbleBlock(
+            "sapphire_ore",
+            ItemInit.SAPPHIRE,
+            BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops())
+    val GRAPHITE_ORE =
+        registerSmeltAbleBlock(
+            "graphite_ore",
+            ItemInit.GRAPHITE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops())
     val AQUMARINE_ORE =
-        registerSmeltAbleBlock("aqumarine_ore", ItemInit.AQUMARINE, Blocks.DIAMOND_ORE)
+        registerSmeltAbleBlock(
+            "aqumarine_ore",
+            ItemInit.AQUMARINE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops())
 
     // deepslate ores
     val DEEPSLATE_RUBY_ORE =
-        registerSmeltAbleBlock("deepslate_ruby_ore", ItemInit.RUBY, Blocks.DEEPSLATE_IRON_ORE)
+        registerSmeltAbleBlock(
+            "deepslate_ruby_ore",
+            ItemInit.RUBY,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_REDSTONE_ORE)
+                .requiresCorrectToolForDrops()
+                .randomTicks()
+                .lightLevel(litBlockEmission(11)))
+
     val DEEPSLATE_RAINBOW_ORE =
         registerSmeltAbleBlock(
-            "deepslate_rainbow_ore", ItemInit.RAINBOW, Blocks.DEEPSLATE_DIAMOND_ORE)
+            "deepslate_rainbow_ore",
+            ItemInit.RAINBOW,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .requiresCorrectToolForDrops()
+                .randomTicks()
+                .lightLevel(litBlockEmission(12)))
     val DEEPSLATE_SAPPHIRE_ORE =
         registerSmeltAbleBlock(
-            "deepslate_sapphire_ore", ItemInit.SAPPHIRE, Blocks.DEEPSLATE_GOLD_ORE)
+            "deepslate_sapphire_ore",
+            ItemInit.SAPPHIRE,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_GOLD_ORE).requiresCorrectToolForDrops())
     val DEEPSLATE_GRAPHITE_ORE =
         registerSmeltAbleBlock(
-            "deepslate_graphite_ore", ItemInit.GRAPHITE, Blocks.DEEPSLATE_DIAMOND_ORE)
+            "deepslate_graphite_ore",
+            ItemInit.GRAPHITE,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .requiresCorrectToolForDrops())
     val DEEPSLATE_AQUMARINE_ORE =
         registerSmeltAbleBlock(
-            "deepslate_aqumarine_ore", ItemInit.AQUMARINE, Blocks.DEEPSLATE_DIAMOND_ORE)
+            "deepslate_aqumarine_ore",
+            ItemInit.AQUMARINE,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .requiresCorrectToolForDrops())
 
     // blocks
-    val RUBY_BLOCK = registerOreBlock("ruby_block", ItemInit.RUBY, Blocks.IRON_BLOCK)
-    val RAINBOW_BLOCK = registerOreBlock("rainbow_block", ItemInit.RAINBOW, Blocks.DIAMOND_BLOCK)
-    val SAPPHIRE_BLOCK = registerOreBlock("sapphire_block", ItemInit.SAPPHIRE, Blocks.GOLD_BLOCK)
-    val GRAPHITE_BLOCK = registerOreBlock("graphite_block", ItemInit.GRAPHITE, Blocks.DIAMOND_BLOCK)
+    val RUBY_BLOCK =
+        registerOreBlock(
+            "ruby_block",
+            ItemInit.RUBY,
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
+    val RAINBOW_BLOCK =
+        registerOreBlock(
+            "rainbow_block",
+            ItemInit.RAINBOW,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops())
+    val SAPPHIRE_BLOCK =
+        registerOreBlock(
+            "sapphire_block",
+            ItemInit.SAPPHIRE,
+            BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops())
+    val GRAPHITE_BLOCK =
+        registerOreBlock(
+            "graphite_block",
+            ItemInit.GRAPHITE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops())
     val AQUMARINE_BLOCK =
-        registerOreBlock("aqumarine_block", ItemInit.AQUMARINE, Blocks.DIAMOND_BLOCK)
+        registerOreBlock(
+            "aqumarine_block",
+            ItemInit.AQUMARINE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops())
 
     // custom crafting table
     val CUSTOM_ARMOUR_CRAFTING_TABLE =
@@ -94,13 +161,11 @@ object BlockInit {
     private fun registerOreBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        existingBlock: Block
+        property: BlockBehaviour.Properties,
     ): ObjectHolderDelegate<GeneralBlock> {
 
-        val blockReg =
-            BLOCKS.registerObject(name) {
-                GeneralBlock(BlockBehaviour.Properties.copy(existingBlock))
-            }
+        val blockReg = BLOCKS.registerObject(name) { GeneralBlock(property) }
+
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
         ORE_BLOCKS[blockReg] = associatedOreIngot
@@ -110,20 +175,17 @@ object BlockInit {
     private fun registerSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        existingBlock: Block
+        property: BlockBehaviour.Properties,
     ): ObjectHolderDelegate<GeneralBlock> {
 
-        val blockReg =
-            BLOCKS.registerObject(name) {
-                GeneralBlock(BlockBehaviour.Properties.copy(existingBlock))
-            }
+        val blockReg = BLOCKS.registerObject(name) { GeneralBlock(property) }
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
         SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         return blockReg
     }
 
-    private fun register(name: String, existingBlock: Block): ObjectHolderDelegate<Block> {
-        return register(name) { GeneralBlock(BlockBehaviour.Properties.copy(existingBlock)) }
+    private fun litBlockEmission(lightValue: Int): ToIntFunction<BlockState> {
+        return ToIntFunction { lightValue }
     }
 }
