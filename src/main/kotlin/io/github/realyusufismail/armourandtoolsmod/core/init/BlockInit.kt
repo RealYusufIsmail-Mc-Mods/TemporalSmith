@@ -22,14 +22,11 @@ import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.LITBlock
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
-import java.util.function.ToIntFunction
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
-import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
@@ -128,11 +125,11 @@ object BlockInit {
         return blockReg
     }
 
-    private fun <T : Block> registerSpecialSmeltAbleBlock(
+    private fun registerSpecialSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        supplier: () -> T,
-    ): ObjectHolderDelegate<T> {
+        supplier: () -> GeneralBlock,
+    ): ObjectHolderDelegate<GeneralBlock> {
 
         val blockReg = BLOCKS.registerObject(name, supplier)
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
@@ -179,11 +176,5 @@ object BlockInit {
 
         SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         return blockReg
-    }
-
-    fun litBlockEmission(pLightValue: Int): ToIntFunction<BlockState> {
-        return ToIntFunction { p_50763_: BlockState ->
-            if (p_50763_.getValue(BlockStateProperties.LIT)) pLightValue else 0
-        }
     }
 }
