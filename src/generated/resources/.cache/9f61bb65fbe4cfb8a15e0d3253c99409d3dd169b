@@ -1,4 +1,8 @@
-// 1.19.3	2023-02-25T09:55:23.088798	Item Models: armourandtoolsmod
+// 1.19.3	2023-02-25T10:17:53.819595	Item Models: armourandtoolsmod
+f523d3f594a0d1a51fb553f028ab2b20eee793dd assets/armourandtoolsmod/models/item/amethyst_boots.json
+8377e984c59ebdaa220b7d1c0973dfd4653e52fb assets/armourandtoolsmod/models/item/amethyst_chestplate.json
+8895d7116f5e4183fe38d01164721842ede9d5f1 assets/armourandtoolsmod/models/item/amethyst_helmet.json
+f4b6c07eb577e733e4a793a0c685ef47485374c9 assets/armourandtoolsmod/models/item/amethyst_leggings.json
 bcd1561c42adb01c5a4102f863dc885f29d4b9e4 assets/armourandtoolsmod/models/item/aqumarine.json
 8bec48f2b18876bd67eff3dc3cec2a8662bd4cfe assets/armourandtoolsmod/models/item/aqumarine_boots.json
 e09597118a1e608b9e07e9432300aae376e8fa3a assets/armourandtoolsmod/models/item/aqumarine_chestplate.json
@@ -10,6 +14,10 @@ d24a2b244711dd2e7b62bb4f75ade16a808f47b4 assets/armourandtoolsmod/models/item/gr
 a999cd10ee1b427640b86cb303e4b33cbd82cfa8 assets/armourandtoolsmod/models/item/graphite_helmet.json
 7f03d28ac4363abcd78d60dee0823ebcbdbe4848 assets/armourandtoolsmod/models/item/graphite_leggings.json
 62517ca368679b6de05f59df5cf0ba2be1600829 assets/armourandtoolsmod/models/item/rainbow.json
+e7a2dce51d378c49e596294d6ea2bf6f8d5bf6a2 assets/armourandtoolsmod/models/item/rainbow_boots.json
+790e68bc582401a2289e8be785368d04c946185c assets/armourandtoolsmod/models/item/rainbow_chestplate.json
+5f165222191f11f1a1349fcc8578ba139ef3775c assets/armourandtoolsmod/models/item/rainbow_helmet.json
+1a5ad2c8843909c8691c8b302992cd89b929e799 assets/armourandtoolsmod/models/item/rainbow_leggings.json
 33b68057db18389d58595a300e616f0e1f848ada assets/armourandtoolsmod/models/item/raw_aqumarine.json
 68070919d55c07e9e09eb39a3a50362475cfcc14 assets/armourandtoolsmod/models/item/raw_graphite.json
 073845b113c727ef0adce18c38781aa211ab8867 assets/armourandtoolsmod/models/item/raw_rainbow.json

@@ -44,6 +44,11 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.RAW_RAINBOW.get())
 
         // armour
+        item(ItemInit.AMETHYST_HELMET.get())
+        item(ItemInit.AMETHYST_CHESTPLATE.get())
+        item(ItemInit.AMETHYST_LEGGINGS.get())
+        item(ItemInit.AMETHYST_BOOTS.get())
+
         item(ItemInit.RUBY_HELMET.get())
         item(ItemInit.RUBY_CHESTPLATE.get())
         item(ItemInit.RUBY_LEGGINGS.get())
@@ -63,6 +68,11 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.AQUMARINE_CHESTPLATE.get())
         item(ItemInit.AQUMARINE_LEGGINGS.get())
         item(ItemInit.AQUMARINE_BOOTS.get())
+
+        item(ItemInit.RAINBOW_HELMET.get())
+        item(ItemInit.RAINBOW_CHESTPLATE.get())
+        item(ItemInit.RAINBOW_LEGGINGS.get())
+        item(ItemInit.RAINBOW_BOOTS.get())
     }
 
     private fun tool(item: Item) {
