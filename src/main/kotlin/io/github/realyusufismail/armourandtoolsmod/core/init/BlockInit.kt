@@ -21,7 +21,6 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.LITBlock
-import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
@@ -35,11 +34,10 @@ import thedarkcolour.kotlinforforge.forge.registerObject
 object BlockInit {
     val BLOCKS: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID)
 
-    val ORE_BLOCKS: MutableMap<ObjectHolderDelegate<GeneralBlock>, ObjectHolderDelegate<Item>> =
+    val ORE_BLOCKS: MutableMap<ObjectHolderDelegate<Block>, ObjectHolderDelegate<Item>> =
         mutableMapOf()
 
-    val SMELT_ABLE_BLOCKS:
-        MutableMap<ObjectHolderDelegate<GeneralBlock>, ObjectHolderDelegate<Item>> =
+    val SMELT_ABLE_BLOCKS: MutableMap<ObjectHolderDelegate<Block>, ObjectHolderDelegate<Item>> =
         mutableMapOf()
 
     // ores
@@ -128,13 +126,13 @@ object BlockInit {
     private fun registerSpecialSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        supplier: () -> GeneralBlock,
-    ): ObjectHolderDelegate<GeneralBlock> {
+        supplier: () -> Block,
+    ): ObjectHolderDelegate<Block> {
 
         val blockReg = BLOCKS.registerObject(name, supplier)
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
-        SMELT_ABLE_BLOCKS[blockReg as ObjectHolderDelegate<GeneralBlock>] = associatedOreIngot
+        SMELT_ABLE_BLOCKS[blockReg as ObjectHolderDelegate<Block>] = associatedOreIngot
         return blockReg
     }
 
@@ -142,9 +140,9 @@ object BlockInit {
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
         property: BlockBehaviour.Properties,
-    ): ObjectHolderDelegate<GeneralBlock> {
+    ): ObjectHolderDelegate<Block> {
 
-        val blockReg = BLOCKS.registerObject(name) { GeneralBlock(property) }
+        val blockReg = BLOCKS.registerObject(name) { Block(property) }
 
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
@@ -155,8 +153,8 @@ object BlockInit {
     private fun registerSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        block: GeneralBlock,
-    ): ObjectHolderDelegate<GeneralBlock> {
+        block: Block,
+    ): ObjectHolderDelegate<Block> {
 
         val blockReg = BLOCKS.registerObject(name) { block }
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
@@ -169,9 +167,9 @@ object BlockInit {
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
         property: BlockBehaviour.Properties,
-    ): ObjectHolderDelegate<GeneralBlock> {
+    ): ObjectHolderDelegate<Block> {
 
-        val blockReg = BLOCKS.registerObject(name) { GeneralBlock(property) }
+        val blockReg = BLOCKS.registerObject(name) { Block(property) }
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
         SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot

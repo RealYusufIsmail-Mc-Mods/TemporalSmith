@@ -33,7 +33,7 @@ import java.util.function.ToIntFunction;
  *
  * @see net.minecraft.world.level.block.RedStoneOreBlock
  */
-public class LITBlock extends GeneralBlock {
+public class LITBlock extends Block {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
     public static final Vector3f GENERAL_PARTICLE_COLOR = Vec3.fromRGB24(0x00FFFF).toVector3f();
     public static final DustParticleOptions GENERAL_PARTICLE_OPTIONS = new DustParticleOptions(GENERAL_PARTICLE_COLOR, 1.0F);
