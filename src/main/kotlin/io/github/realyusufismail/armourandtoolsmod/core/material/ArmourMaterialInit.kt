@@ -24,19 +24,20 @@ import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.item.ArmorMaterial
+import net.minecraft.world.item.Items.*
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 
 enum class ArmourMaterialInit(
     private val oreName: String,
-    val durabilityMultiplier: Int,
+    private val durabilityMultiplier: Int,
     private val armorVal: IntArray,
     private val enchantability: Int,
     private val equipSound: SoundEvent,
     private val toghness: Float,
     private val knockbackResistance: Float,
-    repairIngredient: Supplier<Ingredient>
+    private val repairIngredient: Supplier<Ingredient>,
 ) : ArmorMaterial {
     AMETHYST(
         "amethyst",
@@ -46,7 +47,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.2f,
         0.2f,
-        Supplier { Ingredient.of(net.minecraft.world.item.Items.AMETHYST_SHARD) }),
+        Supplier { Ingredient.of(AMETHYST_SHARD) }),
     RUBY(
         "ruby",
         8,
@@ -93,12 +94,6 @@ enum class ArmourMaterialInit(
         0.4f,
         Supplier { Ingredient.of(ItemInit.RAINBOW.get()) });
 
-    private val repairIngredient: Ingredient
-
-    init {
-        this.repairIngredient = repairIngredient.get()
-    }
-
     override fun getDurabilityForSlot(slot: EquipmentSlot): Int {
         return armorVal[slot.index]
     }
@@ -116,12 +111,12 @@ enum class ArmourMaterialInit(
     }
 
     override fun getRepairIngredient(): Ingredient {
-        return repairIngredient
+        return repairIngredient.get()
     }
 
     @OnlyIn(Dist.CLIENT)
     override fun getName(): String {
-        return name
+        return oreName
     }
 
     override fun getToughness(): Float {
