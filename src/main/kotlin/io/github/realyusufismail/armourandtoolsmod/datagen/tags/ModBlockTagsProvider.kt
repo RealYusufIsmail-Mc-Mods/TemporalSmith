@@ -73,5 +73,8 @@ class ModBlockTagsProvider(
             // Remove this once new system is implemented
             tag(BlockTags.NEEDS_DIAMOND_TOOL).add(oreBlock.key.get())
         }
+
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+        tag(BlockTags.NEEDS_STONE_TOOL).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
     }
 }
