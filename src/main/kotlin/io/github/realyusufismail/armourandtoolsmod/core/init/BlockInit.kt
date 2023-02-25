@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.LITBlock
 import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
 import java.util.function.ToIntFunction
 import net.minecraft.world.item.BlockItem
@@ -48,18 +49,20 @@ object BlockInit {
         registerSmeltAbleBlock(
             "ruby_ore",
             ItemInit.RUBY,
-            BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE)
-                .requiresCorrectToolForDrops()
-                .randomTicks()
-                .lightLevel(litBlockEmission(10)))
+            LITBlock(
+                BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE)
+                    .requiresCorrectToolForDrops()
+                    .randomTicks()
+                    .lightLevel(litBlockEmission(10))))
     val RAINBOW_ORE =
         registerSmeltAbleBlock(
             "rainbow_ore",
             ItemInit.RAINBOW,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
-                .requiresCorrectToolForDrops()
-                .randomTicks()
-                .lightLevel(litBlockEmission(12)))
+            LITBlock(
+                BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
+                    .requiresCorrectToolForDrops()
+                    .randomTicks()
+                    .lightLevel(litBlockEmission(12))))
     val SAPPHIRE_ORE =
         registerSmeltAbleBlock(
             "sapphire_ore",
@@ -81,19 +84,21 @@ object BlockInit {
         registerSmeltAbleBlock(
             "deepslate_ruby_ore",
             ItemInit.RUBY,
-            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_REDSTONE_ORE)
-                .requiresCorrectToolForDrops()
-                .randomTicks()
-                .lightLevel(litBlockEmission(11)))
+            LITBlock(
+                BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_REDSTONE_ORE)
+                    .requiresCorrectToolForDrops()
+                    .randomTicks()
+                    .lightLevel(litBlockEmission(11))))
 
     val DEEPSLATE_RAINBOW_ORE =
         registerSmeltAbleBlock(
             "deepslate_rainbow_ore",
             ItemInit.RAINBOW,
-            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
-                .requiresCorrectToolForDrops()
-                .randomTicks()
-                .lightLevel(litBlockEmission(12)))
+            LITBlock(
+                BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                    .requiresCorrectToolForDrops()
+                    .randomTicks()
+                    .lightLevel(litBlockEmission(12))))
     val DEEPSLATE_SAPPHIRE_ORE =
         registerSmeltAbleBlock(
             "deepslate_sapphire_ore",
@@ -169,6 +174,19 @@ object BlockInit {
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
         ORE_BLOCKS[blockReg] = associatedOreIngot
+        return blockReg
+    }
+
+    private fun registerSmeltAbleBlock(
+        name: String,
+        associatedOreIngot: ObjectHolderDelegate<Item>,
+        block: GeneralBlock,
+    ): ObjectHolderDelegate<GeneralBlock> {
+
+        val blockReg = BLOCKS.registerObject(name) { block }
+        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+
+        SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         return blockReg
     }
 
