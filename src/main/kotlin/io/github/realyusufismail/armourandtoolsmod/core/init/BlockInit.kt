@@ -20,7 +20,8 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.LITBlock
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.lit.LITBlock
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.lit.LitBlockParticleColour
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
@@ -52,12 +53,15 @@ object BlockInit {
 
     // ores
     val RUBY_ORE =
-        registerSpecialSmeltAbleBlock(
-            "ruby_ore", ItemInit.RUBY, ::LITBlock, MinableBlockType.IRON_PICKAXE)
+        registerSpecialSmeltAbleBlock("ruby_ore", ItemInit.RUBY, MinableBlockType.IRON_PICKAXE) {
+            LITBlock(LitBlockParticleColour.RUBY_PARTICLE_COLOR)
+        }
 
     val RAINBOW_ORE =
         registerSpecialSmeltAbleBlock(
-            "rainbow_ore", ItemInit.RAINBOW, ::LITBlock, MinableBlockType.DIAMOND_PICKAXE)
+            "rainbow_ore", ItemInit.RAINBOW, MinableBlockType.DIAMOND_PICKAXE) {
+                LITBlock(LitBlockParticleColour.RAINBOW_PARTICLE_COLOR)
+            }
     val SAPPHIRE_ORE =
         registerSmeltAbleBlock(
             "sapphire_ore",
@@ -81,11 +85,15 @@ object BlockInit {
     // deepslate ores
     val DEEPSLATE_RUBY_ORE =
         registerSpecialSmeltAbleBlock(
-            "deepslate_ruby_ore", ItemInit.RUBY, ::LITBlock, MinableBlockType.IRON_PICKAXE)
+            "deepslate_ruby_ore", ItemInit.RUBY, MinableBlockType.IRON_PICKAXE) {
+                LITBlock(LitBlockParticleColour.RUBY_PARTICLE_COLOR)
+            }
 
     val DEEPSLATE_RAINBOW_ORE =
         registerSpecialSmeltAbleBlock(
-            "deepslate_rainbow_ore", ItemInit.RAINBOW, ::LITBlock, MinableBlockType.DIAMOND_PICKAXE)
+            "deepslate_rainbow_ore", ItemInit.RAINBOW, MinableBlockType.DIAMOND_PICKAXE) {
+                LITBlock(LitBlockParticleColour.RAINBOW_PARTICLE_COLOR)
+            }
     val DEEPSLATE_SAPPHIRE_ORE =
         registerSmeltAbleBlock(
             "deepslate_sapphire_ore",
@@ -161,8 +169,8 @@ object BlockInit {
     private fun registerSpecialSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        supplier: () -> Block,
-        minableTool: MinableBlockType
+        minableTool: MinableBlockType,
+        supplier: () -> Block
     ): ObjectHolderDelegate<Block> {
 
         val blockReg = BLOCKS.registerObject(name, supplier)

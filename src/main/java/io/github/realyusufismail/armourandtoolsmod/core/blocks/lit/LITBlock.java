@@ -1,6 +1,5 @@
-package io.github.realyusufismail.armourandtoolsmod.core.blocks;
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.lit;
 
-import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -16,15 +15,12 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RedstoneTorchBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
-import org.joml.Vector3f;
 
 import java.util.function.ToIntFunction;
 
@@ -33,17 +29,19 @@ import java.util.function.ToIntFunction;
  *
  * @see net.minecraft.world.level.block.RedStoneOreBlock
  */
+@SuppressWarnings("deprecation")
 public class LITBlock extends Block {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
-    public static final Vector3f GENERAL_PARTICLE_COLOR = Vec3.fromRGB24(0x00FFFF).toVector3f();
-    public static final DustParticleOptions GENERAL_PARTICLE_OPTIONS = new DustParticleOptions(GENERAL_PARTICLE_COLOR, 1.0F);
+    public static DustParticleOptions particleColour = null;
 
-    public LITBlock() {
+    public LITBlock(LitBlockParticleColour particleColour) {
         super( Properties.of(Material.STONE)
                 .requiresCorrectToolForDrops()
                 .randomTicks()
                 .lightLevel(litBlockEmission(12))
                 .strength(3.0f, 3.0f));
+
+        LITBlock.particleColour = particleColour.getParticleOption();
         this.registerDefaultState(this.defaultBlockState().setValue(LIT, Boolean.FALSE));
     }
 
@@ -128,7 +126,12 @@ public class LITBlock extends Block {
                 double d1 = direction$axis == Direction.Axis.X ? 0.5D + 0.5625D * (double)direction.getStepX() : (double)randomsource.nextFloat();
                 double d2 = direction$axis == Direction.Axis.Y ? 0.5D + 0.5625D * (double)direction.getStepY() : (double)randomsource.nextFloat();
                 double d3 = direction$axis == Direction.Axis.Z ? 0.5D + 0.5625D * (double)direction.getStepZ() : (double)randomsource.nextFloat();
-                pLevel.addParticle(GENERAL_PARTICLE_OPTIONS, (double)pPos.getX() + d1, (double)pPos.getY() + d2, (double)pPos.getZ() + d3, 0.0D, 0.0D, 0.0D);
+
+                if (particleColour == null) {
+                    throw new NullPointerException("Particle colour is null!");
+                }
+
+                pLevel.addParticle(particleColour, (double)pPos.getX() + d1, (double)pPos.getY() + d2, (double)pPos.getZ() + d3, 0.0D, 0.0D, 0.0D);
             }
         }
 
