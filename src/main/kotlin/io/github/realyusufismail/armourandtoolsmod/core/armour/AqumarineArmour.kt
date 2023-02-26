@@ -31,7 +31,7 @@ class AqumarineArmour(materialIn: ArmorMaterial, slot: EquipmentSlot, builder: P
     ArmorItem(materialIn, slot, builder) {
 
     override fun isFoil(stack: ItemStack): Boolean {
-        return true
+        return false
     }
 
     override fun onArmorTick(stack: ItemStack, world: Level, player: Player) {

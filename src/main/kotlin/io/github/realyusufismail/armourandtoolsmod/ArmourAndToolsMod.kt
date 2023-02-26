@@ -27,8 +27,6 @@ import org.slf4j.LoggerFactory
 import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 
-val logger: Logger = LoggerFactory.getLogger(ArmourAndToolsMod::class.java)
-
 const val MOD_ID = "armourandtoolsmod"
 
 @Mod(MOD_ID)
@@ -53,5 +51,9 @@ class ArmourAndToolsMod {
         // Register ourselves for server and other game events we are interested in
         FORGE_BUS.register(this)
         logger.info("Loaded Armour and Item Mod")
+    }
+
+    companion object ArmorAndToolsMod {
+        val logger: Logger = LoggerFactory.getLogger(ArmourAndToolsMod::class.java)
     }
 }

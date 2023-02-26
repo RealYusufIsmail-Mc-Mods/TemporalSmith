@@ -27,6 +27,6 @@ class SapphireArmour(materialIn: ArmorMaterial, slot: EquipmentSlot, builder: Pr
     ArmorItem(materialIn, slot, builder) {
 
     override fun isFoil(stack: ItemStack): Boolean {
-        return true
+        return false
     }
 }

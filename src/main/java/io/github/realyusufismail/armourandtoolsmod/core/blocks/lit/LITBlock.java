@@ -1,8 +1,8 @@
 package io.github.realyusufismail.armourandtoolsmod.core.blocks.lit;
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -22,6 +22,9 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.ToIntFunction;
 
 /**
@@ -32,17 +35,50 @@ import java.util.function.ToIntFunction;
 @SuppressWarnings("deprecation")
 public class LITBlock extends Block {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
-    public static DustParticleOptions particleColour = null;
+    public static Map<Class, List<LitBlockParticleColour>> particleColours = new HashMap<>();
 
-    public LITBlock(LitBlockParticleColour particleColour) {
-        super( Properties.of(Material.STONE)
+    protected LITBlock(List<LitBlockParticleColour> particleColour, int lightLevel, Class blockClass) {
+        super(Properties.of(Material.STONE)
                 .requiresCorrectToolForDrops()
                 .randomTicks()
-                .lightLevel(litBlockEmission(12))
+                .lightLevel(litBlockEmission(lightLevel))
                 .strength(3.0f, 3.0f));
 
-        LITBlock.particleColour = particleColour.getParticleOption();
+        particleColours.put(blockClass, particleColour);
         this.registerDefaultState(this.defaultBlockState().setValue(LIT, Boolean.FALSE));
+    }
+
+    private static void interact(BlockState pState, Level pLevel, BlockPos pPos) {
+        spawnParticles(pLevel, pPos);
+        if (!pState.getValue(LIT)) {
+            pLevel.setBlock(pPos, pState.setValue(LIT, Boolean.valueOf(true)), 3);
+        }
+    }
+
+    protected static void spawnParticles(Level pLevel, BlockPos pPos) {
+        RandomSource randomsource = pLevel.random;
+
+        for (Direction direction : Direction.values()) {
+            BlockPos blockpos = pPos.relative(direction);
+            if (!pLevel.getBlockState(blockpos).isSolidRender(pLevel, blockpos)) {
+                Direction.Axis direction$axis = direction.getAxis();
+                double d1 = direction$axis == Direction.Axis.X ? 0.5D + 0.5625D * (double) direction.getStepX() : (double) randomsource.nextFloat();
+                double d2 = direction$axis == Direction.Axis.Y ? 0.5D + 0.5625D * (double) direction.getStepY() : (double) randomsource.nextFloat();
+                double d3 = direction$axis == Direction.Axis.Z ? 0.5D + 0.5625D * (double) direction.getStepZ() : (double) randomsource.nextFloat();
+
+                var block = pLevel.getBlockState(pPos).getBlock();
+                var particleColours = LITBlock.particleColours.get(block.getClass());
+                var colour = particleColours.get(randomsource.nextInt(particleColours.size()));
+                ArmourAndToolsMod.ArmorAndToolsMod.getLogger().debug("Colour: " + colour + "for block: " + block.getClass().getName() + " at pos: " + pPos + " with particleColours: " + particleColours);
+                pLevel.addParticle(colour.getParticleOption(), (double) pPos.getX() + d1, (double) pPos.getY() + d2, (double) pPos.getZ() + d3, 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
+        return (p_50763_) -> {
+            return p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
+        };
     }
 
     public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
@@ -67,14 +103,6 @@ public class LITBlock extends Block {
 
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         return itemstack.getItem() instanceof BlockItem && (new BlockPlaceContext(pPlayer, pHand, itemstack, pHit)).canPlace() ? InteractionResult.PASS : InteractionResult.SUCCESS;
-    }
-
-    private static void interact(BlockState pState, Level pLevel, BlockPos pPos) {
-        spawnParticles(pLevel, pPos);
-        if (!pState.getValue(LIT)) {
-            pLevel.setBlock(pPos, pState.setValue(LIT, Boolean.valueOf(true)), 3);
-        }
-
     }
 
     /**
@@ -116,34 +144,7 @@ public class LITBlock extends Block {
 
     }
 
-    private static void spawnParticles(Level pLevel, BlockPos pPos) {
-        RandomSource randomsource = pLevel.random;
-
-        for(Direction direction : Direction.values()) {
-            BlockPos blockpos = pPos.relative(direction);
-            if (!pLevel.getBlockState(blockpos).isSolidRender(pLevel, blockpos)) {
-                Direction.Axis direction$axis = direction.getAxis();
-                double d1 = direction$axis == Direction.Axis.X ? 0.5D + 0.5625D * (double)direction.getStepX() : (double)randomsource.nextFloat();
-                double d2 = direction$axis == Direction.Axis.Y ? 0.5D + 0.5625D * (double)direction.getStepY() : (double)randomsource.nextFloat();
-                double d3 = direction$axis == Direction.Axis.Z ? 0.5D + 0.5625D * (double)direction.getStepZ() : (double)randomsource.nextFloat();
-
-                if (particleColour == null) {
-                    throw new NullPointerException("Particle colour is null!");
-                }
-
-                pLevel.addParticle(particleColour, (double)pPos.getX() + d1, (double)pPos.getY() + d2, (double)pPos.getZ() + d3, 0.0D, 0.0D, 0.0D);
-            }
-        }
-
-    }
-
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(LIT);
-    }
-
-    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
-        return (p_50763_) -> {
-            return p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
-        };
     }
 }

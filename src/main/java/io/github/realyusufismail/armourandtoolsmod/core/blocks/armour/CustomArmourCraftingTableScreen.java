@@ -1,11 +1,11 @@
 package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour;
 
-import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
+import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -26,7 +26,7 @@ public class CustomArmourCraftingTableScreen extends AbstractContainerScreen<Cus
     private boolean widthTooNarrow;
 
     public CustomArmourCraftingTableScreen(CustomArmourCraftingTableMenu pMenu, Inventory pPlayerInventory,
-                                  Component pTitle) {
+                                           Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
@@ -90,8 +90,7 @@ public class CustomArmourCraftingTableScreen extends AbstractContainerScreen<Cus
             this.setFocused(this.recipeBookComponent);
             return true;
         } else {
-            return this.widthTooNarrow && this.recipeBookComponent.isVisible() ? true
-                    : super.mouseClicked(pMouseX, pMouseY, pButton);
+            return this.widthTooNarrow && this.recipeBookComponent.isVisible() || super.mouseClicked(pMouseX, pMouseY, pButton);
         }
     }
 
