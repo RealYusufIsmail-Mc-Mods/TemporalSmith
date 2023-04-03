@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.logger
 import io.github.realyusufismail.armourandtoolsmod.datagen.lang.ModEnLangProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.loot.ModLootTables
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
@@ -25,7 +26,6 @@ import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModBlockTagsProv
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModItemStateProvider
-import io.github.realyusufismail.armourandtoolsmod.logger
 import net.minecraftforge.data.event.GatherDataEvent
 
 object DataGenerators {

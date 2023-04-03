@@ -22,10 +22,9 @@ import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.ArmorMaterial
 import net.minecraft.world.item.ItemStack
-import net.minecraftforge.common.extensions.IForgeItem
 
 class RubyArmour(materialIn: ArmorMaterial, slot: EquipmentSlot, builder: Properties) :
-    ArmorItem(materialIn, slot, builder), IForgeItem {
+    ArmorItem(materialIn, slot, builder) {
 
     override fun isFoil(stack: ItemStack): Boolean {
         return true

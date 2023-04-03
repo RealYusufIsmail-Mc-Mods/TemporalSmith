@@ -42,6 +42,37 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.RAW_GRAPHITE.get())
         item(ItemInit.RAW_AQUMARINE.get())
         item(ItemInit.RAW_RAINBOW.get())
+
+        // armour
+        item(ItemInit.AMETHYST_HELMET.get())
+        item(ItemInit.AMETHYST_CHESTPLATE.get())
+        item(ItemInit.AMETHYST_LEGGINGS.get())
+        item(ItemInit.AMETHYST_BOOTS.get())
+
+        item(ItemInit.RUBY_HELMET.get())
+        item(ItemInit.RUBY_CHESTPLATE.get())
+        item(ItemInit.RUBY_LEGGINGS.get())
+        item(ItemInit.RUBY_BOOTS.get())
+
+        item(ItemInit.SAPPHIRE_HELMET.get())
+        item(ItemInit.SAPPHIRE_CHESTPLATE.get())
+        item(ItemInit.SAPPHIRE_LEGGINGS.get())
+        item(ItemInit.SAPPHIRE_BOOTS.get())
+
+        item(ItemInit.GRAPHITE_HELMET.get())
+        item(ItemInit.GRAPHITE_CHESTPLATE.get())
+        item(ItemInit.GRAPHITE_LEGGINGS.get())
+        item(ItemInit.GRAPHITE_BOOTS.get())
+
+        item(ItemInit.AQUMARINE_HELMET.get())
+        item(ItemInit.AQUMARINE_CHESTPLATE.get())
+        item(ItemInit.AQUMARINE_LEGGINGS.get())
+        item(ItemInit.AQUMARINE_BOOTS.get())
+
+        item(ItemInit.RAINBOW_HELMET.get())
+        item(ItemInit.RAINBOW_CHESTPLATE.get())
+        item(ItemInit.RAINBOW_LEGGINGS.get())
+        item(ItemInit.RAINBOW_BOOTS.get())
     }
 
     private fun tool(item: Item) {

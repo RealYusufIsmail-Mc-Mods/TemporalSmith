@@ -20,8 +20,10 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
-import io.github.realyusufismail.realyusufismailcore.core.init.GeneralBlock
-import net.minecraft.world.item.*
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.lit.RainbowLitBlock
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.lit.RubyLitBlock
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
@@ -33,44 +35,120 @@ import thedarkcolour.kotlinforforge.forge.registerObject
 object BlockInit {
     val BLOCKS: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID)
 
-    val ORE_BLOCKS: MutableMap<ObjectHolderDelegate<GeneralBlock>, ObjectHolderDelegate<Item>> =
+    val ORE_BLOCKS: MutableMap<ObjectHolderDelegate<Block>, ObjectHolderDelegate<Item>> =
         mutableMapOf()
 
-    val SMELT_ABLE_BLOCKS:
-        MutableMap<ObjectHolderDelegate<GeneralBlock>, ObjectHolderDelegate<Item>> =
+    val SMELT_ABLE_BLOCKS: MutableMap<ObjectHolderDelegate<Block>, ObjectHolderDelegate<Item>> =
         mutableMapOf()
+
+    val MINABLE_STONE_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+
+    val MINABLE_IRON_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+
+    val MINABLE_GOLD_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+
+    val MINABLE_DIAMOND_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+
+    val MINABLE_NETHERITE_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
 
     // ores
-    val RUBY_ORE = registerSmeltAbleBlock("ruby_ore", ItemInit.RUBY, Blocks.IRON_ORE)
-    val RAINBOW_ORE = registerSmeltAbleBlock("rainbow_ore", ItemInit.RAINBOW, Blocks.DIAMOND_ORE)
-    val SAPPHIRE_ORE = registerSmeltAbleBlock("sapphire_ore", ItemInit.SAPPHIRE, Blocks.GOLD_ORE)
-    val GRAPHITE_ORE = registerSmeltAbleBlock("graphite_ore", ItemInit.GRAPHITE, Blocks.DIAMOND_ORE)
+    val RUBY_ORE =
+        registerSpecialSmeltAbleBlock(
+            "ruby_ore", ItemInit.RUBY, MinableBlockType.IRON_PICKAXE, ::RubyLitBlock)
+
+    val RAINBOW_ORE =
+        registerSpecialSmeltAbleBlock(
+            "rainbow_ore", ItemInit.RAINBOW, MinableBlockType.DIAMOND_PICKAXE, ::RainbowLitBlock)
+
+    val SAPPHIRE_ORE =
+        registerSmeltAbleBlock(
+            "sapphire_ore",
+            ItemInit.SAPPHIRE,
+            BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops(),
+            MinableBlockType.GOLD_PICKAXE)
+
+    val GRAPHITE_ORE =
+        registerSmeltAbleBlock(
+            "graphite_ore",
+            ItemInit.GRAPHITE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
+
     val AQUMARINE_ORE =
-        registerSmeltAbleBlock("aqumarine_ore", ItemInit.AQUMARINE, Blocks.DIAMOND_ORE)
+        registerSmeltAbleBlock(
+            "aqumarine_ore",
+            ItemInit.AQUMARINE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
 
     // deepslate ores
     val DEEPSLATE_RUBY_ORE =
-        registerSmeltAbleBlock("deepslate_ruby_ore", ItemInit.RUBY, Blocks.DEEPSLATE_IRON_ORE)
+        registerSpecialSmeltAbleBlock(
+            "deepslate_ruby_ore", ItemInit.RUBY, MinableBlockType.IRON_PICKAXE, ::RubyLitBlock)
+
     val DEEPSLATE_RAINBOW_ORE =
-        registerSmeltAbleBlock(
-            "deepslate_rainbow_ore", ItemInit.RAINBOW, Blocks.DEEPSLATE_DIAMOND_ORE)
+        registerSpecialSmeltAbleBlock(
+            "deepslate_rainbow_ore",
+            ItemInit.RAINBOW,
+            MinableBlockType.DIAMOND_PICKAXE,
+            ::RainbowLitBlock)
+
     val DEEPSLATE_SAPPHIRE_ORE =
         registerSmeltAbleBlock(
-            "deepslate_sapphire_ore", ItemInit.SAPPHIRE, Blocks.DEEPSLATE_GOLD_ORE)
+            "deepslate_sapphire_ore",
+            ItemInit.SAPPHIRE,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_GOLD_ORE).requiresCorrectToolForDrops(),
+            MinableBlockType.GOLD_PICKAXE)
+
     val DEEPSLATE_GRAPHITE_ORE =
         registerSmeltAbleBlock(
-            "deepslate_graphite_ore", ItemInit.GRAPHITE, Blocks.DEEPSLATE_DIAMOND_ORE)
+            "deepslate_graphite_ore",
+            ItemInit.GRAPHITE,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
+
     val DEEPSLATE_AQUMARINE_ORE =
         registerSmeltAbleBlock(
-            "deepslate_aqumarine_ore", ItemInit.AQUMARINE, Blocks.DEEPSLATE_DIAMOND_ORE)
+            "deepslate_aqumarine_ore",
+            ItemInit.AQUMARINE,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
 
     // blocks
-    val RUBY_BLOCK = registerOreBlock("ruby_block", ItemInit.RUBY, Blocks.IRON_BLOCK)
-    val RAINBOW_BLOCK = registerOreBlock("rainbow_block", ItemInit.RAINBOW, Blocks.DIAMOND_BLOCK)
-    val SAPPHIRE_BLOCK = registerOreBlock("sapphire_block", ItemInit.SAPPHIRE, Blocks.GOLD_BLOCK)
-    val GRAPHITE_BLOCK = registerOreBlock("graphite_block", ItemInit.GRAPHITE, Blocks.DIAMOND_BLOCK)
+    val RUBY_BLOCK =
+        registerOreBlock(
+            "ruby_block",
+            ItemInit.RUBY,
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops(),
+            MinableBlockType.IRON_PICKAXE)
+    val RAINBOW_BLOCK =
+        registerOreBlock(
+            "rainbow_block",
+            ItemInit.RAINBOW,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
+
+    val SAPPHIRE_BLOCK =
+        registerOreBlock(
+            "sapphire_block",
+            ItemInit.SAPPHIRE,
+            BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops(),
+            MinableBlockType.GOLD_PICKAXE)
+    val GRAPHITE_BLOCK =
+        registerOreBlock(
+            "graphite_block",
+            ItemInit.GRAPHITE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
+
     val AQUMARINE_BLOCK =
-        registerOreBlock("aqumarine_block", ItemInit.AQUMARINE, Blocks.DIAMOND_BLOCK)
+        registerOreBlock(
+            "aqumarine_block",
+            ItemInit.AQUMARINE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
 
     // custom crafting table
     val CUSTOM_ARMOUR_CRAFTING_TABLE =
@@ -79,51 +157,73 @@ object BlockInit {
     private fun <T : Block> registerSpecial(
         name: String,
         supplier: () -> T,
+        minableTool: MinableBlockType = MinableBlockType.STONE_PICKAXE,
     ): ObjectHolderDelegate<T> {
         val blockReg = BLOCKS.registerObject(name, supplier)
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        checkTypeOfMinableBlock(blockReg as ObjectHolderDelegate<Block>, minableTool)
         return blockReg
     }
 
-    private fun register(name: String, supplier: () -> Block): ObjectHolderDelegate<Block> {
+    private fun registerSpecialSmeltAbleBlock(
+        name: String,
+        associatedOreIngot: ObjectHolderDelegate<Item>,
+        minableTool: MinableBlockType,
+        supplier: () -> Block
+    ): ObjectHolderDelegate<Block> {
+
         val blockReg = BLOCKS.registerObject(name, supplier)
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+
+        SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
+        checkTypeOfMinableBlock(blockReg, minableTool)
+
         return blockReg
     }
 
     private fun registerOreBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        existingBlock: Block
-    ): ObjectHolderDelegate<GeneralBlock> {
+        property: BlockBehaviour.Properties,
+        minableTool: MinableBlockType
+    ): ObjectHolderDelegate<Block> {
 
-        val blockReg =
-            BLOCKS.registerObject(name) {
-                GeneralBlock(BlockBehaviour.Properties.copy(existingBlock))
-            }
+        val blockReg = BLOCKS.registerObject(name) { Block(property) }
+
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
         ORE_BLOCKS[blockReg] = associatedOreIngot
+        checkTypeOfMinableBlock(blockReg, minableTool)
+
         return blockReg
     }
 
     private fun registerSmeltAbleBlock(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        existingBlock: Block
-    ): ObjectHolderDelegate<GeneralBlock> {
+        property: BlockBehaviour.Properties,
+        minableTool: MinableBlockType
+    ): ObjectHolderDelegate<Block> {
 
-        val blockReg =
-            BLOCKS.registerObject(name) {
-                GeneralBlock(BlockBehaviour.Properties.copy(existingBlock))
-            }
+        val blockReg = BLOCKS.registerObject(name) { Block(property) }
         ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
 
         SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
+        checkTypeOfMinableBlock(blockReg, minableTool)
+
         return blockReg
     }
 
-    private fun register(name: String, existingBlock: Block): ObjectHolderDelegate<Block> {
-        return register(name) { GeneralBlock(BlockBehaviour.Properties.copy(existingBlock)) }
+    private fun checkTypeOfMinableBlock(
+        block: ObjectHolderDelegate<Block>,
+        type: MinableBlockType
+    ) {
+        when (type) {
+            MinableBlockType.STONE_PICKAXE -> MINABLE_STONE_PICKAXE_BLOCKS.add(block)
+            MinableBlockType.IRON_PICKAXE -> MINABLE_IRON_PICKAXE_BLOCKS.add(block)
+            MinableBlockType.GOLD_PICKAXE -> MINABLE_GOLD_PICKAXE_BLOCKS.add(block)
+            MinableBlockType.DIAMOND_PICKAXE -> MINABLE_DIAMOND_PICKAXE_BLOCKS.add(block)
+            MinableBlockType.NETHERITE_PICKAXE -> MINABLE_NETHERITE_PICKAXE_BLOCKS.add(block)
+        }
     }
 }
