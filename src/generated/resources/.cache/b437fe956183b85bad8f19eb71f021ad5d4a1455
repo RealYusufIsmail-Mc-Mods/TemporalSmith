@@ -1,4 +1,4 @@
-// 1.19.3	2023-01-20T18:58:52.026554	Armour and Tools Mod Blockstates
+// 1.19.4	2023-04-09T13:01:36.536782	Armour and Tools Mod Blockstates
 2e7a970f6d2f498e44c8111ab18365eb11feb9ec assets/armourandtoolsmod/blockstates/aqumarine_block.json
 54fe09c01a2e09240df74b50d546d52a3f055d6c assets/armourandtoolsmod/blockstates/aqumarine_ore.json
 14011b50d9bf8bbaeb041d4da1d2f0c5303ddef7 assets/armourandtoolsmod/blockstates/custom_armour_crafting_table.json
@@ -17,7 +17,7 @@ a7fc4d7c5702aac2d7d8dde4cdf85761bc17b328 assets/armourandtoolsmod/blockstates/ra
 b9f883dfd18744f8061afd9e25d201c9f259bb81 assets/armourandtoolsmod/blockstates/sapphire_ore.json
 bdfb36733ee20eb7e6c4a2e75eecd87e6e9d2c8e assets/armourandtoolsmod/models/block/aqumarine_block.json
 18ca2d5c67472afd25640675d6ca776e66042ca5 assets/armourandtoolsmod/models/block/aqumarine_ore.json
-4c98cdbf35c11cf9fb4f78d6cd131f127721629a assets/armourandtoolsmod/models/block/custom_armour_crafting_table.json
+abf3538b38a6074395bd2b434de9ceaff8fcf8f7 assets/armourandtoolsmod/models/block/custom_armour_crafting_table.json
 ce344ac7cf91a296e6b373259c1f33c4c37fd7a2 assets/armourandtoolsmod/models/block/deepslate_aqumarine_ore.json
 cb1cd47ef020a5b2b7d99feb10549348fcaf3087 assets/armourandtoolsmod/models/block/deepslate_graphite_ore.json
 d3e3c3b837a0ae320f97907cbe56f026668bf0ec assets/armourandtoolsmod/models/block/deepslate_rainbow_ore.json

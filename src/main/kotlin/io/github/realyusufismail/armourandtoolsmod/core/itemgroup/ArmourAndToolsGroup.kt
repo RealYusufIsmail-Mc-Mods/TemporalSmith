@@ -23,7 +23,6 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.item.*
 import net.minecraft.world.level.block.Block
 import net.minecraftforge.event.CreativeModeTabEvent
@@ -44,16 +43,18 @@ object ArmourAndToolsGroup {
 
     private fun createCreativeTabBuilder(builder: CreativeModeTab.Builder) {
 
-        builder.displayItems { _: FeatureFlagSet, out: CreativeModeTab.Output, _: Boolean ->
+        builder.displayItems {
+            itemDisplayParameters: CreativeModeTab.ItemDisplayParameters,
+            output: CreativeModeTab.Output ->
             ItemInit.ITEMS.entries
                 .stream()
                 .map { item: RegistryObject<Item> -> item.get().asItem() }
-                .forEach { pItem: Item -> out.accept(pItem) }
+                .forEach { pItem: Item -> output.accept(pItem) }
 
             BlockInit.BLOCKS.entries
                 .stream()
                 .map { item: RegistryObject<Block> -> item.get().asItem() }
-                .forEach { pItem: Item -> out.accept(pItem) }
+                .forEach { pItem: Item -> output.accept(pItem) }
         }
         builder.icon { ItemStack(ItemInit.AQUMARINE.get()) }
         builder.title(Component.translatable("creativetab.armourandtoolsmod"))

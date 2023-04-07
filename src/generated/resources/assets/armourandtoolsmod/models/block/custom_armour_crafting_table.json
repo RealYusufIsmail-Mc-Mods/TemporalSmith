@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "armourandtoolsmod:block/iron_block",
+    "down": "minecraft:block/iron_block",
     "east": "armourandtoolsmod:block/custom_armour_crafting_table_side",
     "north": "armourandtoolsmod:block/custom_armour_crafting_table_front",
     "particle": "armourandtoolsmod:block/custom_armour_crafting_table_front",

@@ -35,7 +35,12 @@ class ModItemTagsProvider(
     provider: CompletableFuture<HolderLookup.Provider>
 ) :
     ItemTagsProvider(
-        generatorIn.packOutput, provider, blockTagProvider, MOD_ID, existingFileHelper) {
+        generatorIn.packOutput,
+        provider,
+        blockTagProvider.contentsGetter(),
+        MOD_ID,
+        existingFileHelper) {
+
     override fun addTags(pProvider: HolderLookup.Provider) {
         // ores
         copy(TagsInit.BlockTagsInit.ORES_RUBY_ORES, TagsInit.ItemTagsInit.ORES_RUBY_ORES)

@@ -22,7 +22,7 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import java.util.function.Supplier
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
-import net.minecraft.world.entity.EquipmentSlot
+import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.ArmorMaterial
 import net.minecraft.world.item.Items.*
 import net.minecraft.world.item.crafting.Ingredient
@@ -92,14 +92,14 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.4f,
         0.4f,
-        Supplier { Ingredient.of(ItemInit.RAINBOW.get()) });
+        Supplier { Ingredient.of(ItemInit.RAINBOW.get()) }) {};
 
-    override fun getDurabilityForSlot(slot: EquipmentSlot): Int {
-        return armorVal[slot.index]
+    override fun getDurabilityForType(p_266807_: ArmorItem.Type): Int {
+        return durabilityMultiplier * armorVal[p_266807_.ordinal]
     }
 
-    override fun getDefenseForSlot(slot: EquipmentSlot): Int {
-        return armorVal[slot.index]
+    override fun getDefenseForType(p_267168_: ArmorItem.Type): Int {
+        return armorVal[p_267168_.ordinal]
     }
 
     override fun getEnchantmentValue(): Int {

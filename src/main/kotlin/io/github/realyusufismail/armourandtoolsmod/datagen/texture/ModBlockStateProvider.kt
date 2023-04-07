@@ -21,6 +21,7 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import net.minecraft.data.PackOutput
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraftforge.client.model.generators.BlockStateProvider
@@ -33,6 +34,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     override fun getName(): String {
         return "Armour and Tools Mod Blockstates"
     }
+
     override fun registerStatesAndModels() {
         normalBlock(BlockInit.RUBY_ORE.get())
         normalBlock(BlockInit.RAINBOW_ORE.get())
@@ -59,7 +61,9 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         val builder = models().withExistingParent(name.path, "block/cube")
 
         builder.texture(
-            "down", modLoc("block/" + ForgeRegistries.BLOCKS.getKey(Blocks.IRON_BLOCK)!!.path))
+            "down",
+            ResourceLocation(
+                "minecraft", "block/" + ForgeRegistries.BLOCKS.getKey(Blocks.IRON_BLOCK)!!.path))
         builder.texture("east", modLoc("block/" + name.path + "_side"))
         builder.texture("north", modLoc("block/" + name.path + "_front"))
         builder.texture("particle", modLoc("block/" + name.path + "_front"))
