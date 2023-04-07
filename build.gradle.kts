@@ -14,7 +14,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.3-1.0.0.alpha.8.1"
+project.version = "1.19.4-1.0.0.beta.1"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -27,7 +27,7 @@ println(
         .trimIndent())
 
 configure<UserDevExtension> {
-    mappings("parchment", "2022.12.18-1.19.3")
+    mappings("parchment", "1.19.3-2023.03.12-1.19.4")
 
     runs {
         create("client") {
@@ -125,10 +125,10 @@ dependencies {
     "minecraft"(
         group = "net.minecraftforge",
         name = "forge",
-        version = "1.19.3-44.1.0",
+        version = "1.19.4-45.0.43",
         classifier = "universal")
     // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:4.0.0")
+    implementation("thedarkcolour:kotlinforforge:4.1.0")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.5")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.5")

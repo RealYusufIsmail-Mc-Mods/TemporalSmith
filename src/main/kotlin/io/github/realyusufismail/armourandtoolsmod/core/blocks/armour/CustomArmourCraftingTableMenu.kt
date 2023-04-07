@@ -49,7 +49,7 @@ class CustomArmourCraftingTableMenu(
 
     constructor(
         pContainerId: Int,
-        inventory: Inventory
+        inventory: Inventory,
     ) : this(pContainerId, inventory, ContainerLevelAccess.NULL)
 
     init {
@@ -88,12 +88,13 @@ class CustomArmourCraftingTableMenu(
             if (optional.isPresent) {
                 val craftingrecipe = optional.get()
                 if (pResult.setRecipeUsed(pLevel, serverplayer, craftingrecipe)) {
-                    val itemstack1 = craftingrecipe.assemble(pContainer)
+                    val itemstack1 = craftingrecipe.assemble(pContainer, pLevel.registryAccess())
                     if (itemstack1.isItemEnabled(pLevel.enabledFeatures())) {
                         itemstack = itemstack1
                     }
                 }
             }
+
             pResult.setItem(0, itemstack)
             pMenu.setRemoteSlot(0, itemstack)
             serverplayer.connection.send(

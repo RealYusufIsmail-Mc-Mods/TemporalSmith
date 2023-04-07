@@ -21,7 +21,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
-import net.minecraft.world.entity.EquipmentSlot
+import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.Item
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
@@ -59,122 +59,127 @@ object ItemInit {
     // armour
     val AMETHYST_HELMET: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_helmet") {
-            AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.HEAD, Item.Properties())
+            AmethystArmour(ArmourMaterialInit.AMETHYST, ArmorItem.Type.HELMET, Item.Properties())
         }
 
     val AMETHYST_CHESTPLATE: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_chestplate") {
-            AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.CHEST, Item.Properties())
+            AmethystArmour(
+                ArmourMaterialInit.AMETHYST, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
     val AMETHYST_LEGGINGS: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_leggings") {
-            AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.LEGS, Item.Properties())
+            AmethystArmour(ArmourMaterialInit.AMETHYST, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
     val AMETHYST_BOOTS: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_boots") {
-            AmethystArmour(ArmourMaterialInit.AMETHYST, EquipmentSlot.FEET, Item.Properties())
+            AmethystArmour(ArmourMaterialInit.AMETHYST, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
     val RUBY_HELMET: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_helmet", RUBY) {
-            RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.HEAD, Item.Properties())
+            RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.HELMET, Item.Properties())
         }
 
     val RUBY_CHESTPLATE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_chestplate", RUBY) {
-            RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.CHEST, Item.Properties())
+            RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
     val RUBY_LEGGINGS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_leggings", RUBY) {
-            RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.LEGS, Item.Properties())
+            RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
     val RUBY_BOOTS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_boots", RUBY) {
-            RubyArmour(ArmourMaterialInit.RUBY, EquipmentSlot.FEET, Item.Properties())
+            RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
     val SAPPHIRE_HELMET: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_helmet", SAPPHIRE) {
-            SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.HEAD, Item.Properties())
+            SapphireArmour(ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.HELMET, Item.Properties())
         }
 
     val SAPPHIRE_CHESTPLATE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_chestplate", SAPPHIRE) {
-            SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.CHEST, Item.Properties())
+            SapphireArmour(
+                ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
     val SAPPHIRE_LEGGINGS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_leggings", SAPPHIRE) {
-            SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.LEGS, Item.Properties())
+            SapphireArmour(ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
     val SAPPHIRE_BOOTS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_boots", SAPPHIRE) {
-            SapphireArmour(ArmourMaterialInit.SAPPHIRE, EquipmentSlot.FEET, Item.Properties())
+            SapphireArmour(ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
     val GRAPHITE_HELMET: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("graphite_helmet", GRAPHITE) {
-            GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.HEAD, Item.Properties())
+            GraphiteArmour(ArmourMaterialInit.GRAPHITE, ArmorItem.Type.HELMET, Item.Properties())
         }
 
     val GRAPHITE_CHESTPLATE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("graphite_chestplate", GRAPHITE) {
-            GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.CHEST, Item.Properties())
+            GraphiteArmour(
+                ArmourMaterialInit.GRAPHITE, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
     val GRAPHITE_LEGGINGS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("graphite_leggings", GRAPHITE) {
-            GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.LEGS, Item.Properties())
+            GraphiteArmour(ArmourMaterialInit.GRAPHITE, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
     val GRAPHITE_BOOTS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("graphite_boots", GRAPHITE) {
-            GraphiteArmour(ArmourMaterialInit.GRAPHITE, EquipmentSlot.FEET, Item.Properties())
+            GraphiteArmour(ArmourMaterialInit.GRAPHITE, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
     val AQUMARINE_HELMET: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("aqumarine_helmet", AQUMARINE) {
-            AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.HEAD, Item.Properties())
+            AqumarineArmour(ArmourMaterialInit.AQUMARINE, ArmorItem.Type.HELMET, Item.Properties())
         }
 
     val AQUMARINE_CHESTPLATE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("aqumarine_chestplate", AQUMARINE) {
-            AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.CHEST, Item.Properties())
+            AqumarineArmour(
+                ArmourMaterialInit.AQUMARINE, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
     val AQUMARINE_LEGGINGS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("aqumarine_leggings", AQUMARINE) {
-            AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.LEGS, Item.Properties())
+            AqumarineArmour(
+                ArmourMaterialInit.AQUMARINE, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
     val AQUMARINE_BOOTS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("aqumarine_boots", AQUMARINE) {
-            AqumarineArmour(ArmourMaterialInit.AQUMARINE, EquipmentSlot.FEET, Item.Properties())
+            AqumarineArmour(ArmourMaterialInit.AQUMARINE, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
     val RAINBOW_HELMET: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("rainbow_helmet", RAINBOW) {
-            RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.HEAD, Item.Properties())
+            RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.HELMET, Item.Properties())
         }
 
     val RAINBOW_CHESTPLATE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("rainbow_chestplate", RAINBOW) {
-            RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.CHEST, Item.Properties())
+            RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
     val RAINBOW_LEGGINGS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("rainbow_leggings", RAINBOW) {
-            RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.LEGS, Item.Properties())
+            RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
     val RAINBOW_BOOTS: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("rainbow_boots", RAINBOW) {
-            RainbowArmour(ArmourMaterialInit.RAINBOW, EquipmentSlot.FEET, Item.Properties())
+            RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
     // TODO: Add tools and weapons including tridents. Maybe custom shields?

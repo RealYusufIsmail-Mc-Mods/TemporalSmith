@@ -20,15 +20,14 @@ package io.github.realyusufismail.armourandtoolsmod.core.armour
 
 import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.effect.MobEffects
-import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.ArmorMaterial
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 
-class AqumarineArmour(materialIn: ArmorMaterial, slot: EquipmentSlot, builder: Properties) :
-    ArmorItem(materialIn, slot, builder) {
+class AqumarineArmour(materialIn: ArmorMaterial, armourType: ArmorItem.Type, builder: Properties) :
+    ArmorItem(materialIn, armourType, builder) {
 
     override fun isFoil(stack: ItemStack): Boolean {
         return false

@@ -18,13 +18,6 @@
   can **rebase** your branch.
 -->
 
-### Changes
-
-- [ ] Internal code
-- [ ] Library interface (affecting end-user code)
-- [ ] Documentation
-- [ ] Other: \_____ <!-- Insert other type here -->
-
 <!-- Replace "NaN" with an issue number if this is a response to an issue -->
 
 Closes : NaN

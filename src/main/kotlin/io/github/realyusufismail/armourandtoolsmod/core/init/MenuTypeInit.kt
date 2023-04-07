@@ -20,6 +20,8 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableMenu
+import net.minecraft.world.flag.FeatureFlagSet
+import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.inventory.MenuType.MenuSupplier
@@ -39,7 +41,8 @@ object MenuTypeInit {
     private fun <T : AbstractContainerMenu> register(
         name: String,
         pFactory: MenuSupplier<T>,
+        featureFlagSet: FeatureFlagSet = FeatureFlags.REGISTRY.allFlags()
     ): ObjectHolderDelegate<MenuType<T>> {
-        return MENU.registerObject(name) { MenuType(pFactory) }
+        return MENU.registerObject(name) { MenuType(pFactory, featureFlagSet) }
     }
 }
