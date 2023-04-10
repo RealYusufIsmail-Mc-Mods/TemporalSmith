@@ -12,21 +12,21 @@ displayName = "Armour and Tools Mod"
 [[dependencies.armourandtoolsmod]]
 modId = "forge"
 mandatory = true
-versionRange="[44,)"
+versionRange="[45,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.armourandtoolsmod]]
 modId = "minecraft"
 mandatory = true
-versionRange= "[1.19.3,1.20)"
+versionRange= "[1.19.4,1.20)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.armourandtoolsmod]]
 modId = "realyusufismailcore"
 mandatory = true
-versionRange = "[1.19-1.0.6,)"
+versionRange = "[1.19-1.1.0,)"
 ordering = "NONE"
 side = "BOTH"
 

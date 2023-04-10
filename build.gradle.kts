@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.8.20"
     kotlin("plugin.allopen") version "1.8.20"
-    id("com.diffplug.spotless") version "6.17.0"
+    id("com.diffplug.spotless") version "6.18.0"
     id("net.minecraftforge.gradle") version "5.1.+"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
@@ -14,7 +14,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.3-1.0.0.alpha.8.1"
+project.version = "1.19.4-1.0.0.beta.1"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -27,7 +27,7 @@ println(
         .trimIndent())
 
 configure<UserDevExtension> {
-    mappings("parchment", "2022.12.18-1.19.3")
+    mappings("parchment", "1.19.3-2023.03.12-1.19.4")
 
     runs {
         create("client") {
@@ -118,6 +118,7 @@ sourceSets.main { resources.srcDir("src/generated/resources") }
 repositories {
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
     maven { url = uri("https://maven.blamejared.com") }
+    maven { url = uri("https://www.cursemaven.com/") }
     mavenCentral()
 }
 
@@ -125,18 +126,19 @@ dependencies {
     "minecraft"(
         group = "net.minecraftforge",
         name = "forge",
-        version = "1.19.3-44.1.0",
+        version = "1.19.4-45.0.43",
         classifier = "universal")
     // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:4.0.0")
+    implementation("thedarkcolour:kotlinforforge:4.1.0")
     // Logger
-    implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.5")
-    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.5")
+    implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.6")
+    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.6")
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     // core
-    implementation(
-        group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.8")
+    // implementation(
+    // group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.8")
+    implementation(fg.deobf("curse.maven:realyusufismail-core-497372:4482093"))
     // Patchouli
     compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))

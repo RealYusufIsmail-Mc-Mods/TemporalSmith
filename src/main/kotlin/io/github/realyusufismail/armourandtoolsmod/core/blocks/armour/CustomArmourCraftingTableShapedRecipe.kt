@@ -28,6 +28,7 @@ import com.google.gson.JsonSyntaxException
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import net.minecraft.core.NonNullList
+import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.GsonHelper
@@ -92,17 +93,15 @@ class CustomArmourCraftingTableShapedRecipe(
         return true
     }
 
-    override fun assemble(pContainer: CustomArmourCraftingTableContainer): ItemStack {
-        return this.resultItem.copy()
+    override fun assemble(
+        p_44001_: CustomArmourCraftingTableContainer,
+        p_267165_: RegistryAccess
+    ): ItemStack {
+        return this.result.copy()
     }
 
     override fun canCraftInDimensions(pWidth: Int, pHeight: Int): Boolean {
         return true
-    }
-
-    /** Recipes with equal group are combined into one button in the recipe book */
-    override fun getGroup(): String {
-        return this.group
     }
 
     /**
@@ -110,8 +109,13 @@ class CustomArmourCraftingTableShapedRecipe(
      * recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then
      * return an empty stack.
      */
-    override fun getResultItem(): ItemStack {
+    override fun getResultItem(p_267052_: RegistryAccess): ItemStack {
         return this.result
+    }
+
+    /** Recipes with equal group are combined into one button in the recipe book */
+    override fun getGroup(): String {
+        return this.group
     }
 
     override fun getIngredients(): NonNullList<Ingredient> {
