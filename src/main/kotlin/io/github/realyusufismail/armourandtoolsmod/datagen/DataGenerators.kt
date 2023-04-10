@@ -26,6 +26,7 @@ import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModBlockTagsProv
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModItemStateProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.world.ModWorldGenerationProvider
 import net.minecraftforge.data.event.GatherDataEvent
 
 object DataGenerators {
@@ -51,6 +52,7 @@ object DataGenerators {
             gen.addProvider(true, blockTag)
             gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))
             gen.addProvider(true, MainModRecipeProvider(gen))
+            gen.addProvider(true, ModWorldGenerationProvider(gen.packOutput, lookup))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)
         }

@@ -6,8 +6,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.19.4-1.0..beta.1] - 2023-4-10
 
 ### Ported to 1.19.4
-### Added all armour textures
-### Fixed some ore textures
+### Implemented Ore generation
 
 ## [1.19.3-1.0.0.alpha.8.1] - 2023-2-25
 

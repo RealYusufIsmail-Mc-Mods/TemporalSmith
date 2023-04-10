@@ -21,6 +21,8 @@ package io.github.realyusufismail.armourandtoolsmod
 import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import io.github.realyusufismail.armourandtoolsmod.core.itemgroup.ArmourAndToolsGroup
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators
+import java.util.*
+import net.minecraft.resources.ResourceLocation
 import net.minecraftforge.fml.common.Mod
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -55,5 +57,9 @@ class ArmourAndToolsMod {
 
     companion object ArmorAndToolsMod {
         val logger: Logger = LoggerFactory.getLogger(ArmourAndToolsMod::class.java)
+
+        fun getModIdAndName(name: String): ResourceLocation {
+            return ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault()))
+        }
     }
 }
