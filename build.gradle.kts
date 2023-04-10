@@ -131,7 +131,7 @@ dependencies {
     implementation("thedarkcolour:kotlinforforge:4.0.0")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.5")
-    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.5")
+    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.6")
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     // core
