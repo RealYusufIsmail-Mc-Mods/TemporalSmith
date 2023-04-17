@@ -140,8 +140,8 @@ dependencies {
     // group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.8")
     implementation(fg.deobf("curse.maven:realyusufismail-core-497372:4482093"))
     // Patchouli
-    compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
-    runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
+    compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78-FABRIC:api"))
+    runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78-FABRIC"))
 }
 
 tasks.test {
