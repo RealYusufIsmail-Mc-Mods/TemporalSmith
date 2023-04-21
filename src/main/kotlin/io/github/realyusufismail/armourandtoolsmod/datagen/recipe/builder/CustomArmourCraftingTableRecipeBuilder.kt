@@ -23,7 +23,7 @@ import com.google.common.collect.Maps
 import com.google.common.collect.Sets
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import java.util.*
 import java.util.function.Consumer
@@ -48,7 +48,7 @@ object CustomArmourCraftingTableRecipeBuilder {
     private val key: MutableMap<Char, Ingredient> = Maps.newLinkedHashMap()
     private var advancement: Advancement.Builder? = null
     private var group: String? = null
-    private var bookCategory: CustomArmourCraftingBookCategory? = null
+    private var bookCategory: CustomToolsCraftingBookCategory? = null
 
     private var recipeCategory: RecipeCategory? = null
     private var count: Int? = null
@@ -158,11 +158,11 @@ object CustomArmourCraftingTableRecipeBuilder {
         advancement = null
     }
 
-    private fun determineBookCategory(p_250736_: RecipeCategory): CustomArmourCraftingBookCategory {
-        val bc: CustomArmourCraftingBookCategory
+    private fun determineBookCategory(p_250736_: RecipeCategory): CustomToolsCraftingBookCategory {
+        val bc: CustomToolsCraftingBookCategory
         when (p_250736_) {
             RecipeCategory.TOOLS,
-            RecipeCategory.COMBAT, -> bc = CustomArmourCraftingBookCategory.EQUIPMENT
+            RecipeCategory.COMBAT, -> bc = CustomToolsCraftingBookCategory.EQUIPMENT
             else ->
                 throw IllegalStateException("Recipe category does not belong to any book category")
         }
@@ -206,7 +206,7 @@ object CustomArmourCraftingTableRecipeBuilder {
     }
 
     class Result(
-        private val category: CustomArmourCraftingBookCategory,
+        private val category: CustomToolsCraftingBookCategory,
         id: ResourceLocation,
         result: Item,
         count: Int,

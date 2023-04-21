@@ -20,7 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book
 
 import net.minecraft.util.StringRepresentable
 
-enum class CustomArmourCraftingBookCategory(private var bookName: String) : StringRepresentable {
+enum class CustomToolsCraftingBookCategory(private var bookName: String) : StringRepresentable {
     EQUIPMENT("equipment"),
     MISC("misc"),
     UNKNOWN("unknown");
