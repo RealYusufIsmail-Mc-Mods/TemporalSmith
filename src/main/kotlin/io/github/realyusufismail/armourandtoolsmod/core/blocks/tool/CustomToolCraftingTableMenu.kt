@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.blocks.tools
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.tool
 
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.MenuTypeInit
@@ -35,16 +35,16 @@ import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.level.Level
 
 /** @see CraftingMenu */
-class CustomToolsCraftingTableMenu(
+class CustomToolCraftingTableMenu(
     pContainerId: Int,
     private val inventory: Inventory,
     private val access: ContainerLevelAccess,
     private val player: Player = inventory.player,
 ) :
-    RecipeBookMenu<CustomToolsCraftingTableContainer>(
-        MenuTypeInit.CUSTOM_ARMOUR_CRAFTING_TABLE_MENU.get(), pContainerId) {
-    private val craftSlots: CustomToolsCraftingTableContainer =
-        CustomToolsCraftingTableContainer(this, 3, 3)
+    RecipeBookMenu<CustomToolCraftingTableContainer>(
+        MenuTypeInit.CUSTOM_TOOL_CRAFTING_TABLE_MENU.get(), pContainerId) {
+    private val craftSlots: CustomToolCraftingTableContainer =
+        CustomToolCraftingTableContainer(this, 3, 3)
     private val resultSlots = ResultContainer()
 
     constructor(
@@ -54,9 +54,8 @@ class CustomToolsCraftingTableMenu(
 
     init {
         addSlot(
-            CustomToolsrCraftingTableResultSlot(
-                inventory.player, craftSlots, resultSlots, 0, 124, 35)
-        )
+            CustomToolCraftingTableResultSlot(
+                inventory.player, craftSlots, resultSlots, 0, 124, 35))
         for (i in 0..2) {
             for (j in 0..2) {
                 addSlot(Slot(craftSlots, j + i * 3, 30 + j * 18, 17 + i * 18))
@@ -76,7 +75,7 @@ class CustomToolsCraftingTableMenu(
         pMenu: AbstractContainerMenu,
         pLevel: Level,
         pPlayer: Player,
-        pContainer: CustomToolsCraftingTableContainer,
+        pContainer: CustomToolCraftingTableContainer,
         pResult: ResultContainer,
     ) {
         if (!pLevel.isClientSide) {
@@ -85,7 +84,7 @@ class CustomToolsCraftingTableMenu(
             val optional =
                 pLevel.server!!
                     .recipeManager
-                    .getRecipeFor(RecipeTypeInit.ARMOUR_CRAFTING.get(), pContainer, pLevel)
+                    .getRecipeFor(RecipeTypeInit.TOOL_CRAFTING.get(), pContainer, pLevel)
             if (optional.isPresent) {
                 val craftingrecipe = optional.get()
                 if (pResult.setRecipeUsed(pLevel, serverplayer, craftingrecipe)) {
@@ -120,7 +119,7 @@ class CustomToolsCraftingTableMenu(
         resultSlots.clearContent()
     }
 
-    override fun recipeMatches(pRecipe: Recipe<in CustomToolsCraftingTableContainer>): Boolean {
+    override fun recipeMatches(pRecipe: Recipe<in CustomToolCraftingTableContainer>): Boolean {
         return pRecipe.matches(craftSlots, player.level)
     }
 
@@ -132,7 +131,7 @@ class CustomToolsCraftingTableMenu(
 
     /** Determines whether supplied player can use this container */
     override fun stillValid(pPlayer: Player): Boolean {
-        return stillValid(access, pPlayer, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+        return stillValid(access, pPlayer, BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
     }
 
     /**
@@ -207,7 +206,7 @@ class CustomToolsCraftingTableMenu(
     }
 
     override fun getRecipeBookType(): RecipeBookType {
-        return RecipeBookTypesInit.ARMOUR_CRAFTING
+        return RecipeBookTypesInit.TOOL_CRAFTING
     }
 
     override fun shouldMoveToInventory(pSlotIndex: Int): Boolean {

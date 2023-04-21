@@ -18,12 +18,18 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book
 
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
 import net.minecraft.util.StringRepresentable
 
 enum class CustomArmourCraftingBookCategory(private var bookName: String) : StringRepresentable {
-    EQUIPMENT("equipment"),
+    ARMOUR("armour"),
+    ARMOUR_HEAD("armour_head"),
+    ARMOUR_CHEST("armour_chest"),
+    ARMOUR_LEGS("armour_legs"),
+    ARMOUR_FEET("armour_feet"),
     MISC("misc"),
-    UNKNOWN("unknown");
+    UNKNOWN("unknown"),
+    ALL("all");
 
     companion object {
         val CODEC: StringRepresentable.EnumCodec<CustomToolsCraftingBookCategory> =

@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.blocks.tools
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.tool
 
 import net.minecraft.core.NonNullList
 import net.minecraft.world.Container
@@ -28,7 +28,7 @@ import net.minecraft.world.inventory.StackedContentsCompatible
 import net.minecraft.world.item.ItemStack
 
 /** @see net.minecraft.world.inventory.CraftingContainer */
-class CustomToolsCraftingTableContainer(
+class CustomToolCraftingTableContainer(
     private var menu: AbstractContainerMenu,
     private var width: Int,
     private var height: Int

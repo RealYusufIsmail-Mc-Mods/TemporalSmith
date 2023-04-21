@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableMenu
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableMenu
 import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.AbstractContainerMenu
@@ -37,6 +38,10 @@ object MenuTypeInit {
     val CUSTOM_ARMOUR_CRAFTING_TABLE_MENU:
         ObjectHolderDelegate<MenuType<CustomArmourCraftingTableMenu>> =
         register("custom_armour_crafting_table", ::CustomArmourCraftingTableMenu)
+
+    val CUSTOM_TOOL_CRAFTING_TABLE_MENU:
+        ObjectHolderDelegate<MenuType<CustomToolCraftingTableMenu>> =
+        register("custom_tool_crafting_table", ::CustomToolCraftingTableMenu)
 
     private fun <T : AbstractContainerMenu> register(
         name: String,

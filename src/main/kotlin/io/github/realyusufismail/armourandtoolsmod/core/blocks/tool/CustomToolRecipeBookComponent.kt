@@ -16,15 +16,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.blocks.tools
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.tool
 
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tools.CustomToolsCraftingTableContainer
-import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
-import net.minecraft.world.item.crafting.Recipe
-import net.minecraft.world.item.crafting.RecipeType
+import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent
 
-interface CustomToolsCraftingTableRecipe : Recipe<CustomToolsCraftingTableContainer> {
-    override fun getType(): RecipeType<*> {
-        return RecipeTypeInit.ARMOUR_CRAFTING.get()
-    }
-}
+class CustomToolRecipeBookComponent : RecipeBookComponent()

@@ -16,12 +16,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book
 
 import net.minecraft.util.StringRepresentable
 
 enum class CustomToolsCraftingBookCategory(private var bookName: String) : StringRepresentable {
-    EQUIPMENT("equipment"),
+    SWORD("sword"),
+    PICKAXE("pickaxe"),
+    AXE("axe"),
+    SHOVEL("shovel"),
+    HOE("hoe"),
+    CUSTOM("custom"),
+    ALL("all"),
     MISC("misc"),
     UNKNOWN("unknown");
 

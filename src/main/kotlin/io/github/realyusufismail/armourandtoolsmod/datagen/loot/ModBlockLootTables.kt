@@ -72,6 +72,7 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         dropSelf(BlockInit.GRAPHITE_BLOCK.get())
         dropSelf(BlockInit.AQUMARINE_BLOCK.get())
         dropSelf(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+        dropSelf(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
     }
 
     override fun getKnownBlocks(): Iterable<Block> {

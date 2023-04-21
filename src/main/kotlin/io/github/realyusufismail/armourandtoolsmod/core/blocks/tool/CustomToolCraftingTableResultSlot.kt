@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.blocks.tools
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.tool
 
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
 import net.minecraft.world.Container
@@ -28,9 +28,9 @@ import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.event.ForgeEventFactory
 
 /** @see net.minecraft.world.inventory.ResultSlot */
-class CustomToolsrCraftingTableResultSlot(
+class CustomToolCraftingTableResultSlot(
     private val player: Player,
-    private val craftSlots: CustomToolsCraftingTableContainer,
+    private val craftSlots: CustomToolCraftingTableContainer,
     container: Container,
     slot: Int,
     xPosition: Int,
@@ -87,7 +87,7 @@ class CustomToolsrCraftingTableResultSlot(
         ForgeHooks.setCraftingPlayer(pPlayer)
         val nonnulllist =
             pPlayer.level.recipeManager.getRemainingItemsFor(
-                RecipeTypeInit.ARMOUR_CRAFTING.get(), this.craftSlots, pPlayer.level)
+                RecipeTypeInit.TOOL_CRAFTING.get(), this.craftSlots, pPlayer.level)
         ForgeHooks.setCraftingPlayer(null)
         for (i in nonnulllist.indices) {
             var itemstack: ItemStack = this.craftSlots.getItem(i)

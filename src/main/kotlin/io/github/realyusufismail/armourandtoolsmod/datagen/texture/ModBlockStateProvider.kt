@@ -53,6 +53,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         normalBlock(BlockInit.AQUMARINE_BLOCK.get())
 
         customCraftingTable(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+        customCraftingTable(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
     }
 
     private fun customCraftingTable(block: Block) {

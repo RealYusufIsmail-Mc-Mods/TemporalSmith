@@ -56,6 +56,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
 
         // custom crafting tables
         addBlock(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE, "Custom Armour Crafting Table")
+        addBlock(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE, "Custom Tool Crafting Table")
 
         // ore ingot
         addItem(ItemInit.RUBY, "Ruby")
@@ -101,6 +102,8 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         add("creativetab.armourandtoolsmod", "Armour and Item Mod")
         add("container.custom_armour_crafting_table", "Armour Crafting Table")
         add("container.custom_armour_crafting_table.description", "Craft your own custom armour!")
+        add("container.custom_tool_crafting_table", "Tool Crafting Table")
+        add("container.custom_tool_crafting_table.description", "Craft your own custom tools!")
     }
 
     override fun <T : Item> item(entry: RegistryObject<T>, name: String) {

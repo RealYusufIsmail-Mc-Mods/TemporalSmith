@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.blocks.tools
+package io.github.realyusufismail.armourandtoolsmod.core.blocks.tool
 
 import com.google.common.annotations.VisibleForTesting
 import com.google.common.collect.Maps
@@ -41,16 +41,16 @@ import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.crafting.CraftingHelper
 
 /** @see io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder */
-class CustomToolsCraftingTableShapedRecipe(
+class CustomToolCraftingTableShapedRecipe(
     private val id: ResourceLocation,
     private val group: String,
     private val width: Int,
     private val height: Int,
     private val recipeItems: NonNullList<Ingredient>,
     private val result: ItemStack,
-) : CustomToolsCraftingTableRecipe, Recipe<CustomToolsCraftingTableContainer> {
+) : CustomToolCraftingTableRecipe, Recipe<CustomToolCraftingTableContainer> {
     /** Used to check if a recipe matches current crafting inventory */
-    override fun matches(pInv: CustomToolsCraftingTableContainer, pLevel: Level): Boolean {
+    override fun matches(pInv: CustomToolCraftingTableContainer, pLevel: Level): Boolean {
         for (i in 0..(pInv.getWidth() - this.width)) {
             for (j in 0..(pInv.getHeight() - this.height)) {
                 if (this.matches(pInv, i, j, true)) {
@@ -66,7 +66,7 @@ class CustomToolsCraftingTableShapedRecipe(
 
     /** Checks if the region of a crafting inventory is match for the recipe. */
     private fun matches(
-        pCraftingInventory: CustomToolsCraftingTableContainer,
+        pCraftingInventory: CustomToolCraftingTableContainer,
         pWidth: Int,
         pHeight: Int,
         pMirrored: Boolean,
@@ -94,7 +94,7 @@ class CustomToolsCraftingTableShapedRecipe(
     }
 
     override fun assemble(
-        p_44001_: CustomToolsCraftingTableContainer,
+        p_44001_: CustomToolCraftingTableContainer,
         p_267165_: RegistryAccess
     ): ItemStack {
         return this.result.copy()
@@ -127,11 +127,11 @@ class CustomToolsCraftingTableShapedRecipe(
     }
 
     override fun getToastSymbol(): ItemStack {
-        return ItemStack(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+        return ItemStack(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
     }
 
     override fun getSerializer(): RecipeSerializer<*> {
-        return RecipeSerializerInit.CUSTOM_ARMOUR_CRAFTER.get()
+        return RecipeSerializerInit.CUSTOM_TOOL_CRAFTER.get()
     }
 
     override fun isIncomplete(): Boolean {
@@ -270,11 +270,11 @@ class CustomToolsCraftingTableShapedRecipe(
         }
     }
 
-    class Serializer : RecipeSerializer<CustomToolsCraftingTableShapedRecipe> {
+    class Serializer : RecipeSerializer<CustomToolCraftingTableShapedRecipe> {
         override fun fromJson(
             pRecipeId: ResourceLocation,
             pJson: JsonObject,
-        ): CustomToolsCraftingTableShapedRecipe {
+        ): CustomToolCraftingTableShapedRecipe {
             val s: String = GsonHelper.getAsString(pJson, "group", "")!!
 
             val map: Map<String, Ingredient> = keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"))
@@ -289,25 +289,25 @@ class CustomToolsCraftingTableShapedRecipe(
             val itemstack: ItemStack =
                 itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"))
 
-            return CustomToolsCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
+            return CustomToolCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
         }
 
         override fun fromNetwork(
             pRecipeId: ResourceLocation,
             pBuffer: FriendlyByteBuf,
-        ): CustomToolsCraftingTableShapedRecipe {
+        ): CustomToolCraftingTableShapedRecipe {
             val i = pBuffer.readVarInt()
             val j = pBuffer.readVarInt()
             val s = pBuffer.readUtf()
             val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
             nonnulllist.replaceAll { Ingredient.fromNetwork(pBuffer) }
             val itemstack = pBuffer.readItem()
-            return CustomToolsCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
+            return CustomToolCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
         }
 
         override fun toNetwork(
             pBuffer: FriendlyByteBuf,
-            pRecipe: CustomToolsCraftingTableShapedRecipe,
+            pRecipe: CustomToolCraftingTableShapedRecipe,
         ) {
             pBuffer.writeVarInt(pRecipe.width)
             pBuffer.writeVarInt(pRecipe.height)
