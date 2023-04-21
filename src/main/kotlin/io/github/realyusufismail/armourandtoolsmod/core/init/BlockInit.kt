@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomArmourCraftingTable
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.CustomToolCraftingTable
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.lit.RainbowLitBlock
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.lit.RubyLitBlock
 import net.minecraft.world.item.BlockItem
@@ -153,6 +154,9 @@ object BlockInit {
     // custom crafting table
     val CUSTOM_ARMOUR_CRAFTING_TABLE =
         registerSpecial("custom_armour_crafting_table", ::CustomArmourCraftingTable)
+
+    val CUSTOM_TOOL_CRAFTING_TABLE =
+        registerSpecial("custom_tool_crafting_table", ::CustomToolCraftingTable)
 
     private fun <T : Block> registerSpecial(
         name: String,

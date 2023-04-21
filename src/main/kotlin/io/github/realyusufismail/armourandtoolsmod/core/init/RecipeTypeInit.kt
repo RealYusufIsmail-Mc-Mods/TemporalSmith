@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableRecipe
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableRecipe
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.crafting.RecipeType
 import net.minecraftforge.registries.DeferredRegister
@@ -35,5 +36,10 @@ object RecipeTypeInit {
     val ARMOUR_CRAFTING: ObjectHolderDelegate<RecipeType<CustomArmourCraftingTableRecipe>> =
         RECIPE_TYPES.registerObject("armour_crafting") {
             RecipeType.simple(ResourceLocation(MOD_ID, "armour_crafting"))
+        }
+
+    val TOOL_CRAFTING: ObjectHolderDelegate<RecipeType<CustomToolCraftingTableRecipe>> =
+        RECIPE_TYPES.registerObject("tool_crafting") {
+            RecipeType.simple(ResourceLocation(MOD_ID, "tool_crafting"))
         }
 }

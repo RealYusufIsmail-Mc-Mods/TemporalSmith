@@ -162,7 +162,7 @@ object CustomArmourCraftingTableRecipeBuilder {
         val bc: CustomArmourCraftingBookCategory
         when (p_250736_) {
             RecipeCategory.TOOLS,
-            RecipeCategory.COMBAT, -> bc = CustomArmourCraftingBookCategory.EQUIPMENT
+            RecipeCategory.COMBAT, -> bc = CustomArmourCraftingBookCategory.ARMOUR
             else ->
                 throw IllegalStateException("Recipe category does not belong to any book category")
         }

@@ -19,6 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod
 
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableScreen
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableScreen
 import io.github.realyusufismail.armourandtoolsmod.core.init.MenuTypeInit
 import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
@@ -32,5 +33,8 @@ object ClientSetup {
     private fun registerScreens() {
         MenuScreens.register(
             MenuTypeInit.CUSTOM_ARMOUR_CRAFTING_TABLE_MENU.get(), ::CustomArmourCraftingTableScreen)
+
+        MenuScreens.register(
+            MenuTypeInit.CUSTOM_TOOL_CRAFTING_TABLE_MENU.get(), ::CustomToolCraftingTableScreen)
     }
 }
