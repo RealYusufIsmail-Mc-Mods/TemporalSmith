@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour
 
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeType
@@ -26,4 +27,6 @@ interface CustomArmourCraftingTableRecipe : Recipe<CustomArmourCraftingTableCont
     override fun getType(): RecipeType<*> {
         return RecipeTypeInit.ARMOUR_CRAFTING.get()
     }
+
+    fun category(): CustomArmourCraftingBookCategory
 }

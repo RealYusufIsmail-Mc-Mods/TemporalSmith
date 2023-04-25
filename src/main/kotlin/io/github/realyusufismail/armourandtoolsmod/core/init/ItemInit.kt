@@ -186,11 +186,6 @@ object ItemInit {
 
     // TODO: Add tools and weapons including tridents. Maybe custom shields?
 
-    val RUBY_SWORD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("ruby_sword", RUBY) {
-            SwordItem(CustomToolMaterial.RUBY_SWORD, 3, -2.4f, Item.Properties())
-        }
-
     private fun DeferredRegister<Item>.registerSmeltableObject(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,

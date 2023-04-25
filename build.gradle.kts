@@ -126,10 +126,10 @@ dependencies {
     "minecraft"(
         group = "net.minecraftforge",
         name = "forge",
-        version = "1.19.4-45.0.43",
+        version = "1.19.4-45.0.49",
         classifier = "universal")
     // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:4.1.0")
+    implementation("thedarkcolour:kotlinforforge:4.2.0")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.6")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.6")

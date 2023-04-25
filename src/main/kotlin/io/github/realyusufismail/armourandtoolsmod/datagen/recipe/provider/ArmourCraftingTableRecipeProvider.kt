@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
@@ -36,7 +37,9 @@ class ArmourCraftingTableRecipeProvider(
     fun build() {
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AMETHYST_HELMET)
+                CustomArmourCraftingBookCategory.ARMOUR_HEAD,
+                RecipeCategory.COMBAT,
+                ItemInit.AMETHYST_HELMET)
             .define('A', Items.AMETHYST_SHARD)
             .pattern("AAA")
             .pattern("A A")
@@ -44,7 +47,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("amethyst_helmet"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AMETHYST_CHESTPLATE)
+                CustomArmourCraftingBookCategory.ARMOUR_CHEST,
+                RecipeCategory.COMBAT,
+                ItemInit.AMETHYST_CHESTPLATE)
             .define('A', Items.AMETHYST_SHARD)
             .pattern("A A")
             .pattern("AAA")
@@ -53,7 +58,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("amethyst_chestplate"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AMETHYST_LEGGINGS)
+                CustomArmourCraftingBookCategory.ARMOUR_LEGS,
+                RecipeCategory.COMBAT,
+                ItemInit.AMETHYST_LEGGINGS)
             .define('A', Items.AMETHYST_SHARD)
             .pattern("AAA")
             .pattern("A A")
@@ -62,14 +69,19 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("amethyst_leggings"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AMETHYST_BOOTS)
+                CustomArmourCraftingBookCategory.ARMOUR_FEET,
+                RecipeCategory.COMBAT,
+                ItemInit.AMETHYST_BOOTS)
             .define('A', Items.AMETHYST_SHARD)
             .pattern("A A")
             .pattern("A A")
             .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
             .save(consumer, modId("amethyst_boots"))
 
-        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RUBY_HELMET)
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_HEAD,
+                RecipeCategory.COMBAT,
+                ItemInit.RUBY_HELMET)
             .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
             .pattern("AAA")
             .pattern("A A")
@@ -77,7 +89,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("ruby_helmet"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.RUBY_CHESTPLATE)
+                CustomArmourCraftingBookCategory.ARMOUR_CHEST,
+                RecipeCategory.COMBAT,
+                ItemInit.RUBY_CHESTPLATE)
             .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
             .pattern("A A")
             .pattern("AAA")
@@ -85,7 +99,10 @@ class ArmourCraftingTableRecipeProvider(
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_RUBY))
             .save(consumer, modId("ruby_chestplate"))
 
-        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RUBY_LEGGINGS)
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_LEGS,
+                RecipeCategory.COMBAT,
+                ItemInit.RUBY_LEGGINGS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
             .pattern("AAA")
             .pattern("A A")
@@ -93,7 +110,10 @@ class ArmourCraftingTableRecipeProvider(
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_RUBY))
             .save(consumer, modId("ruby_leggings"))
 
-        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RUBY_BOOTS)
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_FEET,
+                RecipeCategory.COMBAT,
+                ItemInit.RUBY_BOOTS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_RUBY)
             .pattern("A A")
             .pattern("A A")
@@ -101,7 +121,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("ruby_boots"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_HELMET)
+                CustomArmourCraftingBookCategory.ARMOUR_HEAD,
+                RecipeCategory.COMBAT,
+                ItemInit.SAPPHIRE_HELMET)
             .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
             .pattern("AAA")
             .pattern("A A")
@@ -109,7 +131,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("sapphire_helmet"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_CHESTPLATE)
+                CustomArmourCraftingBookCategory.ARMOUR_CHEST,
+                RecipeCategory.COMBAT,
+                ItemInit.SAPPHIRE_CHESTPLATE)
             .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
             .pattern("A A")
             .pattern("AAA")
@@ -118,7 +142,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("sapphire_chestplate"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_LEGGINGS)
+                CustomArmourCraftingBookCategory.ARMOUR_LEGS,
+                RecipeCategory.COMBAT,
+                ItemInit.SAPPHIRE_LEGGINGS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
             .pattern("AAA")
             .pattern("A A")
@@ -127,7 +153,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("sapphire_leggings"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.SAPPHIRE_BOOTS)
+                CustomArmourCraftingBookCategory.ARMOUR_FEET,
+                RecipeCategory.COMBAT,
+                ItemInit.SAPPHIRE_BOOTS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
             .pattern("A A")
             .pattern("A A")
@@ -135,7 +163,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("sapphire_boots"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.GRAPHITE_HELMET)
+                CustomArmourCraftingBookCategory.ARMOUR_HEAD,
+                RecipeCategory.COMBAT,
+                ItemInit.GRAPHITE_HELMET)
             .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
             .pattern("AAA")
             .pattern("A A")
@@ -143,7 +173,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("graphite_helmet"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.GRAPHITE_CHESTPLATE)
+                CustomArmourCraftingBookCategory.ARMOUR_CHEST,
+                RecipeCategory.COMBAT,
+                ItemInit.GRAPHITE_CHESTPLATE)
             .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
             .pattern("A A")
             .pattern("AAA")
@@ -152,7 +184,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("graphite_chestplate"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.GRAPHITE_LEGGINGS)
+                CustomArmourCraftingBookCategory.ARMOUR_LEGS,
+                RecipeCategory.COMBAT,
+                ItemInit.GRAPHITE_LEGGINGS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
             .pattern("AAA")
             .pattern("A A")
@@ -161,7 +195,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("graphite_leggings"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.GRAPHITE_BOOTS)
+                CustomArmourCraftingBookCategory.ARMOUR_FEET,
+                RecipeCategory.COMBAT,
+                ItemInit.GRAPHITE_BOOTS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_GRAPHITE)
             .pattern("A A")
             .pattern("A A")
@@ -169,7 +205,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("graphite_boots"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.RAINBOW_HELMET)
+                CustomArmourCraftingBookCategory.ARMOUR_HEAD,
+                RecipeCategory.COMBAT,
+                ItemInit.RAINBOW_HELMET)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("AAA")
             .pattern("A A")
@@ -177,7 +215,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("rainbow_helmet"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.RAINBOW_CHESTPLATE)
+                CustomArmourCraftingBookCategory.ARMOUR_CHEST,
+                RecipeCategory.COMBAT,
+                ItemInit.RAINBOW_CHESTPLATE)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("A A")
             .pattern("AAA")
@@ -186,7 +226,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("rainbow_chestplate"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.RAINBOW_LEGGINGS)
+                CustomArmourCraftingBookCategory.ARMOUR_LEGS,
+                RecipeCategory.COMBAT,
+                ItemInit.RAINBOW_LEGGINGS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("AAA")
             .pattern("A A")
@@ -194,7 +236,10 @@ class ArmourCraftingTableRecipeProvider(
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
             .save(consumer, modId("rainbow_leggings"))
 
-        CustomArmourCraftingTableRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.RAINBOW_BOOTS)
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_FEET,
+                RecipeCategory.COMBAT,
+                ItemInit.RAINBOW_BOOTS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("A A")
             .pattern("A A")
@@ -202,7 +247,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("rainbow_boots"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AQUMARINE_HELMET)
+                CustomArmourCraftingBookCategory.ARMOUR_HEAD,
+                RecipeCategory.COMBAT,
+                ItemInit.AQUMARINE_HELMET)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("AAA")
             .pattern("A A")
@@ -210,7 +257,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("aqumarine_helmet"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AQUMARINE_CHESTPLATE)
+                CustomArmourCraftingBookCategory.ARMOUR_CHEST,
+                RecipeCategory.COMBAT,
+                ItemInit.AQUMARINE_CHESTPLATE)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("A A")
             .pattern("AAA")
@@ -219,7 +268,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("aqumarine_chestplate"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AQUMARINE_LEGGINGS)
+                CustomArmourCraftingBookCategory.ARMOUR_LEGS,
+                RecipeCategory.COMBAT,
+                ItemInit.AQUMARINE_LEGGINGS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("AAA")
             .pattern("A A")
@@ -228,7 +279,9 @@ class ArmourCraftingTableRecipeProvider(
             .save(consumer, modId("aqumarine_leggings"))
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
-                RecipeCategory.COMBAT, ItemInit.AQUMARINE_BOOTS)
+                CustomArmourCraftingBookCategory.ARMOUR_FEET,
+                RecipeCategory.COMBAT,
+                ItemInit.AQUMARINE_BOOTS)
             .define('A', TagsInit.ItemTagsInit.INGOTS_AQUMARINE)
             .pattern("A A")
             .pattern("A A")

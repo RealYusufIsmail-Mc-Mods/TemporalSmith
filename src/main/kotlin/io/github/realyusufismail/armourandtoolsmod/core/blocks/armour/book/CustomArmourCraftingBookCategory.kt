@@ -18,26 +18,17 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book
 
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
 import net.minecraft.util.StringRepresentable
 
 enum class CustomArmourCraftingBookCategory(private var bookName: String) : StringRepresentable {
-    ARMOUR("armour"),
     ARMOUR_HEAD("armour_head"),
     ARMOUR_CHEST("armour_chest"),
     ARMOUR_LEGS("armour_legs"),
     ARMOUR_FEET("armour_feet"),
-    MISC("misc"),
-    UNKNOWN("unknown"),
-    ALL("all");
+    MISC("misc");
 
     companion object {
-        val CODEC: StringRepresentable.EnumCodec<CustomToolsCraftingBookCategory> =
-            StringRepresentable.fromEnum { CustomToolsCraftingBookCategory.values() }
-
-        fun fromName(name: String): CustomToolsCraftingBookCategory {
-            return CustomToolsCraftingBookCategory.values().first { it.name == name }
-        }
+        val CODEC = StringRepresentable.fromEnum { CustomArmourCraftingBookCategory.values() }
     }
 
     override fun getSerializedName(): String {

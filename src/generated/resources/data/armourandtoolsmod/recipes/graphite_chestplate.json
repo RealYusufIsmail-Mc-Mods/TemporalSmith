@@ -1,6 +1,6 @@
 {
   "type": "armourandtoolsmod:custom_armour_crafter",
-  "category": "equipment",
+  "category": "armour_chest",
   "key": {
     "A": {
       "tag": "forge:ingots/graphite"
