@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.19.4-1.0.0.beta.4] - 30/05/2023
+
+### Improve custom armour crafting table recipe book. Now shows different sections for each armour type.
+### Updated forge and kotlin forge versions to latest.
+
 ## [1.19.4-1.0.0.beta.3] - 2023-4-25
 
 ### Bug fixe where game crashed due to outdated patchouli version

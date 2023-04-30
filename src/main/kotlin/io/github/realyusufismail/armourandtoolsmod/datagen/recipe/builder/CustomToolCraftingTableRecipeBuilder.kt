@@ -23,7 +23,7 @@ import com.google.common.collect.Maps
 import com.google.common.collect.Sets
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import java.util.*
 import java.util.function.Consumer
@@ -43,31 +43,31 @@ import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.ItemLike
 import net.minecraftforge.registries.ForgeRegistries
 
-object CustomArmourCraftingTableRecipeBuilder {
+object CustomToolCraftingTableRecipeBuilder {
     private val rows: MutableList<String> = Lists.newArrayList()
     private val key: MutableMap<Char, Ingredient> = Maps.newLinkedHashMap()
     private var advancement: Advancement.Builder? = null
     private var group: String? = null
-    private var bookCategory: CustomArmourCraftingBookCategory? = null
+    private var bookCategory: CustomToolsCraftingBookCategory? = null
 
     private var recipeCategory: RecipeCategory? = null
     private var count: Int? = null
     private var result: Item? = null
 
     fun shaped(
-        bookCategory: CustomArmourCraftingBookCategory,
+        bookCategory: CustomToolsCraftingBookCategory,
         recipeCategory: RecipeCategory,
         itemLike: ItemLike,
-    ): CustomArmourCraftingTableRecipeBuilder {
+    ): CustomToolCraftingTableRecipeBuilder {
         return shaped(bookCategory, recipeCategory, itemLike, 1)
     }
 
     fun shaped(
-        bookCategory: CustomArmourCraftingBookCategory,
+        bookCategory: CustomToolsCraftingBookCategory,
         recipeCategory: RecipeCategory,
         itemLike: ItemLike,
         count: Int,
-    ): CustomArmourCraftingTableRecipeBuilder {
+    ): CustomToolCraftingTableRecipeBuilder {
         this.recipeCategory = recipeCategory
         this.result = itemLike.asItem()
         this.count = count
@@ -76,18 +76,18 @@ object CustomArmourCraftingTableRecipeBuilder {
         return this
     }
 
-    fun define(character: Char, itemTag: TagKey<Item>): CustomArmourCraftingTableRecipeBuilder {
+    fun define(character: Char, itemTag: TagKey<Item>): CustomToolCraftingTableRecipeBuilder {
         return this.define(character, Ingredient.of(itemTag))
     }
 
-    fun define(character: Char, itemLike: ItemLike): CustomArmourCraftingTableRecipeBuilder {
+    fun define(character: Char, itemLike: ItemLike): CustomToolCraftingTableRecipeBuilder {
         return this.define(character, Ingredient.of(itemLike))
     }
 
     private fun define(
         character: Char,
         ingredient: Ingredient,
-    ): CustomArmourCraftingTableRecipeBuilder {
+    ): CustomToolCraftingTableRecipeBuilder {
         if (key.containsKey(character)) {
             throw IllegalArgumentException("Symbol '$character' is already defined!")
         } else if (character == ' ') {
@@ -99,7 +99,7 @@ object CustomArmourCraftingTableRecipeBuilder {
         }
     }
 
-    fun pattern(pattern: String): CustomArmourCraftingTableRecipeBuilder {
+    fun pattern(pattern: String): CustomToolCraftingTableRecipeBuilder {
         if (rows.isNotEmpty() && pattern.length != rows[0].length) {
             throw IllegalArgumentException("Pattern must be the same width on every line!")
         } else {
@@ -111,12 +111,12 @@ object CustomArmourCraftingTableRecipeBuilder {
     fun unlockedBy(
         creterionId: String,
         criterionTriggerInstance: CriterionTriggerInstance,
-    ): CustomArmourCraftingTableRecipeBuilder {
+    ): CustomToolCraftingTableRecipeBuilder {
         advancement?.addCriterion(creterionId, criterionTriggerInstance)
         return this
     }
 
-    fun group(group: String): CustomArmourCraftingTableRecipeBuilder {
+    fun group(group: String): CustomToolCraftingTableRecipeBuilder {
         this.group = group
         return this
     }
@@ -197,7 +197,7 @@ object CustomArmourCraftingTableRecipeBuilder {
     }
 
     class Result(
-        private val category: CustomArmourCraftingBookCategory,
+        private val category: CustomToolsCraftingBookCategory,
         id: ResourceLocation,
         result: Item,
         count: Int,

@@ -25,6 +25,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonSyntaxException
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import net.minecraft.core.NonNullList
@@ -44,11 +45,16 @@ import net.minecraftforge.common.crafting.CraftingHelper
 class CustomArmourCraftingTableShapedRecipe(
     private val id: ResourceLocation,
     private val group: String,
+    private val recipeCategory: CustomArmourCraftingBookCategory,
     private val width: Int,
     private val height: Int,
     private val recipeItems: NonNullList<Ingredient>,
     private val result: ItemStack,
 ) : CustomArmourCraftingTableRecipe, Recipe<CustomArmourCraftingTableContainer> {
+    override fun category(): CustomArmourCraftingBookCategory {
+        return recipeCategory
+    }
+
     /** Used to check if a recipe matches current crafting inventory */
     override fun matches(pInv: CustomArmourCraftingTableContainer, pLevel: Level): Boolean {
         for (i in 0..(pInv.getWidth() - this.width)) {
@@ -95,7 +101,7 @@ class CustomArmourCraftingTableShapedRecipe(
 
     override fun assemble(
         p_44001_: CustomArmourCraftingTableContainer,
-        p_267165_: RegistryAccess
+        p_267165_: RegistryAccess,
     ): ItemStack {
         return this.result.copy()
     }
@@ -279,6 +285,11 @@ class CustomArmourCraftingTableShapedRecipe(
 
             val map: Map<String, Ingredient> = keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"))
 
+            val craftingbookcategory =
+                CustomArmourCraftingBookCategory.CODEC.byName(
+                    GsonHelper.getAsString(pJson, "category", null as String?),
+                    CustomArmourCraftingBookCategory.MISC)
+
             val astring: Array<String?> =
                 shrink(*patternFromJson(GsonHelper.getAsJsonArray(pJson, "pattern")))
 
@@ -289,7 +300,8 @@ class CustomArmourCraftingTableShapedRecipe(
             val itemstack: ItemStack =
                 itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"))
 
-            return CustomArmourCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
+            return CustomArmourCraftingTableShapedRecipe(
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
         }
 
         override fun fromNetwork(
@@ -302,7 +314,11 @@ class CustomArmourCraftingTableShapedRecipe(
             val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
             nonnulllist.replaceAll { Ingredient.fromNetwork(pBuffer) }
             val itemstack = pBuffer.readItem()
-            return CustomArmourCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
+            val craftingbookcategory =
+                pBuffer.readEnum(CustomArmourCraftingBookCategory::class.java)
+
+            return CustomArmourCraftingTableShapedRecipe(
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
         }
 
         override fun toNetwork(

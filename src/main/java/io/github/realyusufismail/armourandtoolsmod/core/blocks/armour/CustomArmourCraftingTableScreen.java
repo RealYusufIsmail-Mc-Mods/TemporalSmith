@@ -2,6 +2,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.blocks.armour;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -76,7 +77,7 @@ public class CustomArmourCraftingTableScreen extends AbstractContainerScreen<Cus
         RenderSystem.setShaderTexture(0, CRAFTING_TABLE_LOCATION);
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
-        this.blit(pPoseStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        blit(pPoseStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
     }
 
     protected boolean isHovering(int pX, int pY, int pWidth, int pHeight, double pMouseX,

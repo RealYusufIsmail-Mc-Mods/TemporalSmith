@@ -26,18 +26,10 @@ enum class CustomToolsCraftingBookCategory(private var bookName: String) : Strin
     AXE("axe"),
     SHOVEL("shovel"),
     HOE("hoe"),
-    CUSTOM("custom"),
-    ALL("all"),
-    MISC("misc"),
-    UNKNOWN("unknown");
+    MISC("misc");
 
     companion object {
-        val CODEC: StringRepresentable.EnumCodec<CustomToolsCraftingBookCategory> =
-            StringRepresentable.fromEnum { CustomToolsCraftingBookCategory.values() }
-
-        fun fromName(name: String): CustomToolsCraftingBookCategory {
-            return CustomToolsCraftingBookCategory.values().first { it.name == name }
-        }
+        val CODEC = StringRepresentable.fromEnum { CustomToolsCraftingBookCategory.values() }
     }
 
     override fun getSerializedName(): String {

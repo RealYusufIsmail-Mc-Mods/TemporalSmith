@@ -21,10 +21,8 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
-import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
 import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.SwordItem
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
@@ -185,11 +183,6 @@ object ItemInit {
         }
 
     // TODO: Add tools and weapons including tridents. Maybe custom shields?
-
-    val RUBY_SWORD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("ruby_sword", RUBY) {
-            SwordItem(CustomToolMaterial.RUBY_SWORD, 3, -2.4f, Item.Properties())
-        }
 
     private fun DeferredRegister<Item>.registerSmeltableObject(
         name: String,

@@ -25,6 +25,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonSyntaxException
+import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import net.minecraft.core.NonNullList
@@ -44,11 +45,16 @@ import net.minecraftforge.common.crafting.CraftingHelper
 class CustomToolCraftingTableShapedRecipe(
     private val id: ResourceLocation,
     private val group: String,
+    private val recipeCategory: CustomToolsCraftingBookCategory,
     private val width: Int,
     private val height: Int,
     private val recipeItems: NonNullList<Ingredient>,
     private val result: ItemStack,
 ) : CustomToolCraftingTableRecipe, Recipe<CustomToolCraftingTableContainer> {
+    override fun category(): CustomToolsCraftingBookCategory {
+        return recipeCategory
+    }
+
     /** Used to check if a recipe matches current crafting inventory */
     override fun matches(pInv: CustomToolCraftingTableContainer, pLevel: Level): Boolean {
         for (i in 0..(pInv.getWidth() - this.width)) {
@@ -289,7 +295,13 @@ class CustomToolCraftingTableShapedRecipe(
             val itemstack: ItemStack =
                 itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"))
 
-            return CustomToolCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
+            val craftingbookcategory =
+                CustomToolsCraftingBookCategory.CODEC.byName(
+                    GsonHelper.getAsString(pJson, "category", null as String?),
+                    CustomToolsCraftingBookCategory.MISC)
+
+            return CustomToolCraftingTableShapedRecipe(
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
         }
 
         override fun fromNetwork(
@@ -302,7 +314,10 @@ class CustomToolCraftingTableShapedRecipe(
             val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
             nonnulllist.replaceAll { Ingredient.fromNetwork(pBuffer) }
             val itemstack = pBuffer.readItem()
-            return CustomToolCraftingTableShapedRecipe(pRecipeId, s, i, j, nonnulllist, itemstack)
+            val craftingbookcategory = pBuffer.readEnum(CustomToolsCraftingBookCategory::class.java)
+
+            return CustomToolCraftingTableShapedRecipe(
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
         }
 
         override fun toNetwork(
