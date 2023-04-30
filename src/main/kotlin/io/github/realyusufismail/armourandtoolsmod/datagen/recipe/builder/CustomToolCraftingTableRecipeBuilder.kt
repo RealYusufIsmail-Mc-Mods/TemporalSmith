@@ -23,7 +23,6 @@ import com.google.common.collect.Maps
 import com.google.common.collect.Sets
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import java.util.*

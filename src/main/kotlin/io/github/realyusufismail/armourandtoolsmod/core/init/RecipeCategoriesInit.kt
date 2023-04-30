@@ -39,7 +39,8 @@ object RecipeCategoriesInit {
 
     private val ARMOUR_CRAFTING_HELMET: Supplier<RecipeBookCategories> =
         Suppliers.memoize {
-            RecipeBookCategories.create("ARMOUR_CRAFTING_HELMET", ItemStack(ItemInit.AQUMARINE_HELMET.get()))
+            RecipeBookCategories.create(
+                "ARMOUR_CRAFTING_HELMET", ItemStack(ItemInit.AQUMARINE_HELMET.get()))
         }
 
     private val ARMOUR_CRAFTING_CHESTPLATE: Supplier<RecipeBookCategories> =
@@ -56,12 +57,14 @@ object RecipeCategoriesInit {
 
     private val ARMOUR_CRAFTING_BOOTS: Supplier<RecipeBookCategories> =
         Suppliers.memoize {
-            RecipeBookCategories.create("ARMOUR_CRAFTING_BOOTS", ItemStack(ItemInit.AQUMARINE_BOOTS.get()))
+            RecipeBookCategories.create(
+                "ARMOUR_CRAFTING_BOOTS", ItemStack(ItemInit.AQUMARINE_BOOTS.get()))
         }
 
     private val ARMOUR_CRAFTING_MISC: Supplier<RecipeBookCategories> =
         Suppliers.memoize {
-            RecipeBookCategories.create("ARMOUR_CRAFTING_MISC", ItemStack(ItemInit.AQUMARINE_HELMET.get()))
+            RecipeBookCategories.create(
+                "ARMOUR_CRAFTING_MISC", ItemStack(ItemInit.AQUMARINE_HELMET.get()))
         }
 
     // Tool
@@ -170,13 +173,16 @@ object RecipeCategoriesInit {
                 TOOL_CRAFTING_HOE.get(),
                 TOOL_CRAFTING_MISC.get()))
 
-        event.registerAggregateCategory(TOOL_CRAFTING_SWORD.get(), listOf(TOOL_CRAFTING_SWORD.get()))
+        event.registerAggregateCategory(
+            TOOL_CRAFTING_SWORD.get(), listOf(TOOL_CRAFTING_SWORD.get()))
 
-        event.registerAggregateCategory(TOOL_CRAFTING_PICKAXE.get(), listOf(TOOL_CRAFTING_PICKAXE.get()))
+        event.registerAggregateCategory(
+            TOOL_CRAFTING_PICKAXE.get(), listOf(TOOL_CRAFTING_PICKAXE.get()))
 
         event.registerAggregateCategory(TOOL_CRAFTING_AXE.get(), listOf(TOOL_CRAFTING_AXE.get()))
 
-        event.registerAggregateCategory(TOOL_CRAFTING_SHOVEL.get(), listOf(TOOL_CRAFTING_SHOVEL.get()))
+        event.registerAggregateCategory(
+            TOOL_CRAFTING_SHOVEL.get(), listOf(TOOL_CRAFTING_SHOVEL.get()))
 
         event.registerAggregateCategory(TOOL_CRAFTING_HOE.get(), listOf(TOOL_CRAFTING_HOE.get()))
 
