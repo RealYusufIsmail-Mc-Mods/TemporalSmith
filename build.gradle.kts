@@ -1,6 +1,13 @@
+import io.github.realyusufismail.jconfig.util.JConfigUtils
 import io.gitlab.arturbosch.detekt.Detekt
 import net.minecraftforge.gradle.userdev.UserDevExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+buildscript {
+    repositories { mavenCentral() }
+
+    dependencies { classpath("io.github.realyusufismail:jconfig:1.0.8") }
+}
 
 plugins {
     kotlin("jvm") version "1.8.20"
@@ -9,14 +16,20 @@ plugins {
     id("net.minecraftforge.gradle") version "5.1.+"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
+    id("net.darkhax.curseforgegradle") version "1.0.11"
     jacoco // code coverage reports
 }
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.4-1.0.0.beta.3"
+project.version = "1.19.4-1.0.0.beta.4"
 
 base.archivesName.set("armourandtoolsmod")
+
+// A project ID is required to tell CurseForge which project the uploaded
+// file belongs to. This is public on your project page and is not private
+// information.
+var projectId = "480779"
 
 println(
     """
@@ -230,4 +243,26 @@ tasks.withType<Detekt>().configureEach {
         xml.required.set(true)
         html.required.set(true)
     }
+}
+
+tasks.withType<net.darkhax.curseforgegradle.TaskPublishCurseForge>() {
+    // This token is used to authenticate with CurseForge. It should be handled
+    // with the same level of care and security as your actual password. You
+    // should never share your token with an untrusted source or publish it
+    // publicly to GitHub or embed it within a project. The best practice is to
+    // store this token in an environment variable or a build secret.
+
+    apiToken =
+        if (JConfigUtils["curseforge_token"] != null) JConfigUtils["curseforge_token"]
+        else throw Exception("CurseForge token not found in config file")
+
+    // Tells CurseForgeGradle to publish the output of the jar task. This will
+    // return a UploadArtifact object that can be used to further configure the
+    // file.
+    val mainFile = upload(projectId, tasks.jar.get())
+
+    // get the CHANGELOG.md
+    val changelog = file("CHANGELOG.md")
+
+    mainFile.changelog = changelog.readText()
 }

@@ -1,8 +1,5 @@
 # Changelog
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
-to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 ## [1.19.4-1.0.0.beta.4] - 30/05/2023
 
 ### Improve custom armour crafting table recipe book. Now shows different sections for each armour type.
