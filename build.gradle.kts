@@ -148,7 +148,7 @@ dependencies {
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.7")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.7")
     // test
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
     // core
     // implementation(
     // group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.8")
