@@ -1,4 +1,3 @@
-import io.github.realyusufismail.jconfig.util.JConfigUtils
 import io.gitlab.arturbosch.detekt.Detekt
 import net.minecraftforge.gradle.userdev.UserDevExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -26,6 +25,8 @@ project.version = "1.19.4-1.0.0.beta.4"
 
 base.archivesName.set("armourandtoolsmod")
 
+val mcVersion = "1.19.4"
+
 // A project ID is required to tell CurseForge which project the uploaded
 // file belongs to. This is public on your project page and is not private
 // information.
@@ -40,7 +41,7 @@ println(
         .trimIndent())
 
 configure<UserDevExtension> {
-    mappings("parchment", "1.19.3-2023.03.12-1.19.4")
+    mappings("parchment", "1.19.3-2023.03.12-$mcVersion")
 
     runs {
         create("client") {
@@ -245,24 +246,26 @@ tasks.withType<Detekt>().configureEach {
     }
 }
 
-tasks.withType<net.darkhax.curseforgegradle.TaskPublishCurseForge>() {
-    // This token is used to authenticate with CurseForge. It should be handled
-    // with the same level of care and security as your actual password. You
-    // should never share your token with an untrusted source or publish it
-    // publicly to GitHub or embed it within a project. The best practice is to
-    // store this token in an environment variable or a build secret.
+tasks.withType<net.darkhax.curseforgegradle.TaskPublishCurseForge>().configureEach {
+    // build the jar before uploading
+    dependsOn("build")
 
-    apiToken =
-        if (JConfigUtils["curseforge_token"] != null) JConfigUtils["curseforge_token"]
-        else throw Exception("CurseForge token not found in config file")
+    val token =
+        if (project.findProperty("curseforge.token") != null)
+            project.property("curseforge.token") as String
+        else throw GradleException("CurseForge token not found!")
+    apiToken = token
 
-    // Tells CurseForgeGradle to publish the output of the jar task. This will
-    // return a UploadArtifact object that can be used to further configure the
-    // file.
-    val mainFile = upload(projectId, tasks.jar.get())
+    val jar = file("build/libs/${project.name}-${project.version}.jar")
 
-    // get the CHANGELOG.md
-    val changelog = file("CHANGELOG.md")
-
-    mainFile.changelog = changelog.readText()
+    // The main file to upload
+    val mainFile = upload(projectId, jar)
+    mainFile.changelog = file("CHANGELOG.md").readText()
+    mainFile.changelogType = "markdown"
+    mainFile.releaseType = "beta"
+    mainFile.addEmbedded("kotlin-for-forge")
+    mainFile.addEmbedded("realyusufismail-core")
+    mainFile.addJavaVersion(project.java.sourceCompatibility.toString())
+    mainFile.addModLoader("forge")
+    mainFile.addGameVersion(mcVersion)
 }
