@@ -2,7 +2,7 @@ modLoader = "kotlinforforge"
 loaderVersion = "[4,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 license = "Apache 2.0" #mandatory
 issueTrackerURL = "https://github.com/RealYusufIsmail/Armour-and-Tools-Mod/issues"
-updateJSONURL = "https://raw.githubusercontent.com/RealYusufIsmail/Armour-and-Tools-Mod/main/update.json"
+updateJSONURL = "https://forge.curseupdate.com/480779/armourandtoolsmod"
 [[mods]]
 modId = "armourandtoolsmod"
 version = "${file.jarVersion}"
