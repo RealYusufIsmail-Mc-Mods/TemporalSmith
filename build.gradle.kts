@@ -21,7 +21,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.4-1.0.0.beta.4"
+project.version = "1.19.4-1.0.0.beta.5"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -246,17 +246,18 @@ tasks.withType<Detekt>().configureEach {
     }
 }
 
-tasks.withType<net.darkhax.curseforgegradle.TaskPublishCurseForge>().configureEach {
-    // build the jar before uploading
+tasks.create("cfPublish", net.darkhax.curseforgegradle.TaskPublishCurseForge::class) {
+    group = "CurseForge"
     dependsOn("build")
+    disableVersionDetection()
 
     val token =
         if (project.findProperty("curseforge.token") != null)
             project.property("curseforge.token") as String
-        else throw GradleException("CurseForge token not found!")
+        else ""
     apiToken = token
 
-    val jar = file("build/libs/${project.name}-${project.version}.jar")
+    val jar = file("build/libs/${base.archivesName.get()}-${project.version}.jar")
 
     // The main file to upload
     val mainFile = upload(projectId, jar)
@@ -265,7 +266,7 @@ tasks.withType<net.darkhax.curseforgegradle.TaskPublishCurseForge>().configureEa
     mainFile.releaseType = "beta"
     mainFile.addEmbedded("kotlin-for-forge")
     mainFile.addEmbedded("realyusufismail-core")
-    mainFile.addJavaVersion(project.java.sourceCompatibility.toString())
+    mainFile.addJavaVersion("Java 17")
     mainFile.addModLoader("forge")
     mainFile.addGameVersion(mcVersion)
 }
