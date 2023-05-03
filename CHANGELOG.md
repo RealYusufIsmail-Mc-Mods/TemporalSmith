@@ -1,6 +1,10 @@
 # Changelog
 
-## [1.19.4-1.0.0.beta.4] - 30/05/2023
+## [1.19.4-1.0.0.beta.5] - 2023-5-3
+
+### Fixed issue with json update url.
+
+## [1.19.4-1.0.0.beta.4] - 2023-4-30
 
 ### Improve custom armour crafting table recipe book. Now shows different sections for each armour type.
 ### Updated forge and kotlin forge versions to latest.
