@@ -26,6 +26,8 @@ enum class CustomToolsCraftingBookCategory(private var bookName: String) : Strin
     AXE("axe"),
     SHOVEL("shovel"),
     HOE("hoe"),
+    SHIELD("shield"),
+    TRIDENT("trident"),
     MISC("misc");
 
     companion object {
