@@ -29,9 +29,13 @@ enum class CustomToolMaterial(
     efficiency: Float,
     attackDamage: Float,
     enchantability: Int,
-    repairMaterial: Supplier<Ingredient?>
+    repairMaterial: Supplier<Ingredient>
 ) : Tier {
-    RUBY_SWORD(3, 2000, 8.0f, 3.0f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) });
+    RUBY_SWORD(3, 2000, 8.0f, 3.0f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_PICKAXE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_AXE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_SHOVEL(3, 2500, 8.0f, 1.0f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_HOE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) });
 
     private val harvestLevel = 0
     private val maxUses = 0
@@ -51,6 +55,7 @@ enum class CustomToolMaterial(
         return attackDamage
     }
 
+    @Deprecated("Deprecated in Java")
     override fun getLevel(): Int {
         return harvestLevel
     }

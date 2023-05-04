@@ -200,9 +200,11 @@ object RecipeCategoriesInit {
 
         event.registerAggregateCategory(TOOL_CRAFTING_HOE.get(), listOf(TOOL_CRAFTING_HOE.get()))
 
-        event.registerAggregateCategory(TOOL_CRAFTING_SHIELD.get(), listOf(TOOL_CRAFTING_SHIELD.get()))
+        event.registerAggregateCategory(
+            TOOL_CRAFTING_SHIELD.get(), listOf(TOOL_CRAFTING_SHIELD.get()))
 
-        event.registerAggregateCategory(TOOL_CRAFTING_TRIDENT.get(), listOf(TOOL_CRAFTING_TRIDENT.get()))
+        event.registerAggregateCategory(
+            TOOL_CRAFTING_TRIDENT.get(), listOf(TOOL_CRAFTING_TRIDENT.get()))
 
         event.registerAggregateCategory(TOOL_CRAFTING_MISC.get(), listOf(TOOL_CRAFTING_MISC.get()))
 
