@@ -45,6 +45,16 @@ class NormalCraftingTableRecipeProvider(
             .unlockedBy("has_item", has(Items.IRON_CHESTPLATE))
             .save(pWriter, modId("custom_armour_crafting_table_recipe"))
 
+        YusufShapedRecipeBuilder.shaped(
+                RecipeCategory.BUILDING_BLOCKS, BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
+            .define('A', Blocks.IRON_BLOCK)
+            .define('B', Blocks.CRAFTING_TABLE)
+            .define('C', Items.IRON_PICKAXE)
+            .pattern("ACA")
+            .pattern(" B ")
+            .unlockedBy("has_item", has(Items.IRON_PICKAXE))
+            .save(pWriter, modId("custom_tool_crafting_table_recipe"))
+
         addOreBlockRecipes()
     }
 
