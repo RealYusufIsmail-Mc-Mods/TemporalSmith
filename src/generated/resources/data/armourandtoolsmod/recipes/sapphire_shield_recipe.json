@@ -1,0 +1,23 @@
+{
+  "type": "armourandtoolsmod:custom_armour_crafter",
+  "category": "shield",
+  "key": {
+    "A": {
+      "item": "armourandtoolsmod:sapphire"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "minecraft:shield"
+    }
+  },
+  "pattern": [
+    " A ",
+    "SIS",
+    "SSS"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:sapphire_shield"
+  }
+}

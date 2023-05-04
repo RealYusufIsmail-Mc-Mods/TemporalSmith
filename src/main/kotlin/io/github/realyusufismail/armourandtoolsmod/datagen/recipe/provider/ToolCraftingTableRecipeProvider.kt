@@ -34,6 +34,8 @@ class ToolCraftingTableRecipeProvider(
     private val hasItem = "has_item"
 
     fun build() {
+
+        // RUBY TOOLS
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SWORD,
                 RecipeCategory.TOOLS,
@@ -45,5 +47,130 @@ class ToolCraftingTableRecipeProvider(
             .pattern("S")
             .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
             .save(consumer, modId("ruby_sword_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.PICKAXE,
+                RecipeCategory.TOOLS,
+                ItemInit.RUBY_PICKAXE.get())
+            .define('A', ItemInit.RUBY.get())
+            .define('S', Items.STICK)
+            .pattern("AAA")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
+            .save(consumer, modId("ruby_pickaxe_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.AXE, RecipeCategory.TOOLS, ItemInit.RUBY_AXE.get())
+            .define('A', ItemInit.RUBY.get())
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
+            .save(consumer, modId("ruby_axe_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHOVEL,
+                RecipeCategory.TOOLS,
+                ItemInit.RUBY_SHOVEL.get())
+            .define('A', ItemInit.RUBY.get())
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
+            .save(consumer, modId("ruby_shovel_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.HOE, RecipeCategory.TOOLS, ItemInit.RUBY_HOE.get())
+            .define('A', ItemInit.RUBY.get())
+            .define('S', Items.STICK)
+            .pattern("AA ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
+            .save(consumer, modId("ruby_hoe_recipe"))
+
+        // TRIEDENTs
+
+        // TODO : For the trident later make it a drop from a custom mob rather than crafting
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.TRIDENT,
+                RecipeCategory.TOOLS,
+                ItemInit.AQUMARINE_TRIDENT.get())
+            .define('A', ItemInit.AQUMARINE.get())
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern("S  ")
+            .unlockedBy(hasItem, has(ItemInit.AQUMARINE.get()))
+            .save(consumer, modId("aqumarine_trident_recipe"))
+
+        // SHIELDS
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHIELD,
+                RecipeCategory.TOOLS,
+                ItemInit.RUBY_SHIELD.get())
+            .define('A', ItemInit.RUBY.get())
+            .define('I', Items.IRON_INGOT)
+            .define('S', Items.SHIELD)
+            .pattern(" A ")
+            .pattern("SIS")
+            .pattern("SSS")
+            .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
+            .save(consumer, modId("ruby_shield_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHIELD,
+                RecipeCategory.TOOLS,
+                ItemInit.SAPPHIRE_SHIELD.get())
+            .define('A', ItemInit.SAPPHIRE.get())
+            .define('I', Items.IRON_INGOT)
+            .define('S', Items.SHIELD)
+            .pattern(" A ")
+            .pattern("SIS")
+            .pattern("SSS")
+            .unlockedBy(hasItem, has(ItemInit.SAPPHIRE.get()))
+            .save(consumer, modId("sapphire_shield_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHIELD,
+                RecipeCategory.TOOLS,
+                ItemInit.GRAPHITE_SHIELD.get())
+            .define('A', ItemInit.GRAPHITE.get())
+            .define('I', Items.IRON_INGOT)
+            .define('S', Items.SHIELD)
+            .pattern(" A ")
+            .pattern("SIS")
+            .pattern("SSS")
+            .unlockedBy(hasItem, has(ItemInit.GRAPHITE.get()))
+            .save(consumer, modId("graphite_shield_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHIELD,
+                RecipeCategory.TOOLS,
+                ItemInit.AQUMARINE_SHIELD.get())
+            .define('A', ItemInit.AQUMARINE.get())
+            .define('I', Items.IRON_INGOT)
+            .define('S', Items.SHIELD)
+            .pattern(" A ")
+            .pattern("SIS")
+            .pattern("SSS")
+            .unlockedBy(hasItem, has(ItemInit.AQUMARINE.get()))
+            .save(consumer, modId("aqumarine_shield_recipe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHIELD,
+                RecipeCategory.TOOLS,
+                ItemInit.RAINBOW_SHIELD.get())
+            .define('A', ItemInit.RAINBOW.get())
+            .define('I', Items.IRON_INGOT)
+            .define('S', Items.SHIELD)
+            .pattern(" A ")
+            .pattern("SIS")
+            .pattern("SSS")
+            .unlockedBy(hasItem, has(ItemInit.RAINBOW.get()))
+            .save(consumer, modId("rainbow_shield_recipe"))
     }
 }

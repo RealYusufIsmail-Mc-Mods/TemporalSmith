@@ -1,0 +1,20 @@
+{
+  "type": "armourandtoolsmod:custom_armour_crafter",
+  "category": "hoe",
+  "key": {
+    "A": {
+      "item": "armourandtoolsmod:ruby"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AA ",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "armourandtoolsmod:ruby_hoe"
+  }
+}
