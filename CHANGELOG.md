@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.19.4-1.0.0.beta.6] - Unreleased
+
+### Added missing recipe for tool crafting table
+
 ## [1.19.4-1.0.0.beta.5] - 2023-5-3
 
 ### Fixed issue with json update url.
