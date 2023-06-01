@@ -11,7 +11,7 @@ buildscript {
 plugins {
     kotlin("jvm") version "1.8.21"
     kotlin("plugin.allopen") version "1.8.21"
-    id("com.diffplug.spotless") version "6.18.0"
+    id("com.diffplug.spotless") version "6.19.0"
     id("net.minecraftforge.gradle") version "5.1.+"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
