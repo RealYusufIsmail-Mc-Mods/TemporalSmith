@@ -132,27 +132,20 @@ sourceSets.main { resources.srcDir("src/generated/resources") }
 repositories {
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
     maven { url = uri("https://maven.blamejared.com") }
-    maven { url = uri("https://www.cursemaven.com/") }
     mavenCentral()
 }
 
 dependencies {
-    "minecraft"(
-        group = "net.minecraftforge",
-        name = "forge",
-        version = "1.19.4-45.0.49",
-        classifier = "universal")
+    minecraft("net.minecraftforge:forge:1.19.4-45.1.0")
     // kotlin forge
     implementation("thedarkcolour:kotlinforforge:4.2.0")
     // Logger
-    implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.7")
-    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.7")
+    implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.8")
+    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.8")
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
     // core
-    // implementation(
-    // group = "io.github.realyusufismail", name = "realyusufismailcore", version = "1.19-1.0.8")
-    implementation(fg.deobf("curse.maven:realyusufismail-core-497372:4482093"))
+    implementation("io.github.realyusufismail:realyusufismailcore:1.19-1.1.1")
     // Patchouli
     // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
