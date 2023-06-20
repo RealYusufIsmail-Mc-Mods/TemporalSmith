@@ -98,6 +98,23 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.AMETHYST_LEGGINGS, "Amethyst Leggings")
         addItem(ItemInit.AMETHYST_BOOTS, "Amethyst Boots")
 
+        // Tools, Shields, etc.
+        addItem(ItemInit.RUBY_SWORD, "Ruby Sword")
+        addItem(ItemInit.RUBY_PICKAXE, "Ruby Pickaxe")
+        addItem(ItemInit.RUBY_AXE, "Ruby Axe")
+        addItem(ItemInit.RUBY_SHOVEL, "Ruby Shovel")
+        addItem(ItemInit.RUBY_HOE, "Ruby Hoe")
+
+        // Shields
+        addItem(ItemInit.RUBY_SHIELD, "Ruby Shield")
+        addItem(ItemInit.SAPPHIRE_SHIELD, "Sapphire Shield")
+        addItem(ItemInit.GRAPHITE_SHIELD, "Graphite Shield")
+        addItem(ItemInit.RAINBOW_SHIELD, "Rainbow Shield")
+        addItem(ItemInit.AQUMARINE_SHIELD, "Aqumarine Shield")
+
+        // Tridents
+        addItem(ItemInit.AQUMARINE_TRIDENT, "Aqumarine Trident")
+
         // others
         add("creativetab.armourandtoolsmod", "Armour and Item Mod")
         add("container.custom_armour_crafting_table", "Armour Crafting Table")

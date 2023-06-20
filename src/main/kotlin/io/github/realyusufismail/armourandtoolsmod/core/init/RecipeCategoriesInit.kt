@@ -98,6 +98,16 @@ object RecipeCategoriesInit {
             RecipeBookCategories.create("TOOL_CRAFTING_HOE", ItemStack(Items.DIAMOND_HOE))
         }
 
+    private val TOOL_CRAFTING_SHIELD: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create("TOOL_CRAFTING_SHIELD", ItemStack(Items.SHIELD))
+        }
+
+    private val TOOL_CRAFTING_TRIDENT: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create("TOOL_CRAFTING_TRIDENT", ItemStack(Items.TRIDENT))
+        }
+
     private val TOOL_CRAFTING_MISC: Supplier<RecipeBookCategories> =
         Suppliers.memoize {
             RecipeBookCategories.create("TOOL_CRAFTING_MISC", ItemStack(Items.DIAMOND_SHOVEL))
@@ -161,6 +171,8 @@ object RecipeCategoriesInit {
                 TOOL_CRAFTING_AXE.get(),
                 TOOL_CRAFTING_SHOVEL.get(),
                 TOOL_CRAFTING_HOE.get(),
+                TOOL_CRAFTING_SHIELD.get(),
+                TOOL_CRAFTING_TRIDENT.get(),
                 TOOL_CRAFTING_MISC.get()))
 
         event.registerAggregateCategory(
@@ -171,6 +183,8 @@ object RecipeCategoriesInit {
                 TOOL_CRAFTING_AXE.get(),
                 TOOL_CRAFTING_SHOVEL.get(),
                 TOOL_CRAFTING_HOE.get(),
+                TOOL_CRAFTING_SHIELD.get(),
+                TOOL_CRAFTING_TRIDENT.get(),
                 TOOL_CRAFTING_MISC.get()))
 
         event.registerAggregateCategory(
@@ -186,6 +200,12 @@ object RecipeCategoriesInit {
 
         event.registerAggregateCategory(TOOL_CRAFTING_HOE.get(), listOf(TOOL_CRAFTING_HOE.get()))
 
+        event.registerAggregateCategory(
+            TOOL_CRAFTING_SHIELD.get(), listOf(TOOL_CRAFTING_SHIELD.get()))
+
+        event.registerAggregateCategory(
+            TOOL_CRAFTING_TRIDENT.get(), listOf(TOOL_CRAFTING_TRIDENT.get()))
+
         event.registerAggregateCategory(TOOL_CRAFTING_MISC.get(), listOf(TOOL_CRAFTING_MISC.get()))
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.TOOL_CRAFTING.get()) {
@@ -197,6 +217,8 @@ object RecipeCategoriesInit {
                     CustomToolsCraftingBookCategory.SHOVEL -> TOOL_CRAFTING_SHOVEL.get()
                     CustomToolsCraftingBookCategory.HOE -> TOOL_CRAFTING_HOE.get()
                     CustomToolsCraftingBookCategory.MISC -> TOOL_CRAFTING_MISC.get()
+                    CustomToolsCraftingBookCategory.SHIELD -> TOOL_CRAFTING_SHIELD.get()
+                    CustomToolsCraftingBookCategory.TRIDENT -> TOOL_CRAFTING_TRIDENT.get()
                 }
             } else {
                 TOOL_CRAFTING_MISC.get()

@@ -73,6 +73,12 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.RAINBOW_CHESTPLATE.get())
         item(ItemInit.RAINBOW_LEGGINGS.get())
         item(ItemInit.RAINBOW_BOOTS.get())
+
+        tool(ItemInit.RUBY_SWORD.get())
+        tool(ItemInit.RUBY_PICKAXE.get())
+        tool(ItemInit.RUBY_AXE.get())
+        tool(ItemInit.RUBY_SHOVEL.get())
+        tool(ItemInit.RUBY_HOE.get())
     }
 
     private fun tool(item: Item) {

@@ -21,8 +21,8 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
-import net.minecraft.world.item.ArmorItem
-import net.minecraft.world.item.Item
+import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
+import net.minecraft.world.item.*
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
@@ -183,6 +183,79 @@ object ItemInit {
         }
 
     // TODO: Add tools and weapons including tridents. Maybe custom shields?
+
+    // Swords
+    val RUBY_SWORD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("ruby_sword", RUBY) {
+            SwordItem(
+                CustomToolMaterial.RUBY_SWORD, 0, 7f, Item.Properties().stacksTo(1).durability(600))
+        }
+
+    // Pickaxes
+    val RUBY_PICKAXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("ruby_pickaxe", RUBY) {
+            PickaxeItem(
+                CustomToolMaterial.RUBY_PICKAXE,
+                0,
+                4f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
+    // Axes
+    val RUBY_AXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("ruby_axe", RUBY) {
+            AxeItem(
+                CustomToolMaterial.RUBY_AXE, 0F, 8f, Item.Properties().stacksTo(1).durability(600))
+        }
+
+    // Shovels
+    val RUBY_SHOVEL: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("ruby_shovel", RUBY) {
+            ShovelItem(
+                CustomToolMaterial.RUBY_SHOVEL,
+                0F,
+                3f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
+    // Hoes
+    val RUBY_HOE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("ruby_hoe", RUBY) {
+            HoeItem(
+                CustomToolMaterial.RUBY_HOE, 0, 3f, Item.Properties().stacksTo(1).durability(600))
+        }
+
+    // Tridents
+    val AQUMARINE_TRIDENT: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("aqumarine_trident", AQUMARINE) {
+            TridentItem(Item.Properties().stacksTo(1).durability(600))
+        }
+
+    // Shields
+    val RUBY_SHIELD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("ruby_shield", RUBY) {
+            ShieldItem(Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val SAPPHIRE_SHIELD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) {
+            ShieldItem(Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val GRAPHITE_SHIELD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) {
+            ShieldItem(Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val AQUMARINE_SHIELD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) {
+            ShieldItem(Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val RAINBOW_SHIELD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) {
+            ShieldItem(Item.Properties().stacksTo(1).durability(600))
+        }
 
     private fun DeferredRegister<Item>.registerSmeltableObject(
         name: String,

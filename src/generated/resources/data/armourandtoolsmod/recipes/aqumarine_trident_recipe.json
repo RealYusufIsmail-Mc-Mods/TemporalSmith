@@ -1,0 +1,20 @@
+{
+  "type": "armourandtoolsmod:custom_armour_crafter",
+  "category": "trident",
+  "key": {
+    "A": {
+      "item": "armourandtoolsmod:aqumarine"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " AA",
+    " SA",
+    "S  "
+  ],
+  "result": {
+    "item": "armourandtoolsmod:aqumarine_trident"
+  }
+}
