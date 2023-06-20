@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-09T13:01:36.534683	Item Models: armourandtoolsmod
+// 1.19.4	2023-06-20T11:20:13.243341	Item Models: armourandtoolsmod
 f523d3f594a0d1a51fb553f028ab2b20eee793dd assets/armourandtoolsmod/models/item/amethyst_boots.json
 8377e984c59ebdaa220b7d1c0973dfd4653e52fb assets/armourandtoolsmod/models/item/amethyst_chestplate.json
 8895d7116f5e4183fe38d01164721842ede9d5f1 assets/armourandtoolsmod/models/item/amethyst_helmet.json
@@ -24,10 +24,15 @@ e7a2dce51d378c49e596294d6ea2bf6f8d5bf6a2 assets/armourandtoolsmod/models/item/ra
 40dd62b983e59172e5640256e298c1ab3704de25 assets/armourandtoolsmod/models/item/raw_ruby.json
 7321aefdabda17126533ee833870352ecb756978 assets/armourandtoolsmod/models/item/raw_sapphire.json
 f0cad8795d707eda44cb2c90c8c3e3ffa7c43c9c assets/armourandtoolsmod/models/item/ruby.json
+f2508bcb6e049ef5f3afe5a3fe0847c1de9a9551 assets/armourandtoolsmod/models/item/ruby_axe.json
 96c13154ba44a1a43d12e0162a363a080fb1e616 assets/armourandtoolsmod/models/item/ruby_boots.json
 c40d4f89b6994257f10d8770836eab90fe5de484 assets/armourandtoolsmod/models/item/ruby_chestplate.json
 e8c516c9cf485e09bd7d3b01d4716d6ae5c304ce assets/armourandtoolsmod/models/item/ruby_helmet.json
+1fc8410fd955ccf5bb3109464037ef5b9a02ad42 assets/armourandtoolsmod/models/item/ruby_hoe.json
 81da1e4880c9f8e5504ffe8df39e46e2641b94aa assets/armourandtoolsmod/models/item/ruby_leggings.json
+b20ac3021a725f43f0db1c2f02c4259153372d07 assets/armourandtoolsmod/models/item/ruby_pickaxe.json
+4c6eaca19b658f0cd4dd8342b776610f7c739d7b assets/armourandtoolsmod/models/item/ruby_shovel.json
+a5d0971fa9b5d9043179306cdccdebef34007a0b assets/armourandtoolsmod/models/item/ruby_sword.json
 4b0b4eb698d244132bfb8f12fc607cc01ec3c42a assets/armourandtoolsmod/models/item/sapphire.json
 55dd91859981462a224d5cbead94b2980bf83e99 assets/armourandtoolsmod/models/item/sapphire_boots.json
 1d08e6624fa8c2b2e31b4488970229e1b9428035 assets/armourandtoolsmod/models/item/sapphire_chestplate.json
