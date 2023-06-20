@@ -138,7 +138,7 @@ repositories {
 dependencies {
     minecraft("net.minecraftforge:forge:1.19.4-45.1.0")
     // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:4.2.0")
+    implementation("thedarkcolour:kotlinforforge:4.3.0")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.8")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.8")
