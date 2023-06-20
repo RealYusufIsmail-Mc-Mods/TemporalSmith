@@ -21,9 +21,10 @@ package io.github.realyusufismail.armourandtoolsmod.core.util
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
+import net.minecraftforge.registries.ForgeRegistries
 
 val Item.name: String
     get() = this.toString()
 
 val Block.bName: String
-    get() = BuiltInRegistries.BLOCK.getKey(this).toString().replace("armourandtoolsmod:", "")
+    get() = ForgeRegistries.BLOCKS.getKey(this).toString().replace("armourandtoolsmod:", "")

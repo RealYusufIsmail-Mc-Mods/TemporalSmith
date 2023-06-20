@@ -20,10 +20,16 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
+import io.github.realyusufismail.armourandtoolsmod.core.util.bName
 import io.github.realyusufismail.armourandtoolsmod.core.util.name
+import net.minecraft.client.renderer.block.model.BlockModel
 import net.minecraft.data.PackOutput
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.ItemDisplayContext
+import net.minecraft.world.level.block.Block
 import net.minecraftforge.client.model.generators.ItemModelProvider
+import net.minecraftforge.client.model.generators.ModelFile
 import net.minecraftforge.common.data.ExistingFileHelper
 
 class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
@@ -93,5 +99,54 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         getBuilder(name)
             .parent(getExistingFile(mcLoc("item/generated")))
             .texture("layer0", "item/$name")
+    }
+
+    private fun shield(block: Block, item: Item) {
+        val name = item.name
+        getBuilder(name)
+            .parent(ModelFile.UncheckedModelFile(ResourceLocation("builtin/entity")))
+            .guiLight(BlockModel.GuiLight.FRONT)
+            .texture("particle", "block/${block.bName}")
+            .transforms()
+            .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
+            .rotation(0f, 90f, 0f)
+            .translation(10f, 6f, -4f)
+            .scale(1f, 1f, 1f)
+            .end()
+            .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
+            .rotation(0f, 90f, 0f)
+            .translation(10f, 6f, 12f)
+            .scale(1f, 1f, 1f)
+            .end()
+            .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
+            .rotation(0f, 180f, 5f)
+            .translation(-10F, 2F, -10F)
+            .scale(1.25f, 1.25f, 1.25f)
+            .end()
+            .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
+            .rotation(0f, 180f, 5f)
+            .translation(-10F, 0F, -10F)
+            .scale(1.25f, 1.25f, 1.25f)
+            .end()
+            .transform(ItemDisplayContext.GUI)
+            .rotation(15F, -25F, -5F)
+            .translation(2F, 3F, 0F)
+            .scale(0.65f, 0.65f, 0.65f)
+            .end()
+            .transform(ItemDisplayContext.FIXED)
+            .rotation(0F, 180F, 0F)
+            .translation(-4.5F, 4.5F, -5F)
+            .scale(0.55F, 0.55F, 0.55F)
+            .end()
+            .transform(ItemDisplayContext.GROUND)
+            .rotation(0F, 0F, 0F)
+            .translation(2F, 4F, 2F)
+            .scale(0.25F, 0.25F, 0.25F)
+            .end()
+            .end()
+            .override()
+            .predicate(mcLoc("blocking"), 1f)
+            .model(getExistingFile(mcLoc("item/$name")))
+            .end()
     }
 }
