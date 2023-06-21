@@ -19,6 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.util.bName
 import io.github.realyusufismail.armourandtoolsmod.core.util.name
@@ -85,6 +86,8 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         tool(ItemInit.RUBY_AXE.get())
         tool(ItemInit.RUBY_SHOVEL.get())
         tool(ItemInit.RUBY_HOE.get())
+
+        shield(BlockInit.RUBY_BLOCK.get(), ItemInit.RUBY_SHIELD.get())
     }
 
     private fun tool(item: Item) {
@@ -104,7 +107,11 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
     private fun shield(block: Block, item: Item) {
         val name = item.name
         getBuilder(name)
-            .parent(ModelFile.UncheckedModelFile(ResourceLocation("builtin/entity")))
+            // "builtin/entity"
+            .parent(
+                // need to remove minecraft: somehow
+                ModelFile.ExistingModelFile(
+                    ResourceLocation("", "builtin/entity"), existingFileHelper))
             .guiLight(BlockModel.GuiLight.FRONT)
             .texture("particle", "block/${block.bName}")
             .transforms()
