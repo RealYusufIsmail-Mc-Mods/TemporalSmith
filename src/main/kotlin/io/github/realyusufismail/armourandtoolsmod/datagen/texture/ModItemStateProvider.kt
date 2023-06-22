@@ -111,7 +111,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
             .parent(
                 // need to remove minecraft: somehow
                 ModelFile.ExistingModelFile(
-                    ResourceLocation("", "builtin/entity"), existingFileHelper))
+                    ResourceLocation.of("builtin/entity", '/'), existingFileHelper))
             .guiLight(BlockModel.GuiLight.FRONT)
             .texture("particle", "block/${block.bName}")
             .transforms()

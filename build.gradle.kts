@@ -149,6 +149,8 @@ dependencies {
     // Patchouli
     // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
+    // Json
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
 }
 
 tasks.test {
