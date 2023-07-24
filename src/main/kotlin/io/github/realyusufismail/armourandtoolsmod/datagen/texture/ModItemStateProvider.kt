@@ -19,18 +19,11 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
-import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
-import io.github.realyusufismail.armourandtoolsmod.core.util.bName
 import io.github.realyusufismail.armourandtoolsmod.core.util.name
-import net.minecraft.client.renderer.block.model.BlockModel
 import net.minecraft.data.PackOutput
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemDisplayContext
-import net.minecraft.world.level.block.Block
 import net.minecraftforge.client.model.generators.ItemModelProvider
-import net.minecraftforge.client.model.generators.ModelFile
 import net.minecraftforge.common.data.ExistingFileHelper
 
 class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
@@ -86,8 +79,6 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         tool(ItemInit.RUBY_AXE.get())
         tool(ItemInit.RUBY_SHOVEL.get())
         tool(ItemInit.RUBY_HOE.get())
-
-        shield(BlockInit.RUBY_BLOCK.get(), ItemInit.RUBY_SHIELD.get())
     }
 
     private fun tool(item: Item) {
@@ -102,95 +93,5 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         getBuilder(name)
             .parent(getExistingFile(mcLoc("item/generated")))
             .texture("layer0", "item/$name")
-    }
-
-    private fun shield(block: Block, item: Item) {
-        val name = item.name
-        getBuilder(name)
-            // "builtin/entity"
-            .parent(
-                // need to remove minecraft: somehow
-                ModelFile.ExistingModelFile(
-                    ResourceLocation.of("builtin/entity", '/'), existingFileHelper))
-            .guiLight(BlockModel.GuiLight.FRONT)
-            .texture("particle", "block/${block.bName}")
-            .transforms()
-            .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
-            .rotation(0f, 90f, 0f)
-            .translation(10f, 6f, -4f)
-            .scale(1f, 1f, 1f)
-            .end()
-            .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
-            .rotation(0f, 90f, 0f)
-            .translation(10f, 6f, 12f)
-            .scale(1f, 1f, 1f)
-            .end()
-            .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
-            .rotation(0f, 180f, 5f)
-            .translation(-10F, 2F, -10F)
-            .scale(1.25f, 1.25f, 1.25f)
-            .end()
-            .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
-            .rotation(0f, 180f, 5f)
-            .translation(-10F, 0F, -10F)
-            .scale(1.25f, 1.25f, 1.25f)
-            .end()
-            .transform(ItemDisplayContext.GUI)
-            .rotation(15F, -25F, -5F)
-            .translation(2F, 3F, 0F)
-            .scale(0.65f, 0.65f, 0.65f)
-            .end()
-            .transform(ItemDisplayContext.FIXED)
-            .rotation(0F, 180F, 0F)
-            .translation(-4.5F, 4.5F, -5F)
-            .scale(0.55F, 0.55F, 0.55F)
-            .end()
-            .transform(ItemDisplayContext.GROUND)
-            .rotation(0F, 0F, 0F)
-            .translation(2F, 4F, 2F)
-            .scale(0.25F, 0.25F, 0.25F)
-            .end()
-            .end()
-            .override()
-            .predicate(mcLoc("blocking"), 1f)
-            .model(getExistingFile(mcLoc("item/$name")))
-            .end()
-
-        shieldBlock(block, item)
-    }
-
-    private fun shieldBlock(block: Block, item: Item) {
-        val name = item.name + "_blocking"
-        getBuilder(name)
-            .parent(ModelFile.UncheckedModelFile(ResourceLocation("builtin/entity")))
-            .guiLight(BlockModel.GuiLight.FRONT)
-            .texture("particle", "block/${block.bName}")
-            .transforms()
-            .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
-            .rotation(45F, 135F, 0F)
-            .translation(3.51F, 11F, -2F)
-            .scale(1F, 1F, 1F)
-            .end()
-            .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
-            .rotation(45F, 135F, 0F)
-            .translation(13.51F, 3F, 5F)
-            .scale(1F, 1F, 1F)
-            .end()
-            .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
-            .rotation(0F, 180F, -5F)
-            .translation(-15F, 5F, -11F)
-            .scale(1.25f, 1.25f, 1.25f)
-            .end()
-            .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
-            .rotation(0F, 180F, -5F)
-            .translation(-15F, 5F, -11F)
-            .scale(1.25f, 1.25f, 1.25f)
-            .end()
-            .transform(ItemDisplayContext.GUI)
-            .rotation(15F, -25F, -5F)
-            .translation(2F, 3F, 0F)
-            .scale(0.65f, 0.65f, 0.65f)
-            .end()
-            .end()
     }
 }

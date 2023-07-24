@@ -49,6 +49,8 @@ class ArmourAndToolsMod {
         bus.addListener(RecipeCategoriesInit::registerRecipeBookCategories)
         // client setup listener
         bus.addListener(ClientSetup::init)
+        // register shields
+        bus.addListener(ClientSetup::registerShields)
 
         // Register ourselves for server and other game events we are interested in
         FORGE_BUS.register(this)

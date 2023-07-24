@@ -12,7 +12,7 @@ plugins {
     kotlin("jvm") version "1.9.0"
     kotlin("plugin.allopen") version "1.9.0"
     id("com.diffplug.spotless") version "6.19.0"
-    id("net.minecraftforge.gradle") version "5.1.+"
+    id("net.minecraftforge.gradle") version "[6.0,6.2)"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
     id("net.darkhax.curseforgegradle") version "1.1.15"

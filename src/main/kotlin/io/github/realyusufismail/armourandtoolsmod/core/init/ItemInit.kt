@@ -22,6 +22,7 @@ import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
+import io.github.realyusufismail.armourandtoolsmod.core.shields.*
 import net.minecraft.world.item.*
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
@@ -233,29 +234,19 @@ object ItemInit {
 
     // Shields
     val RUBY_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("ruby_shield", RUBY) {
-            ShieldItem(Item.Properties().stacksTo(1).durability(600))
-        }
+        ITEMS.registerSmeltableObject("ruby_shield", RUBY) { RubyShield() }
 
     val SAPPHIRE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) {
-            ShieldItem(Item.Properties().stacksTo(1).durability(600))
-        }
+        ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) { SaphireShield() }
 
     val GRAPHITE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) {
-            ShieldItem(Item.Properties().stacksTo(1).durability(600))
-        }
+        ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) { GraphiteShield() }
 
     val AQUMARINE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) {
-            ShieldItem(Item.Properties().stacksTo(1).durability(600))
-        }
+        ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) { AqumarineShield() }
 
     val RAINBOW_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) {
-            ShieldItem(Item.Properties().stacksTo(1).durability(600))
-        }
+        ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) { RainbowShield() }
 
     private fun DeferredRegister<Item>.registerSmeltableObject(
         name: String,
