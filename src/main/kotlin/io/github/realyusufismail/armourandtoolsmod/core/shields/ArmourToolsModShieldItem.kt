@@ -26,6 +26,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions
 
 class ArmourToolsModShieldItem : ShieldItem(Item.Properties().stacksTo(1).durability(600)) {
     override fun initializeClient(consumer: Consumer<IClientItemExtensions>) {
+        super.initializeClient(consumer)
         consumer.accept(ClientSetup.shield())
     }
 

@@ -62,14 +62,7 @@ class ArmourAndToolsMod {
         val logger: Logger = LoggerFactory.getLogger(ArmourAndToolsMod::class.java)
 
         fun getModIdAndName(name: String): ResourceLocation {
-            logger.info(
-                "Getting mod id and name" +
-                    ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault())).toDebugFileName())
             return ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault()))
-        }
-
-        fun getPath(path: String): ResourceLocation {
-            return ResourceLocation(MOD_ID, path)
         }
     }
 }
