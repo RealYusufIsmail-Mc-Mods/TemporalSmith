@@ -18,7 +18,6 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.client
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableScreen
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableScreen
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
@@ -29,61 +28,54 @@ import net.minecraft.client.renderer.item.ItemProperties
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
-import net.minecraftforge.client.event.RegisterClientReloadListenersEvent
-import net.minecraftforge.client.extensions.common.IClientItemExtensions
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 
 object ClientSetup {
-    private var shieldItemRenderer: ArmourAndToolsModShieldItemRenderer? = null
-
-    fun shieldInit(event: RegisterClientReloadListenersEvent) {
-        shieldItemRenderer = ArmourAndToolsModShieldItemRenderer()
-
-        shieldItemRenderer?.let { event.registerReloadListener(it) }
-            ?: run { ArmourAndToolsMod.logger.error("Failed to register shield renderer") }
-    }
 
     fun clientSetup(event: FMLClientSetupEvent) {
         event.enqueueWork { registerScreens() }
 
-        ItemProperties.register(ItemInit.RUBY_SHIELD.get(), ResourceLocation("blocking")) {
-            stack: ItemStack,
-            _: ClientLevel?,
-            entity: LivingEntity?,
-            _: Int ->
-            if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
-        }
+        event.enqueueWork {
+            ItemProperties.register(ItemInit.RUBY_SHIELD.get(), ResourceLocation("blocking")) {
+                stack: ItemStack,
+                _: ClientLevel?,
+                entity: LivingEntity?,
+                _: Int ->
+                if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
+            }
 
-        ItemProperties.register(ItemInit.AQUMARINE_SHIELD.get(), ResourceLocation("blocking")) {
-            stack: ItemStack,
-            _: ClientLevel?,
-            entity: LivingEntity?,
-            _: Int ->
-            if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
-        }
+            ItemProperties.register(
+                ItemInit.AQUMARINE_SHIELD.get(), ResourceLocation("blocking")) {
+                    stack: ItemStack,
+                    _: ClientLevel?,
+                    entity: LivingEntity?,
+                    _: Int ->
+                    if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
+                }
 
-        ItemProperties.register(ItemInit.RAINBOW_SHIELD.get(), ResourceLocation("blocking")) {
-            stack: ItemStack,
-            _: ClientLevel?,
-            entity: LivingEntity?,
-            _: Int ->
-            if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
-        }
+            ItemProperties.register(ItemInit.RAINBOW_SHIELD.get(), ResourceLocation("blocking")) {
+                stack: ItemStack,
+                _: ClientLevel?,
+                entity: LivingEntity?,
+                _: Int ->
+                if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
+            }
 
-        ItemProperties.register(ItemInit.SAPPHIRE_SHIELD.get(), ResourceLocation("blocking")) {
-            stack: ItemStack,
-            _: ClientLevel?,
-            entity: LivingEntity?,
-            _: Int ->
-            if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
-        }
+            ItemProperties.register(ItemInit.SAPPHIRE_SHIELD.get(), ResourceLocation("blocking")) {
+                stack: ItemStack,
+                _: ClientLevel?,
+                entity: LivingEntity?,
+                _: Int ->
+                if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
+            }
 
-        ItemProperties.register(ItemInit.GRAPHITE_SHIELD.get(), ResourceLocation("blocking")) {
-            stack: ItemStack,
-            _: ClientLevel?,
-            entity: LivingEntity?,
-            _: Int ->
-            if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
+            ItemProperties.register(ItemInit.GRAPHITE_SHIELD.get(), ResourceLocation("blocking")) {
+                stack: ItemStack,
+                _: ClientLevel?,
+                entity: LivingEntity?,
+                _: Int ->
+                if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
+            }
         }
     }
 
@@ -93,13 +85,5 @@ object ClientSetup {
 
         MenuScreens.register(
             MenuTypeInit.CUSTOM_TOOL_CRAFTING_TABLE_MENU.get(), ::CustomToolCraftingTableScreen)
-    }
-
-    fun shield(): IClientItemExtensions {
-        return object : IClientItemExtensions {
-            override fun getCustomRenderer(): ArmourAndToolsModShieldItemRenderer? {
-                return shieldItemRenderer
-            }
-        }
     }
 }

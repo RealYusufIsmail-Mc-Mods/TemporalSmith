@@ -22,7 +22,6 @@ import com.mojang.blaze3d.vertex.PoseStack
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.shields.ArmourToolsModShieldItem
-import net.minecraft.client.Minecraft
 import net.minecraft.client.model.ShieldModel
 import net.minecraft.client.model.geom.ModelLayers
 import net.minecraft.client.renderer.MultiBufferSource
@@ -56,8 +55,7 @@ class ArmourAndToolsModShieldItemRenderer : ArmourAndToolsModBlockEntityWithoutL
         ArmourAndToolsMod.logger.info("Reloading shield model")
 
         try {
-            shieldModel =
-                ShieldModel(Minecraft.getInstance().entityModels.bakeLayer(ModelLayers.SHIELD))
+            shieldModel = ShieldModel(this.entityModelSet.bakeLayer(ModelLayers.SHIELD))
         } catch (e: Exception) {
             ArmourAndToolsMod.logger.error("Failed to reload shield model", e)
         }
@@ -73,11 +71,11 @@ class ArmourAndToolsModShieldItemRenderer : ArmourAndToolsModBlockEntityWithoutL
     ) {
         try {
             if (stack.item is ArmourToolsModShieldItem) {
-                val isRuby = stack.item == ItemInit.RUBY_SHIELD
-                val isAqumarine = stack.item == ItemInit.AQUMARINE_SHIELD
-                val isRainbow = stack.item == ItemInit.RAINBOW_SHIELD
-                val isSapphire = stack.item == ItemInit.SAPPHIRE_SHIELD
-                val isGraphite = stack.item == ItemInit.GRAPHITE_SHIELD
+                val isRuby = stack.`is`(ItemInit.RUBY_SHIELD.get())
+                val isAqumarine = stack.`is`(ItemInit.AQUMARINE_SHIELD.get())
+                val isRainbow = stack.`is`(ItemInit.RAINBOW_SHIELD.get())
+                val isSapphire = stack.`is`(ItemInit.SAPPHIRE_SHIELD.get())
+                val isGraphite = stack.`is`(ItemInit.GRAPHITE_SHIELD.get())
 
                 poseStack.pushPose()
                 poseStack.scale(1.0f, -1.0f, -1.0f)
@@ -85,9 +83,8 @@ class ArmourAndToolsModShieldItemRenderer : ArmourAndToolsModBlockEntityWithoutL
                     if (isRuby) SHIELD_RUBY
                     else if (isAqumarine) SHIELD_AQUMARINE
                     else if (isRainbow) SHIELD_RAINBOW
-                    else if (isSapphire) SHIELD_SAPPHIRE else SHIELD_GRAPHITE
-
-                ArmourAndToolsMod.logger.info("Using material: $material")
+                    else if (isSapphire) SHIELD_SAPPHIRE
+                    else if (isGraphite) SHIELD_GRAPHITE else SHIELD_RUBY
 
                 if (this.shieldModel == null) {
                     throw NullPointerException("Shield model is null")

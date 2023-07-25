@@ -43,6 +43,8 @@ println(
 configure<UserDevExtension> {
     mappings("parchment", "1.19.3-2023.03.12-$mcVersion")
 
+    accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
+
     runs {
         create("client") {
             workingDirectory(file("run"))

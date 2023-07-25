@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.shields
 
-import io.github.realyusufismail.armourandtoolsmod.client.ClientSetup
+import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModShieldItemRendererProvider
 import java.util.function.Consumer
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ShieldItem
@@ -26,8 +26,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions
 
 class ArmourToolsModShieldItem : ShieldItem(Item.Properties().stacksTo(1).durability(600)) {
     override fun initializeClient(consumer: Consumer<IClientItemExtensions>) {
-        super.initializeClient(consumer)
-        consumer.accept(ClientSetup.shield())
+        consumer.accept(ArmourAndToolsModShieldItemRendererProvider.shield())
     }
 
     /*
