@@ -16,23 +16,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.shields
+package io.github.realyusufismail.armourandtoolsmod.client
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.ShieldItem
+import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer
+import net.minecraft.server.packs.resources.ResourceManager
 
-class GraphiteShield : ShieldItem(Item.Properties().stacksTo(1).durability(600)) {
+open class ArmourAndToolsModBlockEntityWithoutLevelRenderer :
+    BlockEntityWithoutLevelRenderer(
+        Minecraft.getInstance().blockEntityRenderDispatcher, Minecraft.getInstance().entityModels) {
 
-    override fun getArmorTexture(
-        stack: ItemStack,
-        entity: Entity,
-        slot: EquipmentSlot,
-        type: String
-    ): String {
-        return "$MOD_ID:special/rainbow_shield"
+    override fun onResourceManagerReload(manager: ResourceManager) {
+        // NO-OP
     }
 }

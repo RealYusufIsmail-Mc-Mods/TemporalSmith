@@ -1,0 +1,9 @@
+{
+  "pack": {
+    "description": {
+      "text": "Armour and Tools Mod Resources"
+    },
+    "forge:server_data_pack_format": 12,
+    "pack_format": 13
+  }
+}

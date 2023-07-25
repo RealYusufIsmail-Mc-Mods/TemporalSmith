@@ -234,19 +234,19 @@ object ItemInit {
 
     // Shields
     val RUBY_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("ruby_shield", RUBY) { RubyShield() }
+        ITEMS.registerSmeltableObject("ruby_shield", RUBY) { ArmourToolsModShieldItem() }
 
     val SAPPHIRE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) { SaphireShield() }
+        ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) { ArmourToolsModShieldItem() }
 
     val GRAPHITE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) { GraphiteShield() }
+        ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) { ArmourToolsModShieldItem() }
 
     val AQUMARINE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) { AqumarineShield() }
+        ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) { ArmourToolsModShieldItem() }
 
     val RAINBOW_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) { RainbowShield() }
+        ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) { ArmourToolsModShieldItem() }
 
     private fun DeferredRegister<Item>.registerSmeltableObject(
         name: String,

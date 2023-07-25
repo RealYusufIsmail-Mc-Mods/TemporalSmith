@@ -27,6 +27,14 @@ import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvi
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModItemStateProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.world.ModWorldGenerationProvider
+import java.util.*
+import java.util.function.Function
+import java.util.stream.Collectors
+import net.minecraft.DetectedVersion
+import net.minecraft.data.metadata.PackMetadataGenerator
+import net.minecraft.network.chat.Component
+import net.minecraft.server.packs.PackType
+import net.minecraft.server.packs.metadata.pack.PackMetadataSection
 import net.minecraftforge.data.event.GatherDataEvent
 
 object DataGenerators {
@@ -53,6 +61,18 @@ object DataGenerators {
             gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))
             gen.addProvider(true, MainModRecipeProvider(gen))
             gen.addProvider(true, ModWorldGenerationProvider(gen.packOutput, lookup))
+
+            gen.addProvider(true, PackMetadataGenerator(gen.packOutput))
+                .add(
+                    PackMetadataSection.TYPE,
+                    PackMetadataSection(
+                        Component.literal("Armour and Tools Mod Resources"),
+                        DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
+                        Arrays.stream(PackType.values())
+                            .collect(
+                                Collectors.toMap(
+                                    Function.identity(),
+                                    DetectedVersion.BUILT_IN::getPackVersion))))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)
         }

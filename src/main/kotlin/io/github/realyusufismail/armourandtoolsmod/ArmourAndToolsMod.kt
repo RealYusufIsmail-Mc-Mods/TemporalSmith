@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod
 
+import io.github.realyusufismail.armourandtoolsmod.client.ClientSetup
 import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import io.github.realyusufismail.armourandtoolsmod.core.itemgroup.ArmourAndToolsGroup
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators
@@ -48,9 +49,9 @@ class ArmourAndToolsMod {
         // adds recipe category
         bus.addListener(RecipeCategoriesInit::registerRecipeBookCategories)
         // client setup listener
-        bus.addListener(ClientSetup::init)
+        bus.addListener(ClientSetup::clientSetup)
         // register shields
-        bus.addListener(ClientSetup::registerShields)
+        bus.addListener(ClientSetup::shieldInit)
 
         // Register ourselves for server and other game events we are interested in
         FORGE_BUS.register(this)
@@ -61,7 +62,14 @@ class ArmourAndToolsMod {
         val logger: Logger = LoggerFactory.getLogger(ArmourAndToolsMod::class.java)
 
         fun getModIdAndName(name: String): ResourceLocation {
+            logger.info(
+                "Getting mod id and name" +
+                    ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault())).toDebugFileName())
             return ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault()))
+        }
+
+        fun getPath(path: String): ResourceLocation {
+            return ResourceLocation(MOD_ID, path)
         }
     }
 }

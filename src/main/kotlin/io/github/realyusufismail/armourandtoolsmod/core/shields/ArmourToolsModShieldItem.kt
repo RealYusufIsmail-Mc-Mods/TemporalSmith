@@ -18,21 +18,22 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.shields
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EquipmentSlot
+import io.github.realyusufismail.armourandtoolsmod.client.ClientSetup
+import java.util.function.Consumer
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.ShieldItem
+import net.minecraftforge.client.extensions.common.IClientItemExtensions
 
-class SaphireShield : ShieldItem(Item.Properties().stacksTo(1).durability(600)) {
-
-    override fun getArmorTexture(
-        stack: ItemStack,
-        entity: Entity,
-        slot: EquipmentSlot,
-        type: String
-    ): String {
-        return "$MOD_ID:special/saphire_shield"
+class ArmourToolsModShieldItem : ShieldItem(Item.Properties().stacksTo(1).durability(600)) {
+    override fun initializeClient(consumer: Consumer<IClientItemExtensions>) {
+        consumer.accept(ClientSetup.shield())
     }
+
+    /*
+    override fun isValidRepairItem(toRepair: ItemStack, repair: ItemStack): Boolean {
+        return this.tier.getRepairIngredient().test(repair)
+    }
+
+     */
+
 }
