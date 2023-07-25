@@ -22,6 +22,7 @@ import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToo
 import io.github.realyusufismail.armourandtoolsmod.datagen.lang.ModEnLangProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.loot.ModLootTables
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.spirit.ArmourAndTollsModSpriteSourceProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModBlockTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
@@ -61,6 +62,8 @@ object DataGenerators {
             gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))
             gen.addProvider(true, MainModRecipeProvider(gen))
             gen.addProvider(true, ModWorldGenerationProvider(gen.packOutput, lookup))
+            gen.addProvider(
+                true, ArmourAndTollsModSpriteSourceProvider(gen.packOutput, existingFileHelper))
 
             gen.addProvider(true, PackMetadataGenerator(gen.packOutput))
                 .add(

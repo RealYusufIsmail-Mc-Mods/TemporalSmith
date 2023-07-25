@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "armourandtoolsmod:entity/shield/ruby"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "armourandtoolsmod:entity/shield/aqumarine"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "armourandtoolsmod:entity/shield/rainbow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "armourandtoolsmod:entity/shield/sapphire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "armourandtoolsmod:entity/shield/graphite"
+    }
+  ]
+}
