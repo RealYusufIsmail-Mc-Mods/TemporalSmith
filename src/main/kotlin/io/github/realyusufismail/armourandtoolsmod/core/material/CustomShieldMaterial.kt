@@ -23,7 +23,7 @@ import java.util.function.Supplier
 import net.minecraft.world.item.Tier
 import net.minecraft.world.item.crafting.Ingredient
 
-enum class CustomToolMaterial(
+enum class CustomShieldMaterial(
     harvestLevel: Int,
     maxUses: Int,
     efficiency: Float,
@@ -31,11 +31,11 @@ enum class CustomToolMaterial(
     enchantability: Int,
     repairMaterial: Supplier<Ingredient>
 ) : Tier {
-    RUBY_SWORD(3, 2000, 8.0f, 3.0f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_PICKAXE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_AXE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_SHOVEL(3, 2500, 8.0f, 1.0f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_HOE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) });
+    RUBY_SHIELD(0, 310, 0.3f, 0.1f, 2, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    SAPPHIRE_SHIELD(0, 330, 0.3f, 0.1f, 2, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
+    GRAPHITE_SHIELD(0, 300, 0.3f, 0.1f, 2, Supplier { Ingredient.of(ItemInit.GRAPHITE.get()) }),
+    AQUMARINE_SHIELD(0, 320, 0.3f, 0.1f, 2, Supplier { Ingredient.of(ItemInit.AQUMARINE.get()) }),
+    RAINBOW_SHIELD(0, 340, 0.3f, 0.1f, 2, Supplier { Ingredient.of(ItemInit.RAINBOW.get()) });
 
     private val harvestLevel = 0
     private val maxUses = 0

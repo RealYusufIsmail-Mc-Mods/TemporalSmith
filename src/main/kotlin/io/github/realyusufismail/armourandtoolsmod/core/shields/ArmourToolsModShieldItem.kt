@@ -21,19 +21,18 @@ package io.github.realyusufismail.armourandtoolsmod.core.shields
 import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModShieldItemRendererProvider
 import java.util.function.Consumer
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.ShieldItem
+import net.minecraft.world.item.Tier
 import net.minecraftforge.client.extensions.common.IClientItemExtensions
 
-class ArmourToolsModShieldItem : ShieldItem(Item.Properties().stacksTo(1).durability(600)) {
+class ArmourToolsModShieldItem(durability: Int, private val tier: Tier) :
+    ShieldItem(Item.Properties().stacksTo(1).durability(durability)) {
     override fun initializeClient(consumer: Consumer<IClientItemExtensions>) {
         consumer.accept(ArmourAndToolsModShieldItemRendererProvider.shield())
     }
 
-    /*
     override fun isValidRepairItem(toRepair: ItemStack, repair: ItemStack): Boolean {
-        return this.tier.getRepairIngredient().test(repair)
+        return this.tier.repairIngredient.test(repair)
     }
-
-     */
-
 }

@@ -26,9 +26,7 @@ import net.minecraft.data.PackOutput
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.common.data.SpriteSourceProvider
 
-/**
- * Makes sure that the textures are loaded from the correct location.
- */
+/** Makes sure that the textures are loaded from the correct location. */
 class ArmourAndTollsModSpriteSourceProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
     SpriteSourceProvider(output, exFileHelper, MOD_ID) {
     override fun addSources() {

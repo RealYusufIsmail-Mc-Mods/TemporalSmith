@@ -21,6 +21,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
+import io.github.realyusufismail.armourandtoolsmod.core.material.CustomShieldMaterial
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
 import io.github.realyusufismail.armourandtoolsmod.core.shields.*
 import net.minecraft.world.item.*
@@ -183,8 +184,6 @@ object ItemInit {
             RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
-    // TODO: Add tools and weapons including tridents. Maybe custom shields?
-
     // Swords
     val RUBY_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_sword", RUBY) {
@@ -234,19 +233,29 @@ object ItemInit {
 
     // Shields
     val RUBY_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("ruby_shield", RUBY) { ArmourToolsModShieldItem() }
+        ITEMS.registerSmeltableObject("ruby_shield", RUBY) {
+            ArmourToolsModShieldItem(410, CustomShieldMaterial.RUBY_SHIELD)
+        }
 
     val SAPPHIRE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) { ArmourToolsModShieldItem() }
+        ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) {
+            ArmourToolsModShieldItem(420, CustomShieldMaterial.SAPPHIRE_SHIELD)
+        }
 
     val GRAPHITE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) { ArmourToolsModShieldItem() }
+        ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) {
+            ArmourToolsModShieldItem(400, CustomShieldMaterial.GRAPHITE_SHIELD)
+        }
 
     val AQUMARINE_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) { ArmourToolsModShieldItem() }
+        ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) {
+            ArmourToolsModShieldItem(450, CustomShieldMaterial.AQUMARINE_SHIELD)
+        }
 
     val RAINBOW_SHIELD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) { ArmourToolsModShieldItem() }
+        ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) {
+            ArmourToolsModShieldItem(430, CustomShieldMaterial.RAINBOW_SHIELD)
+        }
 
     private fun DeferredRegister<Item>.registerSmeltableObject(
         name: String,
