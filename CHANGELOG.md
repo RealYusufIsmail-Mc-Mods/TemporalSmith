@@ -1,6 +1,11 @@
 # Changelog
 
-## [1.19.4-1.0.0.beta.6] - Unreleased
+## [1.19.4-1.0.0.beta.7] - Unreleased
+
+### Shields now function as intended. 
+### Textures for shields have been added. Thx to redrosewarrior1 for the textures.
+
+## [1.19.4-1.0.0.beta.6] - 2023-7-20
 
 ### Added missing recipe for tool crafting table
 ### Added all tool set for ruby

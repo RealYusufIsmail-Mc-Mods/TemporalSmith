@@ -12,7 +12,7 @@ plugins {
     kotlin("jvm") version "1.9.0"
     kotlin("plugin.allopen") version "1.9.0"
     id("com.diffplug.spotless") version "6.19.0"
-    id("net.minecraftforge.gradle") version "5.1.+"
+    id("net.minecraftforge.gradle") version "[6.0,6.2)"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
     id("net.darkhax.curseforgegradle") version "1.1.15"
@@ -42,6 +42,8 @@ println(
 
 configure<UserDevExtension> {
     mappings("parchment", "1.19.3-2023.03.12-$mcVersion")
+
+    accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
 
     runs {
         create("client") {
@@ -149,6 +151,8 @@ dependencies {
     // Patchouli
     // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
+    // Json
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
 }
 
 tasks.test {

@@ -16,14 +16,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.util
+package io.github.realyusufismail.armourandtoolsmod.client
 
-import net.minecraft.world.item.Item
-import net.minecraft.world.level.block.Block
-import net.minecraftforge.registries.ForgeRegistries
+import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer
+import net.minecraft.server.packs.resources.ResourceManager
 
-val Item.name: String
-    get() = this.toString()
+open class ArmourAndToolsModBlockEntityWithoutLevelRenderer :
+    BlockEntityWithoutLevelRenderer(
+        Minecraft.getInstance().blockEntityRenderDispatcher, Minecraft.getInstance().entityModels) {
 
-val Block.bName: String
-    get() = ForgeRegistries.BLOCKS.getKey(this).toString().replace("armourandtoolsmod:", "")
+    override fun onResourceManagerReload(manager: ResourceManager) {
+        // NO-OP
+    }
+}

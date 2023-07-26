@@ -18,6 +18,8 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod
 
+import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModShieldItemRendererProvider
+import io.github.realyusufismail.armourandtoolsmod.client.ClientSetup
 import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import io.github.realyusufismail.armourandtoolsmod.core.itemgroup.ArmourAndToolsGroup
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators
@@ -48,7 +50,9 @@ class ArmourAndToolsMod {
         // adds recipe category
         bus.addListener(RecipeCategoriesInit::registerRecipeBookCategories)
         // client setup listener
-        bus.addListener(ClientSetup::init)
+        bus.addListener(ClientSetup::clientSetup)
+        // register shields
+        bus.addListener(ArmourAndToolsModShieldItemRendererProvider::init)
 
         // Register ourselves for server and other game events we are interested in
         FORGE_BUS.register(this)
