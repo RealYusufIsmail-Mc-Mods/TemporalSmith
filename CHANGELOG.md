@@ -4,6 +4,7 @@
 
 ### Shields now function as intended. 
 ### Textures for shields have been added. Thx to redrosewarrior1 for the textures.
+### Removed aq trident as it was causing issues with the game. Will be added back in future.
 
 ## [1.19.4-1.0.0.beta.6] - 2023-7-20
 
