@@ -112,9 +112,6 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.RAINBOW_SHIELD, "Rainbow Shield")
         addItem(ItemInit.AQUMARINE_SHIELD, "Aqumarine Shield")
 
-        // Tridents
-        addItem(ItemInit.AQUMARINE_TRIDENT, "Aqumarine Trident")
-
         // others
         add("creativetab.armourandtoolsmod", "Armour and Item Mod")
         add("container.custom_armour_crafting_table", "Armour Crafting Table")
