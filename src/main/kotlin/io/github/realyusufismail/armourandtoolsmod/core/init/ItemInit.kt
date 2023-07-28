@@ -226,10 +226,6 @@ object ItemInit {
         }
 
     // Tridents
-    val AQUMARINE_TRIDENT: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("aqumarine_trident", AQUMARINE) {
-            TridentItem(Item.Properties().stacksTo(1).durability(600))
-        }
 
     // Shields
     val RUBY_SHIELD: ObjectHolderDelegate<Item> =

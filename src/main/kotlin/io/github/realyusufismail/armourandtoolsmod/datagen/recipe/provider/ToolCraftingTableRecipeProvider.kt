@@ -95,18 +95,6 @@ class ToolCraftingTableRecipeProvider(
         // TRIEDENTs
 
         // TODO : For the trident later make it a drop from a custom mob rather than crafting
-        CustomToolCraftingTableRecipeBuilder.shaped(
-                CustomToolsCraftingBookCategory.TRIDENT,
-                RecipeCategory.TOOLS,
-                ItemInit.AQUMARINE_TRIDENT.get())
-            .define('A', ItemInit.AQUMARINE.get())
-            .define('S', Items.STICK)
-            .pattern(" AA")
-            .pattern(" SA")
-            .pattern("S  ")
-            .unlockedBy(hasItem, has(ItemInit.AQUMARINE.get()))
-            .save(consumer, modId("aqumarine_trident_recipe"))
-
         // SHIELDS
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SHIELD,
