@@ -35,11 +35,11 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.GsonHelper
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.Level
 import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.crafting.CraftingHelper
+import net.minecraftforge.common.crafting.IShapedRecipe
 
 /** @see io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder */
 class CustomToolCraftingTableShapedRecipe(
@@ -50,7 +50,8 @@ class CustomToolCraftingTableShapedRecipe(
     private val height: Int,
     private val recipeItems: NonNullList<Ingredient>,
     private val result: ItemStack,
-) : CustomToolCraftingTableRecipe, Recipe<CustomToolCraftingTableContainer> {
+    private val showNotification: Boolean,
+) : CustomToolCraftingTableRecipe, IShapedRecipe<CustomToolCraftingTableContainer> {
     override fun category(): CustomToolsCraftingBookCategory {
         return recipeCategory
     }
@@ -140,6 +141,10 @@ class CustomToolCraftingTableShapedRecipe(
         return RecipeSerializerInit.CUSTOM_TOOL_CRAFTER.get()
     }
 
+    override fun showNotification(): Boolean {
+        return showNotification
+    }
+
     override fun isIncomplete(): Boolean {
         val nonnulllist: NonNullList<Ingredient> = this.ingredients
         return nonnulllist.isEmpty() ||
@@ -147,6 +152,14 @@ class CustomToolCraftingTableShapedRecipe(
                 .stream()
                 .filter { ingredient: Ingredient -> !ingredient.isEmpty }
                 .anyMatch { ingredient: Ingredient? -> ForgeHooks.hasNoElements(ingredient) }
+    }
+
+    override fun getRecipeWidth(): Int {
+        return this.width
+    }
+
+    override fun getRecipeHeight(): Int {
+        return this.height
     }
 
     companion object {
@@ -300,8 +313,10 @@ class CustomToolCraftingTableShapedRecipe(
                     GsonHelper.getAsString(pJson, "category", null as String?),
                     CustomToolsCraftingBookCategory.MISC)
 
+            val flag = GsonHelper.getAsBoolean(pJson, "show_notification", true)
+
             return CustomToolCraftingTableShapedRecipe(
-                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
         }
 
         override fun fromNetwork(
@@ -315,9 +330,10 @@ class CustomToolCraftingTableShapedRecipe(
             nonnulllist.replaceAll { Ingredient.fromNetwork(pBuffer) }
             val itemstack = pBuffer.readItem()
             val craftingbookcategory = pBuffer.readEnum(CustomToolsCraftingBookCategory::class.java)
+            val flag = pBuffer.readBoolean()
 
             return CustomToolCraftingTableShapedRecipe(
-                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
         }
 
         override fun toNetwork(
@@ -327,10 +343,13 @@ class CustomToolCraftingTableShapedRecipe(
             pBuffer.writeVarInt(pRecipe.width)
             pBuffer.writeVarInt(pRecipe.height)
             pBuffer.writeUtf(pRecipe.group)
+
             for (ingredient: Ingredient in pRecipe.recipeItems) {
                 ingredient.toNetwork(pBuffer)
             }
+
             pBuffer.writeItem(pRecipe.result)
+            pBuffer.writeBoolean(pRecipe.showNotification)
         }
     }
 }

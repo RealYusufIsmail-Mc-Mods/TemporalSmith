@@ -33,6 +33,7 @@ import net.minecraft.advancements.CriterionTriggerInstance
 import net.minecraft.advancements.RequirementsStrategy
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
 import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.data.recipes.RecipeBuilder
 import net.minecraft.data.recipes.RecipeBuilder.ROOT_RECIPE_ADVANCEMENT
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.resources.ResourceLocation
@@ -43,7 +44,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.ItemLike
 import net.minecraftforge.registries.ForgeRegistries
 
-object CustomToolCraftingTableRecipeBuilder {
+/** @see net.minecraft.data.recipes.ShapedRecipeBuilder */
+object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
     private val rows: MutableList<String> = Lists.newArrayList()
     private val key: MutableMap<Char, Ingredient> = Maps.newLinkedHashMap()
     private var advancement: Advancement.Builder? = null
@@ -62,7 +64,7 @@ object CustomToolCraftingTableRecipeBuilder {
         return shaped(bookCategory, recipeCategory, itemLike, 1)
     }
 
-    fun shaped(
+    private fun shaped(
         bookCategory: CustomToolsCraftingBookCategory,
         recipeCategory: RecipeCategory,
         itemLike: ItemLike,
@@ -108,7 +110,7 @@ object CustomToolCraftingTableRecipeBuilder {
         }
     }
 
-    fun unlockedBy(
+    override fun unlockedBy(
         creterionId: String,
         criterionTriggerInstance: CriterionTriggerInstance,
     ): CustomToolCraftingTableRecipeBuilder {
@@ -116,16 +118,16 @@ object CustomToolCraftingTableRecipeBuilder {
         return this
     }
 
-    fun group(group: String): CustomToolCraftingTableRecipeBuilder {
-        this.group = group
+    override fun group(pGroupName: String?): RecipeBuilder {
+        this.group = pGroupName
         return this
     }
 
-    fun getResult(): Item {
+    override fun getResult(): Item {
         return result ?: throw IllegalStateException("Result is not set")
     }
 
-    fun save(
+    override fun save(
         finishedRecipeConsumer: Consumer<FinishedRecipe>,
         resourceLocation: ResourceLocation,
     ) {
@@ -233,7 +235,7 @@ object CustomToolCraftingTableRecipeBuilder {
         }
 
         override fun getType(): RecipeSerializer<*> {
-            return RecipeSerializerInit.CUSTOM_ARMOUR_CRAFTER.get()
+            return RecipeSerializerInit.CUSTOM_TOOL_CRAFTER.get()
         }
 
         override fun getId(): ResourceLocation {

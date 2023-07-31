@@ -26,33 +26,40 @@ import net.minecraft.world.item.crafting.Ingredient
 enum class CustomToolMaterial(
     harvestLevel: Int,
     maxUses: Int,
-    efficiency: Float,
-    attackDamage: Float,
     enchantability: Int,
     repairMaterial: Supplier<Ingredient>
 ) : Tier {
-    RUBY_SWORD(3, 2000, 8.0f, 3.0f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_PICKAXE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_AXE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_SHOVEL(3, 2500, 8.0f, 1.0f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
-    RUBY_HOE(3, 2500, 8.0f, 1.5f, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) });
+    RUBY_SWORD(3, 2000, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_PICKAXE(3, 2500, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_AXE(3, 2500, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_SHOVEL(3, 2500, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    RUBY_HOE(3, 2500, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    ENDERITE_SWORD(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
+    ENDERITE_PICKAXE(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
+    ENDERITE_AXE(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
+    ENDERITE_SHOVEL(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
+    ENDERITE_HOE(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) });
 
     private val harvestLevel = 0
     private val maxUses = 0
-    private val efficiency = 0f
-    private val attackDamage = 0f
     private val enchantability = 0
     private val repairMaterial: Ingredient? = null
     override fun getUses(): Int {
         return maxUses
     }
 
+    /**
+     * The speed which is 4 + this value. 4 is the speed of the fist.
+     *
+     * @return value is set to 0 as the main speed is set in the item class
+     */
     override fun getSpeed(): Float {
-        return efficiency
+        return 0f
     }
 
+    /** @return This is set to 0 as the main attack damage is set in the item class */
     override fun getAttackDamageBonus(): Float {
-        return attackDamage
+        return 0f
     }
 
     @Deprecated("Deprecated in Java")

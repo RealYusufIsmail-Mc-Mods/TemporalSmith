@@ -28,7 +28,8 @@ enum class CustomArmourCraftingBookCategory(private var bookName: String) : Stri
     MISC("misc");
 
     companion object {
-        val CODEC = StringRepresentable.fromEnum { CustomArmourCraftingBookCategory.values() }
+        val CODEC: StringRepresentable.EnumCodec<CustomArmourCraftingBookCategory> =
+            StringRepresentable.fromEnum { entries.toTypedArray() }
     }
 
     override fun getSerializedName(): String {

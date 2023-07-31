@@ -1,4 +1,4 @@
-// 1.19.4	2023-07-25T22:05:28.424307	Loot Tables
+// 1.19.4	2023-07-31T21:17:35.31535	Loot Tables
 978fdd88840e03c72998e627647e105ad3e0cc42 data/armourandtoolsmod/loot_tables/blocks/aqumarine_block.json
 b3efcb91567b5e150bbe3796f56e31212e83de19 data/armourandtoolsmod/loot_tables/blocks/aqumarine_ore.json
 0bef922d20a9a0d8ee0b288c145c46ef91dac291 data/armourandtoolsmod/loot_tables/blocks/custom_armour_crafting_table.json
@@ -8,6 +8,8 @@ b3efcb91567b5e150bbe3796f56e31212e83de19 data/armourandtoolsmod/loot_tables/bloc
 66bc52ed3d04517202fdb60b1d7400e4a87573da data/armourandtoolsmod/loot_tables/blocks/deepslate_rainbow_ore.json
 d7d2334744bf327a2075947667ab2a9107384676 data/armourandtoolsmod/loot_tables/blocks/deepslate_ruby_ore.json
 180223335a1454d85bdc0a9cf93364efc0a35e81 data/armourandtoolsmod/loot_tables/blocks/deepslate_sapphire_ore.json
+e5b48fa5327a4f8f13ed86cd2a3ad42318936c9c data/armourandtoolsmod/loot_tables/blocks/enderite_block.json
+4d7f9bae775c17f902eee9bb8a8dfc05f002f777 data/armourandtoolsmod/loot_tables/blocks/enderite_ore.json
 39244c1274bfecdd74689451804e1423dea90c9e data/armourandtoolsmod/loot_tables/blocks/graphite_block.json
 fad58676920b01badeeb3b925f6f45a3ef134ce3 data/armourandtoolsmod/loot_tables/blocks/graphite_ore.json
 b47f772bc33d4d6fc159c8255ad23b0bee017f4c data/armourandtoolsmod/loot_tables/blocks/rainbow_block.json

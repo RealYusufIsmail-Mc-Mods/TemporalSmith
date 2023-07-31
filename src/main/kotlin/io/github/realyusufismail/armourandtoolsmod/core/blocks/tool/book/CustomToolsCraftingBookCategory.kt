@@ -31,7 +31,8 @@ enum class CustomToolsCraftingBookCategory(private var bookName: String) : Strin
     MISC("misc");
 
     companion object {
-        val CODEC = StringRepresentable.fromEnum { CustomToolsCraftingBookCategory.values() }
+        val CODEC: StringRepresentable.EnumCodec<CustomToolsCraftingBookCategory> =
+            StringRepresentable.fromEnum { entries.toTypedArray() }
     }
 
     override fun getSerializedName(): String {

@@ -82,6 +82,13 @@ object BlockInit {
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
+    val ENDERITE_ORE =
+        registerSmeltAbleBlock(
+            "enderite_ore",
+            ItemInit.ENDERITE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
+
     // deepslate ores
     val DEEPSLATE_RUBY_ORE =
         registerSpecialSmeltAbleBlock(
@@ -148,6 +155,13 @@ object BlockInit {
         registerOreBlock(
             "aqumarine_block",
             ItemInit.AQUMARINE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
+
+    val ENDERITE_BLOCK =
+        registerOreBlock(
+            "enderite_block",
+            ItemInit.ENDERITE,
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 

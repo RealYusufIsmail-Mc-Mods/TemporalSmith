@@ -1,0 +1,20 @@
+{
+  "type": "armourandtoolsmod:custom_tool_crafter",
+  "category": "pickaxe",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/enderite"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AAA",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "armourandtoolsmod:enderite_pickaxe"
+  }
+}

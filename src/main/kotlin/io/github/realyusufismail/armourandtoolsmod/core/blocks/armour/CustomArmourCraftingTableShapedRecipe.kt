@@ -35,11 +35,11 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.GsonHelper
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.Level
 import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.crafting.CraftingHelper
+import net.minecraftforge.common.crafting.IShapedRecipe
 
 /** @see io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder */
 class CustomArmourCraftingTableShapedRecipe(
@@ -50,7 +50,8 @@ class CustomArmourCraftingTableShapedRecipe(
     private val height: Int,
     private val recipeItems: NonNullList<Ingredient>,
     private val result: ItemStack,
-) : CustomArmourCraftingTableRecipe, Recipe<CustomArmourCraftingTableContainer> {
+    private val showNotification: Boolean,
+) : CustomArmourCraftingTableRecipe, IShapedRecipe<CustomArmourCraftingTableContainer> {
     override fun category(): CustomArmourCraftingBookCategory {
         return recipeCategory
     }
@@ -138,6 +139,18 @@ class CustomArmourCraftingTableShapedRecipe(
 
     override fun getSerializer(): RecipeSerializer<*> {
         return RecipeSerializerInit.CUSTOM_ARMOUR_CRAFTER.get()
+    }
+
+    override fun showNotification(): Boolean {
+        return showNotification
+    }
+
+    override fun getRecipeWidth(): Int {
+        return this.width
+    }
+
+    override fun getRecipeHeight(): Int {
+        return this.height
     }
 
     override fun isIncomplete(): Boolean {
@@ -300,8 +313,10 @@ class CustomArmourCraftingTableShapedRecipe(
             val itemstack: ItemStack =
                 itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"))
 
+            val flag = GsonHelper.getAsBoolean(pJson, "show_notification", true)
+
             return CustomArmourCraftingTableShapedRecipe(
-                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
         }
 
         override fun fromNetwork(
@@ -316,9 +331,10 @@ class CustomArmourCraftingTableShapedRecipe(
             val itemstack = pBuffer.readItem()
             val craftingbookcategory =
                 pBuffer.readEnum(CustomArmourCraftingBookCategory::class.java)
+            val flag = pBuffer.readBoolean()
 
             return CustomArmourCraftingTableShapedRecipe(
-                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack)
+                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
         }
 
         override fun toNetwork(
@@ -332,6 +348,7 @@ class CustomArmourCraftingTableShapedRecipe(
                 ingredient.toNetwork(pBuffer)
             }
             pBuffer.writeItem(pRecipe.result)
+            pBuffer.writeBoolean(pRecipe.showNotification)
         }
     }
 }

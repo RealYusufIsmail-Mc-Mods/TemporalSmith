@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
 import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
+import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder.CustomToolCraftingTableRecipeBuilder
 import java.util.function.Consumer
@@ -42,11 +43,11 @@ class ToolCraftingTableRecipeProvider(
                 ItemInit.RUBY_SWORD.get())
             .define('A', ItemInit.RUBY.get())
             .define('S', Items.STICK)
-            .pattern("A")
-            .pattern("A")
-            .pattern("S")
+            .pattern(" A ")
+            .pattern(" A ")
+            .pattern(" S ")
             .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
-            .save(consumer, modId("ruby_sword_recipe"))
+            .save(consumer, modId("ruby_sword"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.PICKAXE,
@@ -58,7 +59,7 @@ class ToolCraftingTableRecipeProvider(
             .pattern(" S ")
             .pattern(" S ")
             .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
-            .save(consumer, modId("ruby_pickaxe_recipe"))
+            .save(consumer, modId("ruby_pickaxe"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.AXE, RecipeCategory.TOOLS, ItemInit.RUBY_AXE.get())
@@ -68,7 +69,7 @@ class ToolCraftingTableRecipeProvider(
             .pattern(" SA")
             .pattern(" S ")
             .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
-            .save(consumer, modId("ruby_axe_recipe"))
+            .save(consumer, modId("ruby_axe"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SHOVEL,
@@ -80,7 +81,7 @@ class ToolCraftingTableRecipeProvider(
             .pattern(" S ")
             .pattern(" S ")
             .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
-            .save(consumer, modId("ruby_shovel_recipe"))
+            .save(consumer, modId("ruby_shovel"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.HOE, RecipeCategory.TOOLS, ItemInit.RUBY_HOE.get())
@@ -90,7 +91,68 @@ class ToolCraftingTableRecipeProvider(
             .pattern(" S ")
             .pattern(" S ")
             .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
-            .save(consumer, modId("ruby_hoe_recipe"))
+            .save(consumer, modId("ruby_hoe"))
+
+        // ENDERITE TOOLS
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SWORD,
+                RecipeCategory.TOOLS,
+                ItemInit.ENDERITE_SWORD.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" A ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_sword"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.PICKAXE,
+                RecipeCategory.TOOLS,
+                ItemInit.ENDERITE_PICKAXE.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .define('S', Items.STICK)
+            .pattern("AAA")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_pickaxe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.AXE,
+                RecipeCategory.TOOLS,
+                ItemInit.ENDERITE_AXE.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_axe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHOVEL,
+                RecipeCategory.TOOLS,
+                ItemInit.ENDERITE_SHOVEL.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_shovel"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.HOE,
+                RecipeCategory.TOOLS,
+                ItemInit.ENDERITE_HOE.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .define('S', Items.STICK)
+            .pattern("AA ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_hoe"))
 
         // TRIEDENTs
 
@@ -107,7 +169,7 @@ class ToolCraftingTableRecipeProvider(
             .pattern("SIS")
             .pattern("SSS")
             .unlockedBy(hasItem, has(ItemInit.RUBY.get()))
-            .save(consumer, modId("ruby_shield_recipe"))
+            .save(consumer, modId("ruby_shield"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SHIELD,
@@ -120,7 +182,7 @@ class ToolCraftingTableRecipeProvider(
             .pattern("SIS")
             .pattern("SSS")
             .unlockedBy(hasItem, has(ItemInit.SAPPHIRE.get()))
-            .save(consumer, modId("sapphire_shield_recipe"))
+            .save(consumer, modId("sapphire_shield"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SHIELD,
@@ -133,7 +195,7 @@ class ToolCraftingTableRecipeProvider(
             .pattern("SIS")
             .pattern("SSS")
             .unlockedBy(hasItem, has(ItemInit.GRAPHITE.get()))
-            .save(consumer, modId("graphite_shield_recipe"))
+            .save(consumer, modId("graphite_shield"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SHIELD,
@@ -146,7 +208,7 @@ class ToolCraftingTableRecipeProvider(
             .pattern("SIS")
             .pattern("SSS")
             .unlockedBy(hasItem, has(ItemInit.AQUMARINE.get()))
-            .save(consumer, modId("aqumarine_shield_recipe"))
+            .save(consumer, modId("aqumarine_shield"))
 
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SHIELD,
@@ -159,6 +221,6 @@ class ToolCraftingTableRecipeProvider(
             .pattern("SIS")
             .pattern("SSS")
             .unlockedBy(hasItem, has(ItemInit.RAINBOW.get()))
-            .save(consumer, modId("rainbow_shield_recipe"))
+            .save(consumer, modId("rainbow_shield"))
     }
 }

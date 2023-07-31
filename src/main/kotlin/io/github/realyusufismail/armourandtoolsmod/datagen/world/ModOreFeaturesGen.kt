@@ -24,19 +24,23 @@ import io.github.realyusufismail.realyusufismailcore.data.support.oregen.ModOreF
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.worldgen.BootstapContext
 import net.minecraft.resources.ResourceKey
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import net.minecraft.world.level.levelgen.feature.Feature
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest
 
 object ModOreFeaturesGen : ModOreFeaturesSupport() {
+    private val endRule = BlockMatchTest(Blocks.END_STONE)
 
     val RUBY_ORE: ResourceKey<ConfiguredFeature<*, *>> = createKey("ruby_ore")
     val SAPPHIRE_ORE: ResourceKey<ConfiguredFeature<*, *>> = createKey("sapphire_ore")
     val GRAPHITE_ORE: ResourceKey<ConfiguredFeature<*, *>> = createKey("graphite_ore")
     val AQUMARINE_ORE: ResourceKey<ConfiguredFeature<*, *>> = createKey("aqumarine_ore")
     val RAINBOW_ORE: ResourceKey<ConfiguredFeature<*, *>> = createKey("rainbow_ore")
+    val ENDERITE_ORE: ResourceKey<ConfiguredFeature<*, *>> = createKey("enderite_ore")
 
     override fun bootstrap(context: BootstapContext<ConfiguredFeature<*, *>>) {
         val ruby =
@@ -70,11 +74,16 @@ object ModOreFeaturesGen : ModOreFeaturesSupport() {
                 OreConfiguration.target(ruleTest1, BlockInit.RAINBOW_ORE.get().defaultBlockState()),
                 OreConfiguration.target(ruleTest2, BlockInit.RAINBOW_ORE.get().defaultBlockState()))
 
+        val enderite =
+            listOf<OreConfiguration.TargetBlockState>(
+                OreConfiguration.target(endRule, BlockInit.ENDERITE_ORE.get().defaultBlockState()))
+
         registerOre(context, RUBY_ORE, ruby, 6)
         registerOre(context, SAPPHIRE_ORE, sapphire, 3)
         registerOre(context, GRAPHITE_ORE, graphite, 6)
         registerOre(context, AQUMARINE_ORE, aqumarine, 2)
         registerOre(context, RAINBOW_ORE, rainbow, 2)
+        registerOre(context, ENDERITE_ORE, enderite, 2)
     }
 
     private fun createKey(name: String): ResourceKey<ConfiguredFeature<*, *>> {

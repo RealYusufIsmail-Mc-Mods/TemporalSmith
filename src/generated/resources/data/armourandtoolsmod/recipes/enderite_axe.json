@@ -1,0 +1,20 @@
+{
+  "type": "armourandtoolsmod:custom_tool_crafter",
+  "category": "axe",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/enderite"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " AA",
+    " SA",
+    " S "
+  ],
+  "result": {
+    "item": "armourandtoolsmod:enderite_axe"
+  }
+}

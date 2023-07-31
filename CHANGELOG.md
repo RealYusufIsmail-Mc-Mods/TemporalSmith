@@ -1,10 +1,16 @@
 # Changelog
 
-## [1.19.4-1.0.0.beta.7] - Unreleased
+## [1.19.4-1.0.0] - 2023-8-1
 
 ### Shields now function as intended. 
 ### Textures for shields have been added. Thx to redrosewarrior1 for the textures.
 ### Removed aq trident as it was causing issues with the game. Will be added back in future.
+### Added enderite ore, block, ingot, tools and armour. Thx to redrosewarrior1 for some of the textures.
+### Rainbow armour now has a texture. Thx to redrosewarrior1 for the textures.
+### Known issue with ore generation. Will be fixed in future.
+### Fixed issue where nothing was craftable in tool crafting table.
+### Fixed issue where the crafting book gave the wrong patern for recipes in both armour and tool crafting tables.
+### Fixed issue were stats for tools such as attack damage where incorrect.
 
 ## [1.19.4-1.0.0.beta.6] - 2023-7-20
 

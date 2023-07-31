@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
+import io.github.realyusufismail.armourandtoolsmod.core.items.CustomSwordItem
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomShieldMaterial
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
@@ -45,6 +46,8 @@ object ItemInit {
         ITEMS.registerObject("aqumarine") { Item(Item.Properties()) }
     val RAINBOW: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("rainbow") { Item(Item.Properties()) }
+    val ENDERITE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("enderite") { Item(Item.Properties()) }
 
     // raw ores
     val RAW_RUBY: ObjectHolderDelegate<Item> =
@@ -57,6 +60,8 @@ object ItemInit {
         ITEMS.registerSmeltableObject("raw_aqumarine", AQUMARINE) { Item(Item.Properties()) }
     val RAW_RAINBOW: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("raw_rainbow", RAINBOW) { Item(Item.Properties()) }
+    val RAW_ENDERITE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("raw_enderite", ENDERITE) { Item(Item.Properties()) }
 
     // armour
     val AMETHYST_HELMET: ObjectHolderDelegate<Item> =
@@ -184,11 +189,44 @@ object ItemInit {
             RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
+    val ENDERITE_HELMET: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_helmet", ENDERITE) {
+            EnderiteArmour(ArmourMaterialInit.ENDERITE, ArmorItem.Type.HELMET, Item.Properties())
+        }
+
+    val ENDERITE_CHESTPLATE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_chestplate", ENDERITE) {
+            EnderiteArmour(
+                ArmourMaterialInit.ENDERITE, ArmorItem.Type.CHESTPLATE, Item.Properties())
+        }
+
+    val ENDERITE_LEGGINGS: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_leggings", ENDERITE) {
+            EnderiteArmour(ArmourMaterialInit.ENDERITE, ArmorItem.Type.LEGGINGS, Item.Properties())
+        }
+
+    val ENDERITE_BOOTS: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_boots", ENDERITE) {
+            EnderiteArmour(ArmourMaterialInit.ENDERITE, ArmorItem.Type.BOOTS, Item.Properties())
+        }
+
     // Swords
     val RUBY_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_sword", RUBY) {
-            SwordItem(
-                CustomToolMaterial.RUBY_SWORD, 0, 7f, Item.Properties().stacksTo(1).durability(600))
+            CustomSwordItem(
+                CustomToolMaterial.RUBY_SWORD,
+                8,
+                -2.6f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
+    val ENDERITE_SWORD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_sword", ENDERITE) {
+            CustomSwordItem(
+                CustomToolMaterial.ENDERITE_SWORD,
+                8,
+                -2.5f,
+                Item.Properties().stacksTo(1).durability(600))
         }
 
     // Pickaxes
@@ -196,8 +234,17 @@ object ItemInit {
         ITEMS.registerSmeltableObject("ruby_pickaxe", RUBY) {
             PickaxeItem(
                 CustomToolMaterial.RUBY_PICKAXE,
-                0,
-                4f,
+                5,
+                -2.8f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
+    val ENDERITE_PICKAXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_pickaxe", ENDERITE) {
+            PickaxeItem(
+                CustomToolMaterial.ENDERITE_PICKAXE,
+                6,
+                -2.7f,
                 Item.Properties().stacksTo(1).durability(800))
         }
 
@@ -205,7 +252,19 @@ object ItemInit {
     val RUBY_AXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_axe", RUBY) {
             AxeItem(
-                CustomToolMaterial.RUBY_AXE, 0F, 8f, Item.Properties().stacksTo(1).durability(600))
+                CustomToolMaterial.RUBY_AXE,
+                8F,
+                -2.6f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val ENDERITE_AXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_axe", ENDERITE) {
+            AxeItem(
+                CustomToolMaterial.ENDERITE_AXE,
+                9F,
+                -2.5f,
+                Item.Properties().stacksTo(1).durability(600))
         }
 
     // Shovels
@@ -213,8 +272,17 @@ object ItemInit {
         ITEMS.registerSmeltableObject("ruby_shovel", RUBY) {
             ShovelItem(
                 CustomToolMaterial.RUBY_SHOVEL,
-                0F,
-                3f,
+                3.5F,
+                -3.0f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val ENDERITE_SHOVEL: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_shovel", ENDERITE) {
+            ShovelItem(
+                CustomToolMaterial.ENDERITE_SHOVEL,
+                4.5F,
+                -3.0f,
                 Item.Properties().stacksTo(1).durability(600))
         }
 
@@ -222,7 +290,19 @@ object ItemInit {
     val RUBY_HOE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_hoe", RUBY) {
             HoeItem(
-                CustomToolMaterial.RUBY_HOE, 0, 3f, Item.Properties().stacksTo(1).durability(600))
+                CustomToolMaterial.RUBY_HOE,
+                1,
+                -3.1f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val ENDERITE_HOE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("enderite_hoe", ENDERITE) {
+            HoeItem(
+                CustomToolMaterial.ENDERITE_HOE,
+                2,
+                -3.0f,
+                Item.Properties().stacksTo(1).durability(600))
         }
 
     // Tridents
