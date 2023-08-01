@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 buildscript {
     repositories { mavenCentral() }
 
-    dependencies { classpath("io.github.realyusufismail:jconfig:1.0.8") }
+    dependencies { classpath("io.github.realyusufismail:jconfig:1.0.9") }
 }
 
 plugins {
