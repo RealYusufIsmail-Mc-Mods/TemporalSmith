@@ -38,6 +38,7 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
     val GRAPHITE_ORE: ResourceKey<PlacedFeature> = createKey("graphite_ore")
     val AQUMARINE_ORE: ResourceKey<PlacedFeature> = createKey("aqumarine_ore")
     val RAINBOW_ORE: ResourceKey<PlacedFeature> = createKey("rainbow_ore")
+    val ENDERITE_ORE: ResourceKey<PlacedFeature> = createKey("enderite_ore")
 
     override fun bootstrap(context: BootstapContext<PlacedFeature>) {
         val holdergetter: HolderGetter<ConfiguredFeature<*, *>> =
@@ -53,14 +54,16 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
             holdergetter.getOrThrow(ModOreFeaturesGen.AQUMARINE_ORE)
         val holder5: Holder<ConfiguredFeature<*, *>> =
             holdergetter.getOrThrow(ModOreFeaturesGen.RAINBOW_ORE)
+        val holder6: Holder<ConfiguredFeature<*, *>> =
+            holdergetter.getOrThrow(ModOreFeaturesGen.ENDERITE_ORE)
 
         register(
             context,
             RUBY_ORE,
             holder,
             commonOrePlacement(
-                10,
-                HeightRangePlacement.triangle(
+                3,
+                HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
 
         register(
@@ -68,8 +71,8 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
             SAPPHIRE_ORE,
             holder2,
             commonOrePlacement(
-                10,
-                HeightRangePlacement.triangle(
+                4,
+                HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(10))))
 
         register(
@@ -77,8 +80,8 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
             GRAPHITE_ORE,
             holder3,
             commonOrePlacement(
-                10,
-                HeightRangePlacement.triangle(
+                4,
+                HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(10))))
 
         register(
@@ -86,8 +89,8 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
             AQUMARINE_ORE,
             holder4,
             commonOrePlacement(
-                10,
-                HeightRangePlacement.triangle(
+                4,
+                HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))))
 
         register(
@@ -95,9 +98,18 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
             RAINBOW_ORE,
             holder5,
             commonOrePlacement(
-                10,
-                HeightRangePlacement.triangle(
+                3,
+                HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))))
+
+        register(
+            context,
+            ENDERITE_ORE,
+            holder6,
+            commonOrePlacement(
+                4,
+                HeightRangePlacement.uniform(
+                    VerticalAnchor.absolute(2), VerticalAnchor.absolute(32))))
     }
 
     private fun createKey(name: String): ResourceKey<PlacedFeature> {

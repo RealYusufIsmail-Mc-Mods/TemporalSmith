@@ -47,6 +47,9 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         add(
             BlockInit.AQUMARINE_ORE.get(),
             createOreDrop(BlockInit.AQUMARINE_ORE.get(), ItemInit.RAW_AQUMARINE.get()))
+        add(
+            BlockInit.ENDERITE_ORE.get(),
+            createOreDrop(BlockInit.ENDERITE_ORE.get(), ItemInit.RAW_ENDERITE.get()))
 
         // deepslate ores
         add(
@@ -71,6 +74,7 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         dropSelf(BlockInit.SAPPHIRE_BLOCK.get())
         dropSelf(BlockInit.GRAPHITE_BLOCK.get())
         dropSelf(BlockInit.AQUMARINE_BLOCK.get())
+        dropSelf(BlockInit.ENDERITE_BLOCK.get())
         dropSelf(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         dropSelf(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
     }

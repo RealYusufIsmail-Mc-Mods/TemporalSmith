@@ -48,6 +48,7 @@ class ModBlockTagsProvider(
         tag(TagsInit.BlockTagsInit.ORES_SAPPHIRE_ORES).add(BlockInit.SAPPHIRE_ORE.get())
         tag(TagsInit.BlockTagsInit.ORES_GRAPHITE_ORES).add(BlockInit.GRAPHITE_ORE.get())
         tag(TagsInit.BlockTagsInit.ORES_AQUMARINE_ORES).add(BlockInit.AQUMARINE_ORE.get())
+        tag(TagsInit.BlockTagsInit.ORES_ENDERITE_ORES).add(BlockInit.ENDERITE_ORE.get())
         // deepslate ores
         tag(TagsInit.BlockTagsInit.DEEPSLATE_ORES_RUBY_ORES).add(BlockInit.DEEPSLATE_RUBY_ORE.get())
         tag(TagsInit.BlockTagsInit.DEEPSLATE_ORES_RAINBOW_ORES)
@@ -64,6 +65,7 @@ class ModBlockTagsProvider(
         tag(TagsInit.BlockTagsInit.STORAGE_SAPPHIRE).add(BlockInit.SAPPHIRE_BLOCK.get())
         tag(TagsInit.BlockTagsInit.STORAGE_GRAPHITE).add(BlockInit.GRAPHITE_BLOCK.get())
         tag(TagsInit.BlockTagsInit.STORAGE_AQUMARINE).add(BlockInit.AQUMARINE_BLOCK.get())
+        tag(TagsInit.BlockTagsInit.STORAGE_ENDERITE).add(BlockInit.ENDERITE_BLOCK.get())
 
         // use BlockTags.MINEABLE_WITH_PICKAXE
         BlockInit.ORE_BLOCKS.forEach { oreBlock ->

@@ -1,0 +1,23 @@
+{
+  "type": "armourandtoolsmod:custom_tool_crafter",
+  "category": "shield",
+  "key": {
+    "A": {
+      "item": "armourandtoolsmod:graphite"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "minecraft:shield"
+    }
+  },
+  "pattern": [
+    " A ",
+    "SIS",
+    "SSS"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:graphite_shield"
+  }
+}

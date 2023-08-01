@@ -39,6 +39,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.GRAPHITE.get())
         item(ItemInit.AQUMARINE.get())
         item(ItemInit.RAINBOW.get())
+        item(ItemInit.ENDERITE.get())
 
         // raw ores
         item(ItemInit.RAW_RUBY.get())
@@ -46,6 +47,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.RAW_GRAPHITE.get())
         item(ItemInit.RAW_AQUMARINE.get())
         item(ItemInit.RAW_RAINBOW.get())
+        item(ItemInit.RAW_ENDERITE.get())
 
         // armour
         item(ItemInit.AMETHYST_HELMET.get())
@@ -78,11 +80,24 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.RAINBOW_LEGGINGS.get())
         item(ItemInit.RAINBOW_BOOTS.get())
 
+        item(ItemInit.ENDERITE_HELMET.get())
+        item(ItemInit.ENDERITE_CHESTPLATE.get())
+        item(ItemInit.ENDERITE_LEGGINGS.get())
+        item(ItemInit.ENDERITE_BOOTS.get())
+
+        // tools
+
         tool(ItemInit.RUBY_SWORD.get())
         tool(ItemInit.RUBY_PICKAXE.get())
         tool(ItemInit.RUBY_AXE.get())
         tool(ItemInit.RUBY_SHOVEL.get())
         tool(ItemInit.RUBY_HOE.get())
+
+        tool(ItemInit.ENDERITE_SWORD.get())
+        tool(ItemInit.ENDERITE_PICKAXE.get())
+        tool(ItemInit.ENDERITE_AXE.get())
+        tool(ItemInit.ENDERITE_SHOVEL.get())
+        tool(ItemInit.ENDERITE_HOE.get())
 
         val builtInEntityModel: ModelFile = UncheckedModelFile("builtin/entity")
 

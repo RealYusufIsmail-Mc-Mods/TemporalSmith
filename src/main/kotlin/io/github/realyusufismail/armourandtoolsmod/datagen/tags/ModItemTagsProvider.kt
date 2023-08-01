@@ -48,6 +48,7 @@ class ModItemTagsProvider(
         copy(TagsInit.BlockTagsInit.ORES_SAPPHIRE_ORES, TagsInit.ItemTagsInit.ORES_SAPPHIRE_ORES)
         copy(TagsInit.BlockTagsInit.ORES_GRAPHITE_ORES, TagsInit.ItemTagsInit.ORES_GRAPHITE_ORES)
         copy(TagsInit.BlockTagsInit.ORES_AQUMARINE_ORES, TagsInit.ItemTagsInit.ORES_AQUMARINE_ORES)
+        copy(TagsInit.BlockTagsInit.ORES_ENDERITE_ORES, TagsInit.ItemTagsInit.ORES_ENDERITE_ORES)
         // deepslate ores
         copy(
             TagsInit.BlockTagsInit.DEEPSLATE_ORES_RUBY_ORES,
@@ -70,17 +71,20 @@ class ModItemTagsProvider(
         copy(TagsInit.BlockTagsInit.STORAGE_SAPPHIRE, TagsInit.ItemTagsInit.STORAGE_SAPPHIRE)
         copy(TagsInit.BlockTagsInit.STORAGE_GRAPHITE, TagsInit.ItemTagsInit.STORAGE_GRAPHITE)
         copy(TagsInit.BlockTagsInit.STORAGE_AQUMARINE, TagsInit.ItemTagsInit.STORAGE_AQUMARINE)
+        copy(TagsInit.BlockTagsInit.STORAGE_ENDERITE, TagsInit.ItemTagsInit.STORAGE_ENDERITE)
         // ingots
         tag(TagsInit.ItemTagsInit.INGOTS_RUBY).add(ItemInit.RUBY.get())
         tag(TagsInit.ItemTagsInit.INGOTS_RAINBOW).add(ItemInit.RAINBOW.get())
         tag(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE).add(ItemInit.SAPPHIRE.get())
         tag(TagsInit.ItemTagsInit.INGOTS_GRAPHITE).add(ItemInit.GRAPHITE.get())
         tag(TagsInit.ItemTagsInit.INGOTS_AQUMARINE).add(ItemInit.AQUMARINE.get())
+        tag(TagsInit.ItemTagsInit.INGOTS_ENDERITE).add(ItemInit.ENDERITE.get())
         // raw ores
         tag(TagsInit.ItemTagsInit.RAW_RUBY).add(ItemInit.RAW_RUBY.get())
         tag(TagsInit.ItemTagsInit.RAW_RAINBOW).add(ItemInit.RAW_RAINBOW.get())
         tag(TagsInit.ItemTagsInit.RAW_SAPPHIRE).add(ItemInit.RAW_SAPPHIRE.get())
         tag(TagsInit.ItemTagsInit.RAW_GRAPHITE).add(ItemInit.RAW_GRAPHITE.get())
         tag(TagsInit.ItemTagsInit.RAW_AQUMARINE).add(ItemInit.RAW_AQUMARINE.get())
+        tag(TagsInit.ItemTagsInit.RAW_ENDERITE).add(ItemInit.RAW_ENDERITE.get())
     }
 }

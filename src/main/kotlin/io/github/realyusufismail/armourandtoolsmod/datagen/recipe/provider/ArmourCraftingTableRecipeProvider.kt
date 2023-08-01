@@ -287,5 +287,47 @@ class ArmourCraftingTableRecipeProvider(
             .pattern("A A")
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_AQUMARINE))
             .save(consumer, modId("aqumarine_boots"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_HEAD,
+                RecipeCategory.COMBAT,
+                ItemInit.ENDERITE_HELMET)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .pattern("AAA")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_helmet"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_CHEST,
+                RecipeCategory.COMBAT,
+                ItemInit.ENDERITE_CHESTPLATE)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .pattern("A A")
+            .pattern("AAA")
+            .pattern("AAA")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_chestplate"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_LEGS,
+                RecipeCategory.COMBAT,
+                ItemInit.ENDERITE_LEGGINGS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .pattern("AAA")
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_leggings"))
+
+        CustomArmourCraftingTableRecipeBuilder.shaped(
+                CustomArmourCraftingBookCategory.ARMOUR_FEET,
+                RecipeCategory.COMBAT,
+                ItemInit.ENDERITE_BOOTS)
+            .define('A', TagsInit.ItemTagsInit.INGOTS_ENDERITE)
+            .pattern("A A")
+            .pattern("A A")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
+            .save(consumer, modId("enderite_boots"))
     }
 }

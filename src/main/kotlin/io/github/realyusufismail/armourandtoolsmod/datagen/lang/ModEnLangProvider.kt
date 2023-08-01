@@ -39,6 +39,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addBlock(BlockInit.GRAPHITE_ORE, "Graphite Ore")
         addBlock(BlockInit.RAINBOW_ORE, "Rainbow Ore")
         addBlock(BlockInit.AQUMARINE_ORE, "Aqumarine Ore")
+        addBlock(BlockInit.ENDERITE_ORE, "Enderite Ore")
 
         // blocks
         addBlock(BlockInit.RUBY_BLOCK, "Ruby Block")
@@ -46,6 +47,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addBlock(BlockInit.GRAPHITE_BLOCK, "Graphite Block")
         addBlock(BlockInit.RAINBOW_BLOCK, "Rainbow Block")
         addBlock(BlockInit.AQUMARINE_BLOCK, "Aqumarine Block")
+        addBlock(BlockInit.ENDERITE_BLOCK, "Enderite Block")
 
         // deepslate ores
         addBlock(BlockInit.DEEPSLATE_RUBY_ORE, "Deepslate Ruby Ore")
@@ -64,6 +66,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.GRAPHITE, "Graphite")
         addItem(ItemInit.RAINBOW, "Rainbow Ingot")
         addItem(ItemInit.AQUMARINE, "Aqumarine")
+        addItem(ItemInit.ENDERITE, "Enderite")
 
         // raw ores
         addItem(ItemInit.RAW_RUBY, "Raw Ruby")
@@ -71,6 +74,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.RAW_GRAPHITE, "Raw Graphite")
         addItem(ItemInit.RAW_RAINBOW, "Raw Rainbow")
         addItem(ItemInit.RAW_AQUMARINE, "Raw Aqumarine")
+        addItem(ItemInit.RAW_ENDERITE, "Raw Enderite")
 
         // armor
         addItem(ItemInit.RUBY_HELMET, "Ruby Helmet")
@@ -97,6 +101,10 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.AMETHYST_CHESTPLATE, "Amethyst Chestplate")
         addItem(ItemInit.AMETHYST_LEGGINGS, "Amethyst Leggings")
         addItem(ItemInit.AMETHYST_BOOTS, "Amethyst Boots")
+        addItem(ItemInit.ENDERITE_HELMET, "Enderite Helmet")
+        addItem(ItemInit.ENDERITE_CHESTPLATE, "Enderite Chestplate")
+        addItem(ItemInit.ENDERITE_LEGGINGS, "Enderite Leggings")
+        addItem(ItemInit.ENDERITE_BOOTS, "Enderite Boots")
 
         // Tools, Shields, etc.
         addItem(ItemInit.RUBY_SWORD, "Ruby Sword")
@@ -104,6 +112,11 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.RUBY_AXE, "Ruby Axe")
         addItem(ItemInit.RUBY_SHOVEL, "Ruby Shovel")
         addItem(ItemInit.RUBY_HOE, "Ruby Hoe")
+        addItem(ItemInit.ENDERITE_SWORD, "Enderite Sword")
+        addItem(ItemInit.ENDERITE_PICKAXE, "Enderite Pickaxe")
+        addItem(ItemInit.ENDERITE_AXE, "Enderite Axe")
+        addItem(ItemInit.ENDERITE_SHOVEL, "Enderite Shovel")
+        addItem(ItemInit.ENDERITE_HOE, "Enderite Hoe")
 
         // Shields
         addItem(ItemInit.RUBY_SHIELD, "Ruby Shield")

@@ -41,6 +41,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         normalBlock(BlockInit.SAPPHIRE_ORE.get())
         normalBlock(BlockInit.GRAPHITE_ORE.get())
         normalBlock(BlockInit.AQUMARINE_ORE.get())
+        normalBlock(BlockInit.ENDERITE_ORE.get())
         normalBlock(BlockInit.DEEPSLATE_RUBY_ORE.get())
         normalBlock(BlockInit.DEEPSLATE_RAINBOW_ORE.get())
         normalBlock(BlockInit.DEEPSLATE_SAPPHIRE_ORE.get())
@@ -51,6 +52,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         normalBlock(BlockInit.SAPPHIRE_BLOCK.get())
         normalBlock(BlockInit.GRAPHITE_BLOCK.get())
         normalBlock(BlockInit.AQUMARINE_BLOCK.get())
+        normalBlock(BlockInit.ENDERITE_BLOCK.get())
 
         customCraftingTable(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         customCraftingTable(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())

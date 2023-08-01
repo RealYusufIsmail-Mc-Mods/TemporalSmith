@@ -48,6 +48,10 @@ object TagsInit {
             ResourceLocation.tryParse("forge:ores/aqumarine_ores")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
 
+        val ORES_ENDERITE_ORES: TagKey<Block> =
+            ResourceLocation.tryParse("forge:ores/enderite_ores")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
         val DEEPSLATE_ORES_RUBY_ORES: TagKey<Block> =
             ResourceLocation.tryParse("forge:deepslate_ores/ruby_ores")?.let {
                 BlockTags.create(it)
@@ -99,6 +103,10 @@ object TagsInit {
                 BlockTags.create(it)
             }
                 ?: throw Exception("Failed to create tag")
+
+        val STORAGE_ENDERITE =
+            ResourceLocation.tryParse("forge:storage_blocks/enderite")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
     }
 
     object ItemTagsInit {
@@ -125,6 +133,11 @@ object TagsInit {
         val ORES_AQUMARINE_ORES: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:ores/aqumarine_ores")
+                    ?: throw Exception("Failed to create tag"))
+
+        val ORES_ENDERITE_ORES: TagKey<Item> =
+            ItemTags.create(
+                ResourceLocation.tryParse("forge:ores/enderite_ores")
                     ?: throw Exception("Failed to create tag"))
 
         val DEEPSLATE_ORES_RUBY_ORES: TagKey<Item> =
@@ -177,6 +190,11 @@ object TagsInit {
                 ResourceLocation.tryParse("forge:storage_blocks/aqumarine")
                     ?: throw Exception("Failed to create tag"))
 
+        val STORAGE_ENDERITE: TagKey<Item> =
+            ItemTags.create(
+                ResourceLocation.tryParse("forge:storage_blocks/enderite")
+                    ?: throw Exception("Failed to create tag"))
+
         // ore ingots
         val INGOTS_RUBY: TagKey<Item> =
             ItemTags.create(
@@ -203,6 +221,11 @@ object TagsInit {
                 ResourceLocation.tryParse("forge:ingots/aqumarine")
                     ?: throw Exception("Failed to create tag"))
 
+        val INGOTS_ENDERITE: TagKey<Item> =
+            ItemTags.create(
+                ResourceLocation.tryParse("forge:ingots/enderite")
+                    ?: throw Exception("Failed to create tag"))
+
         // raw ore scraps
         val RAW_RUBY: TagKey<Item> =
             ItemTags.create(
@@ -227,6 +250,11 @@ object TagsInit {
         val RAW_AQUMARINE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:scraps/aqumarine")
+                    ?: throw Exception("Failed to create tag"))
+
+        val RAW_ENDERITE: TagKey<Item> =
+            ItemTags.create(
+                ResourceLocation.tryParse("forge:scraps/enderite")
                     ?: throw Exception("Failed to create tag"))
     }
 }

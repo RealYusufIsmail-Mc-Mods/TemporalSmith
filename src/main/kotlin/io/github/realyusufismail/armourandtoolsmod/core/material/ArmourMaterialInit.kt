@@ -92,7 +92,16 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.4f,
         0.4f,
-        Supplier { Ingredient.of(ItemInit.RAINBOW.get()) }) {};
+        Supplier { Ingredient.of(ItemInit.RAINBOW.get()) }),
+    ENDERITE(
+        "enderite",
+        50,
+        intArrayOf(5, 8, 10, 5),
+        50,
+        SoundEvents.ARMOR_EQUIP_DIAMOND,
+        0.4f,
+        0.4f,
+        Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }) {};
 
     override fun getDurabilityForType(p_266807_: ArmorItem.Type): Int {
         return durabilityMultiplier * armorVal[p_266807_.ordinal]

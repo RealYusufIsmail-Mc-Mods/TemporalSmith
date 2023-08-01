@@ -21,7 +21,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.4-1.0.0.beta.6"
+project.version = "1.19.4-1.0.0"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -41,7 +41,7 @@ println(
         .trimIndent())
 
 configure<UserDevExtension> {
-    mappings("parchment", "1.19.3-2023.03.12-$mcVersion")
+    mappings("parchment", "1.19.4-2023.06.26-$mcVersion")
 
     accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
 
