@@ -1,5 +1,6 @@
 package io.github.realyusufismail.armourandtoolsmod.client;
 
+import io.github.realyusufismail.armourandtoolsmod.client.renderer.shield.ArmourAndToolsModShieldItemRenderer;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 

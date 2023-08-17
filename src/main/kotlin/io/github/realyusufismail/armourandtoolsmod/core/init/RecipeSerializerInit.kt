@@ -18,9 +18,9 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.init
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableShapedRecipe
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableShapedRecipe
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableShapedRecipe
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableShapedRecipe
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraftforge.registries.DeferredRegister

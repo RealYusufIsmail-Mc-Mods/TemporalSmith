@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
@@ -222,5 +222,18 @@ class ToolCraftingTableRecipeProvider(
             .pattern("SSS")
             .unlockedBy(hasItem, has(ItemInit.RAINBOW.get()))
             .save(consumer, modId("rainbow_shield"))
+
+        // TODO: In the future make it drop of a future custom mob
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.TRIDENT,
+                RecipeCategory.TOOLS,
+                ItemInit.AQUMARINE_TRIDENT.get())
+            .define('A', ItemInit.AQUMARINE.get())
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(ItemInit.AQUMARINE.get()))
+            .save(consumer, modId("aqumarine_trident"))
     }
 }

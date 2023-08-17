@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.world
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import java.util.concurrent.CompletableFuture
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.RegistrySetBuilder

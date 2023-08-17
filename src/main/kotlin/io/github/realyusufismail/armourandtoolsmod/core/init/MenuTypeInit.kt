@@ -18,9 +18,9 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.init
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableMenu
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableMenu
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableMenu
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableMenu
 import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.AbstractContainerMenu

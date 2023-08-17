@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider

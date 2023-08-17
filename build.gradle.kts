@@ -21,7 +21,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.4-1.0.0"
+project.version = "1.19.4-1.0.1"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -260,7 +260,7 @@ tasks.create("cfPublish", net.darkhax.curseforgegradle.TaskPublishCurseForge::cl
     val mainFile = upload(projectId, jar)
     mainFile.changelog = file("CHANGELOG.md").readText()
     mainFile.changelogType = "markdown"
-    mainFile.releaseType = "beta"
+    mainFile.releaseType = "release"
     mainFile.addEmbedded("kotlin-for-forge")
     mainFile.addEmbedded("realyusufismail-core")
     mainFile.addJavaVersion("Java 17")

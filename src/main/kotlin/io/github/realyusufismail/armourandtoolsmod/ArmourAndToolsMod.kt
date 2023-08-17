@@ -18,7 +18,9 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModShieldItemRendererProvider
+import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModTridentItemRendererProvider
 import io.github.realyusufismail.armourandtoolsmod.client.ClientSetup
 import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import io.github.realyusufismail.armourandtoolsmod.core.itemgroup.ArmourAndToolsGroup
@@ -31,8 +33,6 @@ import org.slf4j.LoggerFactory
 import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 
-const val MOD_ID = "armourandtoolsmod"
-
 @Mod(MOD_ID)
 class ArmourAndToolsMod {
     init {
@@ -42,7 +42,9 @@ class ArmourAndToolsMod {
         MenuTypeInit.MENU.register(bus)
         RecipeSerializerInit.SERIALIZERS.register(bus)
         RecipeTypeInit.RECIPE_TYPES.register(bus)
+        EntityTypeInit.ENTITY_TYPES.register(bus)
 
+        // Register ourselves for server and other game events we are interested in
         // Register the item to a creative tab
         bus.addListener(ArmourAndToolsGroup::registerCreativeTab)
         // Register the data generators
@@ -51,11 +53,15 @@ class ArmourAndToolsMod {
         bus.addListener(RecipeCategoriesInit::registerRecipeBookCategories)
         // client setup listener
         bus.addListener(ClientSetup::clientSetup)
-        // register shields
+        // register shield renderer provider
         bus.addListener(ArmourAndToolsModShieldItemRendererProvider::init)
+        // register trident renderer provider
+        bus.addListener(ArmourAndToolsModTridentItemRendererProvider::init)
+        // register entity renderers
+        bus.addListener(ClientSetup::registerEntityRenders)
 
-        // Register ourselves for server and other game events we are interested in
         FORGE_BUS.register(this)
+
         logger.info("Loaded Armour and Item Mod")
     }
 
@@ -65,5 +71,7 @@ class ArmourAndToolsMod {
         fun getModIdAndName(name: String): ResourceLocation {
             return ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault()))
         }
+
+        const val MOD_ID = "armourandtoolsmod"
     }
 }

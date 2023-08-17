@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.19.4-1.0.1] - 2023-8-26
+
+### Added support for trident after figuring out how to do it.
+### More tools and elytras to be added in future.
+
 ## [1.19.4-1.0.0] - 2023-8-1
 
 ### Shields now function as intended. 

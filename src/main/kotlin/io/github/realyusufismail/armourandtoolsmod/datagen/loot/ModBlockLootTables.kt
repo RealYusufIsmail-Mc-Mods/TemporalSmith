@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.loot
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import java.util.*

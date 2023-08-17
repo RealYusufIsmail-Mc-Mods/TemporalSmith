@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.lang
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.realyusufismailcore.data.support.lang.ModEnLangProviderSupport
@@ -26,7 +26,7 @@ import net.minecraft.data.DataGenerator
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
-import net.minecraft.world.item.*
+import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraftforge.registries.RegistryObject
 
@@ -124,6 +124,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.GRAPHITE_SHIELD, "Graphite Shield")
         addItem(ItemInit.RAINBOW_SHIELD, "Rainbow Shield")
         addItem(ItemInit.AQUMARINE_SHIELD, "Aqumarine Shield")
+
+        // Trident
+        addItem(ItemInit.AQUMARINE_TRIDENT, "Aqumarine Trident")
 
         // others
         add("creativetab.armourandtoolsmod", "Armour and Item Mod")

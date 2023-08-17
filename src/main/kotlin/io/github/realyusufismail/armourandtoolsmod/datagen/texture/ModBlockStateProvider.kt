@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation

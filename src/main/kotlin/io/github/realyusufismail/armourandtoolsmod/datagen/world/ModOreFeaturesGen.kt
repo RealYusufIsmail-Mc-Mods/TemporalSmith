@@ -93,7 +93,7 @@ object ModOreFeaturesGen : ModOreFeaturesSupport() {
     private fun registerOre(
         context: BootstapContext<ConfiguredFeature<*, *>>,
         ore: ResourceKey<ConfiguredFeature<*, *>>,
-        targetBlockStates: kotlin.collections.List<OreConfiguration.TargetBlockState>,
+        targetBlockStates: List<OreConfiguration.TargetBlockState>,
         size: Int,
     ) {
         context.register(
