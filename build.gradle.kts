@@ -145,7 +145,7 @@ dependencies {
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.8")
     implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.8")
     // test
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     // core
     implementation("io.github.realyusufismail:realyusufismailcore:1.19-1.1.1")
     // Patchouli
