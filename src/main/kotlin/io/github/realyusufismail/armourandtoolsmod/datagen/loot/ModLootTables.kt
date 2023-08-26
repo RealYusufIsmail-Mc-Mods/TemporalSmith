@@ -20,7 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.loot
 
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Sets
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import java.util.stream.Collectors
 import net.minecraft.data.DataGenerator
 import net.minecraft.data.loot.LootTableProvider

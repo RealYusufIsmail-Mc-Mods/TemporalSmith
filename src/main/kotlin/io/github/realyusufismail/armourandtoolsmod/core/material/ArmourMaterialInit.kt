@@ -24,7 +24,7 @@ import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.ArmorMaterial
-import net.minecraft.world.item.Items.*
+import net.minecraft.world.item.Items.AMETHYST_SHARD
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
@@ -101,7 +101,7 @@ enum class ArmourMaterialInit(
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.4f,
         0.4f,
-        Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }) {};
+        Supplier { Ingredient.of(ItemInit.ENDERITE.get()) });
 
     override fun getDurabilityForType(p_266807_: ArmorItem.Type): Int {
         return durabilityMultiplier * armorVal[p_266807_.ordinal]

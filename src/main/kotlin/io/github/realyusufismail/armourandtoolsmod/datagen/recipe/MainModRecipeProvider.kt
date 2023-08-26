@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.ArmourCraftingTableRecipeProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.FurnaceRecipeProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.NormalCraftingTableRecipeProvider

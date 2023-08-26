@@ -18,16 +18,19 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.texture
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.util.name
-import net.minecraft.client.renderer.block.model.BlockModel
+import net.minecraft.client.renderer.block.model.BlockModel.GuiLight
 import net.minecraft.data.PackOutput
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemDisplayContext
+import net.minecraftforge.client.model.generators.ItemModelBuilder
 import net.minecraftforge.client.model.generators.ItemModelProvider
 import net.minecraftforge.client.model.generators.ModelFile
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile
+import net.minecraftforge.client.model.generators.loaders.SeparateTransformsModelBuilder
 import net.minecraftforge.common.data.ExistingFileHelper
 
 class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
@@ -99,6 +102,9 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         tool(ItemInit.ENDERITE_SHOVEL.get())
         tool(ItemInit.ENDERITE_HOE.get())
 
+        // Trident
+        trident(ItemInit.AQUMARINE_TRIDENT.get())
+
         val builtInEntityModel: ModelFile = UncheckedModelFile("builtin/entity")
 
         val rubyShieldBlocking =
@@ -137,6 +143,79 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
             .texture("layer0", "item/$name")
     }
 
+    private fun trident(item: Item) {
+        val name = item.name
+        val itemLoc = modLoc("$folder/$name")
+        val guiModel =
+            nested()
+                .parent(
+                    withExistingParent(name + "_gui", "item/generated").texture("layer0", itemLoc))
+        val throwModel = tridentThrowModel(name, itemLoc, guiModel)
+        tridentInHandBuilder(name, itemLoc, throwModel, guiModel)
+    }
+
+    private fun tridentThrowModel(
+        name: String,
+        itemLoc: ResourceLocation,
+        guiModel: ItemModelBuilder
+    ): ItemModelBuilder {
+        return getBuilder(name + "_throwing")
+            .guiLight(GuiLight.FRONT)
+            .texture("particle", itemLoc)
+            .customLoader<SeparateTransformsModelBuilder<ItemModelBuilder>> {
+                parent: ItemModelBuilder?,
+                existingFileHelper: ExistingFileHelper? ->
+                SeparateTransformsModelBuilder.begin(parent, existingFileHelper)
+            } // Throwing model is "base" so that we can have our transforms
+            .base(
+                nested()
+                    .parent(getExistingFile(mcLoc("trident_throwing")))
+                    .texture(
+                        "particle",
+                        itemLoc)) // Gui, ground, and fixed all use the normal "item model"
+            .perspective(ItemDisplayContext.GUI, guiModel)
+            .perspective(ItemDisplayContext.GROUND, guiModel)
+            .perspective(ItemDisplayContext.FIXED, guiModel)
+            .end()
+    }
+
+    private fun tridentInHandBuilder(
+        name: String,
+        itemLoc: ResourceLocation,
+        throwingModel: ItemModelBuilder,
+        guiModel: ItemModelBuilder
+    ): SeparateTransformsModelBuilder<ItemModelBuilder>? {
+        return getBuilder(name)
+            .guiLight(GuiLight.FRONT)
+            .texture(
+                "particle",
+                itemLoc) // Override when throwing to the throwing model to ensure we have the
+            // correct transforms
+            .override()
+            .predicate(modLoc("throwing"), 1f)
+            .model(throwingModel)
+            .end()
+            .customLoader<SeparateTransformsModelBuilder<ItemModelBuilder>> {
+                parent: ItemModelBuilder?,
+                existingFileHelper: ExistingFileHelper? ->
+                SeparateTransformsModelBuilder.begin(parent, existingFileHelper)
+            } // In hand model is base
+            .base(
+                nested()
+                    .parent(getExistingFile(mcLoc("trident_in_hand")))
+                    .texture("particle", itemLoc) // Add head transformation
+                    .transforms()
+                    .transform(ItemDisplayContext.HEAD)
+                    .rotation(0f, 180f, 120f)
+                    .translation(8f, 10f, -11f)
+                    .scale(1.5f)
+                    .end()
+                    .end()) // Gui, ground, and fixed all use the normal "item model"
+            .perspective(ItemDisplayContext.GUI, guiModel)
+            .perspective(ItemDisplayContext.GROUND, guiModel)
+            .perspective(ItemDisplayContext.FIXED, guiModel)
+    }
+
     private fun shieldBlockingModel(
         path: String,
         parent: ModelFile,
@@ -144,7 +223,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
     ): ModelFile {
         return getBuilder(path)
             .parent(parent)
-            .guiLight(BlockModel.GuiLight.FRONT)
+            .guiLight(GuiLight.FRONT)
             .texture("particle", modLoc("$BLOCK_FOLDER/$particleTexture"))
             .transforms()
             .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
@@ -183,7 +262,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
     ) {
         getBuilder(path)
             .parent(parent)
-            .guiLight(BlockModel.GuiLight.FRONT)
+            .guiLight(GuiLight.FRONT)
             .texture("particle", modLoc("$BLOCK_FOLDER/$particleTexture"))
             .transforms()
             .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)

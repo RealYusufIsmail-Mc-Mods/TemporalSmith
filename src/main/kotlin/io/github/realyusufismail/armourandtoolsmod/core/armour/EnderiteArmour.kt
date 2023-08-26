@@ -22,7 +22,7 @@ import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.ArmorMaterial
 import net.minecraft.world.item.ItemStack
 
-class EnderiteArmour(materialIn: ArmorMaterial, armourType: ArmorItem.Type, builder: Properties) :
+class EnderiteArmour(materialIn: ArmorMaterial, armourType: Type, builder: Properties) :
     ArmorItem(materialIn, armourType, builder) {
 
     override fun isFoil(stack: ItemStack): Boolean {

@@ -23,7 +23,7 @@ import com.google.common.collect.Maps
 import com.google.common.collect.Sets
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import java.util.*
 import java.util.function.Consumer
@@ -245,7 +245,7 @@ object CustomArmourCraftingTableRecipeBuilder {
             return advancement.serializeToJson()
         }
 
-        override fun getAdvancementId(): ResourceLocation? {
+        override fun getAdvancementId(): ResourceLocation {
             return advancementId
         }
 

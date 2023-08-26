@@ -18,16 +18,18 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.init
 
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.armour.*
-import io.github.realyusufismail.armourandtoolsmod.core.items.CustomSwordItem
 import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialInit
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomShieldMaterial
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
-import io.github.realyusufismail.armourandtoolsmod.core.shields.*
+import io.github.realyusufismail.armourandtoolsmod.items.CustomSwordItem
+import io.github.realyusufismail.armourandtoolsmod.items.shield.ArmourToolsModShieldItem
+import io.github.realyusufismail.armourandtoolsmod.items.trident.AqumarineTridentItem
 import net.minecraft.world.item.*
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
+import net.minecraftforge.registries.RegistryObject
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
 import thedarkcolour.kotlinforforge.forge.registerObject
 
@@ -306,6 +308,8 @@ object ItemInit {
         }
 
     // Tridents
+    val AQUMARINE_TRIDENT: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("aqumarine_trident", AQUMARINE) { AqumarineTridentItem() }
 
     // Shields
     val RUBY_SHIELD: ObjectHolderDelegate<Item> =
@@ -336,9 +340,9 @@ object ItemInit {
     private fun DeferredRegister<Item>.registerSmeltableObject(
         name: String,
         associatedOreIngot: ObjectHolderDelegate<Item>,
-        supplier: () -> Item,
+        supplier: () -> Item
     ): ObjectHolderDelegate<Item> {
-        val registryObject = this.register(name, supplier)
+        val registryObject: RegistryObject<Item> = this.register(name, supplier)
 
         val o = ObjectHolderDelegate(registryObject)
 

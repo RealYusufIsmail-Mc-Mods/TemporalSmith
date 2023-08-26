@@ -21,10 +21,10 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import com.google.common.base.Supplier
 import com.google.common.base.Suppliers
 import com.google.common.collect.ImmutableList
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.book.CustomArmourCraftingBookCategory
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.book.CustomToolsCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableRecipe
+import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableRecipe
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.book.CustomToolsCraftingBookCategory
 import net.minecraft.client.RecipeBookCategories
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items

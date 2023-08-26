@@ -19,7 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen.spirit
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
-import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import java.util.*
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile
 import net.minecraft.data.PackOutput

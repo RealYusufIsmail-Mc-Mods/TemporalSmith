@@ -18,8 +18,10 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.client
 
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.armour.CustomArmourCraftingTableScreen
-import io.github.realyusufismail.armourandtoolsmod.core.blocks.tool.CustomToolCraftingTableScreen
+import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableScreen
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableScreen
+import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.AqumarineTridentItemRenderer
+import io.github.realyusufismail.armourandtoolsmod.core.init.EntityTypeInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.MenuTypeInit
 import net.minecraft.client.gui.screens.MenuScreens
@@ -28,6 +30,7 @@ import net.minecraft.client.renderer.item.ItemProperties
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
+import net.minecraftforge.client.event.EntityRenderersEvent
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 
 object ClientSetup {
@@ -76,6 +79,17 @@ object ClientSetup {
                 _: Int ->
                 if (entity != null && entity.isUsingItem && entity.useItem == stack) 1F else 0F
             }
+
+            ItemProperties.register(
+                ItemInit.AQUMARINE_TRIDENT.get(), ResourceLocation("throwing")) {
+                    stack: ItemStack,
+                    _: ClientLevel?,
+                    entity: LivingEntity?,
+                    _: Int ->
+                    if (entity != null && entity.isUsingItem && entity.useItem == stack) {
+                        1.0f
+                    } else 0.0f
+                }
         }
     }
 
@@ -85,5 +99,10 @@ object ClientSetup {
 
         MenuScreens.register(
             MenuTypeInit.CUSTOM_TOOL_CRAFTING_TABLE_MENU.get(), ::CustomToolCraftingTableScreen)
+    }
+
+    fun registerEntityRenders(event: EntityRenderersEvent.RegisterRenderers) {
+        event.registerEntityRenderer(
+            EntityTypeInit.AQUMARINE_THROWN_TRIDENT.get(), ::AqumarineTridentItemRenderer)
     }
 }
