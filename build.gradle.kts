@@ -15,7 +15,7 @@ plugins {
     id("net.minecraftforge.gradle") version "[6.0,6.2)"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
-    id("net.darkhax.curseforgegradle") version "1.1.15"
+    id("net.darkhax.curseforgegradle") version "1.1.16"
     jacoco // code coverage reports
 }
 
