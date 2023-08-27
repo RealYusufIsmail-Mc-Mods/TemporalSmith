@@ -19,10 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
-import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.ArmourCraftingTableRecipeProvider
-import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.FurnaceRecipeProvider
-import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.NormalCraftingTableRecipeProvider
-import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.ToolCraftingTableRecipeProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.*
 import java.util.function.Consumer
 import net.minecraft.data.DataGenerator
 import net.minecraft.data.recipes.FinishedRecipe
@@ -40,6 +37,7 @@ open class MainModRecipeProvider(private val generatorIn: DataGenerator) :
         FurnaceRecipeProvider(this, pWriter).build()
         NormalCraftingTableRecipeProvider(this, pWriter).build()
         ToolCraftingTableRecipeProvider(this, pWriter).build()
+        NewSmithingTableRecipeProvider(this, pWriter).build()
     }
 
     open fun modId(path: String): ResourceLocation {
