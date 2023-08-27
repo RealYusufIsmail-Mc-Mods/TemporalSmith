@@ -147,7 +147,7 @@ dependencies {
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     // core
-    implementation("io.github.realyusufismail:realyusufismailcore:1.19-1.1.1")
+    implementation("io.github.realyusufismail:realyusufismailcore:1.19-1.1.2")
     // Patchouli
     // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
