@@ -27,7 +27,6 @@ import net.minecraft.data.loot.LootTableProvider
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.storage.loot.BuiltInLootTables
 import net.minecraft.world.level.storage.loot.LootTable
-import net.minecraft.world.level.storage.loot.LootTables
 import net.minecraft.world.level.storage.loot.ValidationContext
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 
@@ -50,8 +49,8 @@ class ModLootTables(dataGeneratorIn: DataGenerator) :
             validationContext.reportProblem("Missing mod loot table: $id")
         }
 
-        map.forEach { (id: ResourceLocation?, lootTable: LootTable?) ->
-            LootTables.validate(validationContext, id, lootTable)
+        map.forEach { (_: ResourceLocation, lootTable: LootTable) ->
+            lootTable.validate(validationContext)
         }
     }
 }

@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import java.util.function.Consumer
@@ -39,6 +40,6 @@ class NewSmithingTableRecipeProvider(
                 Ingredient.of(Items.TIDE_ARMOR_TRIM_SMITHING_TEMPLATE),
                 RecipeCategory.MISC)
             .unlocks("has_diamond", has(Items.DIAMOND))
-            .save(pWriter, "armourandtoolsmod:ruby_helmet_smithing")
+            .save(pWriter, ArmourAndToolsMod.getModIdAndName("ruby_helmet_smithing_trim"))
     }
 }

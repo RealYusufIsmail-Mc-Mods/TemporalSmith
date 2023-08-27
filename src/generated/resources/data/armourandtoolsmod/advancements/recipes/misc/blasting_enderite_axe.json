@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:blasting_enderite_axe"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

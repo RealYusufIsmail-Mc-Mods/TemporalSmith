@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:blasting_deepslate_sapphire_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

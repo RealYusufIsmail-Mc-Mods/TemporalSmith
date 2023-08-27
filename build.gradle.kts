@@ -21,11 +21,11 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.4-1.0.1"
+project.version = "1.20.1-1.0.0"
 
 base.archivesName.set("armourandtoolsmod")
 
-val mcVersion = "1.19.4"
+val mcVersion = "1.20.1"
 
 // A project ID is required to tell CurseForge which project the uploaded
 // file belongs to. This is public on your project page and is not private
@@ -41,7 +41,7 @@ println(
         .trimIndent())
 
 configure<UserDevExtension> {
-    mappings("parchment", "1.19.4-2023.06.26-$mcVersion")
+    mappings("parchment", "2023.08.20-$mcVersion")
 
     accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
 
@@ -138,7 +138,7 @@ repositories {
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:1.19.4-45.1.0")
+    minecraft("net.minecraftforge:forge:1.20.1-47.1.0")
     // kotlin forge
     implementation("thedarkcolour:kotlinforforge:4.4.0")
     // Logger
@@ -147,10 +147,7 @@ dependencies {
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     // core
-    implementation("io.github.realyusufismail:realyusufismailcore:1.19-1.1.2")
-    // Patchouli
-    // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
-    // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
+    implementation("io.github.realyusufismail:realyusufismailcore:1.20.1-1.0.1")
     // Json
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
 }

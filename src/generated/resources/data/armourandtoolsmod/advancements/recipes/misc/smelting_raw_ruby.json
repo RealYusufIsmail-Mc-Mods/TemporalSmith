@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:smelting_raw_ruby"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

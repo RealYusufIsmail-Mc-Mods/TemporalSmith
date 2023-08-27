@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:custom_tool_crafting_table_recipe"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

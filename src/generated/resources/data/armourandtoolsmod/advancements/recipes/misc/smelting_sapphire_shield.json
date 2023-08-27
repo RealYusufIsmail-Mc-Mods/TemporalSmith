@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:smelting_sapphire_shield"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

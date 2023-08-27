@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.HashMap;
@@ -38,10 +38,11 @@ public class LITBlock extends Block {
     public static Map<Class, List<LitBlockParticleColour>> particleColours = new HashMap<>();
 
     protected LITBlock(List<LitBlockParticleColour> particleColour, int lightLevel, Class blockClass) {
-        super(Properties.of(Material.STONE)
+        super(Properties.of()
                 .requiresCorrectToolForDrops()
                 .randomTicks()
                 .lightLevel(litBlockEmission(lightLevel))
+                .mapColor(MapColor.METAL)
                 .strength(3.0f, 3.0f));
 
         particleColours.put(blockClass, particleColour);

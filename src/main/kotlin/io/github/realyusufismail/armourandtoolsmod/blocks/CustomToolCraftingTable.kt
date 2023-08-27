@@ -36,11 +36,11 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.material.Material
+import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.phys.BlockHitResult
 
 class CustomToolCraftingTable :
-    Block(Properties.of(Material.METAL).strength(5.0f, 6.0f).sound(SoundType.METAL)) {
+    Block(Properties.of().strength(5.0f, 6.0f).sound(SoundType.METAL).mapColor(MapColor.METAL)) {
     private val containerTitle: Component =
         Component.translatable("container.custom_tool_crafting_table")
     private val containerDescription: Component =

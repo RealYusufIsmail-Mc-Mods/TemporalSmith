@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:blasting_ruby_shovel"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -71,7 +71,7 @@ object DataGenerators {
                     PackMetadataSection(
                         Component.literal("Armour and Tools Mod Resources"),
                         DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
-                        Arrays.stream(PackType.values())
+                        Arrays.stream(PackType.entries.toTypedArray())
                             .collect(
                                 Collectors.toMap(
                                     Function.identity(),

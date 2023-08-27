@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:smelting_enderite_hoe"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

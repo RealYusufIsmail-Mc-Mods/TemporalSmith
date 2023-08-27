@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:blasting_graphite_boots"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

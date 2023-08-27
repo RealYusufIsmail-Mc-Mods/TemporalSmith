@@ -36,7 +36,6 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.material.Material
 import net.minecraft.world.phys.BlockHitResult
 
 /**
@@ -45,7 +44,7 @@ import net.minecraft.world.phys.BlockHitResult
  * Recipe: one iron block, one crafting table and one stone.
  */
 class CustomArmourCraftingTable :
-    Block(Properties.of(Material.METAL).strength(5.0f, 6.0f).sound(SoundType.METAL)) {
+    Block(Properties.of().strength(5.0f, 6.0f).sound(SoundType.METAL)) {
     private val containerTitle: Component =
         Component.translatable("container.custom_armour_crafting_table")
     private val containerDescription: Component =
@@ -76,7 +75,7 @@ class CustomArmourCraftingTable :
         p_52242_: BlockPos,
     ): MenuProvider {
         return SimpleMenuProvider(
-            { p_52229_: Int, p_52230_: Inventory, p_52231_: Player? ->
+            { p_52229_: Int, p_52230_: Inventory, _: Player? ->
                 CustomArmourCraftingTableMenu(
                     p_52229_, p_52230_, ContainerLevelAccess.create(p_52241_, p_52242_))
             },

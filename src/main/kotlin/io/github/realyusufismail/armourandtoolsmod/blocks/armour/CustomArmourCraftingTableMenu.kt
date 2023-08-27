@@ -120,7 +120,7 @@ class CustomArmourCraftingTableMenu(
     }
 
     override fun recipeMatches(pRecipe: Recipe<in CustomArmourCraftingTableContainer>): Boolean {
-        return pRecipe.matches(craftSlots, player.level)
+        return pRecipe.matches(craftSlots, player.level())
     }
 
     /** Called when the container is closed. */

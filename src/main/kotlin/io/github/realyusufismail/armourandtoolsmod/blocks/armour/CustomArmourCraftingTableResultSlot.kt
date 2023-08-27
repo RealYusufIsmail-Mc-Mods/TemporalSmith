@@ -73,11 +73,11 @@ class CustomArmourCraftingTableResultSlot(
     /** the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. */
     override fun checkTakeAchievements(pStack: ItemStack) {
         if (this.removeCount > 0) {
-            pStack.onCraftedBy(this.player.level, this.player, this.removeCount)
+            pStack.onCraftedBy(this.player.level(), this.player, this.removeCount)
             ForgeEventFactory.firePlayerCraftingEvent(this.player, pStack, this.craftSlots)
         }
         if (container is RecipeHolder) {
-            (container as RecipeHolder).awardUsedRecipes(this.player)
+            (container as RecipeHolder).awardUsedRecipes(this.player, listOf(pStack))
         }
         this.removeCount = 0
     }
@@ -86,8 +86,11 @@ class CustomArmourCraftingTableResultSlot(
         checkTakeAchievements(pStack)
         ForgeHooks.setCraftingPlayer(pPlayer)
         val nonnulllist =
-            pPlayer.level.recipeManager.getRemainingItemsFor(
-                RecipeTypeInit.ARMOUR_CRAFTING.get(), this.craftSlots, pPlayer.level)
+            pPlayer
+                .level()
+                .recipeManager
+                .getRemainingItemsFor(
+                    RecipeTypeInit.ARMOUR_CRAFTING.get(), this.craftSlots, pPlayer.level())
         ForgeHooks.setCraftingPlayer(null)
         for (i in nonnulllist.indices) {
             var itemstack: ItemStack = this.craftSlots.getItem(i)
@@ -99,8 +102,8 @@ class CustomArmourCraftingTableResultSlot(
             if (!itemstack1.isEmpty) {
                 if (itemstack.isEmpty) {
                     this.craftSlots.setItem(i, itemstack1)
-                } else if (ItemStack.isSame(itemstack, itemstack1) &&
-                    ItemStack.tagMatches(itemstack, itemstack1)) {
+                } else if (ItemStack.isSameItem(itemstack, itemstack1) &&
+                    ItemStack.isSameItemSameTags(itemstack, itemstack1)) {
                     itemstack1.grow(itemstack.count)
                     this.craftSlots.setItem(i, itemstack1)
                 } else if (!this.player.inventory.add(itemstack1)) {

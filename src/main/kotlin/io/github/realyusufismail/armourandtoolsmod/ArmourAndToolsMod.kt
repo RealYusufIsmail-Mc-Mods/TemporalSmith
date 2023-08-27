@@ -23,7 +23,6 @@ import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModShiel
 import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModTridentItemRendererProvider
 import io.github.realyusufismail.armourandtoolsmod.client.ClientSetup
 import io.github.realyusufismail.armourandtoolsmod.core.init.*
-import io.github.realyusufismail.armourandtoolsmod.core.itemgroup.ArmourAndToolsGroup
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators
 import java.util.*
 import net.minecraft.resources.ResourceLocation
@@ -43,10 +42,9 @@ class ArmourAndToolsMod {
         RecipeSerializerInit.SERIALIZERS.register(bus)
         RecipeTypeInit.RECIPE_TYPES.register(bus)
         EntityTypeInit.ENTITY_TYPES.register(bus)
+        CreativeModeTabInit.CREATIVE_MODE_TAB.register(bus)
 
         // Register ourselves for server and other game events we are interested in
-        // Register the item to a creative tab
-        bus.addListener(ArmourAndToolsGroup::registerCreativeTab)
         // Register the data generators
         bus.addListener(DataGenerators::gatherData)
         // adds recipe category

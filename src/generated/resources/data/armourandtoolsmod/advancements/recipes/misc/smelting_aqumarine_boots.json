@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:smelting_aqumarine_boots"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

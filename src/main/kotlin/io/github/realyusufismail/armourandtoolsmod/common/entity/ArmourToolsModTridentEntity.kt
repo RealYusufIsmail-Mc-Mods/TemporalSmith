@@ -76,7 +76,7 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
         val i = entityData.get(ID_LOYALTY).toInt()
         if (i > 0 && (dealtDamage || this.isNoPhysics) && entity != null) {
             if (!isAcceptibleReturnOwner()) {
-                if (!level.isClientSide && pickup == Pickup.ALLOWED) {
+                if (!level().isClientSide && pickup == Pickup.ALLOWED) {
                     this.spawnAtLocation(this.pickupItem, 0.1f)
                 }
                 discard()
@@ -84,7 +84,7 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
                 setNoPhysics(true)
                 val vec3 = entity.eyePosition.subtract(position())
                 setPosRaw(this.x, this.y + vec3.y * 0.015 * i.toDouble(), this.z)
-                if (level.isClientSide) {
+                if (level().isClientSide) {
                     yOld = this.y
                 }
                 val d0 = 0.05 * i.toDouble()
@@ -131,7 +131,8 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
         }
 
         val shooter = this.owner
-        val damageSource: DamageSource = this.level.damageSources().trident(this, (shooter ?: this))
+        val damageSource: DamageSource =
+            this.level().damageSources().trident(this, (shooter ?: this))
         dealtDamage = true
         var soundEvent = SoundEvents.TRIDENT_HIT
         if (entity.hurt(damageSource, damage)) {
@@ -149,14 +150,14 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
 
         deltaMovement = deltaMovement.multiply(-0.01, -0.1, -0.01)
         var f1 = 1.0f
-        if (level is ServerLevel && level.isThundering && isChanneling()) {
+        if (level() is ServerLevel && level().isThundering && isChanneling()) {
             val blockpos = entity.blockPosition()
-            if (level.canSeeSky(blockpos)) {
-                val lightningbolt = EntityType.LIGHTNING_BOLT.create(level)
+            if (level().canSeeSky(blockpos)) {
+                val lightningbolt = EntityType.LIGHTNING_BOLT.create(level())
                 if (lightningbolt != null) {
                     lightningbolt.moveTo(Vec3.atBottomCenterOf(blockpos))
                     lightningbolt.cause = if (shooter is ServerPlayer) shooter else null
-                    level.addFreshEntity(lightningbolt)
+                    level().addFreshEntity(lightningbolt)
                     soundEvent = SoundEvents.TRIDENT_THUNDER
                     f1 = 5.0f
                 }

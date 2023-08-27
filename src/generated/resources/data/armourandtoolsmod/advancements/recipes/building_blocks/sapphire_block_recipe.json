@@ -30,5 +30,6 @@
     "recipes": [
       "armourandtoolsmod:sapphire_block_recipe"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

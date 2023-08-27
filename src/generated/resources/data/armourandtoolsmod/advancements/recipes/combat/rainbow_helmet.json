@@ -28,5 +28,6 @@
     "recipes": [
       "armourandtoolsmod:rainbow_helmet"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

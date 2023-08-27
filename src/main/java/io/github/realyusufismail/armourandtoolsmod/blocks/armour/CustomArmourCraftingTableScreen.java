@@ -2,6 +2,7 @@ package io.github.realyusufismail.armourandtoolsmod.blocks.armour;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -53,30 +54,32 @@ public class CustomArmourCraftingTableScreen extends AbstractContainerScreen<Cus
         this.recipeBookComponent.tick();
     }
 
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
-        this.renderBackground(pPoseStack);
+    /**
+     * Renders the graphical user interface (GUI) element.
+     * @param pGuiGraphics the GuiGraphics object used for rendering.
+     * @param pMouseX the x-coordinate of the mouse cursor.
+     * @param pMouseY the y-coordinate of the mouse cursor.
+     * @param pPartialTick the partial tick time.
+     */
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        this.renderBackground(pGuiGraphics);
         if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
-            this.renderBg(pPoseStack, pPartialTick, pMouseX, pMouseY);
-            this.recipeBookComponent.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+            this.renderBg(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
+            this.recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         } else {
-            this.recipeBookComponent.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-            super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-            this.recipeBookComponent.renderGhostRecipe(pPoseStack, this.leftPos, this.topPos, true,
-                    pPartialTick);
+            this.recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+            super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+            this.recipeBookComponent.renderGhostRecipe(pGuiGraphics, this.leftPos, this.topPos, true, pPartialTick);
         }
 
-        this.renderTooltip(pPoseStack, pMouseX, pMouseY);
-        this.recipeBookComponent.renderTooltip(pPoseStack, this.leftPos, this.topPos, pMouseX,
-                pMouseY);
+        this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
+        this.recipeBookComponent.renderTooltip(pGuiGraphics, this.leftPos, this.topPos, pMouseX, pMouseY);
     }
 
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pX, int pY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, CRAFTING_TABLE_LOCATION);
+    protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
-        blit(pPoseStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        pGuiGraphics.blit(CRAFTING_TABLE_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
     }
 
     protected boolean isHovering(int pX, int pY, int pWidth, int pHeight, double pMouseX,

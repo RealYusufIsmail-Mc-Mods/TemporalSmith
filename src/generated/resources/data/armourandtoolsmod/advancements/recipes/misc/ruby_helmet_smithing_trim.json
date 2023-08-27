@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "armourandtoolsmod:ruby_helmet_smithing"
+        "recipe": "armourandtoolsmod:ruby_helmet_smithing_trim"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,8 @@
   ],
   "rewards": {
     "recipes": [
-      "armourandtoolsmod:ruby_helmet_smithing"
+      "armourandtoolsmod:ruby_helmet_smithing_trim"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

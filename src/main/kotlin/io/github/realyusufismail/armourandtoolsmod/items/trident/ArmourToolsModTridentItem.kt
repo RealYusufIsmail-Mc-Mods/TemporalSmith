@@ -145,12 +145,11 @@ abstract class ArmourToolsModTridentItem :
                         f3 *= f5 / f4
                         pEntityLiving.push(f1.toDouble(), f2.toDouble(), f3.toDouble())
                         pEntityLiving.startAutoSpinAttack(20)
-                        if (pEntityLiving.isOnGround()) {
+                        if (pEntityLiving.onGround()) {
                             val f6 = 1.1999999f
                             pEntityLiving.move(MoverType.SELF, Vec3(0.0, 1.1999999, 0.0))
                         }
-                        val soundevent: SoundEvent
-                        soundevent =
+                        val soundevent: SoundEvent =
                             if (j >= 3) {
                                 SoundEvents.TRIDENT_RIPTIDE_3
                             } else if (j == 2) {
