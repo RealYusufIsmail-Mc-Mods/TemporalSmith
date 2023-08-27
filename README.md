@@ -5,7 +5,7 @@
 [![](http://cf.way2muchnoise.eu/versions/480779.svg)](https://www.curseforge.com/minecraft/mc-mods/armour-and-items-mod)
 [![License: Apache License](https://img.shields.io/badge/License-Apache_License-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-# This Mod is currently being rewored so please be pation while things are being implemented.
+# This Mod is currently being reworked so please be patient while things are being implemented.
 
 ## About this Mod
 
