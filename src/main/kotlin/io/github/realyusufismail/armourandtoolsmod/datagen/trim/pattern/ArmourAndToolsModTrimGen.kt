@@ -18,4 +18,15 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.trim.pattern
 
-class StripesProvider {}
+import com.mojang.serialization.JsonOps
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
+import net.minecraft.data.PackOutput
+import net.minecraft.server.packs.PackType
+import net.minecraftforge.common.data.ExistingFileHelper
+import net.minecraftforge.common.data.JsonCodecProvider
+
+class ArmourAndToolsModTrimGen(val output : PackOutput,val fileHelper : ExistingFileHelper)
+    : JsonCodecProvider<TrimGen>(output, fileHelper, ArmourAndToolsMod.MOD_ID, JsonOps.INSTANCE, PackType.CLIENT_RESOURCES,
+        "trim_pattern", TrimGen.CODEC, mapOf()) {
+
+}
