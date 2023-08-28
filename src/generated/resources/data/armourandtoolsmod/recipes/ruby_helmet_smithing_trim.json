@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smithing_trim",
   "addition": {
-    "item": "minecraft:tide_armor_trim_smithing_template"
+    "item": "minecraft:diamond"
   },
   "base": {
     "item": "armourandtoolsmod:ruby_helmet"
   },
   "template": {
-    "item": "minecraft:diamond"
+    "item": "minecraft:tide_armor_trim_smithing_template"
   }
 }

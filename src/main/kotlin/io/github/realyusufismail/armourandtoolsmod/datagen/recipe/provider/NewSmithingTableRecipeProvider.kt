@@ -35,9 +35,9 @@ class NewSmithingTableRecipeProvider(
 
     fun build() {
         SmithingTrimRecipeBuilder.smithingTrim(
-                Ingredient.of(Items.DIAMOND),
-                Ingredient.of(ItemInit.RUBY_HELMET.get().asItem()),
                 Ingredient.of(Items.TIDE_ARMOR_TRIM_SMITHING_TEMPLATE),
+                Ingredient.of(ItemInit.RUBY_HELMET.get().asItem()),
+                Ingredient.of(Items.DIAMOND),
                 RecipeCategory.MISC)
             .unlocks("has_diamond", has(Items.DIAMOND))
             .save(pWriter, ArmourAndToolsMod.getModIdAndName("ruby_helmet_smithing_trim"))
