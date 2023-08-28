@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.20.1-1.0.0] - 2023-8-28
+
+### Added support for 1.20.1 but is Short term support as 1.19.4 is the LTS version.
+
 ## [1.19.4-1.0.1] - 2023-8-26
 
 ### Added support for trident after figuring out how to do it.
