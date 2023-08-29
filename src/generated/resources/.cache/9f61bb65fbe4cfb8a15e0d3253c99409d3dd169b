@@ -1,8 +1,12 @@
-// 1.19.4	2023-08-25T23:43:21.1002633	Item Models: armourandtoolsmod
+// 1.19.4	2023-08-29T22:44:09.9193706	Item Models: armourandtoolsmod
+6fdab53e9321f76ef7edd0a135b6879656abdad7 assets/armourandtoolsmod/models/item/amethyst_axe.json
 f523d3f594a0d1a51fb553f028ab2b20eee793dd assets/armourandtoolsmod/models/item/amethyst_boots.json
 8377e984c59ebdaa220b7d1c0973dfd4653e52fb assets/armourandtoolsmod/models/item/amethyst_chestplate.json
 8895d7116f5e4183fe38d01164721842ede9d5f1 assets/armourandtoolsmod/models/item/amethyst_helmet.json
 f4b6c07eb577e733e4a793a0c685ef47485374c9 assets/armourandtoolsmod/models/item/amethyst_leggings.json
+41fffc3ab7746fb4ae82224c996bf090dde016fb assets/armourandtoolsmod/models/item/amethyst_pickaxe.json
+317b95cc5f931eae64ac43aaf9f37e74ff9a14b8 assets/armourandtoolsmod/models/item/amethyst_shovel.json
+14de7fd5b5037fe3f9f5a8c51a941a497efb2b51 assets/armourandtoolsmod/models/item/amethyst_sword.json
 bcd1561c42adb01c5a4102f863dc885f29d4b9e4 assets/armourandtoolsmod/models/item/aqumarine.json
 8bec48f2b18876bd67eff3dc3cec2a8662bd4cfe assets/armourandtoolsmod/models/item/aqumarine_boots.json
 e09597118a1e608b9e07e9432300aae376e8fa3a assets/armourandtoolsmod/models/item/aqumarine_chestplate.json

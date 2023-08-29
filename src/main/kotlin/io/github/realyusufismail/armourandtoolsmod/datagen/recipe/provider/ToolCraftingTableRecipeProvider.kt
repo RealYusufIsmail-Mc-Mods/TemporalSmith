@@ -154,9 +154,69 @@ class ToolCraftingTableRecipeProvider(
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
             .save(consumer, modId("enderite_hoe"))
 
-        // TRIEDENTs
+        // AMETHYST TOOLS
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SWORD,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_SWORD.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" A ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_sword"))
 
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.PICKAXE,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_PICKAXE.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern("AAA")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_pickaxe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.AXE,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_AXE.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_axe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHOVEL,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_SHOVEL.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_shovel"))
+
+        // TRIDENTS
         // TODO : For the trident later make it a drop from a custom mob rather than crafting
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.TRIDENT,
+                RecipeCategory.TOOLS,
+                ItemInit.AQUMARINE_TRIDENT.get())
+            .define('A', ItemInit.AQUMARINE.get())
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(ItemInit.AQUMARINE.get()))
+            .save(consumer, modId("aqumarine_trident"))
+
         // SHIELDS
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SHIELD,
@@ -222,18 +282,5 @@ class ToolCraftingTableRecipeProvider(
             .pattern("SSS")
             .unlockedBy(hasItem, has(ItemInit.RAINBOW.get()))
             .save(consumer, modId("rainbow_shield"))
-
-        // TODO: In the future make it drop of a future custom mob
-        CustomToolCraftingTableRecipeBuilder.shaped(
-                CustomToolsCraftingBookCategory.TRIDENT,
-                RecipeCategory.TOOLS,
-                ItemInit.AQUMARINE_TRIDENT.get())
-            .define('A', ItemInit.AQUMARINE.get())
-            .define('S', Items.STICK)
-            .pattern(" AA")
-            .pattern(" SA")
-            .pattern(" S ")
-            .unlockedBy(hasItem, has(ItemInit.AQUMARINE.get()))
-            .save(consumer, modId("aqumarine_trident"))
     }
 }

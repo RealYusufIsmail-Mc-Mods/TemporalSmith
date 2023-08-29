@@ -1,4 +1,7 @@
 # Changelog
+## [1.19.4-1.0.2] - 2023-8-29
+
+### Added amethyst tools and sword.
 
 ## [1.19.4-1.0.1] - 2023-8-26
 
