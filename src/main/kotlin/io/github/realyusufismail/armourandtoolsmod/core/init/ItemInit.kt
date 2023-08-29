@@ -231,6 +231,15 @@ object ItemInit {
                 Item.Properties().stacksTo(1).durability(600))
         }
 
+    val AMETHYST_SWORD: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_sword") {
+            CustomSwordItem(
+                CustomToolMaterial.AMETHYST_SWORD,
+                8,
+                -2.5f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
     // Pickaxes
     val RUBY_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_pickaxe", RUBY) {
@@ -246,6 +255,15 @@ object ItemInit {
             PickaxeItem(
                 CustomToolMaterial.ENDERITE_PICKAXE,
                 6,
+                -2.7f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
+    val AMETHYST_PICKAXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_pickaxe") {
+            PickaxeItem(
+                CustomToolMaterial.AMETHYST_PICKAXE,
+                5,
                 -2.7f,
                 Item.Properties().stacksTo(1).durability(800))
         }
@@ -269,6 +287,15 @@ object ItemInit {
                 Item.Properties().stacksTo(1).durability(600))
         }
 
+    val AMETHYST_AXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_axe") {
+            AxeItem(
+                CustomToolMaterial.AMETHYST_AXE,
+                7.5F,
+                -2.5f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
     // Shovels
     val RUBY_SHOVEL: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_shovel", RUBY) {
@@ -284,6 +311,15 @@ object ItemInit {
             ShovelItem(
                 CustomToolMaterial.ENDERITE_SHOVEL,
                 4.5F,
+                -3.0f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val AMETHYST_SHOVEL: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("amethyst_shovel") {
+            ShovelItem(
+                CustomToolMaterial.AMETHYST_SHOVEL,
+                3.5F,
                 -3.0f,
                 Item.Properties().stacksTo(1).durability(600))
         }

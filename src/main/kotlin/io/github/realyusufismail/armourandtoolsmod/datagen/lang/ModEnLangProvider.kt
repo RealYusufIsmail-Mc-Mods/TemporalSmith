@@ -117,6 +117,10 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.ENDERITE_AXE, "Enderite Axe")
         addItem(ItemInit.ENDERITE_SHOVEL, "Enderite Shovel")
         addItem(ItemInit.ENDERITE_HOE, "Enderite Hoe")
+        addItem(ItemInit.AMETHYST_SWORD, "Amethyst Sword")
+        addItem(ItemInit.AMETHYST_PICKAXE, "Amethyst Pickaxe")
+        addItem(ItemInit.AMETHYST_AXE, "Amethyst Axe")
+        addItem(ItemInit.AMETHYST_SHOVEL, "Amethyst Shovel")
 
         // Shields
         addItem(ItemInit.RUBY_SHIELD, "Ruby Shield")

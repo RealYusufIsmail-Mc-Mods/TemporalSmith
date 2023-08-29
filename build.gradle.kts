@@ -21,7 +21,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.4-1.0.1"
+project.version = "1.19.4-1.0.2"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -147,7 +147,7 @@ dependencies {
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     // core
-    implementation("io.github.realyusufismail:realyusufismailcore:1.19-1.1.2")
+    implementation("io.github.realyusufismail:realyusufismailcore:1.19-1.1.4")
     // Patchouli
     // compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     // runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
