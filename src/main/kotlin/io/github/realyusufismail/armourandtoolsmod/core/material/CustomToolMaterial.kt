@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.material
 
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import java.util.function.Supplier
+import net.minecraft.world.item.Items
 import net.minecraft.world.item.Tier
 import net.minecraft.world.item.crafting.Ingredient
 
@@ -38,7 +39,11 @@ enum class CustomToolMaterial(
     ENDERITE_PICKAXE(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
     ENDERITE_AXE(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
     ENDERITE_SHOVEL(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
-    ENDERITE_HOE(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) });
+    ENDERITE_HOE(4, 3000, 15, Supplier { Ingredient.of(ItemInit.ENDERITE.get()) }),
+    AMETHYST_SWORD(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) }),
+    AMETHYST_PICKAXE(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) }),
+    AMETHYST_AXE(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) }),
+    AMETHYST_SHOVEL(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) });
 
     private val harvestLevel = 0
     private val maxUses = 0
