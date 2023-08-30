@@ -27,6 +27,7 @@ import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModBlockTagsProv
 import io.github.realyusufismail.armourandtoolsmod.datagen.tags.ModItemTagsProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModBlockStateProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.texture.ModItemStateProvider
+import io.github.realyusufismail.armourandtoolsmod.datagen.world.ModWorldGenProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.world.ModWorldGenerationProvider
 import java.util.*
 import java.util.function.Function
@@ -61,7 +62,7 @@ object DataGenerators {
             gen.addProvider(true, blockTag)
             gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))
             gen.addProvider(true, MainModRecipeProvider(gen))
-            gen.addProvider(true, ModWorldGenerationProvider(gen.packOutput, lookup))
+            gen.addProvider(true, ModWorldGenProvider(gen.packOutput, lookup))
             gen.addProvider(
                 true, ArmourAndTollsModSpriteSourceProvider(gen.packOutput, existingFileHelper))
 
