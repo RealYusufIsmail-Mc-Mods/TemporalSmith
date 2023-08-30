@@ -154,6 +154,54 @@ class ToolCraftingTableRecipeProvider(
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_ENDERITE))
             .save(consumer, modId("enderite_hoe"))
 
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SWORD,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_SWORD.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" A ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_sword"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.PICKAXE,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_PICKAXE.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern("AAA")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_pickaxe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.AXE,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_AXE.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_axe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHOVEL,
+                RecipeCategory.TOOLS,
+                ItemInit.AMETHYST_SHOVEL.get())
+            .define('A', Items.AMETHYST_SHARD)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
+            .save(consumer, modId("amethyst_shovel"))
+
         // TRIEDENTs
 
         // TODO : For the trident later make it a drop from a custom mob rather than crafting
