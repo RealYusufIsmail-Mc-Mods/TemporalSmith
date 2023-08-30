@@ -21,7 +21,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.19.4-1.0.2"
+project.version = "1.19.4-1.0.3"
 
 base.archivesName.set("armourandtoolsmod")
 

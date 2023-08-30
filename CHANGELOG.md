@@ -1,4 +1,9 @@
 # Changelog
+
+## [1.19.4-1.0.3] - 2023-8-30
+
+### Improved world gen.
+
 ## [1.19.4-1.0.2] - 2023-8-29
 
 ### Added amethyst tools and sword.
