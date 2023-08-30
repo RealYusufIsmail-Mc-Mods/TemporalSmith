@@ -15,10 +15,7 @@
       },
       {
         "state": {
-          "Name": "armourandtoolsmod:ruby_ore",
-          "Properties": {
-            "lit": "false"
-          }
+          "Name": "armourandtoolsmod:deepslate_sapphire_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
