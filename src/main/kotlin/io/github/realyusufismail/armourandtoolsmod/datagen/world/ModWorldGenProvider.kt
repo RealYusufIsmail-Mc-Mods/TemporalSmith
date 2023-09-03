@@ -19,26 +19,20 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen.world
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.worldgen.ModConfiguredFeatures
+import io.github.realyusufismail.armourandtoolsmod.worldgen.ModPlacedFeatures
 import java.util.concurrent.CompletableFuture
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.PackOutput
-import net.minecraft.data.registries.VanillaRegistries
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
-import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider
 
-/** @see VanillaRegistries */
-class ModWorldGenerationProvider(
+class ModWorldGenProvider(
     output: PackOutput,
     registries: CompletableFuture<HolderLookup.Provider>,
-) :
-    DatapackBuiltinEntriesProvider(
-        output,
-        registries,
+    val builder: RegistrySetBuilder =
         RegistrySetBuilder()
-            .add<ConfiguredFeature<*, *>>(
-                Registries.CONFIGURED_FEATURE, ModOreFeaturesGen::bootstrap)
-            .add<PlacedFeature>(Registries.PLACED_FEATURE, ModOrePlacementsGen::bootstrap),
-        mutableSetOf(MOD_ID))
+            .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
+            .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
+) : DatapackBuiltinEntriesProvider(output, registries, builder, mutableSetOf(MOD_ID))

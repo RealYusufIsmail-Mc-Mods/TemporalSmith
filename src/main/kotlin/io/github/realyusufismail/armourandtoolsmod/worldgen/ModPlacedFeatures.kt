@@ -16,22 +16,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.datagen.world
+package io.github.realyusufismail.armourandtoolsmod.worldgen
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.getModIdAndName
-import io.github.realyusufismail.realyusufismailcore.data.support.oregen.ModOrePlacementsSupport
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import net.minecraft.core.Holder
-import net.minecraft.core.HolderGetter
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.worldgen.BootstapContext
 import net.minecraft.resources.ResourceKey
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.levelgen.VerticalAnchor
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import net.minecraft.world.level.levelgen.placement.PlacementModifier
 
-object ModOrePlacementsGen : ModOrePlacementsSupport() {
+object ModPlacedFeatures {
 
     val RUBY_ORE: ResourceKey<PlacedFeature> = createKey("ruby_ore")
     val SAPPHIRE_ORE: ResourceKey<PlacedFeature> = createKey("sapphire_ore")
@@ -40,29 +39,28 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
     val RAINBOW_ORE: ResourceKey<PlacedFeature> = createKey("rainbow_ore")
     val ENDERITE_ORE: ResourceKey<PlacedFeature> = createKey("enderite_ore")
 
-    override fun bootstrap(context: BootstapContext<PlacedFeature>) {
-        val holdergetter: HolderGetter<ConfiguredFeature<*, *>> =
-            context.lookup(Registries.CONFIGURED_FEATURE)
+    fun bootstrap(context: BootstapContext<PlacedFeature>) {
+        val configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE)
 
         val holder: Holder<ConfiguredFeature<*, *>> =
-            holdergetter.getOrThrow(ModOreFeaturesGen.RUBY_ORE)
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_RUBY_ORE)
         val holder2: Holder<ConfiguredFeature<*, *>> =
-            holdergetter.getOrThrow(ModOreFeaturesGen.SAPPHIRE_ORE)
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SAPPHIRE_ORE)
         val holder3: Holder<ConfiguredFeature<*, *>> =
-            holdergetter.getOrThrow(ModOreFeaturesGen.GRAPHITE_ORE)
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_GRAPHITE_ORE)
         val holder4: Holder<ConfiguredFeature<*, *>> =
-            holdergetter.getOrThrow(ModOreFeaturesGen.AQUMARINE_ORE)
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_AQUMARINE_ORE)
         val holder5: Holder<ConfiguredFeature<*, *>> =
-            holdergetter.getOrThrow(ModOreFeaturesGen.RAINBOW_ORE)
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_RAINBOW_ORE)
         val holder6: Holder<ConfiguredFeature<*, *>> =
-            holdergetter.getOrThrow(ModOreFeaturesGen.ENDERITE_ORE)
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.END_ENDERITE_ORE)
 
         register(
             context,
             RUBY_ORE,
             holder,
-            commonOrePlacement(
-                3,
+            ModOrePlacement.commonOrePlacement(
+                3, // veins per chunk
                 HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
 
@@ -70,58 +68,68 @@ object ModOrePlacementsGen : ModOrePlacementsSupport() {
             context,
             SAPPHIRE_ORE,
             holder2,
-            commonOrePlacement(
+            ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(10))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
 
         register(
             context,
             GRAPHITE_ORE,
             holder3,
-            commonOrePlacement(
+            ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(10))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(30))))
 
         register(
             context,
             AQUMARINE_ORE,
             holder4,
-            commonOrePlacement(
+            ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
 
         register(
             context,
             RAINBOW_ORE,
             holder5,
-            commonOrePlacement(
+            ModOrePlacement.commonOrePlacement(
                 3,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-20))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
 
         register(
             context,
             ENDERITE_ORE,
             holder6,
-            commonOrePlacement(
+            ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(2), VerticalAnchor.absolute(32))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
     }
 
     private fun createKey(name: String): ResourceKey<PlacedFeature> {
-        return ResourceKey.create(Registries.PLACED_FEATURE, getModIdAndName(name))
+        return ResourceKey.create<PlacedFeature>(
+            Registries.PLACED_FEATURE, ResourceLocation(MOD_ID, name))
     }
 
     private fun register(
         context: BootstapContext<PlacedFeature>,
         key: ResourceKey<PlacedFeature>,
-        holder: Holder<ConfiguredFeature<*, *>>,
-        placement: List<PlacementModifier>,
+        configuration: Holder<ConfiguredFeature<*, *>>,
+        modifiers: List<PlacementModifier>
     ) {
-        context.register(key, PlacedFeature(holder, placement))
+        context.register(key, PlacedFeature(configuration, java.util.List.copyOf(modifiers)))
+    }
+
+    private fun register(
+        context: BootstapContext<PlacedFeature>,
+        key: ResourceKey<PlacedFeature>,
+        configuration: Holder<ConfiguredFeature<*, *>>,
+        vararg modifiers: PlacementModifier
+    ) {
+        register(context, key, configuration, listOf(*modifiers))
     }
 }
