@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.20.1-1.0.2]  - 2023-9-3
+
+### Improved worlgen
+
 ## [1.20.1-1.0.1] - 2023-8-30
 
 ### Added amethyst tools.
