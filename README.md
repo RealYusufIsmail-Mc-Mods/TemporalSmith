@@ -1,6 +1,6 @@
 # Armour and Tools Mod
-![Long Term Support](https://img.shields.io/badge/Long_Term_Support-1.19.4-green)
-![Short Term Support](https://img.shields.io/badge/Short_Term_Support-1.20.1-green)
+![Long Term Support](https://img.shields.io/badge/Long_Term_Support-1.20.1-green)
+![Short Term Support](https://img.shields.io/badge/Short_Term_Support-1.19.4-green)
 [![](http://cf.way2muchnoise.eu/480779.svg)](https://www.curseforge.com/minecraft/mc-mods/armour-and-items-mod)
 [![](http://cf.way2muchnoise.eu/versions/480779.svg)](https://www.curseforge.com/minecraft/mc-mods/armour-and-items-mod)
 [![License: Apache License](https://img.shields.io/badge/License-Apache_License-blue.svg)](https://opensource.org/licenses/Apache-2.0)
