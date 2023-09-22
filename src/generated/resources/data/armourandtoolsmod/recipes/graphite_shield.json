@@ -3,7 +3,7 @@
   "category": "shield",
   "key": {
     "A": {
-      "item": "armourandtoolsmod:graphite"
+      "tag": "forge:ingots/graphite"
     },
     "I": {
       "item": "minecraft:iron_ingot"

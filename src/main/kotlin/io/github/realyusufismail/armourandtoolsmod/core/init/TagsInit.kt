@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.core.init
 
+import java.util.*
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.BlockTags
 import net.minecraft.tags.ItemTags
@@ -28,55 +29,55 @@ import net.minecraft.world.level.block.Block
 object TagsInit {
 
     object BlockTagsInit {
-        val ORES_RUBY_ORES: TagKey<Block> =
+        val ORES_RUBY: TagKey<Block> =
             ResourceLocation.tryParse("forge:ores/ruby_ores")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
 
-        val ORES_RAINBOW_ORES: TagKey<Block> =
+        val ORES_RAINBOW: TagKey<Block> =
             ResourceLocation.tryParse("forge:ores/rainbow_ores")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
 
-        val ORES_SAPPHIRE_ORES: TagKey<Block> =
+        val ORES_SAPPHIRE: TagKey<Block> =
             ResourceLocation.tryParse("forge:ores/sapphire_ores")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
 
-        val ORES_GRAPHITE_ORES: TagKey<Block> =
+        val ORES_GRAPHITE: TagKey<Block> =
             ResourceLocation.tryParse("forge:ores/graphite_ores")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
 
-        val ORES_AQUMARINE_ORES: TagKey<Block> =
+        val ORES_AQUMARINE: TagKey<Block> =
             ResourceLocation.tryParse("forge:ores/aqumarine_ores")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
 
-        val ORES_ENDERITE_ORES: TagKey<Block> =
+        val ORES_ENDERITE: TagKey<Block> =
             ResourceLocation.tryParse("forge:ores/enderite_ores")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
 
-        val DEEPSLATE_ORES_RUBY_ORES: TagKey<Block> =
+        val DEEPSLATE_ORES_RUBY: TagKey<Block> =
             ResourceLocation.tryParse("forge:deepslate_ores/ruby_ores")?.let {
                 BlockTags.create(it)
             }
                 ?: throw Exception("Failed to create tag")
 
-        val DEEPSLATE_ORES_RAINBOW_ORES: TagKey<Block> =
+        val DEEPSLATE_ORES_RAINBOW: TagKey<Block> =
             ResourceLocation.tryParse("forge:deepslate_ores/rainbow_ores")?.let {
                 BlockTags.create(it)
             }
                 ?: throw Exception("Failed to create tag")
 
-        val DEEPSLATE_ORES_SAPPHIRE_ORES: TagKey<Block> =
+        val DEEPSLATE_ORES_SAPPHIRE: TagKey<Block> =
             ResourceLocation.tryParse("forge:deepslate_ores/sapphire_ores")?.let {
                 BlockTags.create(it)
             }
                 ?: throw Exception("Failed to create tag")
 
-        val DEEPSLATE_ORES_GRAPHITE_ORES: TagKey<Block> =
+        val DEEPSLATE_ORES_GRAPHITE: TagKey<Block> =
             ResourceLocation.tryParse("forge:deepslate_ores/graphite_ores")?.let {
                 BlockTags.create(it)
             }
                 ?: throw Exception("Failed to create tag")
 
-        val DEEPSLATE_ORES_AQUMARINE_ORES: TagKey<Block> =
+        val DEEPSLATE_ORES_AQUMARINE: TagKey<Block> =
             ResourceLocation.tryParse("forge:deepslate_ores/aqumarine_ores")?.let {
                 BlockTags.create(it)
             }
@@ -110,57 +111,57 @@ object TagsInit {
     }
 
     object ItemTagsInit {
-        val ORES_RUBY_ORES: TagKey<Item> =
+        val ORES_RUBY: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:ores/ruby_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val ORES_RAINBOW_ORES: TagKey<Item> =
+        val ORES_RAINBOW: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:ores/rainbow_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val ORES_SAPPHIRE_ORES: TagKey<Item> =
+        val ORES_SAPPHIRE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:ores/sapphire_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val ORES_GRAPHITE_ORES: TagKey<Item> =
+        val ORES_GRAPHITE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:ores/graphite_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val ORES_AQUMARINE_ORES: TagKey<Item> =
+        val ORES_AQUMARINE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:ores/aqumarine_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val ORES_ENDERITE_ORES: TagKey<Item> =
+        val ORES_ENDERITE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:ores/enderite_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val DEEPSLATE_ORES_RUBY_ORES: TagKey<Item> =
+        val DEEPSLATE_ORES_RUBY: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:deepslate_ores/ruby_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val DEEPSLATE_ORES_RAINBOW_ORES: TagKey<Item> =
+        val DEEPSLATE_ORES_RAINBOW: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:deepslate_ores/rainbow_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val DEEPSLATE_ORES_SAPPHIRE_ORES: TagKey<Item> =
+        val DEEPSLATE_ORES_SAPPHIRE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:deepslate_ores/sapphire_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val DEEPSLATE_ORES_GRAPHITE_ORES: TagKey<Item> =
+        val DEEPSLATE_ORES_GRAPHITE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:deepslate_ores/graphite_ores")
                     ?: throw Exception("Failed to create tag"))
 
-        val DEEPSLATE_ORES_AQUMARINE_ORES: TagKey<Item> =
+        val DEEPSLATE_ORES_AQUMARINE: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:deepslate_ores/aqumarine_ores")
                     ?: throw Exception("Failed to create tag"))

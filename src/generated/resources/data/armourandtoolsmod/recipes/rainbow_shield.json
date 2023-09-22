@@ -3,7 +3,7 @@
   "category": "shield",
   "key": {
     "A": {
-      "item": "armourandtoolsmod:rainbow"
+      "tag": "forge:ingots/rainbow"
     },
     "I": {
       "item": "minecraft:iron_ingot"

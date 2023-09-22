@@ -48,7 +48,7 @@ object CreativeModeTabInit {
                         .map { item: RegistryObject<Block> -> item.get().asItem() }
                         .forEach { pItem: Item -> output.accept(pItem) }
                 }
-                .icon { ItemStack(ItemInit.AQUMARINE.get()) }
+                .icon { ItemStack(ItemInit.SAPPHIRE.get()) }
                 .title(Component.translatable("creativetab.armourandtoolsmod"))
                 .build()
         }

@@ -3,7 +3,7 @@
   "category": "shield",
   "key": {
     "A": {
-      "item": "armourandtoolsmod:aqumarine"
+      "tag": "forge:ingots/aqumarine"
     },
     "I": {
       "item": "minecraft:iron_ingot"
