@@ -1,0 +1,36 @@
+{
+  "parent": "armourandtoolsmod:aqumarine_ingot",
+  "criteria": {
+    "get_block": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/aqumarine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.armourandtoolsmod.aqumarine_block.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "armourandtoolsmod:aqumarine_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.armourandtoolsmod.aqumarine_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_block"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -22,7 +22,8 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "armourandtoolsmod:aqumarine"
+      "item": "armourandtoolsmod:amethyst_sword",
+      "nbt": "{Damage:0}"
     },
     "show_toast": true,
     "title": {

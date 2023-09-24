@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-30T12:33:42.95803	Item Models: armourandtoolsmod
+// 1.20.1	2023-09-24T20:24:31.0315422	Item Models: armourandtoolsmod
 6fdab53e9321f76ef7edd0a135b6879656abdad7 assets/armourandtoolsmod/models/item/amethyst_axe.json
 f523d3f594a0d1a51fb553f028ab2b20eee793dd assets/armourandtoolsmod/models/item/amethyst_boots.json
 8377e984c59ebdaa220b7d1c0973dfd4653e52fb assets/armourandtoolsmod/models/item/amethyst_chestplate.json
@@ -60,9 +60,14 @@ f132f7b36c6d9afba4bc1584d40e04a7758574c6 assets/armourandtoolsmod/models/item/ru
 4c6eaca19b658f0cd4dd8342b776610f7c739d7b assets/armourandtoolsmod/models/item/ruby_shovel.json
 a5d0971fa9b5d9043179306cdccdebef34007a0b assets/armourandtoolsmod/models/item/ruby_sword.json
 4b0b4eb698d244132bfb8f12fc607cc01ec3c42a assets/armourandtoolsmod/models/item/sapphire.json
+ec642bc131aaa13e2e0f348116da8ea3acc70f16 assets/armourandtoolsmod/models/item/sapphire_axe.json
 55dd91859981462a224d5cbead94b2980bf83e99 assets/armourandtoolsmod/models/item/sapphire_boots.json
 1d08e6624fa8c2b2e31b4488970229e1b9428035 assets/armourandtoolsmod/models/item/sapphire_chestplate.json
 f535960e93f68a94e4985036d602b925d5f8aca9 assets/armourandtoolsmod/models/item/sapphire_helmet.json
+e2c3c93f6b15ad2d06f37d7bcfcbcafb009848d6 assets/armourandtoolsmod/models/item/sapphire_hoe.json
 bc5128bd4e8d45c235c4c036f9b962e8395a4aba assets/armourandtoolsmod/models/item/sapphire_leggings.json
+6ebea9099f190b2386937226a76c118dd9e96e80 assets/armourandtoolsmod/models/item/sapphire_pickaxe.json
 498433d71e17318b0ad4a06725341cef41016fbc assets/armourandtoolsmod/models/item/sapphire_shield.json
 abca32c423c04d9fd3fb20b8ef95367494ef6d3f assets/armourandtoolsmod/models/item/sapphire_shield_blocking.json
+a859ec2b689f137a200572cebf2beb5ba0e7adbb assets/armourandtoolsmod/models/item/sapphire_shovel.json
+c565b2fac9d49e40f0865beb88ac8c3fc2666147 assets/armourandtoolsmod/models/item/sapphire_sword.json
