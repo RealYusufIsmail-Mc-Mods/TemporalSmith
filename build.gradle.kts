@@ -41,7 +41,7 @@ println(
         .trimIndent())
 
 configure<UserDevExtension> {
-    mappings("parchment", "2023.08.20-$mcVersion")
+    mappings("parchment", "2023.09.03-$mcVersion")
 
     accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
 
@@ -138,18 +138,16 @@ repositories {
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:1.20.1-47.1.0")
+    minecraft("net.minecraftforge:forge:1.20.1-47.2.0")
     // kotlin forge
     implementation("thedarkcolour:kotlinforforge:4.4.0")
     // Logger
     implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.11")
-    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.8")
+    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.11")
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     // core
     implementation("io.github.realyusufismail:realyusufismailcore:1.20.1-1.0.1")
-    // Json
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
 }
 
 tasks.test {
@@ -167,7 +165,7 @@ spotless {
 
         licenseHeader(
             """/*
- * Copyright 2022 RealYusufIsmail.
+ * Copyright 2023 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
