@@ -43,7 +43,12 @@ enum class CustomToolMaterial(
     AMETHYST_SWORD(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) }),
     AMETHYST_PICKAXE(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) }),
     AMETHYST_AXE(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) }),
-    AMETHYST_SHOVEL(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) });
+    AMETHYST_SHOVEL(4, 2500, 12, Supplier { Ingredient.of(Items.AMETHYST_SHARD) }),
+    SAPPHIRE_SWORD(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
+    SAPPHIRE_PICKAXE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
+    SAPPHIRE_AXE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
+    SAPPHIRE_SHOVEL(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
+    SAPPHIRE_HOE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) });
 
     private val harvestLevel = 0
     private val maxUses = 0

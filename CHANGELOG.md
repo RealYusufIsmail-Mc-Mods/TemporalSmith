@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.20.1-1.0.4] - UNRELEASED
+
+### Added Sapphire tools.
+### Added rest of advancments for all the rest of the ores.
+
 ## [1.20.1-1.0.3] - 2023-9-23
 
 ### Add advancments for root and ruby. More to come in future.

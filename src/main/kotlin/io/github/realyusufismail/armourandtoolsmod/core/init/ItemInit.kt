@@ -240,6 +240,15 @@ object ItemInit {
                 Item.Properties().stacksTo(1).durability(600))
         }
 
+    val SAPPHIRE_SWORD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("sapphire_sword", SAPPHIRE) {
+            CustomSwordItem(
+                CustomToolMaterial.SAPPHIRE_SWORD,
+                9,
+                -2.6f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
     // Pickaxes
     val RUBY_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_pickaxe", RUBY) {
@@ -265,6 +274,15 @@ object ItemInit {
                 CustomToolMaterial.AMETHYST_PICKAXE,
                 5,
                 -2.7f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
+    val SAPPHIRE_PICKAXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("sapphire_pickaxe", SAPPHIRE) {
+            PickaxeItem(
+                CustomToolMaterial.SAPPHIRE_PICKAXE,
+                6,
+                -2.8f,
                 Item.Properties().stacksTo(1).durability(800))
         }
 
@@ -296,6 +314,15 @@ object ItemInit {
                 Item.Properties().stacksTo(1).durability(600))
         }
 
+    val SAPPHIRE_AXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("sapphire_axe", SAPPHIRE) {
+            AxeItem(
+                CustomToolMaterial.SAPPHIRE_AXE,
+                8.5F,
+                -2.6f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
     // Shovels
     val RUBY_SHOVEL: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_shovel", RUBY) {
@@ -324,6 +351,15 @@ object ItemInit {
                 Item.Properties().stacksTo(1).durability(600))
         }
 
+    val SAPPHIRE_SHOVEL: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("sapphire_shovel", SAPPHIRE) {
+            ShovelItem(
+                CustomToolMaterial.SAPPHIRE_SHOVEL,
+                4.5F,
+                -3.5f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
     // Hoes
     val RUBY_HOE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_hoe", RUBY) {
@@ -340,6 +376,15 @@ object ItemInit {
                 CustomToolMaterial.ENDERITE_HOE,
                 2,
                 -3.0f,
+                Item.Properties().stacksTo(1).durability(600))
+        }
+
+    val SAPPHIRE_HOE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("sapphire_hoe", SAPPHIRE) {
+            HoeItem(
+                CustomToolMaterial.SAPPHIRE_HOE,
+                2,
+                -3.1f,
                 Item.Properties().stacksTo(1).durability(600))
         }
 

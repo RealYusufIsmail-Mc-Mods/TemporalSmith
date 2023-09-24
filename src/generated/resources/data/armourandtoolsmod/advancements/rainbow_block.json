@@ -1,0 +1,36 @@
+{
+  "parent": "armourandtoolsmod:rainbow_ingot",
+  "criteria": {
+    "get_block": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/rainbow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.armourandtoolsmod.rainbow_block.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "armourandtoolsmod:rainbow_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.armourandtoolsmod.rainbow_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_block"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

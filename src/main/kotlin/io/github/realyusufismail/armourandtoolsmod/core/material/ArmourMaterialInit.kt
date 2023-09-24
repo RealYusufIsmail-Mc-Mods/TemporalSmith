@@ -26,14 +26,11 @@ import net.minecraft.world.item.ArmorItem
 import net.minecraft.world.item.ArmorMaterial
 import net.minecraft.world.item.Items.AMETHYST_SHARD
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraftforge.api.distmarker.Dist
-import net.minecraftforge.api.distmarker.OnlyIn
 
 enum class ArmourMaterialInit(
     private val oreName: String,
     private val durabilityMultiplier: Int,
     private val armorVal: IntArray,
-    private val enchantability: Int,
     private val equipSound: SoundEvent,
     private val toghness: Float,
     private val knockbackResistance: Float,
@@ -43,7 +40,6 @@ enum class ArmourMaterialInit(
         "amethyst",
         11,
         intArrayOf(4, 7, 9, 4),
-        15,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.2f,
         0.2f,
@@ -52,7 +48,6 @@ enum class ArmourMaterialInit(
         "ruby",
         8,
         intArrayOf(2, 5, 6, 2),
-        10,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.0f,
         0.0f,
@@ -61,7 +56,6 @@ enum class ArmourMaterialInit(
         "sapphire",
         9,
         intArrayOf(3, 6, 7, 3),
-        12,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.1f,
         0.1f,
@@ -70,7 +64,6 @@ enum class ArmourMaterialInit(
         "graphite",
         10,
         intArrayOf(3, 6, 8, 3),
-        14,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.1f,
         0.1f,
@@ -79,7 +72,6 @@ enum class ArmourMaterialInit(
         "aqumarine",
         12,
         intArrayOf(4, 7, 9, 4),
-        16,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.3f,
         0.3f,
@@ -88,7 +80,6 @@ enum class ArmourMaterialInit(
         "rainbow",
         100,
         intArrayOf(5, 8, 10, 5),
-        100,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.4f,
         0.4f,
@@ -97,22 +88,21 @@ enum class ArmourMaterialInit(
         "enderite",
         50,
         intArrayOf(5, 8, 10, 5),
-        50,
         SoundEvents.ARMOR_EQUIP_DIAMOND,
         0.4f,
         0.4f,
         Supplier { Ingredient.of(ItemInit.ENDERITE.get()) });
 
-    override fun getDurabilityForType(p_266807_: ArmorItem.Type): Int {
-        return durabilityMultiplier * armorVal[p_266807_.ordinal]
+    override fun getDurabilityForType(type: ArmorItem.Type): Int {
+        return durabilityMultiplier * armorVal[type.ordinal]
     }
 
-    override fun getDefenseForType(p_267168_: ArmorItem.Type): Int {
-        return armorVal[p_267168_.ordinal]
+    override fun getDefenseForType(type: ArmorItem.Type): Int {
+        return armorVal[type.ordinal]
     }
 
     override fun getEnchantmentValue(): Int {
-        return enchantability
+        return 7
     }
 
     override fun getEquipSound(): SoundEvent {
@@ -123,7 +113,6 @@ enum class ArmourMaterialInit(
         return repairIngredient.get()
     }
 
-    @OnlyIn(Dist.CLIENT)
     override fun getName(): String {
         return oreName
     }

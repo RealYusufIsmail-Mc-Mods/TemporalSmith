@@ -107,6 +107,12 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         tool(ItemInit.AMETHYST_AXE.get())
         tool(ItemInit.AMETHYST_SHOVEL.get())
 
+        tool(ItemInit.SAPPHIRE_SWORD.get())
+        tool(ItemInit.SAPPHIRE_PICKAXE.get())
+        tool(ItemInit.SAPPHIRE_AXE.get())
+        tool(ItemInit.SAPPHIRE_SHOVEL.get())
+        tool(ItemInit.SAPPHIRE_HOE.get())
+
         // Trident
         trident(ItemInit.AQUMARINE_TRIDENT.get())
 

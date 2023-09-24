@@ -121,6 +121,11 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.AMETHYST_PICKAXE, "Amethyst Pickaxe")
         addItem(ItemInit.AMETHYST_AXE, "Amethyst Axe")
         addItem(ItemInit.AMETHYST_SHOVEL, "Amethyst Shovel")
+        addItem(ItemInit.SAPPHIRE_SWORD, "Sapphire Sword")
+        addItem(ItemInit.SAPPHIRE_PICKAXE, "Sapphire Pickaxe")
+        addItem(ItemInit.SAPPHIRE_AXE, "Sapphire Axe")
+        addItem(ItemInit.SAPPHIRE_SHOVEL, "Sapphire Shovel")
+        addItem(ItemInit.SAPPHIRE_HOE, "Sapphire Hoe")
 
         // Shields
         addItem(ItemInit.RUBY_SHIELD, "Ruby Shield")
@@ -144,6 +149,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
             "root",
             "Download Armour and Tools Mod",
             "Thanks for downloading Armour and Tools Mod! Enjoy!")
+
+        // Ruby
+
         addAdvancement(
             "ruby_ore", "That rare crimson ore", "Now smelt the ruby ore to get a ruby ingot!")
         addAdvancement(
@@ -158,6 +166,108 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
             "ruby_armour", "That crimson armour", "Well done! You are now increasing your defence!")
         addAdvancement(
             "ruby_tools", "That crimson tools", "Way to go! You are now increasing your attack!")
+
+        // Sapphire
+        addAdvancement(
+            "sapphire_ore",
+            "That rare blue ore",
+            "Now smelt the sapphire ore to get a sapphire ingot!")
+        addAdvancement(
+            "sapphire_ingot",
+            "That blue gem",
+            "Now use the sapphire ingot to craft sapphire armour and tools!")
+        addAdvancement(
+            "sapphire_block",
+            "That blue sparkling block",
+            "Well that's a way to show off your wealth!")
+        addAdvancement(
+            "sapphire_armour",
+            "That blue armour",
+            "Well done! You are now increasing your defence!")
+        addAdvancement(
+            "sapphire_tools", "That blue tools", "Way to go! You are now increasing your attack!")
+
+        // Graphite
+        addAdvancement(
+            "graphite_ore",
+            "That carbon ore",
+            "Now smelt the graphite ore to get a graphite ingot!")
+        addAdvancement(
+            "graphite_ingot",
+            "That carbon gem",
+            "Now use the graphite ingot to craft graphite armour and tools!")
+        addAdvancement(
+            "graphite_block",
+            "That carbon sparkling block",
+            "Well that's a way to show off your wealth!")
+        addAdvancement(
+            "graphite_armour",
+            "That carbon armour",
+            "Well done! You are now increasing your defence!")
+        addAdvancement(
+            "graphite_tools", "That carbon tools", "Way to go! You are now increasing your attack!")
+
+        // Rainbow
+        addAdvancement(
+            "rainbow_ore",
+            "That rare polychromatic ore",
+            "Now smelt the rainbow ore to get a rainbow ingot!")
+        addAdvancement(
+            "rainbow_ingot",
+            "That polychromatic gem",
+            "Now use the rainbow ingot to craft rainbow armour and tools!")
+        addAdvancement(
+            "rainbow_block",
+            "That polychromatic sparkling block",
+            "Well that's a way to show off your wealth!")
+        addAdvancement(
+            "rainbow_armour",
+            "That polychromatic armour",
+            "Well done! You are now increasing your defence!")
+        addAdvancement(
+            "rainbow_tools",
+            "That polychromatic tools",
+            "Way to go! You are now increasing your attack!")
+
+        // Aqumarine
+        addAdvancement(
+            "aqumarine_ore",
+            "That rare aqua ore",
+            "Now smelt the aqumarine ore to get a aqumarine ingot!")
+        addAdvancement(
+            "aqumarine_ingot",
+            "That aqua gem",
+            "Now use the aqumarine ingot to craft aqumarine armour and tools!")
+        addAdvancement(
+            "aqumarine_block",
+            "That aqua sparkling block",
+            "Well that's a way to show off your wealth!")
+        addAdvancement(
+            "aqumarine_armour",
+            "That aqua armour",
+            "Well done! You are now increasing your defence!")
+        addAdvancement(
+            "aqumarine_tools", "That aqua tools", "Way to go! You are now increasing your attack!")
+
+        // Enderite
+        addAdvancement(
+            "enderite_ore",
+            "That rare ender ore",
+            "Now smelt the enderite ore to get a enderite ingot!")
+        addAdvancement(
+            "enderite_ingot",
+            "That ender gem",
+            "Now use the enderite ingot to craft enderite armour and tools!")
+        addAdvancement(
+            "enderite_block",
+            "That ender sparkling block",
+            "Well that's a way to show off your wealth!")
+        addAdvancement(
+            "enderite_armour",
+            "That ender armour",
+            "Well done! You are now increasing your defence!")
+        addAdvancement(
+            "enderite_tools", "That ender tools", "Way to go! You are now increasing your attack!")
     }
 
     override fun <T : Item> item(entry: RegistryObject<T>, name: String) {
