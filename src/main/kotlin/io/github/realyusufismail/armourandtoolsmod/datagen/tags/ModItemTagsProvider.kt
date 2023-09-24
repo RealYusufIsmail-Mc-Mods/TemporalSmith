@@ -43,28 +43,26 @@ class ModItemTagsProvider(
 
     override fun addTags(pProvider: HolderLookup.Provider) {
         // ores
-        copy(TagsInit.BlockTagsInit.ORES_RUBY_ORES, TagsInit.ItemTagsInit.ORES_RUBY_ORES)
-        copy(TagsInit.BlockTagsInit.ORES_RAINBOW_ORES, TagsInit.ItemTagsInit.ORES_RAINBOW_ORES)
-        copy(TagsInit.BlockTagsInit.ORES_SAPPHIRE_ORES, TagsInit.ItemTagsInit.ORES_SAPPHIRE_ORES)
-        copy(TagsInit.BlockTagsInit.ORES_GRAPHITE_ORES, TagsInit.ItemTagsInit.ORES_GRAPHITE_ORES)
-        copy(TagsInit.BlockTagsInit.ORES_AQUMARINE_ORES, TagsInit.ItemTagsInit.ORES_AQUMARINE_ORES)
-        copy(TagsInit.BlockTagsInit.ORES_ENDERITE_ORES, TagsInit.ItemTagsInit.ORES_ENDERITE_ORES)
+        copy(TagsInit.BlockTagsInit.ORES_RUBY, TagsInit.ItemTagsInit.ORES_RUBY)
+        copy(TagsInit.BlockTagsInit.ORES_RAINBOW, TagsInit.ItemTagsInit.ORES_RAINBOW)
+        copy(TagsInit.BlockTagsInit.ORES_SAPPHIRE, TagsInit.ItemTagsInit.ORES_SAPPHIRE)
+        copy(TagsInit.BlockTagsInit.ORES_GRAPHITE, TagsInit.ItemTagsInit.ORES_GRAPHITE)
+        copy(TagsInit.BlockTagsInit.ORES_AQUMARINE, TagsInit.ItemTagsInit.ORES_AQUMARINE)
+        copy(TagsInit.BlockTagsInit.ORES_ENDERITE, TagsInit.ItemTagsInit.ORES_ENDERITE)
         // deepslate ores
+        copy(TagsInit.BlockTagsInit.DEEPSLATE_ORES_RUBY, TagsInit.ItemTagsInit.DEEPSLATE_ORES_RUBY)
         copy(
-            TagsInit.BlockTagsInit.DEEPSLATE_ORES_RUBY_ORES,
-            TagsInit.ItemTagsInit.DEEPSLATE_ORES_RUBY_ORES)
+            TagsInit.BlockTagsInit.DEEPSLATE_ORES_RAINBOW,
+            TagsInit.ItemTagsInit.DEEPSLATE_ORES_RAINBOW)
         copy(
-            TagsInit.BlockTagsInit.DEEPSLATE_ORES_RAINBOW_ORES,
-            TagsInit.ItemTagsInit.DEEPSLATE_ORES_RAINBOW_ORES)
+            TagsInit.BlockTagsInit.DEEPSLATE_ORES_SAPPHIRE,
+            TagsInit.ItemTagsInit.DEEPSLATE_ORES_SAPPHIRE)
         copy(
-            TagsInit.BlockTagsInit.DEEPSLATE_ORES_SAPPHIRE_ORES,
-            TagsInit.ItemTagsInit.DEEPSLATE_ORES_SAPPHIRE_ORES)
+            TagsInit.BlockTagsInit.DEEPSLATE_ORES_GRAPHITE,
+            TagsInit.ItemTagsInit.DEEPSLATE_ORES_GRAPHITE)
         copy(
-            TagsInit.BlockTagsInit.DEEPSLATE_ORES_GRAPHITE_ORES,
-            TagsInit.ItemTagsInit.DEEPSLATE_ORES_GRAPHITE_ORES)
-        copy(
-            TagsInit.BlockTagsInit.DEEPSLATE_ORES_AQUMARINE_ORES,
-            TagsInit.ItemTagsInit.DEEPSLATE_ORES_AQUMARINE_ORES)
+            TagsInit.BlockTagsInit.DEEPSLATE_ORES_AQUMARINE,
+            TagsInit.ItemTagsInit.DEEPSLATE_ORES_AQUMARINE)
         // storage blocks
         copy(TagsInit.BlockTagsInit.STORAGE_RUBY, TagsInit.ItemTagsInit.STORAGE_RUBY)
         copy(TagsInit.BlockTagsInit.STORAGE_RAINBOW, TagsInit.ItemTagsInit.STORAGE_RAINBOW)

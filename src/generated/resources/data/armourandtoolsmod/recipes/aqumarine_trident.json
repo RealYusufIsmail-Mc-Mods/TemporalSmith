@@ -3,7 +3,7 @@
   "category": "trident",
   "key": {
     "A": {
-      "item": "armourandtoolsmod:aqumarine"
+      "tag": "forge:ingots/aqumarine"
     },
     "S": {
       "item": "minecraft:stick"

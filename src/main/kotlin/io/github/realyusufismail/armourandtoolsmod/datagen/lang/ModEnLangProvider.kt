@@ -138,6 +138,26 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         add("container.custom_armour_crafting_table.description", "Craft your own custom armour!")
         add("container.custom_tool_crafting_table", "Tool Crafting Table")
         add("container.custom_tool_crafting_table.description", "Craft your own custom tools!")
+
+        // advancements
+        addAdvancement(
+            "root",
+            "Download Armour and Tools Mod",
+            "Thanks for downloading Armour and Tools Mod! Enjoy!")
+        addAdvancement(
+            "ruby_ore", "That rare crimson ore", "Now smelt the ruby ore to get a ruby ingot!")
+        addAdvancement(
+            "ruby_ingot",
+            "That crimson gem",
+            "Now use the ruby ingot to craft ruby armour and tools!")
+        addAdvancement(
+            "ruby_block",
+            "That crimson sparkling block",
+            "Well that's a way to show off your wealth!")
+        addAdvancement(
+            "ruby_armour", "That crimson armour", "Well done! You are now increasing your defence!")
+        addAdvancement(
+            "ruby_tools", "That crimson tools", "Way to go! You are now increasing your attack!")
     }
 
     override fun <T : Item> item(entry: RegistryObject<T>, name: String) {
@@ -154,5 +174,10 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
 
     override fun add(translatableComponent: Component, lang: String) {
         super.add(translatableComponent.string, lang)
+    }
+
+    private fun addAdvancement(advancement: String, title: String, description: String) {
+        add(Component.translatable("advancements.$MOD_ID.$advancement.title"), title)
+        add(Component.translatable("advancements.$MOD_ID.$advancement.description"), description)
     }
 }

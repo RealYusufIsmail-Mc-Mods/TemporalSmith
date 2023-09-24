@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "armourandtoolsmod:aqumarine"
-            ]
+            "tag": "forge:ingots/aqumarine"
           }
         ]
       },

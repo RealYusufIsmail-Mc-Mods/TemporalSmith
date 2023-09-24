@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.20.1-1.0.3] - 2023-9-23
+
+### Add advancments for root and ruby. More to come in future.
+### Switched some recipies to use tags instead of specific items. This will allow for more flexability in future.
+
 ## [1.20.1-1.0.2]  - 2023-9-3
 
 ### Improved worlgen
@@ -42,7 +47,7 @@
 
 ## [1.19.4-1.0.0.beta.4] - 2023-4-30
 
-### Improve custom armour crafting table recipe book. Now shows different sections for each armour type.
+### Improve custom armor crafting table recipe book. Now shows different sections for each armour type.
 ### Updated forge and kotlin forge versions to latest.
 
 ## [1.19.4-1.0.0.beta.3] - 2023-4-25
@@ -63,7 +68,7 @@
 
 ### Added all armour item textures. Some are placeholders.
 ### Fixed issue where blocks could not be mined.
-### Ruby, and Rainbow ore now give off redstone signal when mined - colour current blue which is set to be changed in future.
+### Ruby, and Rainbow ore now give off redstone signal when mined - color current blue which is set to be changed in future.
 
 ## [1.19.3-1.0.0.alpha.8] - 2023-2-16
 

@@ -3,7 +3,7 @@
   "category": "sword",
   "key": {
     "A": {
-      "item": "armourandtoolsmod:ruby"
+      "tag": "forge:ingots/ruby"
     },
     "S": {
       "item": "minecraft:stick"

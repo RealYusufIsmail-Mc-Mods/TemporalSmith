@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "armourandtoolsmod:sapphire"
-            ]
+            "tag": "forge:ingots/sapphire"
           }
         ]
       },
