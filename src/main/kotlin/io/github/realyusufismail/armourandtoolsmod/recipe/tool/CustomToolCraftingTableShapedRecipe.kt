@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.blocks.armour
+package io.github.realyusufismail.armourandtoolsmod.recipe.tool
 
 import com.google.common.annotations.VisibleForTesting
 import com.google.common.collect.Maps
@@ -25,7 +25,8 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonSyntaxException
-import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableContainer
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import net.minecraft.core.NonNullList
@@ -42,22 +43,19 @@ import net.minecraftforge.common.crafting.CraftingHelper
 import net.minecraftforge.common.crafting.IShapedRecipe
 
 /** @see io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder */
-class CustomArmourCraftingTableShapedRecipe(
+class CustomToolCraftingTableShapedRecipe(
     private val id: ResourceLocation,
     private val group: String,
-    private val recipeCategory: CustomArmourCraftingBookCategory,
+    private val recipeCategory: CustomToolsCraftingBookCategory,
     private val width: Int,
     private val height: Int,
     private val recipeItems: NonNullList<Ingredient>,
-    private val result: ItemStack,
+    override val result: ItemStack,
     private val showNotification: Boolean,
-) : CustomArmourCraftingTableRecipe, IShapedRecipe<CustomArmourCraftingTableContainer> {
-    override fun category(): CustomArmourCraftingBookCategory {
-        return recipeCategory
-    }
+) : CustomToolCraftingTableRecipe, IShapedRecipe<CustomToolCraftingTableContainer> {
 
     /** Used to check if a recipe matches current crafting inventory */
-    override fun matches(pInv: CustomArmourCraftingTableContainer, pLevel: Level): Boolean {
+    override fun matches(pInv: CustomToolCraftingTableContainer, pLevel: Level): Boolean {
         for (i in 0..(pInv.getWidth() - this.width)) {
             for (j in 0..(pInv.getHeight() - this.height)) {
                 if (this.matches(pInv, i, j, true)) {
@@ -73,7 +71,7 @@ class CustomArmourCraftingTableShapedRecipe(
 
     /** Checks if the region of a crafting inventory is match for the recipe. */
     private fun matches(
-        pCraftingInventory: CustomArmourCraftingTableContainer,
+        pCraftingInventory: CustomToolCraftingTableContainer,
         pWidth: Int,
         pHeight: Int,
         pMirrored: Boolean,
@@ -101,8 +99,8 @@ class CustomArmourCraftingTableShapedRecipe(
     }
 
     override fun assemble(
-        p_44001_: CustomArmourCraftingTableContainer,
-        p_267165_: RegistryAccess,
+        p_44001_: CustomToolCraftingTableContainer,
+        p_267165_: RegistryAccess
     ): ItemStack {
         return this.result.copy()
     }
@@ -133,24 +131,20 @@ class CustomArmourCraftingTableShapedRecipe(
         return this.id
     }
 
+    override fun category(): CustomToolsCraftingBookCategory {
+        return recipeCategory
+    }
+
     override fun getToastSymbol(): ItemStack {
-        return ItemStack(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+        return ItemStack(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
     }
 
     override fun getSerializer(): RecipeSerializer<*> {
-        return RecipeSerializerInit.CUSTOM_ARMOUR_CRAFTER.get()
+        return RecipeSerializerInit.CUSTOM_TOOL_CRAFTER.get()
     }
 
     override fun showNotification(): Boolean {
         return showNotification
-    }
-
-    override fun getRecipeWidth(): Int {
-        return this.width
-    }
-
-    override fun getRecipeHeight(): Int {
-        return this.height
     }
 
     override fun isIncomplete(): Boolean {
@@ -160,6 +154,14 @@ class CustomArmourCraftingTableShapedRecipe(
                 .stream()
                 .filter { ingredient: Ingredient -> !ingredient.isEmpty }
                 .anyMatch { ingredient: Ingredient? -> ForgeHooks.hasNoElements(ingredient) }
+    }
+
+    override fun getRecipeWidth(): Int {
+        return this.width
+    }
+
+    override fun getRecipeHeight(): Int {
+        return this.height
     }
 
     companion object {
@@ -289,19 +291,14 @@ class CustomArmourCraftingTableShapedRecipe(
         }
     }
 
-    class Serializer : RecipeSerializer<CustomArmourCraftingTableShapedRecipe> {
+    class Serializer : RecipeSerializer<CustomToolCraftingTableShapedRecipe> {
         override fun fromJson(
             pRecipeId: ResourceLocation,
             pJson: JsonObject,
-        ): CustomArmourCraftingTableShapedRecipe {
+        ): CustomToolCraftingTableShapedRecipe {
             val s: String = GsonHelper.getAsString(pJson, "group", "")!!
 
             val map: Map<String, Ingredient> = keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"))
-
-            val craftingbookcategory =
-                CustomArmourCraftingBookCategory.CODEC.byName(
-                    GsonHelper.getAsString(pJson, "category", null as String?),
-                    CustomArmourCraftingBookCategory.MISC)
 
             val astring: Array<String?> =
                 shrink(*patternFromJson(GsonHelper.getAsJsonArray(pJson, "pattern")))
@@ -313,40 +310,46 @@ class CustomArmourCraftingTableShapedRecipe(
             val itemstack: ItemStack =
                 itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"))
 
+            val craftingbookcategory =
+                CustomToolsCraftingBookCategory.CODEC.byName(
+                    GsonHelper.getAsString(pJson, "category", null as String?),
+                    CustomToolsCraftingBookCategory.MISC)
+
             val flag = GsonHelper.getAsBoolean(pJson, "show_notification", true)
 
-            return CustomArmourCraftingTableShapedRecipe(
+            return CustomToolCraftingTableShapedRecipe(
                 pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
         }
 
         override fun fromNetwork(
             pRecipeId: ResourceLocation,
             pBuffer: FriendlyByteBuf,
-        ): CustomArmourCraftingTableShapedRecipe {
+        ): CustomToolCraftingTableShapedRecipe {
             val i = pBuffer.readVarInt()
             val j = pBuffer.readVarInt()
             val s = pBuffer.readUtf()
             val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
             nonnulllist.replaceAll { Ingredient.fromNetwork(pBuffer) }
             val itemstack = pBuffer.readItem()
-            val craftingbookcategory =
-                pBuffer.readEnum(CustomArmourCraftingBookCategory::class.java)
+            val craftingbookcategory = pBuffer.readEnum(CustomToolsCraftingBookCategory::class.java)
             val flag = pBuffer.readBoolean()
 
-            return CustomArmourCraftingTableShapedRecipe(
+            return CustomToolCraftingTableShapedRecipe(
                 pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
         }
 
         override fun toNetwork(
             pBuffer: FriendlyByteBuf,
-            pRecipe: CustomArmourCraftingTableShapedRecipe,
+            pRecipe: CustomToolCraftingTableShapedRecipe,
         ) {
             pBuffer.writeVarInt(pRecipe.width)
             pBuffer.writeVarInt(pRecipe.height)
             pBuffer.writeUtf(pRecipe.group)
+
             for (ingredient: Ingredient in pRecipe.recipeItems) {
                 ingredient.toNetwork(pBuffer)
             }
+
             pBuffer.writeItem(pRecipe.result)
             pBuffer.writeBoolean(pRecipe.showNotification)
         }

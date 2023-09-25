@@ -16,17 +16,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.blocks.armour
+package io.github.realyusufismail.armourandtoolsmod.recipe.tool
 
-import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableContainer
+import io.github.realyusufismail.armourandtoolsmod.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
+import net.minecraft.core.NonNullList
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeType
 
-interface CustomArmourCraftingTableRecipe : Recipe<CustomArmourCraftingTableContainer> {
+interface CustomToolCraftingTableRecipe : Recipe<CustomToolCraftingTableContainer> {
     override fun getType(): RecipeType<*> {
-        return RecipeTypeInit.ARMOUR_CRAFTING.get()
+        return RecipeTypeInit.TOOL_CRAFTING.get()
     }
 
-    fun category(): CustomArmourCraftingBookCategory
+    fun category(): CustomToolsCraftingBookCategory
+
+    override fun getIngredients(): NonNullList<Ingredient>
+
+    val result: ItemStack
 }

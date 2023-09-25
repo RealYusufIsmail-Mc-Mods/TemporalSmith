@@ -45,8 +45,6 @@ import net.minecraft.world.phys.BlockHitResult
  */
 class CustomArmourCraftingTable :
     Block(Properties.of().strength(5.0f, 6.0f).sound(SoundType.METAL)) {
-    private val containerTitle: Component =
-        Component.translatable("container.custom_armour_crafting_table")
     private val containerDescription: Component =
         Component.translatable("container.custom_armour_crafting_table.description")
 
@@ -89,5 +87,10 @@ class CustomArmourCraftingTable :
         pFlag: TooltipFlag
     ) {
         pTooltip.add(containerDescription)
+    }
+
+    companion object {
+        val containerTitle: Component =
+            Component.translatable("container.custom_armour_crafting_table")
     }
 }

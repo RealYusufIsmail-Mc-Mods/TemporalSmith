@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.20.1-1.0.4] - UNRELEASED
+All notable changes to this project will be documented in this file.
+
+## [1.20.1-1.0.5] - 2023-09-26
+
+### Added JEI integration for custom crafting tables.
+
+## [1.20.1-1.0.4] - 2023-09-25
 
 ### Added Sapphire tools.
 ### Added rest of advancments for all the rest of the ores.

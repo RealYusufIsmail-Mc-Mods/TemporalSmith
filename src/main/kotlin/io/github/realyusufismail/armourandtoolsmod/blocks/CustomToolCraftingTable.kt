@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks
 
+import io.github.realyusufismail.armourandtoolsmod.blocks.CustomArmourCraftingTable.Companion.containerTitle
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
@@ -41,8 +42,6 @@ import net.minecraft.world.phys.BlockHitResult
 
 class CustomToolCraftingTable :
     Block(Properties.of().strength(5.0f, 6.0f).sound(SoundType.METAL).mapColor(MapColor.METAL)) {
-    private val containerTitle: Component =
-        Component.translatable("container.custom_tool_crafting_table")
     private val containerDescription: Component =
         Component.translatable("container.custom_tool_crafting_table.description")
 
@@ -85,5 +84,10 @@ class CustomToolCraftingTable :
         pFlag: TooltipFlag
     ) {
         pTooltip.add(containerDescription)
+    }
+
+    companion object {
+        val containerTitle: Component =
+            Component.translatable("container.custom_tool_crafting_table")
     }
 }

@@ -21,7 +21,7 @@ plugins {
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.20.1-1.0.4"
+project.version = "1.20.1-1.0.5"
 
 base.archivesName.set("armourandtoolsmod")
 
@@ -98,7 +98,7 @@ configure<UserDevExtension> {
         }
 
         create("data") {
-            workingDirectory(file("run"))
+            workingDirectory(file("run-data"))
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
@@ -134,20 +134,27 @@ sourceSets.main { resources.srcDir("src/generated/resources") }
 repositories {
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
     maven { url = uri("https://maven.blamejared.com") }
+    maven { url = uri("https://dvs1.progwml6.com/files/maven/") }
+    maven { url = uri("https://modmaven.dev") }
     mavenCentral()
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:1.20.1-47.2.0")
+    minecraft("net.minecraftforge:forge:" + properties["forgeVersion"])
     // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:4.4.0")
+    implementation("thedarkcolour:kotlinforforge:" + properties["kotlinForForgeVersion"])
     // Logger
-    implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.4.11")
-    implementation(group = "ch.qos.logback", name = "logback-core", version = "1.4.11")
+    implementation("ch.qos.logback:logback-classic:" + properties["logbackVersion"])
+    implementation("ch.qos.logback:logback-core:" + properties["logbackVersion"])
     // test
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:" + properties["junitVersion"])
     // core
-    implementation("io.github.realyusufismail:realyusufismailcore:1.20.1-1.0.1")
+    implementation("io.github.realyusufismail:realyusufismailcore:" + properties["coreVersion"])
+
+    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
+    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
+    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
+    runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
 }
 
 tasks.test {
@@ -226,7 +233,7 @@ tasks.jacocoTestReport {
 }
 
 detekt {
-    config = files("gradle/config/detekt.yml")
+    config.setFrom(files("gradle/config/detekt.yml"))
     baseline = file("gradle/config/detekt-baseline.xml")
     allRules = false
 }
