@@ -49,5 +49,17 @@ object MenuTypeInit {
         featureFlagSet: FeatureFlagSet = FeatureFlags.REGISTRY.allFlags()
     ): ObjectHolderDelegate<MenuType<T>> {
         return MENU.registerObject(name) { MenuType(pFactory, featureFlagSet) }
+            .setGuiTitle("container.$name")
+    }
+
+    private var menuGuiTitle: String? = null
+
+    private fun <V> ObjectHolderDelegate<V>.setGuiTitle(s: String): ObjectHolderDelegate<V> {
+        menuGuiTitle = s
+        return this
+    }
+
+    fun <V> ObjectHolderDelegate<V>.getMenuGuiTitle(): String {
+        return menuGuiTitle ?: throw IllegalStateException("Menu gui title not set")
     }
 }
