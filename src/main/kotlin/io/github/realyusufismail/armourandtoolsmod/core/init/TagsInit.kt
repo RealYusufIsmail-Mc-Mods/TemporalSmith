@@ -227,6 +227,11 @@ object TagsInit {
                 ResourceLocation.tryParse("forge:ingots/enderite")
                     ?: throw Exception("Failed to create tag"))
 
+        val INGOTS_IMPERIUM: TagKey<Item> =
+            ItemTags.create(
+                ResourceLocation.tryParse("forge:ingots/imperium")
+                    ?: throw Exception("Failed to create tag"))
+
         // raw ore scraps
         val RAW_RUBY: TagKey<Item> =
             ItemTags.create(

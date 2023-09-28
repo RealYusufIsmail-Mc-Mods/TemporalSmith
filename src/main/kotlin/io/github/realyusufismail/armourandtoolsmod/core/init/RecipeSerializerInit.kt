@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableShapedRecipe
+import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableShapedRecipe
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
@@ -39,6 +40,12 @@ object RecipeSerializerInit {
     val CUSTOM_TOOL_CRAFTER:
         ObjectHolderDelegate<RecipeSerializer<CustomToolCraftingTableShapedRecipe>> =
         register("custom_tool_crafter", CustomToolCraftingTableShapedRecipe.Serializer())
+
+    val INGOT_FUSION_TOLL_ENHANCER_RECIPE:
+        ObjectHolderDelegate<RecipeSerializer<IngotFusionTollEnhancerRecipe>> =
+        register(
+            "ingot_fusion_toll_enhancer_recipe",
+            IngotFusionTollEnhancerRecipe.Companion.Serializer())
 
     private fun <S : RecipeSerializer<T>, T : Recipe<*>> register(
         pKey: String,

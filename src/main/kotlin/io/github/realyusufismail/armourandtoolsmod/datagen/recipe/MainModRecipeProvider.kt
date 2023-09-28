@@ -38,6 +38,7 @@ open class MainModRecipeProvider(private val generatorIn: DataGenerator) :
         NormalCraftingTableRecipeProvider(this, pWriter).build()
         ToolCraftingTableRecipeProvider(this, pWriter).build()
         NewSmithingTableRecipeProvider(this, pWriter).build()
+        IngotFusionTollEnhancerRecipeProvider(this, pWriter).build()
     }
 
     open fun modId(path: String): ResourceLocation {

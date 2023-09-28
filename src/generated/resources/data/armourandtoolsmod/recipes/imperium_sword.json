@@ -1,0 +1,20 @@
+{
+  "type": "armourandtoolsmod:custom_tool_crafter",
+  "category": "sword",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/imperium"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " A ",
+    " S "
+  ],
+  "result": {
+    "item": "armourandtoolsmod:imperium_sword"
+  }
+}

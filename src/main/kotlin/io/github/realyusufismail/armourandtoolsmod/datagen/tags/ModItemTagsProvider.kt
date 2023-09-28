@@ -77,6 +77,7 @@ class ModItemTagsProvider(
         tag(TagsInit.ItemTagsInit.INGOTS_GRAPHITE).add(ItemInit.GRAPHITE.get())
         tag(TagsInit.ItemTagsInit.INGOTS_AQUMARINE).add(ItemInit.AQUMARINE.get())
         tag(TagsInit.ItemTagsInit.INGOTS_ENDERITE).add(ItemInit.ENDERITE.get())
+        tag(TagsInit.ItemTagsInit.INGOTS_IMPERIUM).add(ItemInit.IMPERIUM.get())
         // raw ores
         tag(TagsInit.ItemTagsInit.RAW_RUBY).add(ItemInit.RAW_RUBY.get())
         tag(TagsInit.ItemTagsInit.RAW_RAINBOW).add(ItemInit.RAW_RAINBOW.get())

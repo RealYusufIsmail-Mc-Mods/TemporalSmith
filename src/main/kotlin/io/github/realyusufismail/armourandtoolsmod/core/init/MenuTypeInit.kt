@@ -20,12 +20,14 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableMenu
+import io.github.realyusufismail.armourandtoolsmod.blocks.fusion.IngotFusionTollEnhancerMenu
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableMenu
 import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.inventory.MenuType.MenuSupplier
+import net.minecraftforge.common.extensions.IForgeMenuType
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
@@ -42,6 +44,15 @@ object MenuTypeInit {
     val CUSTOM_TOOL_CRAFTING_TABLE_MENU:
         ObjectHolderDelegate<MenuType<CustomToolCraftingTableMenu>> =
         register("custom_tool_crafting_table", ::CustomToolCraftingTableMenu)
+
+    val INGOT_FUSION_TOLL_ENHANCER_MENU:
+        ObjectHolderDelegate<MenuType<IngotFusionTollEnhancerMenu>> =
+        MENU.registerObject("ingot_fusion_toll_enhancer") {
+                IForgeMenuType.create { pContainerId, pInventory, pData ->
+                    IngotFusionTollEnhancerMenu(pContainerId, pInventory, pData)
+                }
+            }
+            .setGuiTitle("container.ingot_fusion_toll_enhancer")
 
     private fun <T : AbstractContainerMenu> register(
         name: String,

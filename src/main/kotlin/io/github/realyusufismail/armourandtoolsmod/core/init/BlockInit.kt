@@ -21,6 +21,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.armourandtoolsmod.blocks.CustomToolCraftingTable
+import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer
 import io.github.realyusufismail.armourandtoolsmod.blocks.lit.RainbowLitBlock
 import io.github.realyusufismail.armourandtoolsmod.blocks.lit.RubyLitBlock
 import net.minecraft.world.item.BlockItem
@@ -165,12 +166,16 @@ object BlockInit {
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
-    // custom crafting table
+    // custom recipe tables
     val CUSTOM_ARMOUR_CRAFTING_TABLE =
         registerSpecial("custom_armour_crafting_table", ::CustomArmourCraftingTable)
 
     val CUSTOM_TOOL_CRAFTING_TABLE =
         registerSpecial("custom_tool_crafting_table", ::CustomToolCraftingTable)
+
+    @JvmField
+    val INGOT_FUSION_TOLL_ENHANCER =
+        registerSpecial("ingot_fusion_toll_enhancer", ::IngotFusionTollEnhancer)
 
     private fun <T : Block> registerSpecial(
         name: String,

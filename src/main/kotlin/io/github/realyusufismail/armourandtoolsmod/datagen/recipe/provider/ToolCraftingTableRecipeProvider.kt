@@ -202,6 +202,31 @@ class ToolCraftingTableRecipeProvider(
             .unlockedBy(hasItem, has(Items.AMETHYST_SHARD))
             .save(consumer, modId("amethyst_shovel"))
 
+        // Imperium Tools
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SWORD,
+                RecipeCategory.TOOLS,
+                ItemInit.IMPERIUM_SWORD.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_IMPERIUM)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" A ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_IMPERIUM))
+            .save(consumer, modId("imperium_sword"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.PICKAXE,
+                RecipeCategory.TOOLS,
+                ItemInit.IMPERIUM_PICKAXE.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_IMPERIUM)
+            .define('S', Items.STICK)
+            .pattern("AAA")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_IMPERIUM))
+            .save(consumer, modId("imperium_pickaxe"))
+
         // TRIEDENTs
 
         // TODO : For the trident later make it a drop from a custom mob rather than crafting

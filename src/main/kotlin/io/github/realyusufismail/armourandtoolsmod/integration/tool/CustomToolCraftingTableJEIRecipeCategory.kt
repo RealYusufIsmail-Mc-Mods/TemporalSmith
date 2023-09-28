@@ -70,7 +70,7 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
         focuses: IFocusGroup
     ) {
         builder.addSlot(RecipeIngredientRole.INPUT, 30, 16).addIngredients(recipe.ingredients[0])
-        builder.addSlot(RecipeIngredientRole.INPUT, 45, 16).addIngredients(recipe.ingredients[1])
+        builder.addSlot(RecipeIngredientRole.INPUT, 47, 16).addIngredients(recipe.ingredients[1])
         builder.addSlot(RecipeIngredientRole.INPUT, 65, 16).addIngredients(recipe.ingredients[2])
         builder.addSlot(RecipeIngredientRole.INPUT, 30, 34).addIngredients(recipe.ingredients[3])
         builder.addSlot(RecipeIngredientRole.INPUT, 48, 34).addIngredients(recipe.ingredients[4])

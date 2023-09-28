@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-28T05:16:02.6192725	Loot Tables
+// 1.20.1	2023-09-30T23:22:14.944242	Loot Tables
 2898515efda3fb01ac7eb6337875f6310869a683 data/armourandtoolsmod/loot_tables/blocks/aqumarine_block.json
 1efb52b906488da11f7948ed6a21285c1ae085c5 data/armourandtoolsmod/loot_tables/blocks/aqumarine_ore.json
 0f854404a05c040106f826bf3e6eb1debb2b8513 data/armourandtoolsmod/loot_tables/blocks/custom_armour_crafting_table.json
@@ -12,6 +12,7 @@ ee3c7cea455b43662bb85c65ba097a66fad15e2b data/armourandtoolsmod/loot_tables/bloc
 0a1baaef0c26d8186cfebd9b5f7e8a319d14187d data/armourandtoolsmod/loot_tables/blocks/enderite_ore.json
 baf5c9934dbe9336e2362956ea6223cd4f067fd5 data/armourandtoolsmod/loot_tables/blocks/graphite_block.json
 4e4d7f9e13f901fe3ae5ca406313f683dda24fbb data/armourandtoolsmod/loot_tables/blocks/graphite_ore.json
+e71ceb5931a3484e4792e6c73a0f9ff13d769c6f data/armourandtoolsmod/loot_tables/blocks/ingot_fusion_toll_enhancer.json
 be352efe18892a6d569480eb2c34423ab7e8f199 data/armourandtoolsmod/loot_tables/blocks/rainbow_block.json
 8c9c9a72eb8e8424e527174afee3bee8f54a6c0d data/armourandtoolsmod/loot_tables/blocks/rainbow_ore.json
 1b4f1728a73c79f1834e8d896bd7af391a8782ac data/armourandtoolsmod/loot_tables/blocks/ruby_block.json

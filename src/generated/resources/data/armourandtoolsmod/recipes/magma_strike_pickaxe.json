@@ -1,0 +1,13 @@
+{
+  "type": "armourandtoolsmod:ingot_fusion_toll_enhancer_recipe",
+  "input1": {
+    "tag": "forge:ingots/imperium"
+  },
+  "input2": {
+    "item": "armourandtoolsmod:imperium_pickaxe"
+  },
+  "input3": {
+    "tag": "forge:ingots/imperium"
+  },
+  "result": "armourandtoolsmod:magma_strike_pickaxe"
+}

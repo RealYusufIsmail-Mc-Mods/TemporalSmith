@@ -59,6 +59,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         // custom crafting tables
         addBlock(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE, "Custom Armour Crafting Table")
         addBlock(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE, "Custom Tool Crafting Table")
+        addBlock(BlockInit.INGOT_FUSION_TOLL_ENHANCER, "Ingot Fusion Toll Enhancer")
 
         // ore ingot
         addItem(ItemInit.RUBY, "Ruby")
@@ -67,6 +68,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.RAINBOW, "Rainbow Ingot")
         addItem(ItemInit.AQUMARINE, "Aqumarine")
         addItem(ItemInit.ENDERITE, "Enderite")
+        addItem(ItemInit.IMPERIUM, "Imperium")
 
         // raw ores
         addItem(ItemInit.RAW_RUBY, "Raw Ruby")
@@ -126,6 +128,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.SAPPHIRE_AXE, "Sapphire Axe")
         addItem(ItemInit.SAPPHIRE_SHOVEL, "Sapphire Shovel")
         addItem(ItemInit.SAPPHIRE_HOE, "Sapphire Hoe")
+        addItem(ItemInit.IMPERIUM_SWORD, "Imperium Sword")
+        addItem(ItemInit.IMPERIUM_PICKAXE, "Imperium Pickaxe")
+        addItem(ItemInit.MAGMA_STRIKE_PICKAXE, "Magma Strike Pickaxe")
 
         // Shields
         addItem(ItemInit.RUBY_SHIELD, "Ruby Shield")
@@ -143,6 +148,8 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         add("container.custom_armour_crafting_table.description", "Craft your own custom armour!")
         add("container.custom_tool_crafting_table", "Tool Crafting Table")
         add("container.custom_tool_crafting_table.description", "Craft your own custom tools!")
+        add("container.ingot_fusion_toll_enhancer", "Ingot Fusion Toll Enhancer")
+        add("container.ingot_fusion_toll_enhancer.description", "Enhance your tools and armour!")
 
         // advancements
         addAdvancement(

@@ -42,7 +42,9 @@ class ArmourAndToolsMod {
         RecipeSerializerInit.SERIALIZERS.register(bus)
         RecipeTypeInit.RECIPE_TYPES.register(bus)
         EntityTypeInit.ENTITY_TYPES.register(bus)
+        BlockEntityTypeInit.BLOCK_ENTITY_TYPES.register(bus)
         CreativeModeTabInit.CREATIVE_MODE_TAB.register(bus)
+        StatsInit.STATS.register(bus)
 
         // Register ourselves for server and other game events we are interested in
         // Register the data generators

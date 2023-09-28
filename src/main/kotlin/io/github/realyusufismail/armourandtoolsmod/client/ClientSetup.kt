@@ -19,11 +19,10 @@
 package io.github.realyusufismail.armourandtoolsmod.client
 
 import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableScreen
+import io.github.realyusufismail.armourandtoolsmod.blocks.fusion.IngotFusionTollEnhancerScreen
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableScreen
 import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.AqumarineTridentItemRenderer
-import io.github.realyusufismail.armourandtoolsmod.core.init.EntityTypeInit
-import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
-import io.github.realyusufismail.armourandtoolsmod.core.init.MenuTypeInit
+import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.renderer.item.ItemProperties
@@ -39,6 +38,8 @@ object ClientSetup {
         event.enqueueWork { registerScreens() }
 
         event.enqueueWork {
+            StatsInit.init()
+
             ItemProperties.register(ItemInit.RUBY_SHIELD.get(), ResourceLocation("blocking")) {
                 stack: ItemStack,
                 _: ClientLevel?,
@@ -99,6 +100,9 @@ object ClientSetup {
 
         MenuScreens.register(
             MenuTypeInit.CUSTOM_TOOL_CRAFTING_TABLE_MENU.get(), ::CustomToolCraftingTableScreen)
+
+        MenuScreens.register(
+            MenuTypeInit.INGOT_FUSION_TOLL_ENHANCER_MENU.get(), ::IngotFusionTollEnhancerScreen)
     }
 
     fun registerEntityRenders(event: EntityRenderersEvent.RegisterRenderers) {
