@@ -97,21 +97,28 @@ class IngotFusionTollEnhancerRecipe(
                 pRecipeId: ResourceLocation,
                 json: JsonObject
             ): IngotFusionTollEnhancerRecipe {
-                val input1 = Ingredient.fromJson(json.get("input1"))
-                val input2 = Ingredient.fromJson(json.get("input2"))
-                val input3 = Ingredient.fromJson(json.get("input3"))
 
-                val result: ItemStack =
-                    if (json["result"].isJsonObject)
-                        ItemStack(ShapedRecipe.itemFromJson(json["result"].getAsJsonObject()))
-                    else
-                        ItemStack(
-                            ForgeRegistries.ITEMS.getValue(
-                                ResourceLocation(json["result"].asString))
-                                ?: throw IllegalStateException(
-                                    "Item: " + json["result"].asString + " does not exist"))
+                try {
+                    val input1 = Ingredient.fromJson(json.get("input1"))
+                    val input2 = Ingredient.fromJson(json.get("input2"))
+                    val input3 = Ingredient.fromJson(json.get("input3"))
 
-                return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
+                    //TODO: Error caused by lack of recipe book category
+
+                    val result: ItemStack =
+                        if (json["result"].isJsonObject)
+                            ItemStack(ShapedRecipe.itemFromJson(json["result"].getAsJsonObject()))
+                        else
+                            ItemStack(
+                                ForgeRegistries.ITEMS.getValue(
+                                    ResourceLocation(json["result"].asString))
+                                    ?: throw IllegalStateException(
+                                        "Item: " + json["result"].asString + " does not exist"))
+
+                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
+                } catch (e: IllegalStateException) {
+                    throw IllegalStateException("Could not create recipe: $pRecipeId", e)
+                }
             }
 
             override fun fromNetwork(

@@ -68,6 +68,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
                     input2,
                     input3,
                     output,
+                    recipeCategory,
                     advancementBuilder,
                     ResourceLocation(
                         rl.namespace, ("recipes/" + recipeCategory.folderName) + "/" + rl.path),
@@ -81,12 +82,24 @@ class IngotFusionTollEnhancerRecipeBuilder(
         check(advancementBuilder.criteria.isNotEmpty()) { "Can not obtain recipe: $rl" }
     }
 
+    /**
+     * Protip: The error has a string, seaching for that string will give more context
+     *
+     * @param input1 The first input item
+     * @param input2 The second input item
+     * @param input3 The third input item
+     * @param output The output item
+     * @param category The recipe category
+     * @param advancementId The advancement id
+     * @param id The recipe id
+     */
     @JvmRecord
     private data class Output(
         val input1: Ingredient,
         val input2: Ingredient,
         val input3: Ingredient,
         val output: Item,
+        val category: RecipeCategory,
         val advancementBuilder: Advancement.Builder,
         val advancementId: ResourceLocation,
         val id: ResourceLocation
@@ -95,6 +108,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
             json.add("input1", input1.toJson())
             json.add("input2", input2.toJson())
             json.add("input3", input3.toJson())
+            json.addProperty("category", this.category.folderName)
             json.addProperty(
                 "result",
                 Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(output), "Item is null")

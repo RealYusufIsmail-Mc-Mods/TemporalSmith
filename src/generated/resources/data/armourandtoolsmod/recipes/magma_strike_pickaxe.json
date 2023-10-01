@@ -1,5 +1,6 @@
 {
   "type": "armourandtoolsmod:ingot_fusion_toll_enhancer_recipe",
+  "category": "tools",
   "input1": {
     "tag": "forge:ingots/imperium"
   },
