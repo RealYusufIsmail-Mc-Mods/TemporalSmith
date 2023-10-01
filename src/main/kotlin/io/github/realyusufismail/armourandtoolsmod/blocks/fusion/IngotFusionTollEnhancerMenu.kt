@@ -52,7 +52,7 @@ class IngotFusionTollEnhancerMenu(
         SimpleContainerData(2))
 
     init {
-
+        // TODO : Recipe does not work
         try {
             checkContainerSize(inventory, NUMBER_OF_SLOTS)
 

@@ -22,7 +22,7 @@ import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.integration.ArmourAndToolsModJEIPlugin
-import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IIngotFusionTollEnhancerRecipe
+import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
 import mezz.jei.api.constants.VanillaTypes
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
 import mezz.jei.api.gui.drawable.IDrawable
@@ -35,7 +35,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.ItemStack
 
 class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
-    IRecipeCategory<IIngotFusionTollEnhancerRecipe> {
+    IRecipeCategory<IngotFusionTollEnhancerRecipe> {
     private val fusionJEIGuiLocation =
         ArmourAndToolsMod.getModIdAndName(
             "textures/gui/container/ingot_fusion_toll_enhancer_jei.png")
@@ -58,7 +58,7 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
      * @return the type of recipe that this category handles.
      * @since 9.5.0
      */
-    override fun getRecipeType(): RecipeType<IIngotFusionTollEnhancerRecipe> {
+    override fun getRecipeType(): RecipeType<IngotFusionTollEnhancerRecipe> {
         return ArmourAndToolsModJEIPlugin.ingotFusionTollEnhancerRecipeType
     }
 
@@ -104,7 +104,7 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
      */
     override fun setRecipe(
         builder: IRecipeLayoutBuilder,
-        recipe: IIngotFusionTollEnhancerRecipe,
+        recipe: IngotFusionTollEnhancerRecipe,
         focuses: IFocusGroup
     ) {
         builder.addSlot(RecipeIngredientRole.INPUT, 16, 40).addIngredients(recipe.ingredients[0])

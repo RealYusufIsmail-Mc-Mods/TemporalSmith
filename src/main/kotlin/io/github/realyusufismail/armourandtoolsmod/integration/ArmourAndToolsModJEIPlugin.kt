@@ -26,7 +26,7 @@ import io.github.realyusufismail.armourandtoolsmod.integration.armour.CustomArmo
 import io.github.realyusufismail.armourandtoolsmod.integration.fusion.IngotFusionTollEnhancerJEIRecipeCategory
 import io.github.realyusufismail.armourandtoolsmod.integration.tool.CustomToolCraftingTableJEIRecipeCategory
 import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IIngotFusionTollEnhancerRecipe
+import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.IModPlugin
 import mezz.jei.api.JeiPlugin
@@ -82,9 +82,9 @@ class ArmourAndToolsModJEIPlugin : IModPlugin {
             RecipeType(
                 CustomToolCraftingTableJEIRecipeCategory.UID,
                 CustomToolCraftingTableRecipe::class.java)
-        val ingotFusionTollEnhancerRecipeType: RecipeType<IIngotFusionTollEnhancerRecipe> =
+        val ingotFusionTollEnhancerRecipeType: RecipeType<IngotFusionTollEnhancerRecipe> =
             RecipeType(
                 IngotFusionTollEnhancerJEIRecipeCategory.UID,
-                IIngotFusionTollEnhancerRecipe::class.java)
+                IngotFusionTollEnhancerRecipe::class.java)
     }
 }

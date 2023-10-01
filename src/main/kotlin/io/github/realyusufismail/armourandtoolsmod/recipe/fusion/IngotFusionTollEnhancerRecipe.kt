@@ -20,15 +20,14 @@ package io.github.realyusufismail.armourandtoolsmod.recipe.fusion
 
 import com.google.gson.JsonObject
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
+import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Container
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.crafting.RecipeSerializer
-import net.minecraft.world.item.crafting.ShapedRecipe
+import net.minecraft.world.item.crafting.*
 import net.minecraft.world.level.Level
 import net.minecraftforge.registries.ForgeRegistries
 
@@ -36,9 +35,9 @@ class IngotFusionTollEnhancerRecipe(
     private val input1: Ingredient,
     private val input2: Ingredient,
     private val input3: Ingredient,
-    override val result: ItemStack,
+    val result: ItemStack,
     private val recipeId: ResourceLocation
-) : IIngotFusionTollEnhancerRecipe {
+) : Recipe<Container> {
 
     /** Used to check if a recipe matches current crafting inventory */
     override fun matches(pContainer: Container, pLevel: Level): Boolean {
@@ -76,6 +75,10 @@ class IngotFusionTollEnhancerRecipe(
         ingredients.add(input2)
         ingredients.add(input3)
         return ingredients
+    }
+
+    override fun getType(): RecipeType<*> {
+        return RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get()
     }
 
     companion object {
