@@ -20,7 +20,6 @@ package io.github.realyusufismail.armourandtoolsmod.recipe.fusion
 
 import com.google.gson.JsonObject
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
-import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
@@ -78,7 +77,17 @@ class IngotFusionTollEnhancerRecipe(
     }
 
     override fun getType(): RecipeType<*> {
-        return RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get()
+        return Type.INSTANCE
+    }
+
+    class Type : RecipeType<IngotFusionTollEnhancerRecipe> {
+        override fun toString(): String {
+            return "ingot_fusion_toll_enhancer"
+        }
+
+        companion object {
+            val INSTANCE = Type()
+        }
     }
 
     companion object {

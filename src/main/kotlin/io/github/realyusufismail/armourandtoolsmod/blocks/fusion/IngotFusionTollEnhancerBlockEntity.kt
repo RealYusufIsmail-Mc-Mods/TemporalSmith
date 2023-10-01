@@ -18,14 +18,15 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.fusion
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit
-import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
 import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.network.chat.Component
+import net.minecraft.world.SimpleContainer
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
@@ -201,16 +202,22 @@ open class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: Block
     }
 
     private fun getRecipe(): IngotFusionTollEnhancerRecipe? {
-        return if (items[0].isEmpty || items[1].isEmpty || items[2].isEmpty) {
-            null
-        } else {
-            level!!
-                .recipeManager
-                .getRecipeFor(
-                    RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(),
-                    this,
-                    this.level ?: throw NullPointerException("Level is null"))
-                .orElse(null) as IngotFusionTollEnhancerRecipe?
+        val inventory = SimpleContainer(this.items.size)
+        for (i in items.indices) {
+            inventory.setItem(i, items[i])
         }
+
+        level.let { level ->
+            if (level != null) {
+
+                ArmourAndToolsMod.logger.info("Level is not null")
+
+                return level.recipeManager
+                    .getRecipeFor(IngotFusionTollEnhancerRecipe.Type.INSTANCE, inventory, level)
+                    .orElseThrow { IllegalStateException("No recipe found") }
+            }
+        }
+
+        return null
     }
 }

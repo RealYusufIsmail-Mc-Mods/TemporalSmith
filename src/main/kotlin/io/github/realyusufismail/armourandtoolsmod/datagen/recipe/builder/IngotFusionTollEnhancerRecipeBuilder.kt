@@ -54,23 +54,27 @@ class IngotFusionTollEnhancerRecipeBuilder(
     }
 
     fun save(consumer: Consumer<FinishedRecipe>, rl: ResourceLocation) {
-        ensureValid(rl)
-        if (advancementBuilder.criteria.isNotEmpty())
-            advancementBuilder
-                .parent(ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(rl))
-                .rewards(AdvancementRewards.Builder.recipe(rl))
-                .requirements(RequirementsStrategy.OR)
-        consumer.accept(
-            Output(
-                input1,
-                input2,
-                input3,
-                output,
-                advancementBuilder,
-                ResourceLocation(
-                    rl.namespace, ("recipes/" + recipeCategory.folderName) + "/" + rl.path),
-                rl))
+        try {
+            ensureValid(rl)
+            if (advancementBuilder.criteria.isNotEmpty())
+                advancementBuilder
+                    .parent(ResourceLocation("recipes/root"))
+                    .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(rl))
+                    .rewards(AdvancementRewards.Builder.recipe(rl))
+                    .requirements(RequirementsStrategy.OR)
+            consumer.accept(
+                Output(
+                    input1,
+                    input2,
+                    input3,
+                    output,
+                    advancementBuilder,
+                    ResourceLocation(
+                        rl.namespace, ("recipes/" + recipeCategory.folderName) + "/" + rl.path),
+                    rl))
+        } catch (e: IllegalStateException) {
+            throw IllegalStateException("Could not create recipe: $rl", e)
+        }
     }
 
     private fun ensureValid(rl: ResourceLocation) {
