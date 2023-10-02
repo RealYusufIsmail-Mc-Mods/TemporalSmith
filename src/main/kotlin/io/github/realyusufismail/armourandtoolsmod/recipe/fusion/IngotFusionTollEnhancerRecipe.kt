@@ -40,12 +40,16 @@ class IngotFusionTollEnhancerRecipe(
 
     /** Used to check if a recipe matches current crafting inventory */
     override fun matches(pContainer: Container, pLevel: Level): Boolean {
-        return if (pLevel.isClientSide) false
-        else if (pContainer.containerSize < 3) false
-        else
-            input1.test(pContainer.getItem(0)) &&
-                input2.test(pContainer.getItem(1)) &&
-                input3.test(pContainer.getItem(2))
+        try {
+            return if (pLevel.isClientSide) false
+            else if (pContainer.containerSize < 3) false
+            else
+                input1.test(pContainer.getItem(0)) &&
+                        input2.test(pContainer.getItem(1)) &&
+                        input3.test(pContainer.getItem(2))
+        } catch (e: Exception) {
+            throw IllegalStateException("Error while checking recipe: $recipeId", e)
+        }
     }
 
     override fun assemble(pContainer: Container, pRegistryAccess: RegistryAccess): ItemStack {
@@ -139,9 +143,37 @@ class IngotFusionTollEnhancerRecipe(
                 pBuffer: FriendlyByteBuf
             ): IngotFusionTollEnhancerRecipe {
                 try {
-                    val input1 = Ingredient.fromNetwork(pBuffer)
-                    val input2 = Ingredient.fromNetwork(pBuffer)
-                    val input3 = Ingredient.fromNetwork(pBuffer)
+
+                    var input1: Ingredient? = null
+                    var input2: Ingredient? = null
+                    var input3: Ingredient? = null
+
+                    for (i in 0..3) {
+                        val ingredient = Ingredient.fromNetwork(pBuffer)
+
+                        if (ingredient.isEmpty) {
+                            throw IllegalStateException(
+                                "No ingredients for ingot fusion toll enhancer recipe")
+                        }
+
+                        when (i) {
+                            0 -> {
+                                input1 = ingredient
+                            }
+                            1 -> {
+                                input2 = ingredient
+                            }
+                            2 -> {
+                                input3 = ingredient
+                            }
+                        }
+                    }
+
+                    if (input1 == null || input2 == null || input3 == null) {
+                        throw IllegalStateException(
+                            "No ingredients for ingot fusion toll enhancer recipe")
+                    }
+
                     val result = pBuffer.readItem()
                     return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
                 } catch (e: IllegalStateException) {
@@ -154,9 +186,10 @@ class IngotFusionTollEnhancerRecipe(
                 pRecipe: IngotFusionTollEnhancerRecipe
             ) {
                 try {
-                    pRecipe.input1.toNetwork(pBuffer)
-                    pRecipe.input2.toNetwork(pBuffer)
-                    pRecipe.input3.toNetwork(pBuffer)
+                    for (ingredient in pRecipe.getIngredients()) {
+                        ingredient.toNetwork(pBuffer)
+                    }
+
                     pBuffer.writeItem(pRecipe.result)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not write recipe: ${pRecipe.id}", e)

@@ -140,7 +140,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
             else null
         }
 
-        override fun getAdvancementId(): ResourceLocation? {
+        override fun getAdvancementId(): ResourceLocation {
             return advancementId
         }
     }
