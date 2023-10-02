@@ -28,7 +28,6 @@ import net.minecraft.advancements.RequirementsStrategy
 import net.minecraft.advancements.critereon.InventoryChangeTrigger
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
 import net.minecraft.data.recipes.FinishedRecipe
-import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
@@ -40,8 +39,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
     private val input1: Ingredient,
     private val input2: Ingredient,
     private val input3: Ingredient,
-    private val output: Item,
-    private var recipeCategory: RecipeCategory
+    private val output: Item
 ) {
     private val advancementBuilder = Advancement.Builder.advancement()
 
@@ -68,10 +66,10 @@ class IngotFusionTollEnhancerRecipeBuilder(
                     input2,
                     input3,
                     output,
-                    recipeCategory,
                     advancementBuilder,
-                    ResourceLocation(
-                        rl.namespace, ("recipes/" + recipeCategory.folderName) + "/" + rl.path),
+                    ResourceLocation(rl.namespace, "recipes/root").also { advancementId ->
+                        advancementBuilder.parent(advancementId)
+                    },
                     rl))
         } catch (e: IllegalStateException) {
             throw IllegalStateException("Could not create recipe: $rl", e)
@@ -99,7 +97,6 @@ class IngotFusionTollEnhancerRecipeBuilder(
         val input2: Ingredient,
         val input3: Ingredient,
         val output: Item,
-        val category: RecipeCategory,
         val advancementBuilder: Advancement.Builder,
         val advancementId: ResourceLocation,
         val id: ResourceLocation
@@ -108,7 +105,6 @@ class IngotFusionTollEnhancerRecipeBuilder(
             json.add("input1", input1.toJson())
             json.add("input2", input2.toJson())
             json.add("input3", input3.toJson())
-            json.addProperty("category", this.category.folderName)
             json.addProperty(
                 "result",
                 Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(output), "Item is null")
@@ -138,33 +134,30 @@ class IngotFusionTollEnhancerRecipeBuilder(
             input1: Item,
             input2: Item,
             input3: Item,
-            output: Item,
-            recipeCategory: RecipeCategory
+            output: Item
         ): IngotFusionTollEnhancerRecipeBuilder {
             return IngotFusionTollEnhancerRecipeBuilder(
-                ingredient(input1), ingredient(input2), ingredient(input3), output, recipeCategory)
+                ingredient(input1), ingredient(input2), ingredient(input3), output)
         }
 
         fun builder(
             input1: TagKey<Item>,
             input2: TagKey<Item>,
             input3: TagKey<Item>,
-            output: Item,
-            recipeCategory: RecipeCategory
+            output: Item
         ): IngotFusionTollEnhancerRecipeBuilder {
             return IngotFusionTollEnhancerRecipeBuilder(
-                ingredient(input1), ingredient(input2), ingredient(input3), output, recipeCategory)
+                ingredient(input1), ingredient(input2), ingredient(input3), output)
         }
 
         fun builder(
             input1: TagKey<Item>,
             input2: Item,
             input3: TagKey<Item>,
-            output: Item,
-            recipeCategory: RecipeCategory
+            output: Item
         ): IngotFusionTollEnhancerRecipeBuilder {
             return IngotFusionTollEnhancerRecipeBuilder(
-                ingredient(input1), ingredient(input2), ingredient(input3), output, recipeCategory)
+                ingredient(input1), ingredient(input2), ingredient(input3), output)
         }
 
         private fun ingredient(entry: Item): Ingredient {

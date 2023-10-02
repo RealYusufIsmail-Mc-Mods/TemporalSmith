@@ -24,11 +24,11 @@ import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.GsonHelper
 import net.minecraft.world.Container
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.*
 import net.minecraft.world.level.Level
-import net.minecraftforge.registries.ForgeRegistries
 
 class IngotFusionTollEnhancerRecipe(
     private val input1: Ingredient,
@@ -40,13 +40,16 @@ class IngotFusionTollEnhancerRecipe(
 
     /** Used to check if a recipe matches current crafting inventory */
     override fun matches(pContainer: Container, pLevel: Level): Boolean {
-        return input1.test(pContainer.getItem(0)) &&
-            input2.test(pContainer.getItem(1)) &&
-            input3.test(pContainer.getItem(2))
+        return if (pLevel.isClientSide) false
+        else if (pContainer.containerSize < 3) false
+        else
+            input1.test(pContainer.getItem(0)) &&
+                input2.test(pContainer.getItem(1)) &&
+                input3.test(pContainer.getItem(2))
     }
 
     override fun assemble(pContainer: Container, pRegistryAccess: RegistryAccess): ItemStack {
-        return result.copy()
+        return result
     }
 
     /** Used to determine if this recipe can fit in a grid of the given width/height */
@@ -55,7 +58,7 @@ class IngotFusionTollEnhancerRecipe(
     }
 
     override fun getResultItem(pRegistryAccess: RegistryAccess): ItemStack {
-        return result
+        return result.copy()
     }
 
     override fun getId(): ResourceLocation {
@@ -103,17 +106,10 @@ class IngotFusionTollEnhancerRecipe(
                     val input2 = Ingredient.fromJson(json.get("input2"))
                     val input3 = Ingredient.fromJson(json.get("input3"))
 
-                    //TODO: Error caused by lack of recipe book category
+                    // TODO: Error caused by lack of recipe book category
 
-                    val result: ItemStack =
-                        if (json["result"].isJsonObject)
-                            ItemStack(ShapedRecipe.itemFromJson(json["result"].getAsJsonObject()))
-                        else
-                            ItemStack(
-                                ForgeRegistries.ITEMS.getValue(
-                                    ResourceLocation(json["result"].asString))
-                                    ?: throw IllegalStateException(
-                                        "Item: " + json["result"].asString + " does not exist"))
+                    val result =
+                        ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"))
 
                     return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
                 } catch (e: IllegalStateException) {
