@@ -35,7 +35,8 @@ class IngotFusionTollEnhancerRecipe(
     private val input2: Ingredient,
     private val input3: Ingredient,
     val result: ItemStack,
-    private val recipeId: ResourceLocation
+    private val recipeId: ResourceLocation,
+    val craftTime: Int = 200
 ) : Recipe<Container> {
 
     /** Used to check if a recipe matches current crafting inventory */
@@ -45,8 +46,8 @@ class IngotFusionTollEnhancerRecipe(
             else if (pContainer.containerSize < 3) false
             else
                 input1.test(pContainer.getItem(0)) &&
-                        input2.test(pContainer.getItem(1)) &&
-                        input3.test(pContainer.getItem(2))
+                    input2.test(pContainer.getItem(1)) &&
+                    input3.test(pContainer.getItem(2))
         } catch (e: Exception) {
             throw IllegalStateException("Error while checking recipe: $recipeId", e)
         }

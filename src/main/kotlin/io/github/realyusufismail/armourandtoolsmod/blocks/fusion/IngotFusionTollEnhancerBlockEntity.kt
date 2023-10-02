@@ -24,7 +24,6 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit
 import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
-import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.network.chat.Component
 import net.minecraft.world.SimpleContainer
 import net.minecraft.world.entity.player.Inventory
@@ -113,8 +112,7 @@ open class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: Block
                         worldPosition,
                         level!!
                             .getBlockState(worldPosition)
-                            .setValue(
-                                IngotFusionTollEnhancer.LIT, java.lang.Boolean.FALSE),
+                            .setValue(IngotFusionTollEnhancer.LIT, java.lang.Boolean.FALSE),
                         3)
                     currentTick = 0
                     setChanged()
