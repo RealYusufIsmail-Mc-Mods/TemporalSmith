@@ -113,7 +113,7 @@ open class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: Block
                         worldPosition,
                         level!!
                             .getBlockState(worldPosition)
-                            .setValue<Boolean, Boolean>(
+                            .setValue(
                                 IngotFusionTollEnhancer.LIT, java.lang.Boolean.FALSE),
                         3)
                     currentTick = 0
@@ -165,11 +165,6 @@ open class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: Block
                 }
             }
         } else false
-    }
-
-    fun encodeExtraData(buffer: FriendlyByteBuf) {
-        buffer.writeByte(items.size)
-        buffer.writeByte(data.count)
     }
 
     override fun setItems(p_199721_1_: NonNullList<ItemStack>) {
