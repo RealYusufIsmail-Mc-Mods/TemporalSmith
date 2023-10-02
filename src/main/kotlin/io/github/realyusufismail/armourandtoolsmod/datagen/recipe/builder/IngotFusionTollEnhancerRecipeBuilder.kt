@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder
 
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import java.util.*
@@ -29,7 +30,6 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
@@ -102,13 +102,29 @@ class IngotFusionTollEnhancerRecipeBuilder(
         val id: ResourceLocation
     ) : FinishedRecipe {
         override fun serializeRecipeData(json: JsonObject) {
-            json.add("input1", input1.toJson())
-            json.add("input2", input2.toJson())
-            json.add("input3", input3.toJson())
-            json.addProperty(
-                "result",
-                Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(output), "Item is null")
-                    .toString())
+            // in json arry have input one it as an arrya of items up to three
+            // "ingredients": [
+            //    {
+            //      "item": "armourandtoolsmod:imperium"
+            //    },
+            //    {
+            //      "item": "armourandtoolsmod:imperium_pickaxe"
+            //    },
+
+            val jsonArray = JsonArray()
+            val ingredients = arrayOf(input1, input2, input3)
+
+            for (ingredient in ingredients) {
+                jsonArray.add(ingredient.toJson())
+            }
+
+            json.add("ingredients", jsonArray)
+
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("item", ForgeRegistries.ITEMS.getKey(output).toString())
+            json.add("result", jsonObject)
+
+            println(json.toString())
         }
 
         override fun getId(): ResourceLocation {
@@ -140,31 +156,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
                 ingredient(input1), ingredient(input2), ingredient(input3), output)
         }
 
-        fun builder(
-            input1: TagKey<Item>,
-            input2: TagKey<Item>,
-            input3: TagKey<Item>,
-            output: Item
-        ): IngotFusionTollEnhancerRecipeBuilder {
-            return IngotFusionTollEnhancerRecipeBuilder(
-                ingredient(input1), ingredient(input2), ingredient(input3), output)
-        }
-
-        fun builder(
-            input1: TagKey<Item>,
-            input2: Item,
-            input3: TagKey<Item>,
-            output: Item
-        ): IngotFusionTollEnhancerRecipeBuilder {
-            return IngotFusionTollEnhancerRecipeBuilder(
-                ingredient(input1), ingredient(input2), ingredient(input3), output)
-        }
-
         private fun ingredient(entry: Item): Ingredient {
-            return Ingredient.of(entry)
-        }
-
-        private fun ingredient(entry: TagKey<Item>): Ingredient {
             return Ingredient.of(entry)
         }
     }

@@ -102,11 +102,28 @@ class IngotFusionTollEnhancerRecipe(
             ): IngotFusionTollEnhancerRecipe {
 
                 try {
-                    val input1 = Ingredient.fromJson(json.get("input1"))
-                    val input2 = Ingredient.fromJson(json.get("input2"))
-                    val input3 = Ingredient.fromJson(json.get("input3"))
+                    // there is an array called Ingredients, and it contains 3 objects, each object
+                    // is an ingredient
+                    //  "ingredients": [
+                    //    {
+                    //      "item": "armourandtoolsmod:imperium"
+                    //    },
+                    //    {
+                    //      "item": "armourandtoolsmod:imperium_pickaxe"
+                    //    },
+                    //    {
+                    //      "item": "armourandtoolsmod:imperium"
+                    //    }
+                    //  ],
+                    val ingredientArray = json.get("ingredients").asJsonArray
+                    val input1 = Ingredient.fromJson(ingredientArray[0])
+                    val input2 = Ingredient.fromJson(ingredientArray[1])
+                    val input3 = Ingredient.fromJson(ingredientArray[2])
 
                     // TODO: Error caused by lack of recipe book category
+                    // [13:57:18] [Render thread/WARN] [minecraft/ClientRecipeBook]: Unknown recipe
+                    // category:
+                    // [!!!com.mojang.logging.LogUtils$1ToString@6987a0f3=>java.lang.NullPointerException:Cannot invoke "Object.toString()" because the return value of "java.util.function.Supplier.get()" is null!!!]/armourandtoolsmod:magma_strike_pickaxe
 
                     val result =
                         ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"))
@@ -121,21 +138,29 @@ class IngotFusionTollEnhancerRecipe(
                 pRecipeId: ResourceLocation,
                 pBuffer: FriendlyByteBuf
             ): IngotFusionTollEnhancerRecipe {
-                val input1 = Ingredient.fromNetwork(pBuffer)
-                val input2 = Ingredient.fromNetwork(pBuffer)
-                val input3 = Ingredient.fromNetwork(pBuffer)
-                val result = pBuffer.readItem()
-                return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
+                try {
+                    val input1 = Ingredient.fromNetwork(pBuffer)
+                    val input2 = Ingredient.fromNetwork(pBuffer)
+                    val input3 = Ingredient.fromNetwork(pBuffer)
+                    val result = pBuffer.readItem()
+                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
+                } catch (e: IllegalStateException) {
+                    throw IllegalStateException("Could not read recipe: $pRecipeId", e)
+                }
             }
 
             override fun toNetwork(
                 pBuffer: FriendlyByteBuf,
                 pRecipe: IngotFusionTollEnhancerRecipe
             ) {
-                pRecipe.input1.toNetwork(pBuffer)
-                pRecipe.input2.toNetwork(pBuffer)
-                pRecipe.input3.toNetwork(pBuffer)
-                pBuffer.writeItem(pRecipe.result)
+                try {
+                    pRecipe.input1.toNetwork(pBuffer)
+                    pRecipe.input2.toNetwork(pBuffer)
+                    pRecipe.input3.toNetwork(pBuffer)
+                    pBuffer.writeItem(pRecipe.result)
+                } catch (e: IllegalStateException) {
+                    throw IllegalStateException("Could not write recipe: ${pRecipe.id}", e)
+                }
             }
         }
     }

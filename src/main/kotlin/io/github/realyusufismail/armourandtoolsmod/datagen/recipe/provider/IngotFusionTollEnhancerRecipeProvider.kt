@@ -19,7 +19,6 @@
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider
 
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
-import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder.IngotFusionTollEnhancerRecipeBuilder
 import java.util.function.Consumer
@@ -32,9 +31,9 @@ class IngotFusionTollEnhancerRecipeProvider(
 
     fun build() {
         IngotFusionTollEnhancerRecipeBuilder.builder(
-                TagsInit.ItemTagsInit.INGOTS_IMPERIUM,
+                ItemInit.IMPERIUM.get(),
                 ItemInit.IMPERIUM_PICKAXE.get(),
-                TagsInit.ItemTagsInit.INGOTS_IMPERIUM,
+                ItemInit.IMPERIUM.get(),
                 ItemInit.MAGMA_STRIKE_PICKAXE.get())
             .unlockedBy("has_imperium_ingot", has(ItemInit.IMPERIUM.get()))
             .save(pWriter, modId("magma_strike_pickaxe"))
