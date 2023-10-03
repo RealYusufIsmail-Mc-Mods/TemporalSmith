@@ -48,20 +48,18 @@ class IngotFusionTollEnhancerMenu(
     private val data: ContainerData,
     pInventory: Inventory
 ) : RecipeBookMenu<Container>(MenuTypeInit.INGOT_FUSION_TOLL_ENHANCER_MENU.get(), pContainerId) {
-    private val recipeType = RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.registryObject.orElseThrow { IllegalStateException("Recipe type is null") }
+    private val recipeType =
+        RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.registryObject.orElseThrow {
+            IllegalStateException("Recipe type is null")
+        }
     private val recipeBook = RecipeBookTypesInit.INGOT_FUSION
     private val level: Level
-
 
     constructor(
         pContainerId: Int,
         inventory: Inventory,
         data: FriendlyByteBuf
-    ) : this(
-        pContainerId,
-        getBlockEntity(inventory, data),
-        SimpleContainerData(2),
-        inventory)
+    ) : this(pContainerId, getBlockEntity(inventory, data), SimpleContainerData(2), inventory)
 
     init {
         level = pInventory.player.level() ?: throw IllegalStateException("Level is null")
@@ -72,15 +70,15 @@ class IngotFusionTollEnhancerMenu(
         addPlayerHotbar(pInventory)
 
         blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent { it ->
-            //slots to place ingredients
+            // slots to place ingredients
             addSlot(SlotItemHandler(it, 0, 16, 40))
             addSlot(SlotItemHandler(it, 1, 43, 40))
             addSlot(SlotItemHandler(it, 2, 70, 40))
 
-            //slot to place fuel
+            // slot to place fuel
             addSlot(InfusionFuelSlot(it, this))
 
-            //slot to place result
+            // slot to place result
             addSlot(OutputSlotItemHandler(it))
         }
     }
@@ -124,15 +122,15 @@ class IngotFusionTollEnhancerMenu(
 
     override fun clearCraftingContent() {
 
-        //Ingredient slots
+        // Ingredient slots
         this.getSlot(0).set(ItemStack.EMPTY)
         this.getSlot(1).set(ItemStack.EMPTY)
         this.getSlot(2).set(ItemStack.EMPTY)
 
-        //Fuel slot
+        // Fuel slot
         this.getSlot(3).set(ItemStack.EMPTY)
 
-        //Output slot
+        // Output slot
         this.getSlot(4).set(ItemStack.EMPTY)
     }
 
@@ -144,7 +142,7 @@ class IngotFusionTollEnhancerMenu(
         return 3
     }
 
-    //TODO: Check if this is correct
+    // TODO: Check if this is correct
     override fun getGridHeight(): Int {
         return 1
     }
@@ -188,8 +186,20 @@ class IngotFusionTollEnhancerMenu(
         return ForgeHooks.getBurnTime(pStack, recipeType) > 0
     }
 
+    fun getLitProgress(): Int {
+        var i = data[1]
+        if (i == 0) {
+            i = 200
+        }
+        return data[0] * 13 / i
+    }
+
+    fun isLit(): Boolean {
+        return data[0] > 0
+    }
+
     companion object {
-        fun getBlockEntity( inventory: Inventory, data: FriendlyByteBuf): BaseContainerBlockEntity {
+        fun getBlockEntity(inventory: Inventory, data: FriendlyByteBuf): BaseContainerBlockEntity {
             val blockEntity = inventory.player.level().getBlockEntity(data.readBlockPos())
             if (blockEntity is BaseContainerBlockEntity) {
                 return blockEntity

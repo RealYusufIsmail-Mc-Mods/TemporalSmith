@@ -34,7 +34,7 @@ class IngotFusionTollEnhancerRecipe(
     private val input1: Ingredient,
     private val input2: Ingredient,
     private val input3: Ingredient,
-    val fuel : Ingredient,
+    val fuel: Ingredient,
     val result: ItemStack,
     private val recipeId: ResourceLocation,
     val craftTime: Int = 200
@@ -136,7 +136,8 @@ class IngotFusionTollEnhancerRecipe(
                     val result =
                         ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"))
 
-                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, fuel, result, pRecipeId)
+                    return IngotFusionTollEnhancerRecipe(
+                        input1, input2, input3, fuel, result, pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not create recipe: $pRecipeId", e)
                 }
@@ -180,7 +181,8 @@ class IngotFusionTollEnhancerRecipe(
 
                     val fuel = Ingredient.fromNetwork(pBuffer)
                     val result = pBuffer.readItem()
-                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, fuel, result, pRecipeId)
+                    return IngotFusionTollEnhancerRecipe(
+                        input1, input2, input3, fuel, result, pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not read recipe: $pRecipeId", e)
                 }

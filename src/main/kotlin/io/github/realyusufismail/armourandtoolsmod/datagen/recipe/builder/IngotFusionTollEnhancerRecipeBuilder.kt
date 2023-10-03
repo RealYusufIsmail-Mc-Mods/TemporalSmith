@@ -111,7 +111,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
 
             json.add("ingredients", jsonArray)
 
-            //TODO: Update to add new fuel slot
+            // TODO: Update to add new fuel slot
 
             val jsonObject = JsonObject()
             jsonObject.addProperty("item", ForgeRegistries.ITEMS.getKey(output).toString())

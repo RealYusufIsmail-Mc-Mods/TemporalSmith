@@ -3,14 +3,12 @@ package io.github.realyusufismail.armourandtoolsmod.blocks.fusion;
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer;
-import net.minecraft.client.gui.Font;
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.ChestMenu;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
