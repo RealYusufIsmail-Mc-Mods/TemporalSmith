@@ -1,7 +1,7 @@
 package io.github.realyusufismail.armourandtoolsmod.blocks;
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
-import io.github.realyusufismail.armourandtoolsmod.blocks.fusion.IngotFusionTollEnhancerBlockEntity;
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.StatsInit;
 import net.minecraft.core.BlockPos;
