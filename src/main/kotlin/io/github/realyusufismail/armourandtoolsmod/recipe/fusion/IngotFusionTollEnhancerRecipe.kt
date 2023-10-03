@@ -34,6 +34,7 @@ class IngotFusionTollEnhancerRecipe(
     private val input1: Ingredient,
     private val input2: Ingredient,
     private val input3: Ingredient,
+    val fuel : Ingredient,
     val result: ItemStack,
     private val recipeId: ResourceLocation,
     val craftTime: Int = 200
@@ -125,6 +126,8 @@ class IngotFusionTollEnhancerRecipe(
                     val input2 = Ingredient.fromJson(ingredientArray[1])
                     val input3 = Ingredient.fromJson(ingredientArray[2])
 
+                    val fuel = Ingredient.fromJson(json.get("fuel"))
+
                     // TODO: Error caused by lack of recipe book category
                     // [13:57:18] [Render thread/WARN] [minecraft/ClientRecipeBook]: Unknown recipe
                     // category:
@@ -133,7 +136,7 @@ class IngotFusionTollEnhancerRecipe(
                     val result =
                         ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"))
 
-                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
+                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, fuel, result, pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not create recipe: $pRecipeId", e)
                 }
@@ -175,8 +178,9 @@ class IngotFusionTollEnhancerRecipe(
                             "No ingredients for ingot fusion toll enhancer recipe")
                     }
 
+                    val fuel = Ingredient.fromNetwork(pBuffer)
                     val result = pBuffer.readItem()
-                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, result, pRecipeId)
+                    return IngotFusionTollEnhancerRecipe(input1, input2, input3, fuel, result, pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not read recipe: $pRecipeId", e)
                 }
@@ -191,6 +195,7 @@ class IngotFusionTollEnhancerRecipe(
                         ingredient.toNetwork(pBuffer)
                     }
 
+                    pRecipe.fuel.toNetwork(pBuffer)
                     pBuffer.writeItem(pRecipe.result)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not write recipe: ${pRecipe.id}", e)

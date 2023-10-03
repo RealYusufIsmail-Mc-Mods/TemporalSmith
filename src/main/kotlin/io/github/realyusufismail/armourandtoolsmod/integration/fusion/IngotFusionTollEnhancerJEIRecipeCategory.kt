@@ -111,6 +111,8 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
         builder.addSlot(RecipeIngredientRole.INPUT, 43, 40).addIngredients(recipe.ingredients[1])
         builder.addSlot(RecipeIngredientRole.INPUT, 70, 40).addIngredients(recipe.ingredients[2])
 
+        builder.addSlot(RecipeIngredientRole.INPUT, 110, 65).addIngredients(recipe.fuel)
+
         builder.addSlot(RecipeIngredientRole.OUTPUT, 138, 40).addItemStack(recipe.result)
     }
 

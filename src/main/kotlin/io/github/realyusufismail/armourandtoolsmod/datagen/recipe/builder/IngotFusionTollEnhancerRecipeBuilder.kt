@@ -102,15 +102,6 @@ class IngotFusionTollEnhancerRecipeBuilder(
         val id: ResourceLocation
     ) : FinishedRecipe {
         override fun serializeRecipeData(json: JsonObject) {
-            // in json arry have input one it as an arrya of items up to three
-            // "ingredients": [
-            //    {
-            //      "item": "armourandtoolsmod:imperium"
-            //    },
-            //    {
-            //      "item": "armourandtoolsmod:imperium_pickaxe"
-            //    },
-
             val jsonArray = JsonArray()
             val ingredients = arrayOf(input1, input2, input3)
 
@@ -119,6 +110,8 @@ class IngotFusionTollEnhancerRecipeBuilder(
             }
 
             json.add("ingredients", jsonArray)
+
+            //TODO: Update to add new fuel slot
 
             val jsonObject = JsonObject()
             jsonObject.addProperty("item", ForgeRegistries.ITEMS.getKey(output).toString())
