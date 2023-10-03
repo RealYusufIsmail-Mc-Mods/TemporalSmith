@@ -16,10 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.blocks.rework
+package io.github.realyusufismail.armourandtoolsmod.blocks.infusion
 
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer
-import io.github.realyusufismail.armourandtoolsmod.blocks.fusion.IngotFusionTollEnhancerMenu
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit
 import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
@@ -49,7 +48,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity
 import net.minecraft.world.level.block.state.BlockState
 
-class ReworkedBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
+class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
     BaseContainerBlockEntity(
         BlockEntityTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), pPos, pBlockState),
     WorldlyContainer,
@@ -139,12 +138,12 @@ class ReworkedBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
             level: Level,
             pPos: BlockPos,
             pState: BlockState,
-            pEntity: ReworkedBlockEntity
+            pEntity: IngotFusionTollEnhancerBlockEntity
         ) {
             TODO()
         }
 
-        private fun getTotalCraftTime(pLevel: Level, pBlockEntity: ReworkedBlockEntity): Int {
+        private fun getTotalCraftTime(pLevel: Level, pBlockEntity: IngotFusionTollEnhancerBlockEntity): Int {
             return pBlockEntity.quickCheck!!
                 .getRecipeFor(pBlockEntity, pLevel)
                 .map { it::craftTime.get() }
@@ -249,7 +248,7 @@ class ReworkedBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
     }
 
     override fun createMenu(pContainerId: Int, pInventory: Inventory): AbstractContainerMenu {
-        return IngotFusionTollEnhancerMenu(pContainerId, pInventory, this, dataAccess)
+        return IngotFusionTollEnhancerMenu(pContainerId, this, dataAccess, pInventory)
     }
 
     override fun getDefaultName(): Component {

@@ -20,7 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableMenu
-import io.github.realyusufismail.armourandtoolsmod.blocks.fusion.IngotFusionTollEnhancerMenu
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerMenu
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableMenu
 import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.flag.FeatureFlags
