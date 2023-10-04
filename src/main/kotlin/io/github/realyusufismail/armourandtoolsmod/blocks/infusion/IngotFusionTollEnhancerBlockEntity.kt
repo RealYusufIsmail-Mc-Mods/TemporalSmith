@@ -69,9 +69,7 @@ class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: BlockState
     StackedContentsCompatible {
     private var items = NonNullList.withSize(NUMBER_OF_SLOTS, ItemStack.EMPTY)
     // TODO: Check these and fix them
-    private var quickCheck:
-        RecipeManager.CachedCheck<Container, out IngotFusionTollEnhancerRecipe>? =
-        null
+    private var quickCheck: RecipeManager.CachedCheck<Container, out IngotFusionTollEnhancerRecipe>
     private val recipesUsed = Object2IntOpenHashMap<ResourceLocation>()
     private val SLOTS_FOR_UP = intArrayOf(0)
     private val SLOTS_FOR_DOWN = intArrayOf(2, 1)
@@ -80,6 +78,10 @@ class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: BlockState
     var litDuration by Delegates.notNull<Int>()
     var creatingTime by Delegates.notNull<Int>()
     var creatingTotalTime by Delegates.notNull<Int>()
+
+    init {
+        quickCheck = RecipeManager.createCheck(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get())
+    }
 
     private val dataAccess: ContainerData =
         object : ContainerData {
@@ -266,6 +268,7 @@ class IngotFusionTollEnhancerBlockEntity(pPos: BlockPos, pBlockState: BlockState
     companion object {
         const val NUMBER_OF_SLOTS = 5
 
+        @JvmStatic
         fun serverTick(
             level: Level,
             pPos: BlockPos,

@@ -2,7 +2,6 @@ package io.github.realyusufismail.armourandtoolsmod.core.init;
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

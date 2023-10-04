@@ -1,15 +1,16 @@
 package io.github.realyusufismail.armourandtoolsmod.blocks;
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity;
-import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
-import io.github.realyusufismail.armourandtoolsmod.core.init.StatsInit;
+import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.*;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -48,6 +49,14 @@ public class IngotFusionTollEnhancer extends BaseEntityBlock {
                 .sound(SoundType.METAL)
                 .mapColor(MapColor.DIAMOND));
         this.registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(LIT, false));
+    }
+
+    public static @NotNull Component getContainerTitle() {
+        return Component.translatable("container.ingot_fusion_toll_enhancer");
+    }
+
+    public static Component getContainerDescription() {
+        return Component.translatable("container.ingot_fusion_toll_enhancer.description");
     }
 
     @Override
@@ -150,16 +159,15 @@ public class IngotFusionTollEnhancer extends BaseEntityBlock {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
-    public static @NotNull Component getContainerTitle() {
-        return Component.translatable("container.ingot_fusion_toll_enhancer");
-    }
-
-    public static Component getContainerDescription() {
-        return Component.translatable("container.ingot_fusion_toll_enhancer.description");
-    }
-
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         pTooltip.add(getContainerDescription());
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
+                                                                  BlockEntityType<T> type) {
+        return level.isClientSide ? null : createTickerHelper(type, BlockEntityTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), IngotFusionTollEnhancerBlockEntity::serverTick);
     }
 }
