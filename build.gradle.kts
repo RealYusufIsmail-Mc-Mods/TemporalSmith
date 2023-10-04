@@ -129,6 +129,8 @@ configure<UserDevExtension> {
     }
 }
 
+configurations { compileOnly { extendsFrom(configurations.annotationProcessor.get()) } }
+
 sourceSets.main { resources.srcDir("src/generated/resources") }
 
 repositories {
@@ -155,6 +157,10 @@ dependencies {
     compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
     compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
     runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
+
+    // lombok
+    compileOnly("org.projectlombok:lombok:" + properties["lombokVersion"])
+    annotationProcessor("org.projectlombok:lombok:" + properties["lombokVersion"])
 }
 
 tasks.test {
@@ -194,6 +200,14 @@ spotless {
     kotlinGradle {
         target("**/*.gradle.kts")
         ktfmt("0.42").dropboxStyle()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    java {
+        target("**/*.java")
+        googleJavaFormat()
         trimTrailingWhitespace()
         indentWithSpaces()
         endWithNewline()

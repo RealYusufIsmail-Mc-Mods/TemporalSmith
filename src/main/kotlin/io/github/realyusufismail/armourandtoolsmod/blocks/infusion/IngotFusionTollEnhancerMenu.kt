@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion
 
-import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity.Companion.NUMBER_OF_SLOTS
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity.NUMBER_OF_SLOTS
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.slots.InfusionFuelSlot
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.slots.OutputSlotItemHandler
 import io.github.realyusufismail.armourandtoolsmod.core.init.MenuTypeInit
@@ -64,7 +64,8 @@ class IngotFusionTollEnhancerMenu(
     init {
         level = pInventory.player.level() ?: throw IllegalStateException("Level is null")
 
-        checkContainerDataCount(data, NUMBER_OF_SLOTS)
+        checkContainerSize(blockEntity, NUMBER_OF_SLOTS)
+        checkContainerDataCount(data, 4)
 
         addPlayerInventory(pInventory)
         addPlayerHotbar(pInventory)

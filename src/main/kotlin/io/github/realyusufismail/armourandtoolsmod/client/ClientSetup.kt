@@ -19,7 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.client
 
 import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableScreen
-import io.github.realyusufismail.armourandtoolsmod.blocks.fusion.IngotFusionTollEnhancerScreen
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerScreen
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.CustomToolCraftingTableScreen
 import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.AqumarineTridentItemRenderer
 import io.github.realyusufismail.armourandtoolsmod.core.init.*

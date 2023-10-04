@@ -44,6 +44,7 @@ object RecipeTypeInit {
             RecipeType.simple(ResourceLocation(MOD_ID, "tool_crafting"))
         }
 
+    @JvmField
     val INGOT_FUSION_TOLL_ENHANCER:
         ObjectHolderDelegate<RecipeType<IngotFusionTollEnhancerRecipe>> =
         RECIPE_TYPES.registerObject("ingot_fusion_toll_enhancer") {
