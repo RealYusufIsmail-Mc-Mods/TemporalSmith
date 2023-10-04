@@ -68,8 +68,7 @@ public class IngotFusionTollEnhancer extends BaseEntityBlock {
                 try {
                     Objects.requireNonNull(player, "Player is null");
                     Objects.requireNonNull(blockEntity, "BlockEntity is null");
-
-                    NetworkHooks.openScreen((ServerPlayer) player, (IngotFusionTollEnhancerBlockEntity) blockEntity, blockPos);
+                    player.openMenu((IngotFusionTollEnhancerBlockEntity) blockEntity);
                 } catch (Exception e) {
                     throw new RuntimeException("Failed to open screen." + e);
                 }
