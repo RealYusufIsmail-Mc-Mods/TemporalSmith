@@ -1,5 +1,8 @@
 {
   "type": "armourandtoolsmod:ingot_fusion_toll_enhancer_recipe",
+  "category": "upgrading",
+  "craftTime": 500,
+  "experience": 0.5,
   "ingredients": [
     {
       "item": "armourandtoolsmod:imperium"

@@ -16,19 +16,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.blocks.lit;
+package io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book
 
-import java.util.List;
+import net.minecraft.util.StringRepresentable
 
-public class RainbowLitBlock extends LITBlock {
-  public RainbowLitBlock() {
-    super(
-        List.of(
-            LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_RED,
-            LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_GREEN,
-            LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_BLUE,
-            LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_PURPLE),
-        11,
-        RainbowLitBlock.class);
-  }
+enum class IngotFusionTollEnhancerRecipeBookCategory(private var bookName: String) :
+    StringRepresentable {
+    UPGRADING("upgrading"),
+    MISC("misc");
+
+    companion object {
+        val CODEC: StringRepresentable.EnumCodec<IngotFusionTollEnhancerRecipeBookCategory> =
+            StringRepresentable.fromEnum { entries.toTypedArray() }
+    }
+
+    override fun getSerializedName(): String {
+        return bookName
+    }
 }

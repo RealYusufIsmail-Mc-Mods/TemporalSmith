@@ -19,6 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.recipe.fusion
 
 import com.google.gson.JsonObject
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
@@ -34,10 +35,10 @@ class IngotFusionTollEnhancerRecipe(
     private val input1: Ingredient,
     private val input2: Ingredient,
     private val input3: Ingredient,
-    val fuel: Ingredient,
     val result: ItemStack,
+    val craftTime: Int,
+    private val experience: Float,
     private val recipeId: ResourceLocation,
-    val craftTime: Int = 200
 ) : Recipe<Container> {
 
     /** Used to check if a recipe matches current crafting inventory */
@@ -108,36 +109,23 @@ class IngotFusionTollEnhancerRecipe(
             ): IngotFusionTollEnhancerRecipe {
 
                 try {
-                    // there is an array called Ingredients, and it contains 3 objects, each object
-                    // is an ingredient
-                    //  "ingredients": [
-                    //    {
-                    //      "item": "armourandtoolsmod:imperium"
-                    //    },
-                    //    {
-                    //      "item": "armourandtoolsmod:imperium_pickaxe"
-                    //    },
-                    //    {
-                    //      "item": "armourandtoolsmod:imperium"
-                    //    }
-                    //  ],
                     val ingredientArray = json.get("ingredients").asJsonArray
                     val input1 = Ingredient.fromJson(ingredientArray[0])
                     val input2 = Ingredient.fromJson(ingredientArray[1])
                     val input3 = Ingredient.fromJson(ingredientArray[2])
 
-                    val fuel = Ingredient.fromJson(json.get("fuel"))
-
-                    // TODO: Error caused by lack of recipe book category
-                    // [13:57:18] [Render thread/WARN] [minecraft/ClientRecipeBook]: Unknown recipe
-                    // category:
-                    // [!!!com.mojang.logging.LogUtils$1ToString@6987a0f3=>java.lang.NullPointerException:Cannot invoke "Object.toString()" because the return value of "java.util.function.Supplier.get()" is null!!!]/armourandtoolsmod:magma_strike_pickaxe
+                    val craftTime = GsonHelper.getAsInt(json, "craftTime")
+                    val experience = GsonHelper.getAsFloat(json, "experience")
+                    val recipeCategory =
+                        IngotFusionTollEnhancerRecipeBookCategory.CODEC.byName(
+                            GsonHelper.getAsString(json, "category", null as String?),
+                            IngotFusionTollEnhancerRecipeBookCategory.MISC)
 
                     val result =
                         ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"))
 
                     return IngotFusionTollEnhancerRecipe(
-                        input1, input2, input3, fuel, result, pRecipeId)
+                        input1, input2, input3, result, craftTime, experience, pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not create recipe: $pRecipeId", e)
                 }
@@ -179,10 +167,12 @@ class IngotFusionTollEnhancerRecipe(
                             "No ingredients for ingot fusion toll enhancer recipe")
                     }
 
-                    val fuel = Ingredient.fromNetwork(pBuffer)
                     val result = pBuffer.readItem()
+                    val craftTime = pBuffer.readInt()
+                    val experience = pBuffer.readFloat()
+
                     return IngotFusionTollEnhancerRecipe(
-                        input1, input2, input3, fuel, result, pRecipeId)
+                        input1, input2, input3, result, craftTime, experience, pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not read recipe: $pRecipeId", e)
                 }
@@ -197,8 +187,9 @@ class IngotFusionTollEnhancerRecipe(
                         ingredient.toNetwork(pBuffer)
                     }
 
-                    pRecipe.fuel.toNetwork(pBuffer)
                     pBuffer.writeItem(pRecipe.result)
+                    pBuffer.writeInt(pRecipe.craftTime)
+                    pBuffer.writeFloat(pRecipe.experience)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not write recipe: ${pRecipe.id}", e)
                 }

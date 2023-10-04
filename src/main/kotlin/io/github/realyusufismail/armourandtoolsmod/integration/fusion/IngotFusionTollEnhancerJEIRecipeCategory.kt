@@ -20,6 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.integration.fusion
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.integration.ArmourAndToolsModJEIPlugin
 import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
@@ -111,7 +112,9 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
         builder.addSlot(RecipeIngredientRole.INPUT, 43, 40).addIngredients(recipe.ingredients[1])
         builder.addSlot(RecipeIngredientRole.INPUT, 70, 40).addIngredients(recipe.ingredients[2])
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 110, 65).addIngredients(recipe.fuel)
+        builder
+            .addSlot(RecipeIngredientRole.INPUT, 110, 65)
+            .addItemStacks(IngotFusionTollEnhancerBlockEntity.getFuelAsItemStacks().toList())
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 138, 40).addItemStack(recipe.result)
     }

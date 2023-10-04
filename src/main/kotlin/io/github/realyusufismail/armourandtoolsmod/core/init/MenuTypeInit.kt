@@ -48,7 +48,7 @@ object MenuTypeInit {
     val INGOT_FUSION_TOLL_ENHANCER_MENU:
         ObjectHolderDelegate<MenuType<IngotFusionTollEnhancerMenu>> =
         MENU.registerObject("ingot_fusion_toll_enhancer") {
-            //TODO : Get null here.
+                // TODO : Get null here.
                 IForgeMenuType.create { pContainerId, pInventory, pData ->
                     IngotFusionTollEnhancerMenu(pContainerId, pInventory, pData)
                 }
