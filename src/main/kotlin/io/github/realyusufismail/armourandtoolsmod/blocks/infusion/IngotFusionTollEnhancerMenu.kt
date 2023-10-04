@@ -59,7 +59,7 @@ class IngotFusionTollEnhancerMenu(
         pContainerId: Int,
         inventory: Inventory,
         data: FriendlyByteBuf
-    ) : this(pContainerId, getBlockEntity(inventory, data), SimpleContainerData(2), inventory)
+    ) : this(pContainerId, getBlockEntity(inventory, data), SimpleContainerData(4), inventory)
 
     init {
         level = pInventory.player.level() ?: throw IllegalStateException("Level is null")
