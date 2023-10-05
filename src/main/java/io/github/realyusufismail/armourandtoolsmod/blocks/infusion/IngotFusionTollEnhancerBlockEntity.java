@@ -327,6 +327,39 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     }
   }
 
+  net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[]
+      handlers =
+          net.minecraftforge.items.wrapper.SidedInvWrapper.create(
+              this, Direction.UP, Direction.DOWN, Direction.NORTH);
+
+  @Override
+  public <T> net.minecraftforge.common.util.@NotNull LazyOptional<T> getCapability(
+      net.minecraftforge.common.capabilities.Capability<T> capability,
+      @javax.annotation.Nullable Direction facing) {
+    if (!this.remove
+        && facing != null
+        && capability == net.minecraftforge.common.capabilities.ForgeCapabilities.ITEM_HANDLER) {
+      if (facing == Direction.UP) return handlers[0].cast();
+      else if (facing == Direction.DOWN) return handlers[1].cast();
+      else return handlers[2].cast();
+    }
+    return super.getCapability(capability, facing);
+  }
+
+  @Override
+  public void invalidateCaps() {
+    super.invalidateCaps();
+    for (int x = 0; x < handlers.length; x++) handlers[x].invalidate();
+  }
+
+  @Override
+  public void reviveCaps() {
+    super.reviveCaps();
+    this.handlers =
+        net.minecraftforge.items.wrapper.SidedInvWrapper.create(
+            this, Direction.UP, Direction.DOWN, Direction.NORTH);
+  }
+
   private boolean isLit() {
     return this.litTime > 0;
   }
