@@ -349,7 +349,9 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   @Override
   public void invalidateCaps() {
     super.invalidateCaps();
-    for (int x = 0; x < handlers.length; x++) handlers[x].invalidate();
+    for (net.minecraftforge.common.util.LazyOptional<
+            ? extends net.minecraftforge.items.IItemHandler>
+        handler : handlers) handler.invalidate();
   }
 
   @Override

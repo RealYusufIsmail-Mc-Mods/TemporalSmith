@@ -18,13 +18,45 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion.slots
 
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity
+import kotlin.math.min
+import net.minecraft.server.level.ServerPlayer
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
+import net.minecraftforge.event.ForgeEventFactory
 import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.SlotItemHandler
 
-class OutputSlotItemHandler(itemHandler: IItemHandler) : SlotItemHandler(itemHandler, 4, 138, 40) {
+class OutputSlotItemHandler(itemHandler: IItemHandler, val player: Player) :
+    SlotItemHandler(itemHandler, 4, 138, 40) {
+    private var removeCount: Int? = null
 
     override fun mayPlace(stack: ItemStack): Boolean {
         return false
+    }
+
+    override fun remove(pAmount: Int): ItemStack {
+        if (hasItem()) {
+            this.removeCount = min(pAmount, this.item.count)
+        }
+        return super.remove(pAmount)
+    }
+
+    override fun onTake(pPlayer: Player, pStack: ItemStack) {
+        checkTakeAchievements(pStack)
+        super.onTake(pPlayer, pStack)
+    }
+
+    /** @param pStack the output - ie, iron ingots, and pickaxes, not ore and wood. */
+    override fun checkTakeAchievements(pStack: ItemStack) {
+        pStack.onCraftedBy(this.player.level(), this.player, removeCount ?: 0)
+        val player: Player = this.player
+        if (player is ServerPlayer) {
+            val container = container
+            (container as? IngotFusionTollEnhancerBlockEntity)?.awardUsedRecipesAndPopExperience(
+                player)
+        }
+        removeCount = 0
+        ForgeEventFactory.firePlayerSmeltedEvent(player, pStack)
     }
 }

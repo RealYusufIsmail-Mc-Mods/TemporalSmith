@@ -34,7 +34,6 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity
-import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.capabilities.ForgeCapabilities
 import net.minecraftforge.items.SlotItemHandler
 
@@ -80,7 +79,7 @@ class IngotFusionTollEnhancerMenu(
             addSlot(InfusionFuelSlot(it, this))
 
             // slot to place result
-            addSlot(OutputSlotItemHandler(it))
+            addSlot(OutputSlotItemHandler(it, pInventory.player))
         }
     }
 
@@ -183,7 +182,7 @@ class IngotFusionTollEnhancerMenu(
     }
 
     fun isFuel(pStack: ItemStack): Boolean {
-        return ForgeHooks.getBurnTime(pStack, recipeType) > 0
+        return IngotFusionTollEnhancerBlockEntity.getFuels().containsKey(pStack.item)
     }
 
     fun getLitProgress(): Int {

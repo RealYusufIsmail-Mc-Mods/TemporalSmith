@@ -53,7 +53,7 @@ class ArmourAndToolsModJEIPlugin : IModPlugin {
         val recipesTool = recipeManager.getAllRecipesFor(RecipeTypeInit.TOOL_CRAFTING.get())
         val recipesArmour = recipeManager.getAllRecipesFor(RecipeTypeInit.ARMOUR_CRAFTING.get())
         val recipesIngotFusionTollEnhancer =
-            recipeManager.getAllRecipesFor(IngotFusionTollEnhancerRecipe.Type.INSTANCE)
+            recipeManager.getAllRecipesFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get())
         registration.addRecipes(toolCraftingTableRecipeType, recipesTool)
         registration.addRecipes(armourCraftingTableRecipeType, recipesArmour)
         registration.addRecipes(ingotFusionTollEnhancerRecipeType, recipesIngotFusionTollEnhancer)
