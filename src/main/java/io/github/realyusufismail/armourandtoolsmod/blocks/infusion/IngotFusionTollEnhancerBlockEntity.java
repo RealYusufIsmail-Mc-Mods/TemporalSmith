@@ -18,14 +18,17 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion;
 
+import com.google.common.collect.Lists;
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit;
 import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.Getter;
@@ -40,10 +43,14 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
@@ -54,6 +61,7 @@ import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -62,6 +70,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -127,6 +136,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         }
       };
 
+  @Override
   public void load(CompoundTag pTag) {
     super.load(pTag);
     this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
@@ -142,6 +152,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     }
   }
 
+  @Override
   protected void saveAdditional(CompoundTag pTag) {
     super.saveAdditional(pTag);
     pTag.putInt("BurnTime", this.litTime);
@@ -258,6 +269,55 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   @Override
   public Recipe<?> getRecipeUsed() {
     return null;
+  }
+
+  @Override
+  public void awardUsedRecipes(Player pPlayer, List<ItemStack> pItems) {}
+
+  public void awardUsedRecipesAndPopExperience(ServerPlayer pPlayer) {
+    List<Recipe<?>> list =
+        this.getRecipesToAwardAndPopExperience(pPlayer.serverLevel(), pPlayer.position());
+    pPlayer.awardRecipes(list);
+
+    for (Recipe<?> recipe : list) {
+      if (recipe != null) {
+        pPlayer.triggerRecipeCrafted(recipe, this.items);
+      }
+    }
+
+    this.recipesUsed.clear();
+  }
+
+  public List<Recipe<?>> getRecipesToAwardAndPopExperience(ServerLevel pLevel, Vec3 pPopVec) {
+    List<Recipe<?>> list = Lists.newArrayList();
+
+    for (Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
+      pLevel
+          .getRecipeManager()
+          .byKey(entry.getKey())
+          .ifPresent(
+              (p_155023_) -> {
+                list.add(p_155023_);
+                createExperience(
+                    pLevel,
+                    pPopVec,
+                    entry.getIntValue(),
+                    ((AbstractCookingRecipe) p_155023_).getExperience());
+              });
+    }
+
+    return list;
+  }
+
+  private static void createExperience(
+      ServerLevel pLevel, Vec3 pPopVec, int pRecipeIndex, float pExperience) {
+    int i = Mth.floor((float) pRecipeIndex * pExperience);
+    float f = Mth.frac((float) pRecipeIndex * pExperience);
+    if (f != 0.0F && Math.random() < (double) f) {
+      ++i;
+    }
+
+    ExperienceOrb.award(pLevel, pPopVec, i);
   }
 
   @Override

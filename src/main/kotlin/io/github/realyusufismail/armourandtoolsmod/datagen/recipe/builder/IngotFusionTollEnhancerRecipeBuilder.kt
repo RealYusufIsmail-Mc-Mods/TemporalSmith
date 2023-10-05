@@ -121,7 +121,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
 
             json.add("ingredients", jsonArray)
 
-            json.addProperty("craftTime", craftTime)
+            json.addProperty("crafttime", craftTime)
             json.addProperty("experience", experience)
             json.addProperty("category", recipeCategory.serializedName)
 

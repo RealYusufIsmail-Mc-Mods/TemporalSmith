@@ -115,7 +115,7 @@ class IngotFusionTollEnhancerRecipe(
                     val input2 = Ingredient.fromJson(ingredientArray[1])
                     val input3 = Ingredient.fromJson(ingredientArray[2])
 
-                    val craftTime = GsonHelper.getAsInt(json, "craftTime")
+                    val craftTime = GsonHelper.getAsInt(json, "crafttime")
                     val experience = GsonHelper.getAsFloat(json, "experience")
                     val recipeCategory =
                         IngotFusionTollEnhancerRecipeBookCategory.CODEC.byName(
