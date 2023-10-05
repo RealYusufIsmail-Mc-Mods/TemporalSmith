@@ -74,9 +74,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
                     craftTime,
                     experience,
                     advancementBuilder,
-                    ResourceLocation(rl.namespace, "recipes/root").also { advancementId ->
-                        advancementBuilder.parent(advancementId)
-                    },
+                    rl.withPrefix("recipes/" + recipeCategory.serializedName + "/"),
                     rl))
         } catch (e: IllegalStateException) {
             throw IllegalStateException("Could not create recipe: $rl", e)
