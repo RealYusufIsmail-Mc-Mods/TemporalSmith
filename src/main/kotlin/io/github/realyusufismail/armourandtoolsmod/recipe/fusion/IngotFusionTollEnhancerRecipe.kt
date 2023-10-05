@@ -31,6 +31,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.*
 import net.minecraft.world.level.Level
 
+/** @see */
 class IngotFusionTollEnhancerRecipe(
     private val input1: Ingredient,
     private val input2: Ingredient,

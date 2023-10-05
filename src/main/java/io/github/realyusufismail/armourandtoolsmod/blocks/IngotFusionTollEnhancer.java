@@ -26,6 +26,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -48,6 +49,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -90,7 +92,9 @@ public class IngotFusionTollEnhancer extends BaseEntityBlock {
         try {
           Objects.requireNonNull(player, "Player is null");
           Objects.requireNonNull(blockEntity, "BlockEntity is null");
-          player.openMenu((IngotFusionTollEnhancerBlockEntity) blockEntity);
+
+          NetworkHooks.openScreen(
+              (ServerPlayer) player, (IngotFusionTollEnhancerBlockEntity) blockEntity, blockPos);
         } catch (Exception e) {
           throw new RuntimeException("Failed to open screen." + e);
         }

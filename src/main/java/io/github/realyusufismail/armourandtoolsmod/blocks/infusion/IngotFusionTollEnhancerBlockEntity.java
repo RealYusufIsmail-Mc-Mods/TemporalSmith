@@ -37,6 +37,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -75,8 +76,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   private final RecipeManager.CachedCheck<Container, IngotFusionTollEnhancerRecipe> quickCheck;
 
   @Getter
-  private final NonNullList<ItemStack> items =
-      NonNullList.withSize(NUMBER_OF_SLOTS, ItemStack.EMPTY);
+  private NonNullList<ItemStack> items = NonNullList.withSize(NUMBER_OF_SLOTS, ItemStack.EMPTY);
 
   private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
   private final RecipeType<IngotFusionTollEnhancerRecipe> type =
@@ -126,6 +126,35 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
           return 4;
         }
       };
+
+  public void load(CompoundTag pTag) {
+    super.load(pTag);
+    this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+    ContainerHelper.loadAllItems(pTag, this.items);
+    this.litTime = pTag.getInt("BurnTime");
+    this.creatingTime = pTag.getInt("CraftTime");
+    this.creatingTotalTime = pTag.getInt("CraftTimeTotal");
+    this.litDuration = this.getTotalCraftTime(this.items.get(1));
+    CompoundTag compoundtag = pTag.getCompound("RecipesUsed");
+
+    for (String s : compoundtag.getAllKeys()) {
+      this.recipesUsed.put(new ResourceLocation(s), compoundtag.getInt(s));
+    }
+  }
+
+  protected void saveAdditional(CompoundTag pTag) {
+    super.saveAdditional(pTag);
+    pTag.putInt("BurnTime", this.litTime);
+    pTag.putInt("CraftTime", this.creatingTime);
+    pTag.putInt("CraftTimeTotal", this.creatingTotalTime);
+    ContainerHelper.saveAllItems(pTag, this.items);
+    CompoundTag compoundtag = new CompoundTag();
+    this.recipesUsed.forEach(
+        (p_187449_, p_187450_) -> {
+          compoundtag.putInt(p_187449_.toString(), p_187450_);
+        });
+    pTag.put("RecipesUsed", compoundtag);
+  }
 
   @Override
   public int @NotNull [] getSlotsForFace(Direction pSide) {

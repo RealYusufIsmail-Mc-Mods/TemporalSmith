@@ -140,10 +140,9 @@ class IngotFusionTollEnhancerMenu(
     }
 
     override fun getGridWidth(): Int {
-        return 3
+        return 1
     }
 
-    // TODO: Check if this is correct
     override fun getGridHeight(): Int {
         return 1
     }

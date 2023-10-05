@@ -67,7 +67,7 @@ public class IngotFusionTollEnhancerScreen
     this.addRenderableWidget(
         new ImageButton(
             this.leftPos + 5,
-            this.height / 2 - 49,
+            this.height / 2 - 22,
             20,
             18,
             0,

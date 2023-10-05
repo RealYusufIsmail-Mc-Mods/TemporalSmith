@@ -25,7 +25,7 @@ import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.SlotItemHandler
 
 class InfusionFuelSlot(itemHandler: IItemHandler, private val menu: IngotFusionTollEnhancerMenu) :
-    SlotItemHandler(itemHandler, 3, 110, 65) {
+    SlotItemHandler(itemHandler, 3, 102, 69) {
 
     override fun mayPlace(stack: ItemStack): Boolean {
         return menu.isFuel(stack) || isBucket(stack)
