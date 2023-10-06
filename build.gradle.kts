@@ -1,11 +1,18 @@
 import io.gitlab.arturbosch.detekt.Detekt
+import java.net.URL
 import net.minecraftforge.gradle.userdev.UserDevExtension
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories { mavenCentral() }
 
-    dependencies { classpath("io.github.realyusufismail:jconfig:1.0.8") }
+    dependencies {
+        classpath("org.jetbrains.dokka:dokka-base:1.9.0")
+        classpath("io.github.realyusufismail:jconfig:1.0.8")
+    }
 }
 
 plugins {
@@ -16,6 +23,7 @@ plugins {
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
     id("net.darkhax.curseforgegradle") version "1.1.16"
+    id("org.jetbrains.dokka") version "1.9.0"
     jacoco // code coverage reports
 }
 
@@ -301,4 +309,22 @@ tasks.create("cfPublish", net.darkhax.curseforgegradle.TaskPublishCurseForge::cl
     mainFile.addJavaVersion("Java 17")
     mainFile.addModLoader("forge")
     mainFile.addGameVersion(mcVersion)
+}
+
+tasks.getByName("dokkaHtml", DokkaTask::class) {
+    dokkaSourceSets.configureEach {
+        includes.from("README.md")
+        jdkVersion.set(17)
+        sourceLink {
+            localDirectory.set(file("src/main/kotlin"))
+            remoteUrl.set(
+                URL(
+                    "https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/main/src/main/kotlin"))
+            remoteLineSuffix.set("#L")
+        }
+
+        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+            footerMessage = "Copyright © 2023 RealYusufIsmail MC Mods"
+        }
+    }
 }
