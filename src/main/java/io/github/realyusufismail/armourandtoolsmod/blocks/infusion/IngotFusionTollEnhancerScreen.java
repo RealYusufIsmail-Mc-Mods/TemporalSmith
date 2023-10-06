@@ -78,7 +78,7 @@ public class IngotFusionTollEnhancerScreen
               this.recipeBookComponent.toggleVisibility();
               this.leftPos =
                   this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-              p_98484_.setPosition(this.leftPos + 5, this.height / 2 - 49);
+              p_98484_.setPosition(this.leftPos + 5, this.height / 2 - 22);
             }));
     this.addWidget(this.recipeBookComponent);
     this.setInitialFocus(this.recipeBookComponent);
