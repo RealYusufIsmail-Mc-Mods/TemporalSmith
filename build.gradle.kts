@@ -323,6 +323,14 @@ tasks.getByName("dokkaHtml", DokkaTask::class) {
             remoteLineSuffix.set("#L")
         }
 
+        sourceLink {
+            localDirectory.set(file("src/main/java"))
+            remoteUrl.set(
+                URL(
+                    "https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/main/src/main/java"))
+            remoteLineSuffix.set("#L")
+        }
+
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
             footerMessage = "Copyright © 2023 RealYusufIsmail MC Mods"
         }
