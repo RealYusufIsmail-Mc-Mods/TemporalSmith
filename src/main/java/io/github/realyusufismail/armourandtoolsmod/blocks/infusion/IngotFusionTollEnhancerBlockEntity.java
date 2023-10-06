@@ -368,73 +368,78 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   public static void serverTick(
       Level level, BlockPos pPos, BlockState pState, IngotFusionTollEnhancerBlockEntity pEntity) {
-    val flag = pEntity.isLit();
-    var flag1 = false;
 
-    if (pEntity.isLit()) {
-      pEntity.setLitTime(pEntity.getLitTime() - 1);
-    }
+    try {
+      val flag = pEntity.isLit();
+      var flag1 = false;
 
-    val itemstack = pEntity.getItems().get(1);
-    val flag2 = !pEntity.getItems().get(0).isEmpty();
-    val flag3 = !itemstack.isEmpty();
+      if (pEntity.isLit()) {
+        pEntity.setLitTime(pEntity.getLitTime() - 1);
+      }
 
-    if (pEntity.isLit() || (flag3 && flag2)) {
-      Recipe<?> recipe =
-          flag2 ? pEntity.getQuickCheck().getRecipeFor(pEntity, level).orElse(null) : null;
-      int i = pEntity.getMaxStackSize();
+      val itemstack = pEntity.getItems().get(1);
+      val flag2 = !pEntity.getItems().get(0).isEmpty();
+      val flag3 = !itemstack.isEmpty();
 
-      if (!pEntity.isLit()
-          && pEntity.canCreate(level.registryAccess(), recipe, pEntity.getItems(), i)) {
-        pEntity.setLitTime(pEntity.getTotalCraftTime(itemstack));
-        pEntity.setLitDuration(pEntity.getLitTime());
+      if (pEntity.isLit() || (flag3 && flag2)) {
+        Recipe<?> recipe =
+            flag2 ? pEntity.getQuickCheck().getRecipeFor(pEntity, level).orElse(null) : null;
+        int i = pEntity.getMaxStackSize();
 
-        if (pEntity.isLit()) {
-          flag1 = true;
+        if (!pEntity.isLit()
+            && pEntity.canCreate(level.registryAccess(), recipe, pEntity.getItems(), i)) {
+          pEntity.setLitTime(pEntity.getTotalCraftTime(itemstack));
+          pEntity.setLitDuration(pEntity.getLitTime());
 
-          if (itemstack.hasCraftingRemainingItem()) {
-            pEntity.getItems().set(1, itemstack.getCraftingRemainingItem());
-          } else if (flag3) {
-            Item item = itemstack.getItem();
-            itemstack.shrink(1);
+          if (pEntity.isLit()) {
+            flag1 = true;
 
-            if (itemstack.isEmpty()) {
+            if (itemstack.hasCraftingRemainingItem()) {
               pEntity.getItems().set(1, itemstack.getCraftingRemainingItem());
+            } else if (flag3) {
+              Item item = itemstack.getItem();
+              itemstack.shrink(1);
+
+              if (itemstack.isEmpty()) {
+                pEntity.getItems().set(1, itemstack.getCraftingRemainingItem());
+              }
             }
           }
         }
-      }
 
-      if (pEntity.isLit()
-          && pEntity.canCreate(level.registryAccess(), recipe, pEntity.getItems(), i)) {
-        pEntity.setCreatingTime(pEntity.getCreatingTime() + 1);
+        if (pEntity.isLit()
+            && pEntity.canCreate(level.registryAccess(), recipe, pEntity.getItems(), i)) {
+          pEntity.setCreatingTime(pEntity.getCreatingTime() + 1);
 
-        if (pEntity.getCreatingTime() == pEntity.getCreatingTotalTime()) {
-          pEntity.setCreatingTime(0);
-          pEntity.setCreatingTotalTime(getTotalCraftTime(level, pEntity));
+          if (pEntity.getCreatingTime() == pEntity.getCreatingTotalTime()) {
+            pEntity.setCreatingTime(0);
+            pEntity.setCreatingTotalTime(getTotalCraftTime(level, pEntity));
 
-          if (pEntity.craft(level.registryAccess(), recipe, pEntity.getItems(), i)) {
-            pEntity.setRecipeUsed(recipe);
+            if (pEntity.craft(level.registryAccess(), recipe, pEntity.getItems(), i)) {
+              pEntity.setRecipeUsed(recipe);
+            }
+            flag1 = true;
           }
-          flag1 = true;
+        } else {
+          pEntity.setCreatingTime(0);
         }
-      } else {
-        pEntity.setCreatingTime(0);
+      } else if (!pEntity.isLit() && pEntity.getCreatingTime() > 0) {
+        pEntity.setCreatingTime(Math.max(pEntity.getCreatingTime() - 2, 0));
       }
-    } else if (!pEntity.isLit() && pEntity.getCreatingTime() > 0) {
-      pEntity.setCreatingTime(Math.max(pEntity.getCreatingTime() - 2, 0));
-    }
 
-    BlockState state = pState;
+      BlockState state = pState;
 
-    if (flag != pEntity.isLit()) {
-      flag1 = true;
-      state = pState.setValue(IngotFusionTollEnhancer.LIT, pEntity.isLit());
-      level.setBlock(pPos, state, 3);
-    }
+      if (flag != pEntity.isLit()) {
+        flag1 = true;
+        state = pState.setValue(IngotFusionTollEnhancer.LIT, pEntity.isLit());
+        level.setBlock(pPos, state, 3);
+      }
 
-    if (flag1) {
-      setChanged(level, pPos, state);
+      if (flag1) {
+        setChanged(level, pPos, state);
+      }
+    } catch (Exception e) {
+      throw new RuntimeException("Failed to tick block entity." + e);
     }
   }
 
