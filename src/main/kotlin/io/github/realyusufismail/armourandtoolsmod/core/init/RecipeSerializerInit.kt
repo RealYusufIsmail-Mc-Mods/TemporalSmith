@@ -43,9 +43,7 @@ object RecipeSerializerInit {
 
     val INGOT_FUSION_TOLL_ENHANCER_RECIPE:
         ObjectHolderDelegate<RecipeSerializer<IngotFusionTollEnhancerRecipe>> =
-        register(
-            "ingot_fusion_toll_enhancer_recipe",
-            IngotFusionTollEnhancerRecipe.Companion.Serializer())
+        register("ingot_fusion_toll_enhancer", IngotFusionTollEnhancerRecipe.Companion.Serializer())
 
     private fun <S : RecipeSerializer<T>, T : Recipe<*>> register(
         pKey: String,

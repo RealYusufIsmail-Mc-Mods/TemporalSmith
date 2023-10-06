@@ -22,7 +22,8 @@ import net.minecraft.util.StringRepresentable
 
 enum class IngotFusionTollEnhancerRecipeBookCategory(private var bookName: String) :
     StringRepresentable {
-    UPGRADING("upgrading"),
+    TOOL("tool"),
+    ARMOUR("armour"),
     MISC("misc");
 
     companion object {

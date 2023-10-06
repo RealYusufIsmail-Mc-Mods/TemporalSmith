@@ -22,8 +22,10 @@ import com.google.common.base.Supplier
 import com.google.common.base.Suppliers
 import com.google.common.collect.ImmutableList
 import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmourCraftingBookCategory
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
+import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
 import net.minecraft.client.RecipeBookCategories
 import net.minecraft.world.item.ItemStack
@@ -111,6 +113,30 @@ object RecipeCategoriesInit {
     private val TOOL_CRAFTING_MISC: Supplier<RecipeBookCategories> =
         Suppliers.memoize {
             RecipeBookCategories.create("TOOL_CRAFTING_MISC", ItemStack(Items.DIAMOND_SHOVEL))
+        }
+
+    private val INGOT_FUSION_TOLL_ENHANCER_SEARCH: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create(
+                "INGOT_FUSION_TOLL_ENHANCER_SEARCH", ItemStack(Items.COMPASS))
+        }
+
+    private val INGOT_FUSION_TOLL_ENHANCER_TOOL: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create(
+                "INGOT_FUSION_TOLL_ENHANCER_TOOL", ItemStack(ItemInit.MAGMA_STRIKE_PICKAXE.get()))
+        }
+
+    private val INGOT_FUSION_TOLL_ENHANCER_ARMOUR: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create(
+                "INGOT_FUSION_TOLL_ENHANCER_ARMOUR", ItemStack(ItemInit.RAINBOW_CHESTPLATE.get()))
+        }
+
+    private val INGOT_FUSION_TOLL_ENHANCER_MISC: Supplier<RecipeBookCategories> =
+        Suppliers.memoize {
+            RecipeBookCategories.create(
+                "INGOT_FUSION_TOLL_ENHANCER_MISC", ItemStack(Items.DIAMOND_SHOVEL))
         }
 
     fun registerRecipeBookCategories(event: RegisterRecipeBookCategoriesEvent) {
@@ -222,6 +248,46 @@ object RecipeCategoriesInit {
                 }
             } else {
                 TOOL_CRAFTING_MISC.get()
+            }
+        }
+
+        event.registerBookCategories(
+            RecipeBookTypesInit.INGOT_FUSION,
+            ImmutableList.of(
+                INGOT_FUSION_TOLL_ENHANCER_SEARCH.get(),
+                INGOT_FUSION_TOLL_ENHANCER_TOOL.get(),
+                INGOT_FUSION_TOLL_ENHANCER_ARMOUR.get(),
+                INGOT_FUSION_TOLL_ENHANCER_MISC.get()))
+
+        event.registerAggregateCategory(
+            INGOT_FUSION_TOLL_ENHANCER_SEARCH.get(),
+            ImmutableList.of(
+                INGOT_FUSION_TOLL_ENHANCER_TOOL.get(),
+                INGOT_FUSION_TOLL_ENHANCER_ARMOUR.get(),
+                INGOT_FUSION_TOLL_ENHANCER_MISC.get()))
+
+        event.registerAggregateCategory(
+            INGOT_FUSION_TOLL_ENHANCER_TOOL.get(), listOf(INGOT_FUSION_TOLL_ENHANCER_TOOL.get()))
+
+        event.registerAggregateCategory(
+            INGOT_FUSION_TOLL_ENHANCER_ARMOUR.get(),
+            listOf(INGOT_FUSION_TOLL_ENHANCER_ARMOUR.get()))
+
+        event.registerAggregateCategory(
+            INGOT_FUSION_TOLL_ENHANCER_MISC.get(), listOf(INGOT_FUSION_TOLL_ENHANCER_MISC.get()))
+
+        event.registerRecipeCategoryFinder(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get()) {
+            if (it is IngotFusionTollEnhancerRecipe) {
+                when (it.recipeCategory) {
+                    IngotFusionTollEnhancerRecipeBookCategory.TOOL ->
+                        INGOT_FUSION_TOLL_ENHANCER_TOOL.get()
+                    IngotFusionTollEnhancerRecipeBookCategory.ARMOUR ->
+                        INGOT_FUSION_TOLL_ENHANCER_ARMOUR.get()
+                    IngotFusionTollEnhancerRecipeBookCategory.MISC ->
+                        INGOT_FUSION_TOLL_ENHANCER_MISC.get()
+                }
+            } else {
+                INGOT_FUSION_TOLL_ENHANCER_MISC.get()
             }
         }
     }

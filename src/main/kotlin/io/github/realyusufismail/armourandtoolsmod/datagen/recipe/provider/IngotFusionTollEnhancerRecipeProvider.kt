@@ -32,7 +32,7 @@ class IngotFusionTollEnhancerRecipeProvider(
 
     fun build() {
         IngotFusionTollEnhancerRecipeBuilder.builder(
-                IngotFusionTollEnhancerRecipeBookCategory.UPGRADING,
+                IngotFusionTollEnhancerRecipeBookCategory.TOOL,
                 ItemInit.IMPERIUM.get(),
                 ItemInit.IMPERIUM_PICKAXE.get(),
                 ItemInit.IMPERIUM.get(),

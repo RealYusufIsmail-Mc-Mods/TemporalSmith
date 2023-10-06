@@ -40,6 +40,7 @@ class IngotFusionTollEnhancerRecipe(
     val result: ItemStack,
     val craftTime: Int,
     private val experience: Float,
+    val recipeCategory: IngotFusionTollEnhancerRecipeBookCategory,
     private val recipeId: ResourceLocation,
 ) : Recipe<Container> {
 
@@ -117,7 +118,14 @@ class IngotFusionTollEnhancerRecipe(
                         ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"))
 
                     return IngotFusionTollEnhancerRecipe(
-                        input1, input2, input3, result, craftTime, experience, pRecipeId)
+                        input1,
+                        input2,
+                        input3,
+                        result,
+                        craftTime,
+                        experience,
+                        recipeCategory,
+                        pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not create recipe: $pRecipeId", e)
                 }
@@ -162,9 +170,18 @@ class IngotFusionTollEnhancerRecipe(
                     val result = pBuffer.readItem()
                     val craftTime = pBuffer.readInt()
                     val experience = pBuffer.readFloat()
+                    val recipeCategory =
+                        pBuffer.readEnum(IngotFusionTollEnhancerRecipeBookCategory::class.java)
 
                     return IngotFusionTollEnhancerRecipe(
-                        input1, input2, input3, result, craftTime, experience, pRecipeId)
+                        input1,
+                        input2,
+                        input3,
+                        result,
+                        craftTime,
+                        experience,
+                        recipeCategory,
+                        pRecipeId)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not read recipe: $pRecipeId", e)
                 }
@@ -182,6 +199,7 @@ class IngotFusionTollEnhancerRecipe(
                     pBuffer.writeItem(pRecipe.result)
                     pBuffer.writeInt(pRecipe.craftTime)
                     pBuffer.writeFloat(pRecipe.experience)
+                    pBuffer.writeEnum(pRecipe.recipeCategory)
                 } catch (e: IllegalStateException) {
                     throw IllegalStateException("Could not write recipe: ${pRecipe.id}", e)
                 }
