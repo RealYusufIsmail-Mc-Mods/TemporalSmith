@@ -367,11 +367,6 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   public static void serverTick(
       Level level, BlockPos pPos, BlockState pState, IngotFusionTollEnhancerBlockEntity pEntity) {
-    if (level.isClientSide()) {
-      ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Client");
-      return;
-    }
-
     if (hasRecipe(pEntity)) {
       // craftItem(pEntity);
 
@@ -401,20 +396,17 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
             .getRecipeFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), inventory, level);
 
     if (hasRecipe(pEntity)) {
-      if (recipe.isPresent()) {
-        ItemStack result = recipe.get().getResult();
-        if (pEntity.itemHandler.getStackInSlot(4).isEmpty()) {
-          pEntity.itemHandler.setStackInSlot(4, result.copy());
-        } else if (pEntity.itemHandler.getStackInSlot(4).getItem() == result.getItem()) {
-          pEntity.itemHandler.getStackInSlot(4).grow(result.getCount());
-        }
+      pEntity.itemHandler.extractItem(0, 1, false);
+      pEntity.itemHandler.extractItem(1, 1, false);
+      pEntity.itemHandler.extractItem(2, 1, false);
 
-        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
-          pEntity.itemHandler.getStackInSlot(i).shrink(1);
-        }
+      pEntity.itemHandler.setStackInSlot(
+          4,
+          new ItemStack(
+              recipe.get().getResult().getItem(),
+              pEntity.itemHandler.getStackInSlot(4).getCount() + 1));
 
-        pEntity.resetProgress();
-      }
+      pEntity.resetProgress();
     }
   }
 
@@ -424,21 +416,12 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   private static boolean hasRecipe(IngotFusionTollEnhancerBlockEntity entity) {
     Level level = entity.level;
-    //TODO: Issue here where it returns air instead of the item
+    // TODO: Issue here where it returns air instead of the item
+
     SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
     for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
       inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
     }
-
-    ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Checking Recipe for: " + inventory);
-    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-        .info("Checking Recipe for: " + inventory.getItem(0));
-    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-        .info("Checking Recipe for: " + inventory.getItem(1));
-    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-        .info("Checking Recipe for: " + inventory.getItem(2));
-    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-        .info("Checking Recipe for: " + inventory.getItem(3));
 
     level
         .getRecipeManager()
@@ -478,7 +461,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     return inventory.getItem(4).getCount() + 1 <= inventory.getItem(4).getMaxStackSize();
   }
 
-  private Integer getTotalCraftTime(ItemStack itemStack) {
+  private static Integer getTotalCraftTime(ItemStack itemStack) {
     if (itemStack.isEmpty()) {
       return 0;
     } else {

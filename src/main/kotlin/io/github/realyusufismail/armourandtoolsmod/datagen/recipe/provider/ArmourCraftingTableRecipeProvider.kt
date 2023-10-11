@@ -35,6 +35,12 @@ class ArmourCraftingTableRecipeProvider(
     private val hasItem = "has_item"
 
     fun build() {
+        // TODO: Some recipies are broken
+        // java.lang.ArrayIndexOutOfBoundsException: null
+        // [11:25:59] [Render thread/ERROR] [me.je.li.ut.IngredientSupplierHelper/]: Found a broken
+        // recipe, failed to setRecipe with RecipeLayoutBuilder: Armour and Tools Mod
+        // armourandtoolsmod:aqumarine_boots class
+        // io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableShapedRecipe
 
         CustomArmourCraftingTableRecipeBuilder.shaped(
                 CustomArmourCraftingBookCategory.ARMOUR_HEAD,

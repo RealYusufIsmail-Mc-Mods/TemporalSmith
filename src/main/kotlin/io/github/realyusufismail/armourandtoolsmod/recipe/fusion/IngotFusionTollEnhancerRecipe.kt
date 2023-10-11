@@ -46,20 +46,13 @@ class IngotFusionTollEnhancerRecipe(
 
     /** Used to check if a recipe matches current crafting inventory */
     override fun matches(pContainer: Container, pLevel: Level): Boolean {
-        try {
-            return if (pLevel.isClientSide) false
-            else if (pContainer.containerSize < 3) false
-            else
-                input1.test(pContainer.getItem(0)) &&
-                    input2.test(pContainer.getItem(1)) &&
-                    input3.test(pContainer.getItem(2))
-        } catch (e: Exception) {
-            throw IllegalStateException("Error while checking recipe: $recipeId", e)
-        }
+        return input1.test(pContainer.getItem(0)) &&
+            input2.test(pContainer.getItem(1)) &&
+            input3.test(pContainer.getItem(2))
     }
 
     override fun assemble(pContainer: Container, pRegistryAccess: RegistryAccess): ItemStack {
-        return result
+        return result.copy()
     }
 
     /** Used to determine if this recipe can fit in a grid of the given width/height */
