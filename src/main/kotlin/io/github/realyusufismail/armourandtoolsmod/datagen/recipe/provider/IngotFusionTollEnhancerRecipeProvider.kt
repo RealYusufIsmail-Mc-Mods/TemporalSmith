@@ -24,6 +24,7 @@ import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeP
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder.IngotFusionTollEnhancerRecipeBuilder
 import java.util.function.Consumer
 import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.world.item.ItemStack
 
 class IngotFusionTollEnhancerRecipeProvider(
     private val mainModRecipeProvider: MainModRecipeProvider,
@@ -36,9 +37,7 @@ class IngotFusionTollEnhancerRecipeProvider(
                 ItemInit.IMPERIUM.get(),
                 ItemInit.IMPERIUM_PICKAXE.get(),
                 ItemInit.IMPERIUM.get(),
-                ItemInit.MAGMA_STRIKE_PICKAXE.get(),
-                500,
-                0.5f)
+                ItemStack(ItemInit.MAGMA_STRIKE_PICKAXE.get()))
             .unlockedBy("has_imperium_ingot", has(ItemInit.IMPERIUM.get()))
             .save(pWriter, modId("magma_strike_pickaxe"))
     }

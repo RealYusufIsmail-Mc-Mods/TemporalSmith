@@ -45,6 +45,7 @@ object MenuTypeInit {
         ObjectHolderDelegate<MenuType<CustomToolCraftingTableMenu>> =
         register("custom_tool_crafting_table", ::CustomToolCraftingTableMenu)
 
+    @JvmField
     val INGOT_FUSION_TOLL_ENHANCER_MENU:
         ObjectHolderDelegate<MenuType<IngotFusionTollEnhancerMenu>> =
         MENU.registerObject("ingot_fusion_toll_enhancer") {

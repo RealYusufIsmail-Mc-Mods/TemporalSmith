@@ -23,5 +23,5 @@ import net.minecraft.world.inventory.RecipeBookType
 object RecipeBookTypesInit {
     val ARMOUR_CRAFTING: RecipeBookType = RecipeBookType.create("armour_crafting")
     val TOOL_CRAFTING: RecipeBookType = RecipeBookType.create("tool_crafting")
-    val INGOT_FUSION: RecipeBookType = RecipeBookType.create("ingot_fusion")
+    @JvmField val INGOT_FUSION: RecipeBookType = RecipeBookType.create("ingot_fusion")
 }

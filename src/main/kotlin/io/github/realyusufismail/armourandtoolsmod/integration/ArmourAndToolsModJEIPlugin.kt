@@ -26,7 +26,7 @@ import io.github.realyusufismail.armourandtoolsmod.integration.armour.CustomArmo
 import io.github.realyusufismail.armourandtoolsmod.integration.fusion.IngotFusionTollEnhancerJEIRecipeCategory
 import io.github.realyusufismail.armourandtoolsmod.integration.tool.CustomToolCraftingTableJEIRecipeCategory
 import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
+import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.IModPlugin
 import mezz.jei.api.JeiPlugin

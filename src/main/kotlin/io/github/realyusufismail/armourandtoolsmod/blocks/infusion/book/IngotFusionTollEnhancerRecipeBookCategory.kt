@@ -27,6 +27,7 @@ enum class IngotFusionTollEnhancerRecipeBookCategory(private var bookName: Strin
     MISC("misc");
 
     companion object {
+        @JvmField
         val CODEC: StringRepresentable.EnumCodec<IngotFusionTollEnhancerRecipeBookCategory> =
             StringRepresentable.fromEnum { entries.toTypedArray() }
     }

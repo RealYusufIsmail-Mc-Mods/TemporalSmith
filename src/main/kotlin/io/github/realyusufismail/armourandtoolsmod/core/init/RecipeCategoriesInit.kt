@@ -25,7 +25,7 @@ import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmo
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe
+import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
 import net.minecraft.client.RecipeBookCategories
 import net.minecraft.world.item.ItemStack
@@ -278,7 +278,7 @@ object RecipeCategoriesInit {
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get()) {
             if (it is IngotFusionTollEnhancerRecipe) {
-                when (it.recipeCategory) {
+                when (it.category) {
                     IngotFusionTollEnhancerRecipeBookCategory.TOOL ->
                         INGOT_FUSION_TOLL_ENHANCER_TOOL.get()
                     IngotFusionTollEnhancerRecipeBookCategory.ARMOUR ->

@@ -18,7 +18,6 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder
 
-import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
@@ -32,18 +31,17 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraftforge.registries.ForgeRegistries
 
 class IngotFusionTollEnhancerRecipeBuilder(
     private val recipeCategory: IngotFusionTollEnhancerRecipeBookCategory,
-    private val input1: Ingredient,
-    private val input2: Ingredient,
-    private val input3: Ingredient,
-    private val result: Item,
-    private val craftTime: Int = 200,
-    private val experience: Float = 0.2f
+    private val ingredient1: Ingredient,
+    private val ingredient2: Ingredient,
+    private val ingredient3: Ingredient,
+    private val result: ItemStack,
 ) {
     private val advancementBuilder = Advancement.Builder.advancement()
 
@@ -67,12 +65,10 @@ class IngotFusionTollEnhancerRecipeBuilder(
             consumer.accept(
                 Result(
                     recipeCategory,
-                    input1,
-                    input2,
-                    input3,
+                    ingredient1,
+                    ingredient2,
+                    ingredient3,
                     result,
-                    craftTime,
-                    experience,
                     advancementBuilder,
                     rl.withPrefix("recipes/" + recipeCategory.serializedName + "/"),
                     rl))
@@ -99,33 +95,30 @@ class IngotFusionTollEnhancerRecipeBuilder(
     @JvmRecord
     private data class Result(
         val recipeCategory: IngotFusionTollEnhancerRecipeBookCategory,
-        val input1: Ingredient,
-        val input2: Ingredient,
-        val input3: Ingredient,
-        val result: Item,
-        val craftTime: Int,
-        val experience: Float,
+        val ingredient1: Ingredient,
+        val ingredient2: Ingredient,
+        val ingredient3: Ingredient,
+        val result: ItemStack,
         val advancementBuilder: Advancement.Builder,
         val advancementId: ResourceLocation,
         val id: ResourceLocation
     ) : FinishedRecipe {
         override fun serializeRecipeData(json: JsonObject) {
-            val jsonArray = JsonArray()
-            val ingredients = arrayOf(input1, input2, input3)
-
-            for (ingredient in ingredients) {
-                jsonArray.add(ingredient.toJson())
-            }
-
-            json.add("ingredients", jsonArray)
-
-            json.addProperty("crafttime", craftTime)
-            json.addProperty("experience", experience)
             json.addProperty("category", recipeCategory.serializedName)
+            json.add("result", serializeResult(result))
+            json.add("ingredient1", ingredient1.toJson())
+            json.add("ingredient2", ingredient2.toJson())
+            json.add("ingredient3", ingredient3.toJson())
+        }
 
-            val jsonObject = JsonObject()
-            jsonObject.addProperty("item", ForgeRegistries.ITEMS.getKey(result).toString())
-            json.add("result", jsonObject)
+        private fun serializeResult(stack: ItemStack): JsonObject {
+            val json = JsonObject()
+            json.addProperty("item", ForgeRegistries.ITEMS.getKey(stack.item).toString())
+            json.addProperty("count", stack.count)
+            if (stack.hasTag()) {
+                json.addProperty("nbt", stack.tag.toString())
+            }
+            return json
         }
 
         override fun getId(): ResourceLocation {
@@ -151,18 +144,10 @@ class IngotFusionTollEnhancerRecipeBuilder(
             input1: Item,
             input2: Item,
             input3: Item,
-            result: Item,
-            craftTime: Int? = null,
-            experience: Float? = null
+            result: ItemStack,
         ): IngotFusionTollEnhancerRecipeBuilder {
             return IngotFusionTollEnhancerRecipeBuilder(
-                recipeCategory,
-                ingredient(input1),
-                ingredient(input2),
-                ingredient(input3),
-                result,
-                craftTime ?: 200,
-                experience ?: 0.2f)
+                recipeCategory, ingredient(input1), ingredient(input2), ingredient(input3), result)
         }
 
         private fun ingredient(entry: Item): Ingredient {

@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion.slots
 
+import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerMenu
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
@@ -25,7 +26,7 @@ import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.SlotItemHandler
 
 class InfusionFuelSlot(itemHandler: IItemHandler, private val menu: IngotFusionTollEnhancerMenu) :
-    SlotItemHandler(itemHandler, 3, 102, 65) {
+    SlotItemHandler(itemHandler, IngotFusionTollEnhancerBlockEntity.FUEL_SLOT, 102, 65) {
 
     override fun mayPlace(stack: ItemStack): Boolean {
         return menu.isFuel(stack) || isBucket(stack)

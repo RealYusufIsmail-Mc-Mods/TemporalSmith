@@ -1,20 +1,18 @@
 {
   "type": "armourandtoolsmod:ingot_fusion_toll_enhancer",
   "category": "tool",
-  "crafttime": 500,
-  "experience": 0.5,
-  "ingredients": [
-    {
-      "item": "armourandtoolsmod:imperium"
-    },
-    {
-      "item": "armourandtoolsmod:imperium_pickaxe"
-    },
-    {
-      "item": "armourandtoolsmod:imperium"
-    }
-  ],
+  "ingredient1": {
+    "item": "armourandtoolsmod:imperium"
+  },
+  "ingredient2": {
+    "item": "armourandtoolsmod:imperium_pickaxe"
+  },
+  "ingredient3": {
+    "item": "armourandtoolsmod:imperium"
+  },
   "result": {
-    "item": "armourandtoolsmod:magma_strike_pickaxe"
+    "count": 1,
+    "item": "armourandtoolsmod:magma_strike_pickaxe",
+    "nbt": "{Damage:0}"
   }
 }

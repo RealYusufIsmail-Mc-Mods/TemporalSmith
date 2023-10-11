@@ -18,15 +18,13 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion;
 
-import com.google.common.collect.Lists;
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit;
-import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTollEnhancerRecipe;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import java.util.*;
 import lombok.Getter;
@@ -40,15 +38,8 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
@@ -59,7 +50,6 @@ import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -67,9 +57,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -82,37 +69,30 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   @Getter
   private final RecipeManager.CachedCheck<Container, IngotFusionTollEnhancerRecipe> quickCheck;
 
+  // recipe
+  private final RecipeType<IngotFusionTollEnhancerRecipe> type =
+      RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get();
+
+  private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
+
+  // slots
+  public static final int NUMBER_OF_SLOTS = 5;
+  public static final int FUEL_SLOT = 3;
+  public static final int RESULT_SLOT = 4;
+  public static final int NUMBER_OF_DATA = 3;
+
   @Getter
   private NonNullList<ItemStack> items = NonNullList.withSize(NUMBER_OF_SLOTS, ItemStack.EMPTY);
 
-  private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
-  private final RecipeType<IngotFusionTollEnhancerRecipe> type =
-      RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get();
-  protected static final int SLOT_INPUT_1 = 0;
-  protected static final int SLOT_INPUT_2 = 1;
-  protected static final int SLOT_INPUT_3 = 2;
-  protected static final int SLOT_FUEL = 3;
-  protected static final int SLOT_RESULT = 4;
-  public static final int NUMBER_OF_SLOTS = 5;
-  private static final int[] SLOTS_FOR_UP = new int[] {0};
-  private static final int[] SLOTS_FOR_DOWN = new int[] {4, 3};
-  private static final int[] SLOTS_FOR_SIDES = new int[] {1, 2};
+  // ingredients
+  private ItemStack ingredient1;
+  private ItemStack ingredient2;
+  private ItemStack ingredient3;
+
+  // data
   @Getter @Setter int creatingTime = 0;
   @Getter @Setter int creatingTotalTime = 200;
-
-  public IngotFusionTollEnhancerBlockEntity(BlockPos blockPos, BlockState blockState) {
-    super(BlockEntityTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), blockPos, blockState);
-
-    this.quickCheck = RecipeManager.createCheck(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get());
-  }
-
-  private final ItemStackHandler itemHandler =
-      new ItemStackHandler(NUMBER_OF_SLOTS) {
-        @Override
-        protected void onContentsChanged(int slot) {
-          setChanged();
-        }
-      };
+  @Getter @Setter int fuel = 0;
 
   protected final ContainerData dataAccess =
       new ContainerData() {
@@ -120,6 +100,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
           return switch (p_58431_) {
             case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime;
             case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime;
+            case 2 -> IngotFusionTollEnhancerBlockEntity.this.fuel;
             default -> throw new IllegalArgumentException("Invalid index: " + p_58431_);
           };
         }
@@ -128,24 +109,30 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
           switch (p_58433_) {
             case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime = p_58434_;
             case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime = p_58434_;
+            case 2 -> IngotFusionTollEnhancerBlockEntity.this.fuel = p_58434_;
           }
         }
 
         public int getCount() {
-          return 2;
+          return NUMBER_OF_DATA;
         }
       };
+
+  public IngotFusionTollEnhancerBlockEntity(BlockPos blockPos, BlockState blockState) {
+    super(BlockEntityTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), blockPos, blockState);
+
+    this.quickCheck = RecipeManager.createCheck(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get());
+  }
 
   @Override
   public void load(CompoundTag pTag) {
     super.load(pTag);
     this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
     ContainerHelper.loadAllItems(pTag, this.items);
-
     this.creatingTime = pTag.getInt("CraftTime");
     this.creatingTotalTime = pTag.getInt("CraftTimeTotal");
 
-    CompoundTag compoundtag = pTag.getCompound("RecipesUsed");
+    val compoundtag = pTag.getCompound("RecipesUsed");
 
     for (String s : compoundtag.getAllKeys()) {
       this.recipesUsed.put(new ResourceLocation(s), compoundtag.getInt(s));
@@ -154,12 +141,10 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   @Override
   protected void saveAdditional(CompoundTag pTag) {
-
     pTag.putInt("CraftTime", this.creatingTime);
     pTag.putInt("CraftTimeTotal", this.creatingTotalTime);
-
     ContainerHelper.saveAllItems(pTag, this.items);
-    CompoundTag compoundtag = new CompoundTag();
+    val compoundtag = new CompoundTag();
     this.recipesUsed.forEach(
         (p_187449_, p_187450_) -> {
           compoundtag.putInt(p_187449_.toString(), p_187450_);
@@ -171,311 +156,245 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   }
 
   @Override
-  public int @NotNull [] getSlotsForFace(Direction pSide) {
-    if (pSide == Direction.DOWN) {
-      return SLOTS_FOR_DOWN;
-    } else {
-      return pSide == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
-    }
-  }
-
-  @Override
-  public boolean canPlaceItemThroughFace(
-      int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
-    return this.canPlaceItem(pIndex, pItemStack);
-  }
-
-  @Override
-  public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
-    if (pDirection == Direction.DOWN && pIndex == 1) {
-      return pStack.is(Items.WATER_BUCKET) || pStack.is(Items.BUCKET);
-    } else {
-      return true;
-    }
-  }
-
-  @Override
   protected @NotNull Component getDefaultName() {
     return IngotFusionTollEnhancer.getContainerTitle();
   }
 
   @Override
-  protected @NotNull AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
-    return new IngotFusionTollEnhancerMenu(pContainerId, this, dataAccess, pInventory);
+  protected AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
+    return new IngotFusionTollEnhancerMenu(pContainerId, this, this.dataAccess, pInventory);
   }
 
   @Override
   public int getContainerSize() {
-    return items.size();
+    return this.items.size();
   }
 
   @Override
   public boolean isEmpty() {
-    for (ItemStack itemStack : items) {
-      if (!itemStack.isEmpty()) {
+    for (ItemStack itemstack : this.items) {
+      if (!itemstack.isEmpty()) {
         return false;
       }
     }
+
     return true;
   }
 
   @Override
-  public @NotNull ItemStack getItem(int pSlot) {
-    return items.get(pSlot);
+  public ItemStack getItem(int pSlot) {
+    return pSlot >= 0 && pSlot < this.items.size() ? this.items.get(pSlot) : ItemStack.EMPTY;
   }
 
   @Override
-  public @NotNull ItemStack removeItem(int pSlot, int pAmount) {
-    return ContainerHelper.removeItem(items, pSlot, pAmount);
+  public ItemStack removeItem(int pSlot, int pAmount) {
+    return ContainerHelper.removeItem(this.items, pSlot, pAmount);
   }
 
   @Override
   public ItemStack removeItemNoUpdate(int pSlot) {
-    return ContainerHelper.takeItem(items, pSlot);
+    return ContainerHelper.takeItem(this.items, pSlot);
   }
 
   @Override
   public void setItem(int pSlot, ItemStack pStack) {
-    val itemstack = this.items.get(pSlot);
-    val flag = !pStack.isEmpty() && ItemStack.isSameItemSameTags(itemstack, pStack);
-    this.items.set(pSlot, pStack);
-    if (pStack.getCount() > this.getMaxStackSize()) {
-      pStack.setCount(this.getMaxStackSize());
-    }
-
-    if (pSlot == 0 && !flag) {
-      this.creatingTotalTime = getTotalCraftTime(this.level, this);
-      this.creatingTime = 0;
-      this.setChanged();
+    if (pSlot >= 0 && pSlot < this.items.size()) {
+      this.items.set(pSlot, pStack);
     }
   }
 
   @Override
   public boolean stillValid(Player pPlayer) {
-    return Container.stillValidBlockEntity(this, pPlayer);
+    if (this.level.getBlockEntity(this.worldPosition) != this) {
+      return false;
+    } else {
+      return pPlayer.distanceToSqr(
+              (double) this.worldPosition.getX() + 0.5D,
+              (double) this.worldPosition.getY() + 0.5D,
+              (double) this.worldPosition.getZ() + 0.5D)
+          <= 64.0D;
+    }
   }
 
   @Override
   public void clearContent() {
-    items.clear();
-  }
-
-  @Override
-  public void setRecipeUsed(@Nullable Recipe<?> pRecipe) {
-    if (pRecipe != null) {
-      ResourceLocation resourcelocation = pRecipe.getId();
-      this.recipesUsed.addTo(resourcelocation, 1);
-    }
-  }
-
-  @Nullable
-  @Override
-  public Recipe<?> getRecipeUsed() {
-    return null;
-  }
-
-  @Override
-  public void awardUsedRecipes(Player pPlayer, List<ItemStack> pItems) {}
-
-  public void awardUsedRecipesAndPopExperience(ServerPlayer pPlayer) {
-    List<Recipe<?>> list =
-        this.getRecipesToAwardAndPopExperience(pPlayer.serverLevel(), pPlayer.position());
-    pPlayer.awardRecipes(list);
-
-    for (Recipe<?> recipe : list) {
-      if (recipe != null) {
-        pPlayer.triggerRecipeCrafted(recipe, this.items);
-      }
-    }
-
-    this.recipesUsed.clear();
-  }
-
-  public List<Recipe<?>> getRecipesToAwardAndPopExperience(ServerLevel pLevel, Vec3 pPopVec) {
-    List<Recipe<?>> list = Lists.newArrayList();
-
-    for (Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
-      pLevel
-          .getRecipeManager()
-          .byKey(entry.getKey())
-          .ifPresent(
-              (p_155023_) -> {
-                list.add(p_155023_);
-                createExperience(
-                    pLevel,
-                    pPopVec,
-                    entry.getIntValue(),
-                    ((AbstractCookingRecipe) p_155023_).getExperience());
-              });
-    }
-
-    return list;
-  }
-
-  private static void createExperience(
-      ServerLevel pLevel, Vec3 pPopVec, int pRecipeIndex, float pExperience) {
-    int i = Mth.floor((float) pRecipeIndex * pExperience);
-    float f = Mth.frac((float) pRecipeIndex * pExperience);
-    if (f != 0.0F && Math.random() < (double) f) {
-      ++i;
-    }
-
-    ExperienceOrb.award(pLevel, pPopVec, i);
-  }
-
-  @Override
-  public void fillStackedContents(StackedContents pContents) {
-    for (ItemStack itemstack : this.items) {
-      pContents.accountStack(itemstack);
-    }
-  }
-
-  net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[]
-      handlers =
-          net.minecraftforge.items.wrapper.SidedInvWrapper.create(
-              this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
-  @Override
-  public <T> net.minecraftforge.common.util.@NotNull LazyOptional<T> getCapability(
-      net.minecraftforge.common.capabilities.Capability<T> capability,
-      @javax.annotation.Nullable Direction facing) {
-    if (!this.remove
-        && facing != null
-        && capability == net.minecraftforge.common.capabilities.ForgeCapabilities.ITEM_HANDLER) {
-      if (facing == Direction.UP) return handlers[0].cast();
-      else if (facing == Direction.DOWN) return handlers[1].cast();
-      else return handlers[2].cast();
-    }
-    return super.getCapability(capability, facing);
-  }
-
-  @Override
-  public void invalidateCaps() {
-    super.invalidateCaps();
-    for (net.minecraftforge.common.util.LazyOptional<
-            ? extends net.minecraftforge.items.IItemHandler>
-        handler : handlers) handler.invalidate();
-  }
-
-  @Override
-  public void reviveCaps() {
-    super.reviveCaps();
-    this.handlers =
-        net.minecraftforge.items.wrapper.SidedInvWrapper.create(
-            this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    this.items.clear();
   }
 
   public static void serverTick(
-      Level level, BlockPos pPos, BlockState pState, IngotFusionTollEnhancerBlockEntity pEntity) {
-    if (hasRecipe(pEntity)) {
-      // craftItem(pEntity);
+      @NotNull Level level,
+      @NotNull BlockPos pos,
+      @NotNull BlockState state,
+      @NotNull IngotFusionTollEnhancerBlockEntity blockEntity) {
+    ItemStack itemstack = blockEntity.items.get(FUEL_SLOT);
+    if (blockEntity.fuel <= 0 && getFuels().containsKey(itemstack.getItem())) {
+      blockEntity.fuel = getFuels().get(itemstack.getItem());
+      blockEntity.items.set(
+          FUEL_SLOT, new ItemStack(itemstack.getItem(), itemstack.getCount() - 1));
+    }
 
-      pEntity.creatingTime++;
-      setChanged(level, pPos, pState);
+    boolean flag = blockEntity.isCreatable(level);
+    boolean flag1 = blockEntity.creatingTime > 0;
+    ItemStack ingredient1 = blockEntity.items.get(0);
+    ItemStack ingredient2 = blockEntity.items.get(1);
+    ItemStack ingredient3 = blockEntity.items.get(2);
+    if (flag1) {
+      --blockEntity.creatingTime;
+      boolean flag2 = blockEntity.creatingTime == 0;
+      if (flag2 && flag) {
+        blockEntity.createItem(level);
+        blockEntity.setChanged();
+      } else if (!flag) {
+        blockEntity.creatingTime = 0;
+        blockEntity.setChanged();
+      } else if (blockEntity.ingredient1 != ingredient1
+          || blockEntity.ingredient2 != ingredient2
+          || blockEntity.ingredient3 != ingredient3) {
+        blockEntity.creatingTime = 0;
+        blockEntity.setChanged();
+      }
+    } else if (flag && blockEntity.fuel > 0) {
+      --blockEntity.fuel;
 
-      if (pEntity.creatingTime >= pEntity.creatingTotalTime) {
-        craftItem(pEntity);
+      // TODO: Add ability to alter creating time.
+      blockEntity.creatingTime = 200;
+      blockEntity.ingredient1 = ingredient1;
+      blockEntity.ingredient2 = ingredient2;
+      blockEntity.ingredient3 = ingredient3;
+      blockEntity.setChanged();
+    }
+  }
+
+  private boolean isCreatable(Level level) {
+    ItemStack ingredient1 = this.items.get(0);
+    ItemStack ingredient2 = this.items.get(1);
+    ItemStack ingredient3 = this.items.get(2);
+
+    if (ingredient1.isEmpty() || ingredient2.isEmpty() || ingredient3.isEmpty()) {
+      return false;
+    } else if (!isValidInput(level, ingredient1, ingredient2, ingredient3)) {
+      return false;
+    } else {
+      for (int i = 0; i < 3; ++i) {
+        if (!this.items.get(i).isEmpty()) {
+          if (!this.items.get(i + 2).isEmpty()) {
+            continue;
+          }
+          // TODO: check if this is correct
+          ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+              .info("Item: " + this.items.size() + " " + i);
+          ItemStack ingredient = this.items.get(i);
+          if (!ingredient.isEmpty()
+              && hasRecipe(ingredient, ingredient1, ingredient2, ingredient3)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+  }
+
+  private void createItem(Level level) {
+    var ingredient1 = this.items.get(0);
+    var ingredient2 = this.items.get(1);
+    var ingredient3 = this.items.get(2);
+
+    for (int i = 0; i < 3; ++i) {
+      if (!this.items.get(i).isEmpty()) {
+        ItemStack stack =
+            getOutput(level, this.items.get(i), ingredient1, ingredient2, ingredient3);
+        this.items.set(i, ItemStack.EMPTY);
+        this.items.set(i + 2, stack);
+      }
+    }
+
+    val blockPos = this.getBlockPos();
+    if (ingredient1.hasCraftingRemainingItem()) {
+      val ingredient1Remaining = ingredient1.getCraftingRemainingItem();
+      ingredient1.shrink(1);
+      if (ingredient1.isEmpty()) {
+        ingredient1 = ingredient1Remaining;
+      } else if (!this.level.isClientSide) {
+        Containers.dropItemStack(
+            this.level,
+            (double) blockPos.getX(),
+            (double) blockPos.getY(),
+            (double) blockPos.getZ(),
+            ingredient1Remaining);
       }
     } else {
-      ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("No Recipe");
-      pEntity.resetProgress();
-      setChanged(level, pPos, pState);
-    }
-  }
-
-  private static void craftItem(IngotFusionTollEnhancerBlockEntity pEntity) {
-    Level level = pEntity.level;
-    SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
-    for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
-      inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+      ingredient1.shrink(1);
     }
 
-    Optional<IngotFusionTollEnhancerRecipe> recipe =
-        level
-            .getRecipeManager()
-            .getRecipeFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), inventory, level);
-
-    if (hasRecipe(pEntity)) {
-      pEntity.itemHandler.extractItem(0, 1, false);
-      pEntity.itemHandler.extractItem(1, 1, false);
-      pEntity.itemHandler.extractItem(2, 1, false);
-
-      pEntity.itemHandler.setStackInSlot(
-          4,
-          new ItemStack(
-              recipe.get().getResult().getItem(),
-              pEntity.itemHandler.getStackInSlot(4).getCount() + 1));
-
-      pEntity.resetProgress();
-    }
-  }
-
-  private void resetProgress() {
-    this.creatingTime = 0;
-  }
-
-  private static boolean hasRecipe(IngotFusionTollEnhancerBlockEntity entity) {
-    Level level = entity.level;
-    // TODO: Issue here where it returns air instead of the item
-
-    SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-    for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-      inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
-    }
-
-    level
-        .getRecipeManager()
-        .getRecipeFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), inventory, level)
-        .ifPresentOrElse(
-            (recipe) -> {
-              ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Recipe: " + recipe);
-              ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Recipe: " + recipe.getResult());
-            },
-            () -> {
-              ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("No Recipe");
-            });
-
-    Optional<IngotFusionTollEnhancerRecipe> recipe =
-        level
-            .getRecipeManager()
-            .getRecipeFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), inventory, level);
-
-    return recipe.isPresent()
-        && canInsertAmountIntoOutputSlot(inventory)
-        && canInsertItemIntoOutputSlot(inventory, recipe.get().getResult());
-  }
-
-  private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {
-    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-        .info("canInsertItemIntoOutputSlot: " + inventory.getItem(4).getItem() + " " + stack);
-    return inventory.getItem(4).isEmpty() || inventory.getItem(4).getItem() == stack.getItem();
-  }
-
-  private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-        .info(
-            "canInsertAmountIntoOutputSlot: "
-                + inventory.getItem(4).getCount()
-                + " "
-                + inventory.getItem(4).getMaxStackSize());
-    return inventory.getItem(4).getCount() + 1 <= inventory.getItem(4).getMaxStackSize();
-  }
-
-  private static Integer getTotalCraftTime(ItemStack itemStack) {
-    if (itemStack.isEmpty()) {
-      return 0;
+    if (ingredient2.hasCraftingRemainingItem()) {
+      val ingredient2Remaining = ingredient2.getCraftingRemainingItem();
+      ingredient2.shrink(1);
+      if (ingredient2.isEmpty()) {
+        ingredient2 = ingredient2Remaining;
+      } else if (!this.level.isClientSide) {
+        Containers.dropItemStack(
+            this.level,
+            (double) blockPos.getX(),
+            (double) blockPos.getY(),
+            (double) blockPos.getZ(),
+            ingredient2Remaining);
+      }
     } else {
-      return ForgeHooks.getBurnTime(itemStack, RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get());
+      ingredient2.shrink(1);
     }
+
+    if (ingredient3.hasCraftingRemainingItem()) {
+      val ingredient3Remaining = ingredient3.getCraftingRemainingItem();
+      ingredient3.shrink(1);
+      if (ingredient3.isEmpty()) {
+        ingredient3 = ingredient3Remaining;
+      } else if (!this.level.isClientSide) {
+        Containers.dropItemStack(
+            this.level,
+            (double) blockPos.getX(),
+            (double) blockPos.getY(),
+            (double) blockPos.getZ(),
+            ingredient3Remaining);
+      }
+    } else {
+      ingredient3.shrink(1);
+    }
+
+    this.items.set(0, ingredient1);
+    this.items.set(1, ingredient2);
+    this.items.set(2, ingredient3);
+
+    // level.levelEvent(1035, blockpos, 0);
+    level.levelEvent(
+        1500, blockPos, this.items.get(4).isEmpty() ? 0 : this.items.get(4).getCount());
   }
 
-  private static int getTotalCraftTime(
-      Level pLevel, IngotFusionTollEnhancerBlockEntity pBlockEntity) {
-    return pBlockEntity
-        .getQuickCheck()
-        .getRecipeFor(pBlockEntity, pLevel)
-        .map(IngotFusionTollEnhancerRecipe::getCraftTime)
-        .orElse(200);
+  private boolean isValidInput(
+      Level level, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
+    return level.getRecipeManager().getAllRecipesFor(type).stream()
+        .anyMatch(recipe -> recipe.isInputValid(ingredient1, ingredient2, ingredient3));
+  }
+
+  private boolean hasRecipe(
+      ItemStack ingredient, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
+    return level.getRecipeManager().getAllRecipesFor(type).stream()
+        .anyMatch(
+            recipe ->
+                recipe.isInputValid(ingredient1, ingredient2, ingredient3)
+                    && recipe.isIngredient(ingredient));
+  }
+
+  private ItemStack getOutput(
+      Level level,
+      ItemStack input,
+      ItemStack ingredient1,
+      ItemStack ingredient2,
+      ItemStack ingredient3) {
+    return level.getRecipeManager().getAllRecipesFor(type).stream()
+        .map(recipe -> recipe.getResult(input, ingredient1, ingredient2, ingredient3))
+        .filter(itemStack -> !itemStack.isEmpty())
+        .findFirst()
+        .orElse(ItemStack.EMPTY);
   }
 
   public static Map<Item, Integer> getFuels() {
@@ -483,12 +402,6 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     addFuel(map, ItemInit.INSTANCE.getGRAPHITE().get(), 200);
     addFuel(map, BlockInit.INSTANCE.getGRAPHITE_BLOCK().get().asItem(), 2000);
     return map;
-  }
-
-  public static Set<ItemStack> getFuelAsItemStacks() {
-    return getFuels().keySet().stream()
-        .map(ItemStack::new)
-        .collect(java.util.stream.Collectors.toSet());
   }
 
   public static void addFuel(Map<Item, Integer> pMap, Item fuel, int pBurnTime) {
@@ -507,5 +420,52 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   public static boolean isNeverAIngotFusionTollEnhanceFuel(Item pItem) {
     return pItem.builtInRegistryHolder().is(ItemTags.NON_FLAMMABLE_WOOD);
+  }
+
+  public static Set<ItemStack> getFuelAsItemStacks() {
+    return getFuels().keySet().stream()
+        .map(ItemStack::new)
+        .collect(java.util.stream.Collectors.toSet());
+  }
+
+  @Override
+  public int[] getSlotsForFace(Direction pSide) {
+    return switch (pSide) {
+      case DOWN -> new int[] {RESULT_SLOT};
+      case UP -> new int[] {FUEL_SLOT};
+      default -> new int[] {0, 1, 2, 3, 4};
+    };
+  }
+
+  @Override
+  public boolean canPlaceItemThroughFace(
+      int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
+    return this.canPlaceItem(pIndex, pItemStack);
+  }
+
+  @Override
+  public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
+    return pIndex != FUEL_SLOT || pStack.getItem() == Items.BUCKET;
+  }
+
+  @Override
+  public void setRecipeUsed(@Nullable Recipe<?> pRecipe) {
+    if (pRecipe != null) {
+      ResourceLocation resourcelocation = pRecipe.getId();
+      this.recipesUsed.addTo(resourcelocation, 1);
+    }
+  }
+
+  @Nullable
+  @Override
+  public Recipe<?> getRecipeUsed() {
+    return null;
+  }
+
+  @Override
+  public void fillStackedContents(StackedContents pContents) {
+    for (ItemStack itemstack : this.items) {
+      pContents.accountStack(itemstack);
+    }
   }
 }

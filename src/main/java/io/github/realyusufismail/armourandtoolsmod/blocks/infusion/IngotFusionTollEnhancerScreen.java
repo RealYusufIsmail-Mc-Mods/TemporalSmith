@@ -102,7 +102,7 @@ public class IngotFusionTollEnhancerScreen
       int i = this.leftPos;
       int j = this.topPos;
       pGuiGraphics.blit(SCREEN_ID, i, j, 0, 0, 176, 179);
-      pGuiGraphics.blit(SCREEN_ID, i + 97, j + 38, 179, 25, menu.getScaledProgress() + 1, 17);
+      pGuiGraphics.blit(SCREEN_ID, i + 97, j + 38, 179, 25, menu.getCreatingProgress() + 1, 17);
     } catch (NullPointerException e) {
       throw new NullPointerException("Minecraft Instance is null");
     }
@@ -127,7 +127,6 @@ public class IngotFusionTollEnhancerScreen
       this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
       this.recipeBookComponent.renderTooltip(
           pGuiGraphics, this.leftPos, this.topPos, pMouseX, pMouseY);
-      // super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     } catch (NullPointerException e) {
       throw new NullPointerException("Render method called before Minecraft Instance is set");
     }
