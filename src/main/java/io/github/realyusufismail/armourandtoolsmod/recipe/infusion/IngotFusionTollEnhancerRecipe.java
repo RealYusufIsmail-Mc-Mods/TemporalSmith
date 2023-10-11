@@ -43,7 +43,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
   @Getter protected final Ingredient ingredient1;
   @Getter protected final Ingredient ingredient2;
   @Getter protected final Ingredient ingredient3;
-  protected final Ingredient input;
   @Getter @NotNull public final ItemStack result;
   @Getter @NotNull public final IngotFusionTollEnhancerRecipeBookCategory category;
 
@@ -53,7 +52,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
       Ingredient ingredient1,
       Ingredient ingredient2,
       Ingredient ingredient3,
-      Ingredient input,
       ItemStack result,
       IngotFusionTollEnhancerRecipeBookCategory category) {
     this.type = type;
@@ -61,7 +59,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
     this.ingredient1 = ingredient1;
     this.ingredient2 = ingredient2;
     this.ingredient3 = ingredient3;
-    this.input = input;
     this.result = result;
     this.category = category;
   }
@@ -70,8 +67,7 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
   public boolean matches(Container pContainer, Level pLevel) {
     return this.ingredient1.test(pContainer.getItem(0))
         && this.ingredient2.test(pContainer.getItem(1))
-        && this.ingredient3.test(pContainer.getItem(2))
-        && this.input.test(pContainer.getItem(3));
+        && this.ingredient3.test(pContainer.getItem(2));
   }
 
   @Override
@@ -105,15 +101,34 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
   }
 
   public boolean isInputValid(ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
-    return Arrays.stream(this.input.getItems())
-        .anyMatch(
-            itemStack -> {
-              if (!ItemStack.isSameItem(ingredient1, itemStack)) {
-                return false;
-              } else if (!ItemStack.isSameItem(ingredient2, itemStack)) {
-                return false;
-              } else return ItemStack.isSameItem(ingredient3, itemStack);
-            });
+    //TODO: see if input is needed to be added back
+    return Arrays.stream(this.ingredient1.getItems())
+            .anyMatch(
+                itemStack -> {
+                  if (!ItemStack.isSameItem(ingredient1, itemStack)) {
+                    return false;
+                  } else if (!ItemStack.isSameItem(ingredient2, itemStack)) {
+                    return false;
+                  } else return ItemStack.isSameItem(ingredient3, itemStack);
+                })
+        || Arrays.stream(this.ingredient2.getItems())
+            .anyMatch(
+                itemStack -> {
+                  if (!ItemStack.isSameItem(ingredient1, itemStack)) {
+                    return false;
+                  } else if (!ItemStack.isSameItem(ingredient2, itemStack)) {
+                    return false;
+                  } else return ItemStack.isSameItem(ingredient3, itemStack);
+                })
+        || Arrays.stream(this.ingredient3.getItems())
+            .anyMatch(
+                itemStack -> {
+                  if (!ItemStack.isSameItem(ingredient1, itemStack)) {
+                    return false;
+                  } else if (!ItemStack.isSameItem(ingredient2, itemStack)) {
+                    return false;
+                  } else return ItemStack.isSameItem(ingredient3, itemStack);
+                });
   }
 
   public boolean isIngredient(ItemStack ingredient) {
@@ -152,7 +167,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
       val ingredient1 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient1"));
       val ingredient2 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient2"));
       val ingredient3 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient3"));
-      val input = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
       val result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
       return new IngotFusionTollEnhancerRecipe(
           RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(),
@@ -160,7 +174,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
           ingredient1,
           ingredient2,
           ingredient3,
-          input,
           result,
           category);
     }
@@ -172,7 +185,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
       val ingredient1 = Ingredient.fromNetwork(pBuffer);
       val ingredient2 = Ingredient.fromNetwork(pBuffer);
       val ingredient3 = Ingredient.fromNetwork(pBuffer);
-      val input = Ingredient.fromNetwork(pBuffer);
       val result = pBuffer.readItem();
       return new IngotFusionTollEnhancerRecipe(
           RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(),
@@ -180,7 +192,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
           ingredient1,
           ingredient2,
           ingredient3,
-          input,
           result,
           category);
     }
@@ -191,7 +202,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
       pRecipe.ingredient1.toNetwork(pBuffer);
       pRecipe.ingredient2.toNetwork(pBuffer);
       pRecipe.ingredient3.toNetwork(pBuffer);
-      pRecipe.input.toNetwork(pBuffer);
       pBuffer.writeItem(pRecipe.result);
     }
   }
