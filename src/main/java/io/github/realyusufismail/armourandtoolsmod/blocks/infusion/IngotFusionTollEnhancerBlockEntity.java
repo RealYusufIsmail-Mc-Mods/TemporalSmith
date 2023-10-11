@@ -19,6 +19,7 @@
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion;
 
 import com.google.common.collect.Lists;
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
@@ -27,10 +28,7 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit;
 import io.github.realyusufismail.armourandtoolsmod.recipe.fusion.IngotFusionTollEnhancerRecipe;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.val;
@@ -39,7 +37,6 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -49,6 +46,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
@@ -66,12 +64,12 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -99,10 +97,8 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   private static final int[] SLOTS_FOR_UP = new int[] {0};
   private static final int[] SLOTS_FOR_DOWN = new int[] {4, 3};
   private static final int[] SLOTS_FOR_SIDES = new int[] {1, 2};
-  @Getter @Setter int litTime;
-  @Getter @Setter int litDuration;
-  @Getter @Setter int creatingTime;
-  @Getter @Setter int creatingTotalTime;
+  @Getter @Setter int creatingTime = 0;
+  @Getter @Setter int creatingTotalTime = 200;
 
   public IngotFusionTollEnhancerBlockEntity(BlockPos blockPos, BlockState blockState) {
     super(BlockEntityTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), blockPos, blockState);
@@ -110,29 +106,33 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     this.quickCheck = RecipeManager.createCheck(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get());
   }
 
+  private final ItemStackHandler itemHandler =
+      new ItemStackHandler(NUMBER_OF_SLOTS) {
+        @Override
+        protected void onContentsChanged(int slot) {
+          setChanged();
+        }
+      };
+
   protected final ContainerData dataAccess =
       new ContainerData() {
         public int get(int p_58431_) {
           return switch (p_58431_) {
-            case 0 -> litTime;
-            case 1 -> litDuration;
-            case 2 -> creatingTime;
-            case 3 -> creatingTotalTime;
-            default -> 0;
+            case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime;
+            case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime;
+            default -> throw new IllegalArgumentException("Invalid index: " + p_58431_);
           };
         }
 
         public void set(int p_58433_, int p_58434_) {
           switch (p_58433_) {
-            case 0 -> litTime = p_58434_;
-            case 1 -> litDuration = p_58434_;
-            case 2 -> creatingTime = p_58434_;
-            case 3 -> creatingTotalTime = p_58434_;
+            case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime = p_58434_;
+            case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime = p_58434_;
           }
         }
 
         public int getCount() {
-          return 4;
+          return 2;
         }
       };
 
@@ -141,10 +141,10 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     super.load(pTag);
     this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
     ContainerHelper.loadAllItems(pTag, this.items);
-    this.litTime = pTag.getInt("BurnTime");
+
     this.creatingTime = pTag.getInt("CraftTime");
     this.creatingTotalTime = pTag.getInt("CraftTimeTotal");
-    this.litDuration = this.getTotalCraftTime(this.items.get(1));
+
     CompoundTag compoundtag = pTag.getCompound("RecipesUsed");
 
     for (String s : compoundtag.getAllKeys()) {
@@ -154,17 +154,20 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   @Override
   protected void saveAdditional(CompoundTag pTag) {
-    super.saveAdditional(pTag);
-    pTag.putInt("BurnTime", this.litTime);
+
     pTag.putInt("CraftTime", this.creatingTime);
     pTag.putInt("CraftTimeTotal", this.creatingTotalTime);
+
     ContainerHelper.saveAllItems(pTag, this.items);
     CompoundTag compoundtag = new CompoundTag();
     this.recipesUsed.forEach(
         (p_187449_, p_187450_) -> {
           compoundtag.putInt(p_187449_.toString(), p_187450_);
         });
+
     pTag.put("RecipesUsed", compoundtag);
+
+    super.saveAdditional(pTag);
   }
 
   @Override
@@ -362,141 +365,117 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
             this, Direction.UP, Direction.DOWN, Direction.NORTH);
   }
 
-  private boolean isLit() {
-    return this.litTime > 0;
-  }
-
   public static void serverTick(
       Level level, BlockPos pPos, BlockState pState, IngotFusionTollEnhancerBlockEntity pEntity) {
+    if (level.isClientSide()) {
+      ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Client");
+      return;
+    }
 
-    try {
-      val flag = pEntity.isLit();
-      var flag1 = false;
+    if (hasRecipe(pEntity)) {
+      // craftItem(pEntity);
 
-      if (pEntity.isLit()) {
-        pEntity.setLitTime(pEntity.getLitTime() - 1);
+      pEntity.creatingTime++;
+      setChanged(level, pPos, pState);
+
+      if (pEntity.creatingTime >= pEntity.creatingTotalTime) {
+        craftItem(pEntity);
       }
-
-      val itemstack = pEntity.getItems().get(1);
-      val flag2 = !pEntity.getItems().get(0).isEmpty();
-      val flag3 = !itemstack.isEmpty();
-
-      if (pEntity.isLit() || (flag3 && flag2)) {
-        Recipe<?> recipe =
-            flag2 ? pEntity.getQuickCheck().getRecipeFor(pEntity, level).orElse(null) : null;
-        int i = pEntity.getMaxStackSize();
-
-        if (!pEntity.isLit()
-            && pEntity.canCreate(level.registryAccess(), recipe, pEntity.getItems(), i)) {
-          pEntity.setLitTime(pEntity.getTotalCraftTime(itemstack));
-          pEntity.setLitDuration(pEntity.getLitTime());
-
-          if (pEntity.isLit()) {
-            flag1 = true;
-
-            if (itemstack.hasCraftingRemainingItem()) {
-              pEntity.getItems().set(1, itemstack.getCraftingRemainingItem());
-            } else if (flag3) {
-              Item item = itemstack.getItem();
-              itemstack.shrink(1);
-
-              if (itemstack.isEmpty()) {
-                pEntity.getItems().set(1, itemstack.getCraftingRemainingItem());
-              }
-            }
-          }
-        }
-
-        if (pEntity.isLit()
-            && pEntity.canCreate(level.registryAccess(), recipe, pEntity.getItems(), i)) {
-          pEntity.setCreatingTime(pEntity.getCreatingTime() + 1);
-
-          if (pEntity.getCreatingTime() == pEntity.getCreatingTotalTime()) {
-            pEntity.setCreatingTime(0);
-            pEntity.setCreatingTotalTime(getTotalCraftTime(level, pEntity));
-
-            if (pEntity.craft(level.registryAccess(), recipe, pEntity.getItems(), i)) {
-              pEntity.setRecipeUsed(recipe);
-            }
-            flag1 = true;
-          }
-        } else {
-          pEntity.setCreatingTime(0);
-        }
-      } else if (!pEntity.isLit() && pEntity.getCreatingTime() > 0) {
-        pEntity.setCreatingTime(Math.max(pEntity.getCreatingTime() - 2, 0));
-      }
-
-      BlockState state = pState;
-
-      if (flag != pEntity.isLit()) {
-        flag1 = true;
-        state = pState.setValue(IngotFusionTollEnhancer.LIT, pEntity.isLit());
-        level.setBlock(pPos, state, 3);
-      }
-
-      if (flag1) {
-        setChanged(level, pPos, state);
-      }
-    } catch (Exception e) {
-      throw new RuntimeException("Failed to tick block entity." + e);
+    } else {
+      ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("No Recipe");
+      pEntity.resetProgress();
+      setChanged(level, pPos, pState);
     }
   }
 
-  private boolean canCreate(
-      RegistryAccess pRegistryAccess,
-      @Nullable Recipe<?> pRecipe,
-      NonNullList<ItemStack> pItems,
-      int pMaxStackSize) {
-    if (!pItems.get(0).isEmpty() && pRecipe != null) {
-      val itemstack = ((Recipe<WorldlyContainer>) pRecipe).assemble(this, pRegistryAccess);
-      if (itemstack.isEmpty()) {
-        return false;
-      } else {
-        // TODO: Check this
-        val itemstack1 = pItems.get(4);
-        if (itemstack1.isEmpty()) {
-          return true;
-        } else if (!ItemStack.isSameItem(itemstack1, itemstack)) {
-          return false;
-        } else if (itemstack1.getCount() + itemstack.getCount() <= pMaxStackSize
-            && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
-          return true;
-        } else {
-          return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
+  private static void craftItem(IngotFusionTollEnhancerBlockEntity pEntity) {
+    Level level = pEntity.level;
+    SimpleContainer inventory = new SimpleContainer(pEntity.itemHandler.getSlots());
+    for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+      inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
+    }
+
+    Optional<IngotFusionTollEnhancerRecipe> recipe =
+        level
+            .getRecipeManager()
+            .getRecipeFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), inventory, level);
+
+    if (hasRecipe(pEntity)) {
+      if (recipe.isPresent()) {
+        ItemStack result = recipe.get().getResult();
+        if (pEntity.itemHandler.getStackInSlot(4).isEmpty()) {
+          pEntity.itemHandler.setStackInSlot(4, result.copy());
+        } else if (pEntity.itemHandler.getStackInSlot(4).getItem() == result.getItem()) {
+          pEntity.itemHandler.getStackInSlot(4).grow(result.getCount());
         }
+
+        for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
+          pEntity.itemHandler.getStackInSlot(i).shrink(1);
+        }
+
+        pEntity.resetProgress();
       }
-    } else {
-      return false;
     }
   }
 
-  private boolean craft(
-      RegistryAccess registryAccess,
-      Recipe<?> recipe,
-      NonNullList<ItemStack> inventroy,
-      Integer maxStackSize) {
-    if (recipe != null && canCreate(registryAccess, recipe, inventroy, maxStackSize)) {
-      val itemstack = inventroy.get(0);
-      val itemstack1 = ((Recipe<WorldlyContainer>) recipe).assemble(this, registryAccess);
-      val itemstack2 = inventroy.get(4);
-      if (itemstack2.isEmpty()) {
-        inventroy.set(4, itemstack1.copy());
-      } else {
-        itemstack2.is(itemstack1.getItem());
-      }
+  private void resetProgress() {
+    this.creatingTime = 0;
+  }
 
-      if (itemstack.is(Blocks.WET_SPONGE.asItem())
-          && !inventroy.get(1).isEmpty()
-          && inventroy.get(1).is(Items.BUCKET)) {
-        inventroy.set(1, new ItemStack(Items.WATER_BUCKET));
-      }
-
-      itemstack.shrink(1);
-      return true;
-    } else {
-      return false;
+  private static boolean hasRecipe(IngotFusionTollEnhancerBlockEntity entity) {
+    Level level = entity.level;
+    //TODO: Issue here where it returns air instead of the item
+    SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+    for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+      inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
     }
+
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Checking Recipe for: " + inventory);
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+        .info("Checking Recipe for: " + inventory.getItem(0));
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+        .info("Checking Recipe for: " + inventory.getItem(1));
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+        .info("Checking Recipe for: " + inventory.getItem(2));
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+        .info("Checking Recipe for: " + inventory.getItem(3));
+
+    level
+        .getRecipeManager()
+        .getRecipeFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), inventory, level)
+        .ifPresentOrElse(
+            (recipe) -> {
+              ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Recipe: " + recipe);
+              ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Recipe: " + recipe.getResult());
+            },
+            () -> {
+              ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("No Recipe");
+            });
+
+    Optional<IngotFusionTollEnhancerRecipe> recipe =
+        level
+            .getRecipeManager()
+            .getRecipeFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(), inventory, level);
+
+    return recipe.isPresent()
+        && canInsertAmountIntoOutputSlot(inventory)
+        && canInsertItemIntoOutputSlot(inventory, recipe.get().getResult());
+  }
+
+  private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+        .info("canInsertItemIntoOutputSlot: " + inventory.getItem(4).getItem() + " " + stack);
+    return inventory.getItem(4).isEmpty() || inventory.getItem(4).getItem() == stack.getItem();
+  }
+
+  private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+        .info(
+            "canInsertAmountIntoOutputSlot: "
+                + inventory.getItem(4).getCount()
+                + " "
+                + inventory.getItem(4).getMaxStackSize());
+    return inventory.getItem(4).getCount() + 1 <= inventory.getItem(4).getMaxStackSize();
   }
 
   private Integer getTotalCraftTime(ItemStack itemStack) {

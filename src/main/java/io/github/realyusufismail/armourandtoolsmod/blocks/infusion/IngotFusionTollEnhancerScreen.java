@@ -102,7 +102,7 @@ public class IngotFusionTollEnhancerScreen
       int i = this.leftPos;
       int j = this.topPos;
       pGuiGraphics.blit(SCREEN_ID, i, j, 0, 0, 176, 179);
-      pGuiGraphics.blit(SCREEN_ID, i + 97, j + 38, 179, 25, menu.getLitProgress() + 1, 17);
+      pGuiGraphics.blit(SCREEN_ID, i + 97, j + 38, 179, 25, menu.getScaledProgress() + 1, 17);
     } catch (NullPointerException e) {
       throw new NullPointerException("Minecraft Instance is null");
     }

@@ -103,9 +103,12 @@ class IngotFusionTollEnhancerRecipe(
 
                 try {
                     val ingredientArray = json.get("ingredients").asJsonArray
-                    val input1 = Ingredient.fromJson(ingredientArray[0])
-                    val input2 = Ingredient.fromJson(ingredientArray[1])
-                    val input3 = Ingredient.fromJson(ingredientArray[2])
+                    val inputs = NonNullList.withSize(3, Ingredient.EMPTY)
+
+                    for (i in 0..2) {
+                        val ingredient = ingredientArray[i].asJsonObject
+                        inputs[i] = Ingredient.fromJson(ingredient)
+                    }
 
                     val craftTime = GsonHelper.getAsInt(json, "crafttime")
                     val experience = GsonHelper.getAsFloat(json, "experience")
@@ -118,9 +121,9 @@ class IngotFusionTollEnhancerRecipe(
                         ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"))
 
                     return IngotFusionTollEnhancerRecipe(
-                        input1,
-                        input2,
-                        input3,
+                        inputs[0],
+                        inputs[1],
+                        inputs[2],
                         result,
                         craftTime,
                         experience,
@@ -137,34 +140,10 @@ class IngotFusionTollEnhancerRecipe(
             ): IngotFusionTollEnhancerRecipe {
                 try {
 
-                    var input1: Ingredient? = null
-                    var input2: Ingredient? = null
-                    var input3: Ingredient? = null
+                    val input = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY)
 
-                    for (i in 0..3) {
-                        val ingredient = Ingredient.fromNetwork(pBuffer)
-
-                        if (ingredient.isEmpty) {
-                            throw IllegalStateException(
-                                "No ingredients for ingot fusion toll enhancer recipe")
-                        }
-
-                        when (i) {
-                            0 -> {
-                                input1 = ingredient
-                            }
-                            1 -> {
-                                input2 = ingredient
-                            }
-                            2 -> {
-                                input3 = ingredient
-                            }
-                        }
-                    }
-
-                    if (input1 == null || input2 == null || input3 == null) {
-                        throw IllegalStateException(
-                            "No ingredients for ingot fusion toll enhancer recipe")
+                    for (i in input.indices) {
+                        input[i] = Ingredient.fromNetwork(pBuffer)
                     }
 
                     val result = pBuffer.readItem()
@@ -174,9 +153,9 @@ class IngotFusionTollEnhancerRecipe(
                         pBuffer.readEnum(IngotFusionTollEnhancerRecipeBookCategory::class.java)
 
                     return IngotFusionTollEnhancerRecipe(
-                        input1,
-                        input2,
-                        input3,
+                        input[0],
+                        input[1],
+                        input[2],
                         result,
                         craftTime,
                         experience,
@@ -192,6 +171,8 @@ class IngotFusionTollEnhancerRecipe(
                 pRecipe: IngotFusionTollEnhancerRecipe
             ) {
                 try {
+                    pBuffer.writeInt(pRecipe.getIngredients().size)
+
                     for (ingredient in pRecipe.getIngredients()) {
                         ingredient.toNetwork(pBuffer)
                     }

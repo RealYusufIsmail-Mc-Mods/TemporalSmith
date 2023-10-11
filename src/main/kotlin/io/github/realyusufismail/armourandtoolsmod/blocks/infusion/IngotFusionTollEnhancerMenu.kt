@@ -58,13 +58,13 @@ class IngotFusionTollEnhancerMenu(
         pContainerId: Int,
         inventory: Inventory,
         data: FriendlyByteBuf
-    ) : this(pContainerId, getBlockEntity(inventory, data), SimpleContainerData(4), inventory)
+    ) : this(pContainerId, getBlockEntity(inventory, data), SimpleContainerData(2), inventory)
 
     init {
         level = pInventory.player.level() ?: throw IllegalStateException("Level is null")
 
         checkContainerSize(blockEntity, NUMBER_OF_SLOTS)
-        checkContainerDataCount(data, 4)
+        checkContainerDataCount(data, 2)
 
         addPlayerInventory(pInventory)
         addPlayerHotbar(pInventory)
@@ -160,6 +160,14 @@ class IngotFusionTollEnhancerMenu(
 
     override fun recipeMatches(pRecipe: Recipe<in Container>): Boolean {
         return pRecipe.matches(this.blockEntity, this.level)
+    }
+
+    fun getScaledProgress(): Int {
+        val progress = data[0]
+        val maxProgress = data[1] // Max Progress
+        val progressArrowSize = 26 // This is the height in pixels of your arrow
+        return if (maxProgress != 0 && progress != 0) progress * progressArrowSize / maxProgress
+        else 0
     }
 
     private fun addPlayerInventory(playerInventory: Inventory) {
