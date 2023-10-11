@@ -238,7 +238,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     ItemStack ingredient1 = blockEntity.items.get(0);
     ItemStack ingredient2 = blockEntity.items.get(1);
     ItemStack ingredient3 = blockEntity.items.get(2);
-    if (flag1) {
+    if (flag1) { // Says flag is false
       --blockEntity.creatingTime;
       boolean flag2 = blockEntity.creatingTime == 0;
       if (flag2 && flag) {
@@ -253,7 +253,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         blockEntity.creatingTime = 0;
         blockEntity.setChanged();
       }
-    } else if (flag && blockEntity.fuel > 0) {
+    } else if (flag) {
       --blockEntity.fuel;
 
       // TODO: Add ability to alter creating time.
@@ -261,6 +261,9 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
       blockEntity.ingredient1 = ingredient1;
       blockEntity.ingredient2 = ingredient2;
       blockEntity.ingredient3 = ingredient3;
+      blockEntity.setChanged();
+    } else {
+      blockEntity.creatingTime = 0;
       blockEntity.setChanged();
     }
   }

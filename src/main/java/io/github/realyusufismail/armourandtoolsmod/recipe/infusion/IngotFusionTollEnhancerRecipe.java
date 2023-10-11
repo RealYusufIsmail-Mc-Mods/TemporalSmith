@@ -101,7 +101,7 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
   }
 
   public boolean isInputValid(ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
-    //TODO: see if input is needed to be added back
+    // TODO: see if input is needed to be added back
     return Arrays.stream(this.ingredient1.getItems())
             .anyMatch(
                 itemStack -> {
