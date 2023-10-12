@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added Ingot Fusion Enchanter (been in the works for a mont with more than two rewrites) :
 ### This allows you to upgrade certain items. Currently only works with the MAGMA_STRIKE_PICKAXE. More to come in future.
 ### Added imperium sword, pickaxe, axe, ingot and ore. More to come in the future.
+### Added saphire tool recipes to the tool crafting table.
 ### Fixed some issues I came across while testing.
 
 ## [1.20.1-1.0.5] - 2023-09-26

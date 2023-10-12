@@ -69,15 +69,26 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
         recipe: CustomToolCraftingTableRecipe,
         focuses: IFocusGroup
     ) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 30, 16).addIngredients(recipe.ingredients[0])
-        builder.addSlot(RecipeIngredientRole.INPUT, 47, 16).addIngredients(recipe.ingredients[1])
-        builder.addSlot(RecipeIngredientRole.INPUT, 65, 16).addIngredients(recipe.ingredients[2])
-        builder.addSlot(RecipeIngredientRole.INPUT, 30, 34).addIngredients(recipe.ingredients[3])
-        builder.addSlot(RecipeIngredientRole.INPUT, 48, 34).addIngredients(recipe.ingredients[4])
-        builder.addSlot(RecipeIngredientRole.INPUT, 66, 34).addIngredients(recipe.ingredients[5])
-        builder.addSlot(RecipeIngredientRole.INPUT, 30, 52).addIngredients(recipe.ingredients[6])
-        builder.addSlot(RecipeIngredientRole.INPUT, 48, 52).addIngredients(recipe.ingredients[7])
-        builder.addSlot(RecipeIngredientRole.INPUT, 66, 52).addIngredients(recipe.ingredients[8])
+        val ingredients = recipe.ingredients
+
+        // Define variables for each slot
+        val slots =
+            listOf(
+                builder.addSlot(RecipeIngredientRole.INPUT, 30, 16),
+                builder.addSlot(RecipeIngredientRole.INPUT, 48, 16),
+                builder.addSlot(RecipeIngredientRole.INPUT, 66, 16),
+                builder.addSlot(RecipeIngredientRole.INPUT, 30, 34),
+                builder.addSlot(RecipeIngredientRole.INPUT, 48, 34),
+                builder.addSlot(RecipeIngredientRole.INPUT, 66, 34),
+                builder.addSlot(RecipeIngredientRole.INPUT, 30, 52),
+                builder.addSlot(RecipeIngredientRole.INPUT, 48, 52),
+                builder.addSlot(RecipeIngredientRole.INPUT, 66, 52))
+
+        for (i in 0 until minOf(ingredients.size, slots.size)) {
+            if (!ingredients[i].isEmpty) {
+                slots[i].addIngredients(ingredients[i])
+            }
+        }
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 124, 34).addItemStack(recipe.result)
     }

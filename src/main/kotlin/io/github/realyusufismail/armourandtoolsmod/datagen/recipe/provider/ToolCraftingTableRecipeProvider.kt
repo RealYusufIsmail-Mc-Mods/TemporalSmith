@@ -93,6 +93,68 @@ class ToolCraftingTableRecipeProvider(
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_RUBY))
             .save(consumer, modId("ruby_hoe"))
 
+        // SAPPHIRE TOOLS
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SWORD,
+                RecipeCategory.TOOLS,
+                ItemInit.SAPPHIRE_SWORD.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" A ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_sword"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.PICKAXE,
+                RecipeCategory.TOOLS,
+                ItemInit.SAPPHIRE_PICKAXE.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .define('S', Items.STICK)
+            .pattern("AAA")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_pickaxe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.AXE,
+                RecipeCategory.TOOLS,
+                ItemInit.SAPPHIRE_AXE.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .define('S', Items.STICK)
+            .pattern(" AA")
+            .pattern(" SA")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_axe"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.SHOVEL,
+                RecipeCategory.TOOLS,
+                ItemInit.SAPPHIRE_SHOVEL.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .define('S', Items.STICK)
+            .pattern(" A ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_shovel"))
+
+        CustomToolCraftingTableRecipeBuilder.shaped(
+                CustomToolsCraftingBookCategory.HOE,
+                RecipeCategory.TOOLS,
+                ItemInit.SAPPHIRE_HOE.get())
+            .define('A', TagsInit.ItemTagsInit.INGOTS_SAPPHIRE)
+            .define('S', Items.STICK)
+            .pattern("AA ")
+            .pattern(" S ")
+            .pattern(" S ")
+            .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_SAPPHIRE))
+            .save(consumer, modId("sapphire_hoe"))
+
         // ENDERITE TOOLS
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SWORD,

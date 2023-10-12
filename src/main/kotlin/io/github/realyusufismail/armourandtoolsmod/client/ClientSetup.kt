@@ -38,8 +38,6 @@ object ClientSetup {
         event.enqueueWork { registerScreens() }
 
         event.enqueueWork {
-            StatsInit.init()
-
             ItemProperties.register(ItemInit.RUBY_SHIELD.get(), ResourceLocation("blocking")) {
                 stack: ItemStack,
                 _: ClientLevel?,
