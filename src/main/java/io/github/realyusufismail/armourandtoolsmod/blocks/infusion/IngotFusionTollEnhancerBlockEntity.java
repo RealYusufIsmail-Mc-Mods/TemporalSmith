@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion;
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
@@ -96,6 +97,8 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   protected final ContainerData dataAccess =
       new ContainerData() {
         public int get(int p_58431_) {
+          ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+              .info("Getting data: " + p_58431_ + " to " + p_58431_);
           return switch (p_58431_) {
             case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime;
             case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime;
@@ -105,6 +108,8 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         }
 
         public void set(int p_58433_, int p_58434_) {
+          ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
+              .info("Setting data: " + p_58433_ + " to " + p_58434_);
           switch (p_58433_) {
             case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime = p_58434_;
             case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime = p_58434_;
@@ -161,6 +166,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   @Override
   protected AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
+    ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("Creating menu");
     return new IngotFusionTollEnhancerMenu(pContainerId, this, this.dataAccess, pInventory);
   }
 
@@ -299,19 +305,8 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     var ingredient2 = this.items.get(1);
     var ingredient3 = this.items.get(2);
 
-    for (int i = 0; i < 3; ++i) {
-      if (!this.items.get(i).isEmpty()) {
-        if (!this.items.get(i + 2).isEmpty()) {
-          continue;
-        }
-
-        ItemStack ingredient = this.items.get(i);
-        if (!ingredient.isEmpty() && hasRecipe(ingredient, ingredient1, ingredient2, ingredient3)) {
-          this.items.set(
-              i + 2, getOutput(level, ingredient, ingredient1, ingredient2, ingredient3));
-        }
-      }
-    }
+    var output = getOutput(level, ingredient1, ingredient2, ingredient3);
+    this.items.set(4, output);
 
     val blockPos = this.getBlockPos();
     if (ingredient1.hasCraftingRemainingItem()) {
@@ -371,7 +366,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
     // level.levelEvent(1035, blockpos, 0);
     level.levelEvent(
-        1500, blockPos, this.items.get(4).isEmpty() ? 0 : this.items.get(4).getCount());
+        1035, blockPos, this.items.get(4).isEmpty() ? 0 : this.items.get(4).getCount());
   }
 
   private boolean hasRecipe(
@@ -381,13 +376,9 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   }
 
   private ItemStack getOutput(
-      Level level,
-      ItemStack input,
-      ItemStack ingredient1,
-      ItemStack ingredient2,
-      ItemStack ingredient3) {
+      Level level, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
     return level.getRecipeManager().getAllRecipesFor(type).stream()
-        .map(recipe -> recipe.getResult(input, ingredient1, ingredient2, ingredient3))
+        .map(recipe -> recipe.getResult(ingredient1, ingredient2, ingredient3))
         .filter(itemStack -> !itemStack.isEmpty())
         .findFirst()
         .orElse(ItemStack.EMPTY);

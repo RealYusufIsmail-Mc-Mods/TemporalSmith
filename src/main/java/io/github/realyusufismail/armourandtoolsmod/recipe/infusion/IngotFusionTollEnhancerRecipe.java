@@ -118,8 +118,7 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
                 });
   }
 
-  public ItemStack getResult(
-      ItemStack input, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
+  public ItemStack getResult(ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
     return isIngredient(ingredient1) && isIngredient(ingredient2) && isIngredient(ingredient3)
         ? this.result
         : ItemStack.EMPTY;

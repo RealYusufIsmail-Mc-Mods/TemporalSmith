@@ -137,6 +137,10 @@ public class IngotFusionTollEnhancerMenu extends RecipeBookMenu<Container> {
   public int getCreatingProgress() {
     val creatingTime = getCreatingTime();
     val maxCreatingTime = getMaxCreatingTime();
+
+    // ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("creatingTime: " + creatingTime);
+    // ArmourAndToolsMod.ArmorAndToolsMod.getLogger().info("maxCreatingTime: " + maxCreatingTime);
+
     return maxCreatingTime != 0 && creatingTime != 0 ? creatingTime * 24 / maxCreatingTime : 0;
   }
 
