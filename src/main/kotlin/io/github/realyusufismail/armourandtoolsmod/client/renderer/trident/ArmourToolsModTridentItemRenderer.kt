@@ -20,7 +20,6 @@ package io.github.realyusufismail.armourandtoolsmod.client.renderer.trident
 
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.math.Axis
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.common.entity.ArmourToolsModTridentEntity
 import net.minecraft.client.model.TridentModel
 import net.minecraft.client.model.geom.ModelLayers
@@ -47,8 +46,6 @@ abstract class ArmourToolsModTridentItemRenderer(context: EntityRendererProvider
         bufferIn: MultiBufferSource,
         packedLightIn: Int
     ) {
-        ArmourAndToolsMod.logger.info(
-            "Rendering Trident Entity at $entityYaw, $partialTicks, $packedLightIn")
         matrixStackIn.pushPose()
         matrixStackIn.mulPose(
             Axis.YP.rotationDegrees(Mth.lerp(partialTicks, pEntity.yRotO, pEntity.yRot) - 90.0f))

@@ -285,13 +285,12 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
       // TODO: Need to check this for loop
       for (int i = 0; i < 3; ++i) {
         if (!this.items.get(i).isEmpty()) {
-          if (!this.items.get(i + 2).isEmpty()) {
+          if (!this.items.get(RESULT_SLOT).isEmpty()) {
             continue;
           }
 
           ItemStack ingredient = this.items.get(i);
-          if (!ingredient.isEmpty()
-              && hasRecipe(ingredient, ingredient1, ingredient2, ingredient3)) {
+          if (!ingredient.isEmpty() && hasRecipe(ingredient)) {
             return true;
           }
         }
@@ -306,7 +305,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     var ingredient3 = this.items.get(2);
 
     var output = getOutput(level, ingredient1, ingredient2, ingredient3);
-    this.items.set(4, output);
+    this.items.set(RESULT_SLOT, output);
 
     val blockPos = this.getBlockPos();
     if (ingredient1.hasCraftingRemainingItem()) {
@@ -369,8 +368,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         1035, blockPos, this.items.get(4).isEmpty() ? 0 : this.items.get(4).getCount());
   }
 
-  private boolean hasRecipe(
-      ItemStack ingredient, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
+  private boolean hasRecipe(ItemStack ingredient) {
     return level.getRecipeManager().getAllRecipesFor(type).stream()
         .anyMatch(recipe -> recipe.isIngredient(ingredient));
   }
