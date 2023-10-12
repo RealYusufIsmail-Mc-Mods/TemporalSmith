@@ -108,9 +108,9 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
         recipe: IngotFusionTollEnhancerRecipe,
         focuses: IFocusGroup
     ) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 16, 40).addIngredients(recipe.ingredients[0])
-        builder.addSlot(RecipeIngredientRole.INPUT, 43, 40).addIngredients(recipe.ingredients[1])
-        builder.addSlot(RecipeIngredientRole.INPUT, 70, 40).addIngredients(recipe.ingredients[2])
+        builder.addSlot(RecipeIngredientRole.INPUT, 16, 40).addIngredients(recipe.ingredient1)
+        builder.addSlot(RecipeIngredientRole.INPUT, 43, 40).addIngredients(recipe.ingredient2)
+        builder.addSlot(RecipeIngredientRole.INPUT, 70, 40).addIngredients(recipe.ingredient3)
 
         builder
             .addSlot(RecipeIngredientRole.INPUT, 102, 65)

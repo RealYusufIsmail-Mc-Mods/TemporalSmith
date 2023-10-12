@@ -215,7 +215,7 @@ public class IngotFusionTollEnhancerMenu extends RecipeBookMenu<Container> {
 
   @Override
   public @NotNull RecipeBookType getRecipeBookType() {
-    return RecipeBookTypesInit.INGOT_FUSION;
+    return recipeBook;
   }
 
   @Override

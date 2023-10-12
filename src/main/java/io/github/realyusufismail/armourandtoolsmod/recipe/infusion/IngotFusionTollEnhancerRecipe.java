@@ -40,9 +40,9 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
 
   protected final RecipeType<?> type;
   protected final ResourceLocation id;
-  @Getter protected final Ingredient ingredient1;
-  @Getter protected final Ingredient ingredient2;
-  @Getter protected final Ingredient ingredient3;
+  @Getter public final Ingredient ingredient1;
+  @Getter public final Ingredient ingredient2;
+  @Getter public final Ingredient ingredient3;
   @Getter @NotNull public final ItemStack result;
   @Getter @NotNull public final IngotFusionTollEnhancerRecipeBookCategory category;
 

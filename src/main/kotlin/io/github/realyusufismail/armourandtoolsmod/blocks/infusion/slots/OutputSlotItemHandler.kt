@@ -20,8 +20,10 @@ package io.github.realyusufismail.armourandtoolsmod.blocks.infusion.slots
 
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity
 import kotlin.math.min
+import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
+import net.minecraftforge.event.ForgeEventFactory
 import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.SlotItemHandler
 
@@ -43,5 +45,18 @@ class OutputSlotItemHandler(itemHandler: IItemHandler, val player: Player) :
     override fun onTake(pPlayer: Player, pStack: ItemStack) {
         checkTakeAchievements(pStack)
         super.onTake(pPlayer, pStack)
+    }
+
+    /** @param pStack the output - ie, iron ingots, and pickaxes, not ore and wood. */
+    override fun checkTakeAchievements(pStack: ItemStack) {
+        pStack.onCraftedBy(player.level(), player, removeCount!!)
+        val player = player
+        if (player is ServerPlayer) {
+            val container = container
+            (container as? IngotFusionTollEnhancerBlockEntity)?.awardUsedRecipesAndPopExperience(
+                player)
+        }
+        removeCount = 0
+        ForgeEventFactory.firePlayerSmeltedEvent(this.player, pStack)
     }
 }
