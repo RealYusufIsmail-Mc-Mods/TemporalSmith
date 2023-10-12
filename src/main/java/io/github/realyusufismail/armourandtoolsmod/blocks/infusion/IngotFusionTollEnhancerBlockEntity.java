@@ -273,11 +273,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     ItemStack ingredient2 = this.items.get(1);
     ItemStack ingredient3 = this.items.get(2);
 
-    if (ingredient1.isEmpty() || ingredient2.isEmpty() || ingredient3.isEmpty()) {
-      return false;
-    } else if (!isValidInput(level, ingredient1, ingredient2, ingredient3)) {
-      return false;
-    } else {
+    if (!ingredient1.isEmpty() && !ingredient2.isEmpty() && !ingredient3.isEmpty()) {
       for (int i = 0; i < 3; ++i) {
         if (!this.items.get(i).isEmpty()) {
           if (!this.items.get(i + 2).isEmpty()) {
@@ -293,8 +289,8 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
           }
         }
       }
-      return false;
     }
+    return false;
   }
 
   private void createItem(Level level) {
@@ -372,19 +368,10 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         1500, blockPos, this.items.get(4).isEmpty() ? 0 : this.items.get(4).getCount());
   }
 
-  private boolean isValidInput(
-      Level level, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
-    return level.getRecipeManager().getAllRecipesFor(type).stream()
-        .anyMatch(recipe -> recipe.isInputValid(ingredient1, ingredient2, ingredient3));
-  }
-
   private boolean hasRecipe(
       ItemStack ingredient, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
     return level.getRecipeManager().getAllRecipesFor(type).stream()
-        .anyMatch(
-            recipe ->
-                recipe.isInputValid(ingredient1, ingredient2, ingredient3)
-                    && recipe.isIngredient(ingredient));
+        .anyMatch(recipe -> recipe.isIngredient(ingredient));
   }
 
   private ItemStack getOutput(

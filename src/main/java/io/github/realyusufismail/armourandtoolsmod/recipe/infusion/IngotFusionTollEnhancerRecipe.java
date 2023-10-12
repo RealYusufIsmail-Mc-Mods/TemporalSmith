@@ -100,37 +100,6 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
     return this.type;
   }
 
-  public boolean isInputValid(ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
-    // TODO: see if input is needed to be added back
-    return Arrays.stream(this.ingredient1.getItems())
-            .anyMatch(
-                itemStack -> {
-                  if (!ItemStack.isSameItem(ingredient1, itemStack)) {
-                    return false;
-                  } else if (!ItemStack.isSameItem(ingredient2, itemStack)) {
-                    return false;
-                  } else return ItemStack.isSameItem(ingredient3, itemStack);
-                })
-        || Arrays.stream(this.ingredient2.getItems())
-            .anyMatch(
-                itemStack -> {
-                  if (!ItemStack.isSameItem(ingredient1, itemStack)) {
-                    return false;
-                  } else if (!ItemStack.isSameItem(ingredient2, itemStack)) {
-                    return false;
-                  } else return ItemStack.isSameItem(ingredient3, itemStack);
-                })
-        || Arrays.stream(this.ingredient3.getItems())
-            .anyMatch(
-                itemStack -> {
-                  if (!ItemStack.isSameItem(ingredient1, itemStack)) {
-                    return false;
-                  } else if (!ItemStack.isSameItem(ingredient2, itemStack)) {
-                    return false;
-                  } else return ItemStack.isSameItem(ingredient3, itemStack);
-                });
-  }
-
   public boolean isIngredient(ItemStack ingredient) {
     return Arrays.stream(this.ingredient1.getItems())
             .anyMatch(
@@ -151,7 +120,7 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
 
   public ItemStack getResult(
       ItemStack input, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
-    return isInputValid(ingredient1, ingredient2, ingredient3) && isIngredient(input)
+    return isIngredient(ingredient1) && isIngredient(ingredient2) && isIngredient(ingredient3)
         ? this.result
         : ItemStack.EMPTY;
   }
