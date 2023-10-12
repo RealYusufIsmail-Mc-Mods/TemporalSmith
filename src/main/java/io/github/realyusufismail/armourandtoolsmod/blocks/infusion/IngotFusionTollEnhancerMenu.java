@@ -85,6 +85,8 @@ public class IngotFusionTollEnhancerMenu extends RecipeBookMenu<Container> {
               // slot to place result
               addSlot(new OutputSlotItemHandler(it, pInventory.player));
             });
+
+    addDataSlots(data);
   }
 
   public IngotFusionTollEnhancerMenu(int pContainerId, Inventory inventory, FriendlyByteBuf data) {

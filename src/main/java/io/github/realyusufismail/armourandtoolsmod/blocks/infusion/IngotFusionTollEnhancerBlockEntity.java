@@ -97,8 +97,6 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   protected final ContainerData dataAccess =
       new ContainerData() {
         public int get(int p_58431_) {
-          ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-              .info("Getting data: " + p_58431_ + " to " + p_58431_);
           return switch (p_58431_) {
             case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime;
             case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime;
@@ -108,8 +106,6 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         }
 
         public void set(int p_58433_, int p_58434_) {
-          ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-              .info("Setting data: " + p_58433_ + " to " + p_58434_);
           switch (p_58433_) {
             case 0 -> IngotFusionTollEnhancerBlockEntity.this.creatingTime = p_58434_;
             case 1 -> IngotFusionTollEnhancerBlockEntity.this.creatingTotalTime = p_58434_;
