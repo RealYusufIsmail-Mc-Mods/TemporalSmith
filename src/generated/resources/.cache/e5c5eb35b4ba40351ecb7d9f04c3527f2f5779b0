@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-24T20:24:31.0467546	Advancements
+// 1.20.1	2023-10-12T22:09:59.3341749	Advancements
 615aa58042c1c9ffe9d0ce52c4d2ff2fabafceeb data/armourandtoolsmod/advancements/aqumarine_armour.json
 c646a34402926a2fce2839d07d57bc89bbc36658 data/armourandtoolsmod/advancements/aqumarine_block.json
 1640ef0ec6e127c1afe8e6b060ba29e844d3a9e9 data/armourandtoolsmod/advancements/aqumarine_ingot.json
@@ -12,6 +12,9 @@ b08601bbad0cc8efe4d3845320f4088038e28d43 data/armourandtoolsmod/advancements/gra
 b19cf2c2995b5cccb13b120cf7f939e9da8846f0 data/armourandtoolsmod/advancements/graphite_block.json
 36250e8d2c72bbd2777714185259135746a5322f data/armourandtoolsmod/advancements/graphite_ingot.json
 9adf555b52ffdf629389ea55196ca5cd10282975 data/armourandtoolsmod/advancements/graphite_ore.json
+6d78dca81e0426274ca9944db826df140d7558af data/armourandtoolsmod/advancements/imperium_ingot.json
+14397bc6ac6b9cdb50cc33b5bffdd40d903c864f data/armourandtoolsmod/advancements/imperium_ore.json
+f6a37c07879a2fd2d12fbe264861eb4cb6e50072 data/armourandtoolsmod/advancements/imperium_tools.json
 5920445e4112df9049a32cfb9f64a6563f3f21ca data/armourandtoolsmod/advancements/rainbow_armour.json
 c823856ed4fd1c9cc14082a0e815cda7d7305692 data/armourandtoolsmod/advancements/rainbow_block.json
 602389b3a613f86e1ae958a052e0635effb8ef6e data/armourandtoolsmod/advancements/rainbow_ingot.json

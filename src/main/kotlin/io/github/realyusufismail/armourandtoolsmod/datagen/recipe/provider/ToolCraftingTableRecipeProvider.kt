@@ -203,6 +203,8 @@ class ToolCraftingTableRecipeProvider(
             .save(consumer, modId("amethyst_shovel"))
 
         // Imperium Tools
+
+        // TODO: Add support for enchantments
         CustomToolCraftingTableRecipeBuilder.shaped(
                 CustomToolsCraftingBookCategory.SWORD,
                 RecipeCategory.TOOLS,

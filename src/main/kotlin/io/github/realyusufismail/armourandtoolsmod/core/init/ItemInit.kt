@@ -66,6 +66,8 @@ object ItemInit {
         ITEMS.registerSmeltableObject("raw_rainbow", RAINBOW) { Item(Item.Properties()) }
     val RAW_ENDERITE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("raw_enderite", ENDERITE) { Item(Item.Properties()) }
+    val RAW_IMPERIUM: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("raw_imperium", IMPERIUM) { Item(Item.Properties()) }
 
     // armour
     val AMETHYST_HELMET: ObjectHolderDelegate<Item> =

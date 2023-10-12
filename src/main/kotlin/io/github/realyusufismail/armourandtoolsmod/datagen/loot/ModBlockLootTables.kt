@@ -50,6 +50,9 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         add(
             BlockInit.ENDERITE_ORE.get(),
             createOreDrop(BlockInit.ENDERITE_ORE.get(), ItemInit.RAW_ENDERITE.get()))
+        add(
+            BlockInit.IMPERIUM_ORE.get(),
+            createOreDrop(BlockInit.IMPERIUM_ORE.get(), ItemInit.RAW_IMPERIUM.get()))
 
         // deepslate ores
         add(
@@ -67,6 +70,9 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         add(
             BlockInit.DEEPSLATE_AQUMARINE_ORE.get(),
             createOreDrop(BlockInit.DEEPSLATE_AQUMARINE_ORE.get(), ItemInit.RAW_AQUMARINE.get()))
+        add(
+            BlockInit.DEEPSLATE_IMPERIUM_ORE.get(),
+            createOreDrop(BlockInit.DEEPSLATE_IMPERIUM_ORE.get(), ItemInit.RAW_IMPERIUM.get()))
 
         // blocks
         dropSelf(BlockInit.RUBY_BLOCK.get())

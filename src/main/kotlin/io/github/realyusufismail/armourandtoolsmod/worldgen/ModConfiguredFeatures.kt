@@ -36,11 +36,15 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest
 
 object ModConfiguredFeatures {
 
+    // overworld
     val OVERWORLD_RUBY_ORE = registerKey("ruby_ore")
     val OVERWORLD_SAPPHIRE_ORE = registerKey("sapphire_ore")
     val OVERWORLD_GRAPHITE_ORE = registerKey("graphite_ore")
     val OVERWORLD_AQUMARINE_ORE = registerKey("aqumarine_ore")
     val OVERWORLD_RAINBOW_ORE = registerKey("rainbow_ore")
+    val OVERWORLD_IMPERIUM_ORE = registerKey("imperium_ore")
+
+    // end
     val END_ENDERITE_ORE = registerKey("enderite_ore")
 
     fun bootstrap(context: BootstapContext<ConfiguredFeature<*, *>>) {
@@ -93,12 +97,18 @@ object ModConfiguredFeatures {
                 OreConfiguration.target(
                     endstoneReplaceables, BlockInit.ENDERITE_ORE.get().defaultBlockState()))
 
+        val imperium =
+            listOf<OreConfiguration.TargetBlockState>(
+                OreConfiguration.target(
+                    netherrackReplaceables, BlockInit.IMPERIUM_ORE.get().defaultBlockState()))
+
         register(context, OVERWORLD_RUBY_ORE, Feature.ORE, OreConfiguration(ruby, 4))
         register(context, OVERWORLD_SAPPHIRE_ORE, Feature.ORE, OreConfiguration(sapphire, 3))
         register(context, OVERWORLD_GRAPHITE_ORE, Feature.ORE, OreConfiguration(graphite, 4))
         register(context, OVERWORLD_AQUMARINE_ORE, Feature.ORE, OreConfiguration(aqumarine, 4))
         register(context, OVERWORLD_RAINBOW_ORE, Feature.ORE, OreConfiguration(rainbow, 3))
         register(context, END_ENDERITE_ORE, Feature.ORE, OreConfiguration(enderite, 4))
+        register(context, OVERWORLD_IMPERIUM_ORE, Feature.ORE, OreConfiguration(imperium, 4))
     }
 
     private fun registerKey(name: String): ResourceKey<ConfiguredFeature<*, *>> {

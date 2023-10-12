@@ -38,6 +38,7 @@ object ModPlacedFeatures {
     val AQUMARINE_ORE: ResourceKey<PlacedFeature> = createKey("aqumarine_ore")
     val RAINBOW_ORE: ResourceKey<PlacedFeature> = createKey("rainbow_ore")
     val ENDERITE_ORE: ResourceKey<PlacedFeature> = createKey("enderite_ore")
+    val IMPERIUM_ORE: ResourceKey<PlacedFeature> = createKey("imperium_ore")
 
     fun bootstrap(context: BootstapContext<PlacedFeature>) {
         val configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE)
@@ -54,6 +55,8 @@ object ModPlacedFeatures {
             configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_RAINBOW_ORE)
         val holder6: Holder<ConfiguredFeature<*, *>> =
             configuredFeatures.getOrThrow(ModConfiguredFeatures.END_ENDERITE_ORE)
+        val holder7: Holder<ConfiguredFeature<*, *>> =
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_IMPERIUM_ORE)
 
         register(
             context,
@@ -108,6 +111,15 @@ object ModPlacedFeatures {
                 4,
                 HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
+
+        register(
+            context,
+            IMPERIUM_ORE,
+            holder7,
+            ModOrePlacement.commonOrePlacement(
+                4,
+                HeightRangePlacement.uniform(
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(50))))
     }
 
     private fun createKey(name: String): ResourceKey<PlacedFeature> {

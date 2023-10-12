@@ -40,6 +40,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addBlock(BlockInit.RAINBOW_ORE, "Rainbow Ore")
         addBlock(BlockInit.AQUMARINE_ORE, "Aqumarine Ore")
         addBlock(BlockInit.ENDERITE_ORE, "Enderite Ore")
+        addBlock(BlockInit.IMPERIUM_ORE, "Imperium Ore")
 
         // blocks
         addBlock(BlockInit.RUBY_BLOCK, "Ruby Block")
@@ -55,6 +56,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addBlock(BlockInit.DEEPSLATE_GRAPHITE_ORE, "Deepslate Graphite Ore")
         addBlock(BlockInit.DEEPSLATE_RAINBOW_ORE, "Deepslate Rainbow Ore")
         addBlock(BlockInit.DEEPSLATE_AQUMARINE_ORE, "Deepslate Aqumarine Ore")
+        addBlock(BlockInit.DEEPSLATE_IMPERIUM_ORE, "Deepslate Imperium Ore")
 
         // custom crafting tables
         addBlock(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE, "Custom Armour Crafting Table")
@@ -77,6 +79,7 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.RAW_RAINBOW, "Raw Rainbow")
         addItem(ItemInit.RAW_AQUMARINE, "Raw Aqumarine")
         addItem(ItemInit.RAW_ENDERITE, "Raw Enderite")
+        addItem(ItemInit.RAW_IMPERIUM, "Raw Imperium")
 
         // armor
         addItem(ItemInit.RUBY_HELMET, "Ruby Helmet")

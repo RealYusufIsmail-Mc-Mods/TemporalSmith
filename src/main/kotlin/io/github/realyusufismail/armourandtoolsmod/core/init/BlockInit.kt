@@ -90,6 +90,13 @@ object BlockInit {
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
+    val IMPERIUM_ORE =
+        registerSmeltAbleBlock(
+            "imperium_ore",
+            ItemInit.IMPERIUM,
+            BlockBehaviour.Properties.copy(Blocks.IRON_ORE).requiresCorrectToolForDrops(),
+            MinableBlockType.IRON_PICKAXE)
+
     // deepslate ores
     val DEEPSLATE_RUBY_ORE =
         registerSpecialSmeltAbleBlock(
@@ -124,6 +131,13 @@ object BlockInit {
             BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
                 .requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
+
+    val DEEPSLATE_IMPERIUM_ORE =
+        registerSmeltAbleBlock(
+            "deepslate_imperium_ore",
+            ItemInit.IMPERIUM,
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops(),
+            MinableBlockType.IRON_PICKAXE)
 
     // blocks
     val RUBY_BLOCK =

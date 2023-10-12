@@ -49,6 +49,8 @@ class ModBlockTagsProvider(
         tag(TagsInit.BlockTagsInit.ORES_GRAPHITE).add(BlockInit.GRAPHITE_ORE.get())
         tag(TagsInit.BlockTagsInit.ORES_AQUMARINE).add(BlockInit.AQUMARINE_ORE.get())
         tag(TagsInit.BlockTagsInit.ORES_ENDERITE).add(BlockInit.ENDERITE_ORE.get())
+        tag(TagsInit.BlockTagsInit.ORES_IMPERIUM).add(BlockInit.IMPERIUM_ORE.get())
+
         // deepslate ores
         tag(TagsInit.BlockTagsInit.DEEPSLATE_ORES_RUBY).add(BlockInit.DEEPSLATE_RUBY_ORE.get())
         tag(TagsInit.BlockTagsInit.DEEPSLATE_ORES_RAINBOW)
@@ -59,6 +61,9 @@ class ModBlockTagsProvider(
             .add(BlockInit.DEEPSLATE_GRAPHITE_ORE.get())
         tag(TagsInit.BlockTagsInit.DEEPSLATE_ORES_AQUMARINE)
             .add(BlockInit.DEEPSLATE_AQUMARINE_ORE.get())
+        tag(TagsInit.BlockTagsInit.DEEPSLATE_ORES_IMPERIUM)
+            .add(BlockInit.DEEPSLATE_IMPERIUM_ORE.get())
+
         // storage blocks
         tag(TagsInit.BlockTagsInit.STORAGE_RUBY).add(BlockInit.RUBY_BLOCK.get())
         tag(TagsInit.BlockTagsInit.STORAGE_RAINBOW).add(BlockInit.RAINBOW_BLOCK.get())

@@ -52,6 +52,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.RAW_AQUMARINE.get())
         item(ItemInit.RAW_RAINBOW.get())
         item(ItemInit.RAW_ENDERITE.get())
+        item(ItemInit.RAW_IMPERIUM.get())
 
         // armour
         item(ItemInit.AMETHYST_HELMET.get())

@@ -561,5 +561,54 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("enderite_hoe", getItem(ItemInit.ENDERITE_HOE.get()))
             .requirements(RequirementsStrategy.OR)
             .save(consumer, id("enderite_tools"))
+
+        // Imperium
+
+        val imperiumOre =
+            Advancement.Builder.advancement()
+                .parent(root)
+                .display(
+                    BlockInit.IMPERIUM_ORE.get(),
+                    title("imperium_ore"),
+                    description("imperium_ore"),
+                    null,
+                    FrameType.GOAL,
+                    true,
+                    true,
+                    false)
+                .addCriterion("get_ore", getItem(TagsInit.ItemTagsInit.ORES_IMPERIUM))
+                .save(consumer, id("imperium_ore"))
+
+        val imperiumIngot =
+            Advancement.Builder.advancement()
+                .parent(imperiumOre)
+                .display(
+                    ItemInit.IMPERIUM.get(),
+                    title("imperium_ingot"),
+                    description("imperium_ingot"),
+                    null,
+                    FrameType.GOAL,
+                    true,
+                    true,
+                    false)
+                .addCriterion("get_scrap", getItem(TagsInit.ItemTagsInit.INGOTS_IMPERIUM))
+                .save(consumer, id("imperium_ingot"))
+
+        Advancement.Builder.advancement()
+            .parent(imperiumIngot)
+            .display(
+                ItemInit.IMPERIUM_SWORD.get(),
+                title("imperium_tools"),
+                description("imperium_tools"),
+                null,
+                FrameType.GOAL,
+                true,
+                true,
+                false)
+            .addCriterion("imperium_sword", getItem(ItemInit.IMPERIUM_SWORD.get()))
+            .addCriterion("imperium_pickaxe", getItem(ItemInit.IMPERIUM_PICKAXE.get()))
+            // .addCriterion("imperium_axe", getItem(ItemInit.IMPERIUM_AXE.get()))
+            .requirements(RequirementsStrategy.OR)
+            .save(consumer, id("imperium_tools"))
     }
 }
