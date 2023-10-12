@@ -56,6 +56,8 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
 
         customCraftingTable(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         customCraftingTable(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
+        orientableBlock(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
+        orientableBlockOn(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
     }
 
     private fun customCraftingTable(block: Block) {
@@ -81,5 +83,24 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
         simpleBlock(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
         simpleBlockItem(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
+    }
+
+    private fun orientableBlock(block: Block) {
+        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val builder = models().withExistingParent(name.path, "block/orientable")
+        builder.texture("top", modLoc("block/${name.path}_top"))
+        builder.texture("side", modLoc("block/${name.path}_side"))
+        builder.texture("front", modLoc("block/${name.path}_front"))
+        this.simpleBlock(block, builder)
+        this.simpleBlockItem(block, builder)
+    }
+
+    private fun orientableBlockOn(block: Block) {
+        val nameWithOn = (ForgeRegistries.BLOCKS.getKey(block) ?: return).path + "_on"
+        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val builder = models().withExistingParent(nameWithOn, "block/orientable")
+        builder.texture("top", modLoc("block/${name.path}_top"))
+        builder.texture("side", modLoc("block/${name.path}_side"))
+        builder.texture("front", modLoc("block/${name.path}_front"))
     }
 }

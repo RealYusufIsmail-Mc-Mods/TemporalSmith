@@ -18,7 +18,6 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion;
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockEntityTypeInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit;
@@ -227,10 +226,12 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
       @NotNull BlockState state,
       @NotNull IngotFusionTollEnhancerBlockEntity blockEntity) {
     ItemStack itemstack = blockEntity.items.get(FUEL_SLOT);
+
+    // Do i need blockEntity.fuel in this if statement?
     if (blockEntity.fuel <= 0 && getFuels().containsKey(itemstack.getItem())) {
-      blockEntity.fuel = getFuels().get(itemstack.getItem());
-      blockEntity.items.set(
-          FUEL_SLOT, new ItemStack(itemstack.getItem(), itemstack.getCount() - 1));
+      blockEntity.fuel = 20;
+      itemstack.shrink(1);
+      blockEntity.setChanged();
     }
 
     boolean flag = blockEntity.isCreatable(level);
@@ -274,14 +275,14 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     ItemStack ingredient3 = this.items.get(2);
 
     if (!ingredient1.isEmpty() && !ingredient2.isEmpty() && !ingredient3.isEmpty()) {
+
+      // TODO: Need to check this for loop
       for (int i = 0; i < 3; ++i) {
         if (!this.items.get(i).isEmpty()) {
           if (!this.items.get(i + 2).isEmpty()) {
             continue;
           }
-          // TODO: check if this is correct
-          ArmourAndToolsMod.ArmorAndToolsMod.getLogger()
-              .info("Item: " + this.items.size() + " " + i);
+
           ItemStack ingredient = this.items.get(i);
           if (!ingredient.isEmpty()
               && hasRecipe(ingredient, ingredient1, ingredient2, ingredient3)) {
@@ -300,10 +301,15 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
     for (int i = 0; i < 3; ++i) {
       if (!this.items.get(i).isEmpty()) {
-        ItemStack stack =
-            getOutput(level, this.items.get(i), ingredient1, ingredient2, ingredient3);
-        this.items.set(i, ItemStack.EMPTY);
-        this.items.set(i + 2, stack);
+        if (!this.items.get(i + 2).isEmpty()) {
+          continue;
+        }
+
+        ItemStack ingredient = this.items.get(i);
+        if (!ingredient.isEmpty() && hasRecipe(ingredient, ingredient1, ingredient2, ingredient3)) {
+          this.items.set(
+              i + 2, getOutput(level, ingredient, ingredient1, ingredient2, ingredient3));
+        }
       }
     }
 
