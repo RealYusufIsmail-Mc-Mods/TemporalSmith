@@ -135,6 +135,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     ContainerHelper.loadAllItems(pTag, this.items);
     this.creatingTime = pTag.getInt("CraftTime");
     this.creatingTotalTime = pTag.getInt("CraftTimeTotal");
+    this.fuel = getFuels().getOrDefault(this.items.get(FUEL_SLOT).getItem(), 0);
 
     val compoundtag = pTag.getCompound("RecipesUsed");
 
@@ -147,6 +148,8 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   protected void saveAdditional(CompoundTag pTag) {
     pTag.putInt("CraftTime", this.creatingTime);
     pTag.putInt("CraftTimeTotal", this.creatingTotalTime);
+    pTag.putInt("Fuel", this.fuel);
+
     ContainerHelper.saveAllItems(pTag, this.items);
     val compoundtag = new CompoundTag();
     this.recipesUsed.forEach(
@@ -235,7 +238,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
     // Do i need blockEntity.fuel in this if statement?
     if (blockEntity.fuel <= 0 && getFuels().containsKey(itemstack.getItem())) {
-      blockEntity.fuel = 20;
+      blockEntity.fuel = getFuels().get(itemstack.getItem());
       itemstack.shrink(1);
       blockEntity.setChanged();
     }
@@ -260,17 +263,13 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         blockEntity.creatingTime = 0;
         blockEntity.setChanged();
       }
-    } else if (flag) {
+    } else if (flag && blockEntity.fuel > 0) {
       --blockEntity.fuel;
-
       // TODO: Add ability to alter creating time.
       blockEntity.creatingTime = 200;
       blockEntity.ingredient1 = ingredient1;
       blockEntity.ingredient2 = ingredient2;
       blockEntity.ingredient3 = ingredient3;
-      blockEntity.setChanged();
-    } else {
-      blockEntity.creatingTime = 0;
       blockEntity.setChanged();
     }
   }
