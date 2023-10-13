@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:rainbow_chestplate"
-  }
+  },
+  "show_notification": false
 }

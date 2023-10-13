@@ -40,6 +40,7 @@ import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
+import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.level.ItemLike
 import net.minecraftforge.registries.ForgeRegistries
 
@@ -54,6 +55,9 @@ object CustomArmourCraftingTableRecipeBuilder {
     private var recipeCategory: RecipeCategory? = null
     private var count: Int? = null
     private var result: Item? = null
+    private var showNotification: Boolean = false
+    private var enchantmentsAndLevels: EnchantmentsAndLevels = EnchantmentsAndLevels()
+    private var hideFlags: Boolean = false
 
     fun shaped(
         bookCategory: CustomArmourCraftingBookCategory,
@@ -122,6 +126,24 @@ object CustomArmourCraftingTableRecipeBuilder {
         return this
     }
 
+    fun addEnchantment(
+        enchantment: Enchantment,
+        level: Int
+    ): CustomArmourCraftingTableRecipeBuilder {
+        enchantmentsAndLevels.add(enchantment, level)
+        return this
+    }
+
+    fun setHideFlags(hideFlags: Boolean): CustomArmourCraftingTableRecipeBuilder {
+        this.hideFlags = hideFlags
+        return this
+    }
+
+    fun showNotification(p_273326_: Boolean): CustomArmourCraftingTableRecipeBuilder {
+        this.showNotification = p_273326_
+        return this
+    }
+
     fun getResult(): Item {
         return result ?: throw IllegalStateException("Result is not set")
     }
@@ -146,7 +168,10 @@ object CustomArmourCraftingTableRecipeBuilder {
                 rows,
                 key,
                 advancement ?: throw IllegalStateException("Advancement is not set"),
-                resourceLocation.withPrefix("recipes/" + recipeCategory!!.folderName + "/")))
+                resourceLocation.withPrefix("recipes/" + recipeCategory!!.folderName + "/"),
+                showNotification,
+                enchantmentsAndLevels,
+                hideFlags))
         clear()
     }
 
@@ -207,6 +232,9 @@ object CustomArmourCraftingTableRecipeBuilder {
         key: Map<Char, Ingredient>,
         advancement: Advancement.Builder,
         advancementId: ResourceLocation,
+        showNotification: Boolean,
+        val enchantmentsAndLevels: EnchantmentsAndLevels,
+        val hideFlags: Boolean,
     ) : FinishedRecipe {
         override fun serializeRecipeData(jsonObject: JsonObject) {
             if (group.isNotEmpty()) {
@@ -230,6 +258,26 @@ object CustomArmourCraftingTableRecipeBuilder {
             if (count > 1) {
                 jsonObject2.addProperty("count", count)
             }
+
+            // enchantment
+            if (enchantmentsAndLevels.isNotEmpty()) {
+                val jsonArray1 = JsonArray()
+                val jsonObject3 = JsonObject()
+                val jsonObject4 = JsonObject()
+                for (entry: Map.Entry<Enchantment, Int> in enchantmentsAndLevels.entries) {
+                    jsonObject4.addProperty(
+                        "id",
+                        Objects.requireNonNull(ForgeRegistries.ENCHANTMENTS.getKey(entry.key))
+                            .toString())
+                    jsonObject4.addProperty("lvl", entry.value)
+                    jsonArray1.add(jsonObject4)
+                }
+                jsonObject3.add("Enchantments", jsonArray1)
+                jsonObject3.addProperty("HideFlags", hideFlags)
+                jsonObject2.add("nbt", jsonObject3)
+            }
+
+            jsonObject.addProperty("show_notification", showNotification)
             jsonObject.add("result", jsonObject2)
         }
 

@@ -48,7 +48,10 @@ enum class CustomToolMaterial(
     SAPPHIRE_PICKAXE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
     SAPPHIRE_AXE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
     SAPPHIRE_SHOVEL(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
-    SAPPHIRE_HOE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) });
+    SAPPHIRE_HOE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
+    IMPERIUM_SWORD(6, 4000, 20, Supplier { Ingredient.of(ItemInit.IMPERIUM.get()) }),
+    IMPERIUM_PICKAXE(6, 4000, 20, Supplier { Ingredient.of(ItemInit.IMPERIUM.get()) }),
+    MAGMA_STRIKE_PICKAXE(6, 8000, 20, Supplier { Ingredient.of(ItemInit.IMPERIUM.get()) });
 
     private val harvestLevel = 0
     private val maxUses = 0

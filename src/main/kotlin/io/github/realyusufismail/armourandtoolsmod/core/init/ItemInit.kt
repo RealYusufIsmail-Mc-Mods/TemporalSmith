@@ -50,6 +50,8 @@ object ItemInit {
         ITEMS.registerObject("rainbow") { Item(Item.Properties()) }
     val ENDERITE: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("enderite") { Item(Item.Properties()) }
+    val IMPERIUM: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("imperium") { Item(Item.Properties()) }
 
     // raw ores
     val RAW_RUBY: ObjectHolderDelegate<Item> =
@@ -64,6 +66,8 @@ object ItemInit {
         ITEMS.registerSmeltableObject("raw_rainbow", RAINBOW) { Item(Item.Properties()) }
     val RAW_ENDERITE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("raw_enderite", ENDERITE) { Item(Item.Properties()) }
+    val RAW_IMPERIUM: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("raw_imperium", IMPERIUM) { Item(Item.Properties()) }
 
     // armour
     val AMETHYST_HELMET: ObjectHolderDelegate<Item> =
@@ -249,6 +253,15 @@ object ItemInit {
                 Item.Properties().stacksTo(1).durability(800))
         }
 
+    val IMPERIUM_SWORD: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("imperium_sword", IMPERIUM) {
+            CustomSwordItem(
+                CustomToolMaterial.IMPERIUM_SWORD,
+                10,
+                -2.7f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
     // Pickaxes
     val RUBY_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_pickaxe", RUBY) {
@@ -284,6 +297,24 @@ object ItemInit {
                 6,
                 -2.8f,
                 Item.Properties().stacksTo(1).durability(800))
+        }
+
+    val IMPERIUM_PICKAXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerSmeltableObject("imperium_pickaxe", IMPERIUM) {
+            PickaxeItem(
+                CustomToolMaterial.IMPERIUM_PICKAXE,
+                7,
+                -2.9f,
+                Item.Properties().stacksTo(1).durability(800))
+        }
+
+    val MAGMA_STRIKE_PICKAXE: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("magma_strike_pickaxe") {
+            PickaxeItem(
+                CustomToolMaterial.MAGMA_STRIKE_PICKAXE,
+                9,
+                -3.0f,
+                Item.Properties().stacksTo(1).durability(1000))
         }
 
     // Axes

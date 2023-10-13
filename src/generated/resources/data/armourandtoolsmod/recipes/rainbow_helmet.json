@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:rainbow_helmet"
-  }
+  },
+  "show_notification": false
 }

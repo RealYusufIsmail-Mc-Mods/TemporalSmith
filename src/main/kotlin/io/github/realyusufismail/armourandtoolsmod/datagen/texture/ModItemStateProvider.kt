@@ -43,6 +43,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.AQUMARINE.get())
         item(ItemInit.RAINBOW.get())
         item(ItemInit.ENDERITE.get())
+        item(ItemInit.IMPERIUM.get())
 
         // raw ores
         item(ItemInit.RAW_RUBY.get())
@@ -51,6 +52,7 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.RAW_AQUMARINE.get())
         item(ItemInit.RAW_RAINBOW.get())
         item(ItemInit.RAW_ENDERITE.get())
+        item(ItemInit.RAW_IMPERIUM.get())
 
         // armour
         item(ItemInit.AMETHYST_HELMET.get())
@@ -112,6 +114,10 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         tool(ItemInit.SAPPHIRE_AXE.get())
         tool(ItemInit.SAPPHIRE_SHOVEL.get())
         tool(ItemInit.SAPPHIRE_HOE.get())
+
+        tool(ItemInit.IMPERIUM_SWORD.get())
+        tool(ItemInit.IMPERIUM_PICKAXE.get())
+        tool(ItemInit.MAGMA_STRIKE_PICKAXE.get())
 
         // Trident
         trident(ItemInit.AQUMARINE_TRIDENT.get())

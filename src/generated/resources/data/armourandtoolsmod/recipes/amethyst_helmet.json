@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:amethyst_helmet"
-  }
+  },
+  "show_notification": false
 }

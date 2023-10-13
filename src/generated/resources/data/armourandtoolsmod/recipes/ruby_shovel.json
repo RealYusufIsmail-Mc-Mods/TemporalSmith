@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:ruby_shovel"
-  }
+  },
+  "showNotification": false
 }

@@ -23,8 +23,10 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.JEIRecipeTypes
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
 import io.github.realyusufismail.armourandtoolsmod.integration.armour.CustomArmourCraftingTableJEIRecipeCategory
+import io.github.realyusufismail.armourandtoolsmod.integration.fusion.IngotFusionTollEnhancerJEIRecipeCategory
 import io.github.realyusufismail.armourandtoolsmod.integration.tool.CustomToolCraftingTableJEIRecipeCategory
 import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
+import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.IModPlugin
 import mezz.jei.api.JeiPlugin
@@ -42,15 +44,19 @@ class ArmourAndToolsModJEIPlugin : IModPlugin {
     override fun registerCategories(registration: IRecipeCategoryRegistration) {
         registration.addRecipeCategories(
             CustomToolCraftingTableJEIRecipeCategory(registration.jeiHelpers.guiHelper),
-            CustomArmourCraftingTableJEIRecipeCategory(registration.jeiHelpers.guiHelper))
+            CustomArmourCraftingTableJEIRecipeCategory(registration.jeiHelpers.guiHelper),
+            IngotFusionTollEnhancerJEIRecipeCategory(registration.jeiHelpers.guiHelper))
     }
 
     override fun registerRecipes(registration: IRecipeRegistration) {
         val recipeManager = Minecraft.getInstance().level!!.recipeManager
         val recipesTool = recipeManager.getAllRecipesFor(RecipeTypeInit.TOOL_CRAFTING.get())
         val recipesArmour = recipeManager.getAllRecipesFor(RecipeTypeInit.ARMOUR_CRAFTING.get())
+        val recipesIngotFusionTollEnhancer =
+            recipeManager.getAllRecipesFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get())
         registration.addRecipes(toolCraftingTableRecipeType, recipesTool)
         registration.addRecipes(armourCraftingTableRecipeType, recipesArmour)
+        registration.addRecipes(ingotFusionTollEnhancerRecipeType, recipesIngotFusionTollEnhancer)
     }
 
     override fun registerRecipeCatalysts(registration: IRecipeCatalystRegistration) {
@@ -58,6 +64,9 @@ class ArmourAndToolsModJEIPlugin : IModPlugin {
             ItemStack(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get()), JEIRecipeTypes.toolCrafting)
         registration.addRecipeCatalyst(
             ItemStack(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get()), JEIRecipeTypes.armourCrafting)
+        registration.addRecipeCatalyst(
+            ItemStack(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get()),
+            JEIRecipeTypes.ingotFusionTollEnhancer)
     }
 
     override fun getPluginUid(): ResourceLocation {
@@ -73,5 +82,9 @@ class ArmourAndToolsModJEIPlugin : IModPlugin {
             RecipeType(
                 CustomToolCraftingTableJEIRecipeCategory.UID,
                 CustomToolCraftingTableRecipe::class.java)
+        val ingotFusionTollEnhancerRecipeType: RecipeType<IngotFusionTollEnhancerRecipe> =
+            RecipeType(
+                IngotFusionTollEnhancerJEIRecipeCategory.UID,
+                IngotFusionTollEnhancerRecipe::class.java)
     }
 }

@@ -42,11 +42,17 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         normalBlock(BlockInit.GRAPHITE_ORE.get())
         normalBlock(BlockInit.AQUMARINE_ORE.get())
         normalBlock(BlockInit.ENDERITE_ORE.get())
+        normalBlock(BlockInit.IMPERIUM_ORE.get())
+
+        // deepslate ores
         normalBlock(BlockInit.DEEPSLATE_RUBY_ORE.get())
         normalBlock(BlockInit.DEEPSLATE_RAINBOW_ORE.get())
         normalBlock(BlockInit.DEEPSLATE_SAPPHIRE_ORE.get())
         normalBlock(BlockInit.DEEPSLATE_GRAPHITE_ORE.get())
         normalBlock(BlockInit.DEEPSLATE_AQUMARINE_ORE.get())
+        normalBlock(BlockInit.DEEPSLATE_IMPERIUM_ORE.get())
+
+        // blocks
         normalBlock(BlockInit.RUBY_BLOCK.get())
         normalBlock(BlockInit.RAINBOW_BLOCK.get())
         normalBlock(BlockInit.SAPPHIRE_BLOCK.get())
@@ -54,8 +60,11 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         normalBlock(BlockInit.AQUMARINE_BLOCK.get())
         normalBlock(BlockInit.ENDERITE_BLOCK.get())
 
+        // other
         customCraftingTable(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         customCraftingTable(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
+        orientableBlock(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
+        orientableBlockOn(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
     }
 
     private fun customCraftingTable(block: Block) {
@@ -81,5 +90,24 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
         simpleBlock(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
         simpleBlockItem(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
+    }
+
+    private fun orientableBlock(block: Block) {
+        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val builder = models().withExistingParent(name.path, "block/orientable")
+        builder.texture("top", modLoc("block/${name.path}_top"))
+        builder.texture("side", modLoc("block/${name.path}_side"))
+        builder.texture("front", modLoc("block/${name.path}_front"))
+        this.simpleBlock(block, builder)
+        this.simpleBlockItem(block, builder)
+    }
+
+    private fun orientableBlockOn(block: Block) {
+        val nameWithOn = (ForgeRegistries.BLOCKS.getKey(block) ?: return).path + "_on"
+        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val builder = models().withExistingParent(nameWithOn, "block/orientable")
+        builder.texture("top", modLoc("block/${name.path}_top"))
+        builder.texture("side", modLoc("block/${name.path}_side"))
+        builder.texture("front", modLoc("block/${name.path}_front"))
     }
 }

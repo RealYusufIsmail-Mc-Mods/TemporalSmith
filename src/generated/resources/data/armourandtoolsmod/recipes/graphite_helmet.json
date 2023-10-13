@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:graphite_helmet"
-  }
+  },
+  "show_notification": false
 }

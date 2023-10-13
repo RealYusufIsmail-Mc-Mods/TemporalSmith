@@ -26,6 +26,9 @@ import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapelessRecipe
 import java.util.function.Consumer
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.tags.BlockTags
+import net.minecraft.tags.BlockTags.BASE_STONE_OVERWORLD
+import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
 
@@ -54,6 +57,17 @@ class NormalCraftingTableRecipeProvider(
             .pattern(" B ")
             .unlockedBy("has_item", has(Items.IRON_PICKAXE))
             .save(pWriter, modId("custom_tool_crafting_table_recipe"))
+
+        YusufShapedRecipeBuilder.shaped(
+                RecipeCategory.BUILDING_BLOCKS, BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
+            .define('A', Blocks.IRON_BLOCK)
+            .define('B', Items.IRON_INGOT)
+            .define('C', ItemTags.create(BlockTags.BASE_STONE_OVERWORLD.location))
+            .pattern("ABA")
+            .pattern("CBC")
+            .pattern("CBC")
+            .unlockedBy("has_item", has(Items.IRON_INGOT))
+            .save(pWriter, modId("ingot_fusion_toll_enhancer_recipe"))
 
         addOreBlockRecipes()
     }

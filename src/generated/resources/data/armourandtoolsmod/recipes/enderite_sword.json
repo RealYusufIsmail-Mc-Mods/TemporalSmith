@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:enderite_sword"
-  }
+  },
+  "showNotification": false
 }

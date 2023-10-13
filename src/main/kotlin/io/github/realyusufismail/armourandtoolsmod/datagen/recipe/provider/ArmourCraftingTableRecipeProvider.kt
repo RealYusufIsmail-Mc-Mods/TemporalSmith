@@ -35,7 +35,6 @@ class ArmourCraftingTableRecipeProvider(
     private val hasItem = "has_item"
 
     fun build() {
-
         CustomArmourCraftingTableRecipeBuilder.shaped(
                 CustomArmourCraftingBookCategory.ARMOUR_HEAD,
                 RecipeCategory.COMBAT,

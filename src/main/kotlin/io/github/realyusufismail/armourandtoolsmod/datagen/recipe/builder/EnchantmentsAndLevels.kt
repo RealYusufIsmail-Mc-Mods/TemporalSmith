@@ -16,6 +16,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.init
+package io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder
 
-object EntityRenderersInit
+import net.minecraft.world.item.enchantment.Enchantment
+
+class EnchantmentsAndLevels : MutableMap<Enchantment, Int> by mutableMapOf() {
+
+    fun add(enchantment: net.minecraft.world.item.enchantment.Enchantment, level: Int) {
+        put(enchantment, level)
+    }
+
+    fun addAll(enchantmentsAndLevels: EnchantmentsAndLevels) {
+        putAll(enchantmentsAndLevels)
+    }
+}

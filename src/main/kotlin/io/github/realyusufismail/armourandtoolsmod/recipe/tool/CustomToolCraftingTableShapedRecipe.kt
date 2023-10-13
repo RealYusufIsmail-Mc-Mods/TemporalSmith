@@ -42,7 +42,6 @@ import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.crafting.CraftingHelper
 import net.minecraftforge.common.crafting.IShapedRecipe
 
-/** @see io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder */
 class CustomToolCraftingTableShapedRecipe(
     private val id: ResourceLocation,
     private val group: String,

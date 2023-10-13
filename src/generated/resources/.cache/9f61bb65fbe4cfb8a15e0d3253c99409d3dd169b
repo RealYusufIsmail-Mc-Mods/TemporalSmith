@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-24T20:24:31.0315422	Item Models: armourandtoolsmod
+// 1.20.1	2023-10-12T22:09:59.3196167	Item Models: armourandtoolsmod
 6fdab53e9321f76ef7edd0a135b6879656abdad7 assets/armourandtoolsmod/models/item/amethyst_axe.json
 f523d3f594a0d1a51fb553f028ab2b20eee793dd assets/armourandtoolsmod/models/item/amethyst_boots.json
 8377e984c59ebdaa220b7d1c0973dfd4653e52fb assets/armourandtoolsmod/models/item/amethyst_chestplate.json
@@ -34,6 +34,10 @@ a999cd10ee1b427640b86cb303e4b33cbd82cfa8 assets/armourandtoolsmod/models/item/gr
 7f03d28ac4363abcd78d60dee0823ebcbdbe4848 assets/armourandtoolsmod/models/item/graphite_leggings.json
 2aecba55504a8f58919a7ed564db44ac4a46cf40 assets/armourandtoolsmod/models/item/graphite_shield.json
 6bd7890815727bba27c0471942890c4044023bf4 assets/armourandtoolsmod/models/item/graphite_shield_blocking.json
+c689e4209f0c9c5d72a90efb880fda6fa5de4119 assets/armourandtoolsmod/models/item/imperium.json
+b9bf414d688bbea27c22d22470fb3119ab3820c0 assets/armourandtoolsmod/models/item/imperium_pickaxe.json
+205f8bdfd7249defd6d60e27deed940842c6650b assets/armourandtoolsmod/models/item/imperium_sword.json
+585fa6ddfbf0355703c29b0cb9c14b985f3fe6cd assets/armourandtoolsmod/models/item/magma_strike_pickaxe.json
 62517ca368679b6de05f59df5cf0ba2be1600829 assets/armourandtoolsmod/models/item/rainbow.json
 e7a2dce51d378c49e596294d6ea2bf6f8d5bf6a2 assets/armourandtoolsmod/models/item/rainbow_boots.json
 790e68bc582401a2289e8be785368d04c946185c assets/armourandtoolsmod/models/item/rainbow_chestplate.json
@@ -44,6 +48,7 @@ e7a2dce51d378c49e596294d6ea2bf6f8d5bf6a2 assets/armourandtoolsmod/models/item/ra
 33b68057db18389d58595a300e616f0e1f848ada assets/armourandtoolsmod/models/item/raw_aqumarine.json
 e2e4e00dea2145b5ae54560c28a85eae2bf5bed5 assets/armourandtoolsmod/models/item/raw_enderite.json
 68070919d55c07e9e09eb39a3a50362475cfcc14 assets/armourandtoolsmod/models/item/raw_graphite.json
+3061dcb2768b3fb493283254c3ba51bb39d60f79 assets/armourandtoolsmod/models/item/raw_imperium.json
 073845b113c727ef0adce18c38781aa211ab8867 assets/armourandtoolsmod/models/item/raw_rainbow.json
 40dd62b983e59172e5640256e298c1ab3704de25 assets/armourandtoolsmod/models/item/raw_ruby.json
 7321aefdabda17126533ee833870352ecb756978 assets/armourandtoolsmod/models/item/raw_sapphire.json

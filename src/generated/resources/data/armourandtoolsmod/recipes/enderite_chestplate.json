@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:enderite_chestplate"
-  }
+  },
+  "show_notification": false
 }

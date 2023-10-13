@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.1-1.0.6] - 2023-10-13
+
+### Added Ingot Fusion Enchanter (been in the works for a month with more than two rewrites) :
+### This allows you to upgrade certain items. Currently only works with the MAGMA_STRIKE_PICKAXE. More to come in the future.
+### Added imperium sword, pickaxe, axe, ingot and ore. More to come in the future.
+### Added saphire tool recipes to the tool crafting table.
+### Fixed issue with JEI for custom crafting tables where some recipes were not showing.
+### Added support for enchanted items to be crafted in the custom crafting tables.
+### Fixed some other issues I came across while testing.
+
 ## [1.20.1-1.0.5] - 2023-09-26
 
 ### Added JEI integration for custom crafting tables.
@@ -13,8 +23,8 @@ All notable changes to this project will be documented in this file.
 
 ## [1.20.1-1.0.3] - 2023-9-23
 
-### Add advancments for root and ruby. More to come in future.
-### Switched some recipies to use tags instead of specific items. This will allow for more flexability in future.
+### Add advancements for root and ruby. More to come in the future.
+### Switched some recipes to use tags instead of specific items. This will allow for more flexibility in the future.
 
 ## [1.20.1-1.0.2]  - 2023-9-3
 
@@ -41,16 +51,16 @@ All notable changes to this project will be documented in this file.
 ### Added enderite ore, block, ingot, tools and armour. Thx to redrosewarrior1 for some of the textures.
 ### Rainbow armour now has a texture. Thx to redrosewarrior1 for the textures.
 ### Known issue with ore generation. Will be fixed in future.
-### Fixed issue where nothing was craftable in tool crafting table.
-### Fixed issue where the crafting book gave the wrong patern for recipes in both armour and tool crafting tables.
+### Fixed issue where nothing was craft-able in tool crafting table.
+### Fixed issue where the crafting book gave the wrong pattern for recipes in both armor and tool crafting tables.
 ### Fixed issue were stats for tools such as attack damage where incorrect.
 
 ## [1.19.4-1.0.0.beta.6] - 2023-7-20
 
-### Added missing recipe for tool crafting table
-### Added all tool set for ruby
+### Added a missing recipe for tool crafting table
+### Added all tool sets for ruby
 ### Added aquarium trident. - Textures not added yet.
-### Added shields for all custom ores. - Textures not added yet.
+### Added shields for all custom ores. — Textures aren't added yet.
 
 ## [1.19.4-1.0.0.beta.5] - 2023-5-3
 
@@ -63,7 +73,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.19.4-1.0.0.beta.3] - 2023-4-25
 
-### Bug fixe where game crashed due to outdated patchouli version
+### Bug fixe where game crashed due to an outdated patchouli version
 ### Added new custom tool table
 
 ## [1.19.4-1.0.0.beta.2] - 2023-4-17
@@ -120,5 +130,5 @@ All notable changes to this project will be documented in this file.
 ### I fixed a lot of bugs.
 ### Create menu should now appear with properly formatted names for each item/block.
 ### Ignore the warning when starting. The issue will be fixed in due course. 
-### I switched from Java to Kotlin. Does not affect you.
+### I switched from Java to Kotlin. It Does not affect you.
 ### Now required kotlin for forge

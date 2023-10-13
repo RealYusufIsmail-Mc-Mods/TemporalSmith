@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:ruby_pickaxe"
-  }
+  },
+  "showNotification": false
 }

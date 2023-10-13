@@ -49,6 +49,8 @@ class ModItemTagsProvider(
         copy(TagsInit.BlockTagsInit.ORES_GRAPHITE, TagsInit.ItemTagsInit.ORES_GRAPHITE)
         copy(TagsInit.BlockTagsInit.ORES_AQUMARINE, TagsInit.ItemTagsInit.ORES_AQUMARINE)
         copy(TagsInit.BlockTagsInit.ORES_ENDERITE, TagsInit.ItemTagsInit.ORES_ENDERITE)
+        copy(TagsInit.BlockTagsInit.ORES_IMPERIUM, TagsInit.ItemTagsInit.ORES_IMPERIUM)
+
         // deepslate ores
         copy(TagsInit.BlockTagsInit.DEEPSLATE_ORES_RUBY, TagsInit.ItemTagsInit.DEEPSLATE_ORES_RUBY)
         copy(
@@ -63,6 +65,10 @@ class ModItemTagsProvider(
         copy(
             TagsInit.BlockTagsInit.DEEPSLATE_ORES_AQUMARINE,
             TagsInit.ItemTagsInit.DEEPSLATE_ORES_AQUMARINE)
+        copy(
+            TagsInit.BlockTagsInit.DEEPSLATE_ORES_IMPERIUM,
+            TagsInit.ItemTagsInit.DEEPSLATE_ORES_IMPERIUM)
+
         // storage blocks
         copy(TagsInit.BlockTagsInit.STORAGE_RUBY, TagsInit.ItemTagsInit.STORAGE_RUBY)
         copy(TagsInit.BlockTagsInit.STORAGE_RAINBOW, TagsInit.ItemTagsInit.STORAGE_RAINBOW)
@@ -77,6 +83,7 @@ class ModItemTagsProvider(
         tag(TagsInit.ItemTagsInit.INGOTS_GRAPHITE).add(ItemInit.GRAPHITE.get())
         tag(TagsInit.ItemTagsInit.INGOTS_AQUMARINE).add(ItemInit.AQUMARINE.get())
         tag(TagsInit.ItemTagsInit.INGOTS_ENDERITE).add(ItemInit.ENDERITE.get())
+        tag(TagsInit.ItemTagsInit.INGOTS_IMPERIUM).add(ItemInit.IMPERIUM.get())
         // raw ores
         tag(TagsInit.ItemTagsInit.RAW_RUBY).add(ItemInit.RAW_RUBY.get())
         tag(TagsInit.ItemTagsInit.RAW_RAINBOW).add(ItemInit.RAW_RAINBOW.get())

@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:enderite_boots"
-  }
+  },
+  "show_notification": false
 }

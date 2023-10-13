@@ -1,7 +1,9 @@
 {
   "values": [
     "armourandtoolsmod:ruby_ore",
+    "armourandtoolsmod:imperium_ore",
     "armourandtoolsmod:deepslate_ruby_ore",
+    "armourandtoolsmod:deepslate_imperium_ore",
     "armourandtoolsmod:ruby_block"
   ]
 }

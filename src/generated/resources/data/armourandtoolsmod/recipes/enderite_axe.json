@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:enderite_axe"
-  }
+  },
+  "showNotification": false
 }

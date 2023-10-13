@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:enderite_pickaxe"
-  }
+  },
+  "showNotification": false
 }

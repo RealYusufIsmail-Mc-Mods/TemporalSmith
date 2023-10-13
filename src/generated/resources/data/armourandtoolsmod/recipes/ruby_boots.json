@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:ruby_boots"
-  }
+  },
+  "show_notification": false
 }
