@@ -313,7 +313,7 @@ tasks.create("cfPublish", net.darkhax.curseforgegradle.TaskPublishCurseForge::cl
 
 tasks.getByName("dokkaHtml", DokkaTask::class) {
     dokkaSourceSets.configureEach {
-        includes.from("README.md")
+        includes.from("package.md")
         jdkVersion.set(17)
         sourceLink {
             localDirectory.set(file("src/main/kotlin"))
