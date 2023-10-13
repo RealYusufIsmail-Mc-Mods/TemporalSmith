@@ -254,7 +254,7 @@ object ItemInit {
         }
 
     val IMPERIUM_SWORD: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("imperium_sword") {
+        ITEMS.registerSmeltableObject("imperium_sword", IMPERIUM) {
             CustomSwordItem(
                 CustomToolMaterial.IMPERIUM_SWORD,
                 10,
@@ -300,7 +300,7 @@ object ItemInit {
         }
 
     val IMPERIUM_PICKAXE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("imperium_pickaxe") {
+        ITEMS.registerSmeltableObject("imperium_pickaxe", IMPERIUM) {
             PickaxeItem(
                 CustomToolMaterial.IMPERIUM_PICKAXE,
                 7,

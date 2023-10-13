@@ -25,19 +25,19 @@ import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftin
 import mezz.jei.api.recipe.RecipeType
 
 object JEIRecipeTypes {
-    val toolCrafting =
+    val toolCrafting: RecipeType<CustomToolCraftingTableRecipe> =
         RecipeType.create(
             ArmourAndToolsMod.MOD_ID,
             "custom_tool_crafting_table",
             CustomToolCraftingTableRecipe::class.java)
 
-    val armourCrafting =
+    val armourCrafting: RecipeType<CustomArmourCraftingTableRecipe> =
         RecipeType.create(
             ArmourAndToolsMod.MOD_ID,
             "custom_armour_crafting_table",
             CustomArmourCraftingTableRecipe::class.java)
 
-    val ingotFusionTollEnhancer =
+    val ingotFusionTollEnhancer: RecipeType<IngotFusionTollEnhancerRecipe> =
         RecipeType.create(
             ArmourAndToolsMod.MOD_ID,
             "ingot_fusion_toll_enhancer",
