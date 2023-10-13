@@ -1,3 +1,5 @@
+rootProject.name = "Armour-and-Tools-Mod"
+
 pluginManagement {
     repositories {
         maven(url = uri("https://maven.minecraftforge.net/"))
