@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:amethyst_leggings"
-  }
+  },
+  "show_notification": false
 }

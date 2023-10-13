@@ -1,21 +1,21 @@
 {
   "type": "armourandtoolsmod:custom_tool_crafter",
-  "category": "pickaxe",
+  "category": "axe",
   "key": {
     "A": {
-      "tag": "forge:ingots/enderite"
+      "tag": "forge:ingots/sapphire"
     },
     "S": {
       "item": "minecraft:stick"
     }
   },
   "pattern": [
-    "AAA",
-    " S ",
+    " AA",
+    " SA",
     " S "
   ],
   "result": {
-    "item": "armourandtoolsmod:enderite_pickaxe"
+    "item": "armourandtoolsmod:sapphire_axe"
   },
   "showNotification": false
 }

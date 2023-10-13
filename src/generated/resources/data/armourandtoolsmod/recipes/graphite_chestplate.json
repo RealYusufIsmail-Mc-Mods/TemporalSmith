@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:graphite_chestplate"
-  }
+  },
+  "show_notification": false
 }

@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:graphite_boots"
-  }
+  },
+  "show_notification": false
 }

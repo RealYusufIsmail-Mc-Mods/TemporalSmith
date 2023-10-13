@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:aqumarine_chestplate"
-  }
+  },
+  "show_notification": false
 }

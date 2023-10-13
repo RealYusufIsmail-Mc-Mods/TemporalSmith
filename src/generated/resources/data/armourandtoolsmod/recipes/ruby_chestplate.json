@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:ruby_chestplate"
-  }
+  },
+  "show_notification": false
 }

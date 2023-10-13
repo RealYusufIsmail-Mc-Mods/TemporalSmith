@@ -18,6 +18,16 @@
     "SSS"
   ],
   "result": {
-    "item": "armourandtoolsmod:ruby_shield"
-  }
+    "item": "armourandtoolsmod:ruby_shield",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "minecraft:fire_aspect",
+          "lvl": 2
+        }
+      ],
+      "HideFlags": 0
+    }
+  },
+  "showNotification": false
 }

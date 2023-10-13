@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:amethyst_chestplate"
-  }
+  },
+  "show_notification": false
 }

@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:ruby_helmet"
-  }
+  },
+  "show_notification": false
 }

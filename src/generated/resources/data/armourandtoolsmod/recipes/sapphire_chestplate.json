@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:sapphire_chestplate"
-  }
+  },
+  "show_notification": false
 }

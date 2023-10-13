@@ -1,21 +1,21 @@
 {
   "type": "armourandtoolsmod:custom_tool_crafter",
-  "category": "pickaxe",
+  "category": "shovel",
   "key": {
     "A": {
-      "tag": "forge:ingots/enderite"
+      "tag": "forge:ingots/sapphire"
     },
     "S": {
       "item": "minecraft:stick"
     }
   },
   "pattern": [
-    "AAA",
+    " A ",
     " S ",
     " S "
   ],
   "result": {
-    "item": "armourandtoolsmod:enderite_pickaxe"
+    "item": "armourandtoolsmod:sapphire_shovel"
   },
   "showNotification": false
 }

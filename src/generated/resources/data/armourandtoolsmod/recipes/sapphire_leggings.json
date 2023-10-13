@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:sapphire_leggings"
-  }
+  },
+  "show_notification": false
 }

@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:rainbow_leggings"
-  }
+  },
+  "show_notification": false
 }

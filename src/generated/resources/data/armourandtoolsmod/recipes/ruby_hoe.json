@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:ruby_hoe"
-  }
+  },
+  "showNotification": false
 }

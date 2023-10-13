@@ -27,6 +27,7 @@ import java.util.function.Consumer
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.world.item.Items
+import net.minecraft.world.item.enchantment.Enchantments
 
 class ToolCraftingTableRecipeProvider(
     private val mainModRecipeProvider: MainModRecipeProvider,
@@ -276,6 +277,8 @@ class ToolCraftingTableRecipeProvider(
             .pattern(" A ")
             .pattern(" A ")
             .pattern(" S ")
+            .addEnchantment(Enchantments.FIRE_ASPECT, 2)
+            .hideFlags(0)
             .unlockedBy(hasItem, has(TagsInit.ItemTagsInit.INGOTS_IMPERIUM))
             .save(consumer, modId("imperium_sword"))
 

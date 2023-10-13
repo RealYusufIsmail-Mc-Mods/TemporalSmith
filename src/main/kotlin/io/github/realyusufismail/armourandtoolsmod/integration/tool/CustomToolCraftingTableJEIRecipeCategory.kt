@@ -26,19 +26,12 @@ import io.github.realyusufismail.armourandtoolsmod.integration.generic.GenericCr
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
 import mezz.jei.api.gui.drawable.IDrawable
-import mezz.jei.api.gui.ingredient.ICraftingGridHelper
 import mezz.jei.api.helpers.IGuiHelper
 import mezz.jei.api.recipe.IFocusGroup
 import mezz.jei.api.recipe.RecipeIngredientRole
 import mezz.jei.api.recipe.RecipeType
-import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension
 import net.minecraft.network.chat.Component
 
-/**
- * @see ICraftingCategoryExtension
- * @see CraftingGridHelper
- * @see ICraftingGridHelper
- */
 class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper) :
     GenericCraftingTableJEIRecipeCategory<CustomToolCraftingTableRecipe>(
         guiHelper, BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get()) {
@@ -71,22 +64,24 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
     ) {
         val ingredients = recipe.ingredients
 
-        // Define variables for each slot
+        // Define variables for each slot and add ingredients if they are not empty
         val slots =
-            listOf(
-                builder.addSlot(RecipeIngredientRole.INPUT, 30, 16),
-                builder.addSlot(RecipeIngredientRole.INPUT, 48, 16),
-                builder.addSlot(RecipeIngredientRole.INPUT, 66, 16),
-                builder.addSlot(RecipeIngredientRole.INPUT, 30, 34),
-                builder.addSlot(RecipeIngredientRole.INPUT, 48, 34),
-                builder.addSlot(RecipeIngredientRole.INPUT, 66, 34),
-                builder.addSlot(RecipeIngredientRole.INPUT, 30, 52),
-                builder.addSlot(RecipeIngredientRole.INPUT, 48, 52),
-                builder.addSlot(RecipeIngredientRole.INPUT, 66, 52))
+            arrayOf(
+                Pair(30, 16),
+                Pair(48, 16),
+                Pair(66, 16),
+                Pair(30, 34),
+                Pair(48, 34),
+                Pair(66, 34),
+                Pair(30, 52),
+                Pair(48, 52),
+                Pair(66, 52))
 
         for (i in 0 until minOf(ingredients.size, slots.size)) {
+            val (x, y) = slots[i]
             if (!ingredients[i].isEmpty) {
-                slots[i].addIngredients(ingredients[i])
+                val slot = builder.addSlot(RecipeIngredientRole.INPUT, x, y)
+                slot.addIngredients(ingredients[i])
             }
         }
 

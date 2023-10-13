@@ -18,6 +18,16 @@
     "SSS"
   ],
   "result": {
-    "item": "armourandtoolsmod:aqumarine_shield"
-  }
+    "item": "armourandtoolsmod:aqumarine_shield",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "minecraft:fire_aspect",
+          "lvl": 2
+        }
+      ],
+      "HideFlags": 0
+    }
+  },
+  "showNotification": false
 }

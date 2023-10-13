@@ -3,7 +3,7 @@
   "category": "pickaxe",
   "key": {
     "A": {
-      "tag": "forge:ingots/enderite"
+      "tag": "forge:ingots/sapphire"
     },
     "S": {
       "item": "minecraft:stick"
@@ -15,7 +15,7 @@
     " S "
   ],
   "result": {
-    "item": "armourandtoolsmod:enderite_pickaxe"
+    "item": "armourandtoolsmod:sapphire_pickaxe"
   },
   "showNotification": false
 }

@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "armourandtoolsmod:enderite_helmet"
-  }
+  },
+  "show_notification": false
 }
