@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Added imperium sword, pickaxe, axe, ingot and ore. More to come in the future.
 ### Added saphire tool recipes to the tool crafting table.
 ### Fixed issue with JEI for custom crafting tables where some recipes were not showing.
+### Issue with how the item recipes are being displayed in the custom tool crafting tables. Will be fixed in the future.
 ### Added support for enchanted items to be crafted in the custom crafting tables.
 ### Fixed some other issues I came across while testing.
 
