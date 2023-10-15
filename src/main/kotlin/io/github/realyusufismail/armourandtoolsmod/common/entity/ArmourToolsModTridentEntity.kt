@@ -46,7 +46,8 @@ import net.minecraftforge.network.NetworkHooks
 abstract class ArmourToolsModTridentEntity : AbstractArrow {
     var tridentItem: ItemStack? = null
     private var dealtDamage = false
-    private var returningTicks = 0
+    var returningTicks = 0
+    var allowToTriggerThunderWithoutEnchantment = false
 
     constructor(type: EntityType<ArmourToolsModTridentEntity>, world: Level) : super(type, world)
 
@@ -73,6 +74,7 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
             dealtDamage = true
         }
         val entity = this.owner
+
         val i = entityData.get(ID_LOYALTY).toInt()
         if (i > 0 && (dealtDamage || this.isNoPhysics) && entity != null) {
             if (!isAcceptibleReturnOwner()) {
@@ -98,7 +100,7 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
         super.tick()
     }
 
-    private fun isAcceptibleReturnOwner(): Boolean {
+    fun isAcceptibleReturnOwner(): Boolean {
         val shooter = this.owner
         return if (shooter != null && shooter.isAlive) {
             shooter !is ServerPlayer || !shooter.isSpectator()
@@ -150,16 +152,33 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
 
         deltaMovement = deltaMovement.multiply(-0.01, -0.1, -0.01)
         var f1 = 1.0f
-        if (level() is ServerLevel && level().isThundering && isChanneling()) {
-            val blockpos = entity.blockPosition()
-            if (level().canSeeSky(blockpos)) {
-                val lightningbolt = EntityType.LIGHTNING_BOLT.create(level())
-                if (lightningbolt != null) {
-                    lightningbolt.moveTo(Vec3.atBottomCenterOf(blockpos))
-                    lightningbolt.cause = if (shooter is ServerPlayer) shooter else null
-                    level().addFreshEntity(lightningbolt)
-                    soundEvent = SoundEvents.TRIDENT_THUNDER
-                    f1 = 5.0f
+
+        if (!allowToTriggerThunderWithoutEnchantment) {
+            if (level() is ServerLevel && level().isThundering && isChanneling()) {
+                val blockpos = entity.blockPosition()
+                if (level().canSeeSky(blockpos)) {
+                    val lightningbolt = EntityType.LIGHTNING_BOLT.create(level())
+                    if (lightningbolt != null) {
+                        lightningbolt.moveTo(Vec3.atBottomCenterOf(blockpos))
+                        lightningbolt.cause = if (shooter is ServerPlayer) shooter else null
+                        level().addFreshEntity(lightningbolt)
+                        soundEvent = SoundEvents.TRIDENT_THUNDER
+                        f1 = 5.0f
+                    }
+                }
+            }
+        } else {
+            if (level() is ServerLevel) {
+                val blockpos = entity.blockPosition()
+                if (level().canSeeSky(blockpos)) {
+                    val lightningbolt = EntityType.LIGHTNING_BOLT.create(level())
+                    if (lightningbolt != null) {
+                        lightningbolt.moveTo(Vec3.atBottomCenterOf(blockpos))
+                        lightningbolt.cause = if (shooter is ServerPlayer) shooter else null
+                        level().addFreshEntity(lightningbolt)
+                        soundEvent = SoundEvents.LIGHTNING_BOLT_THUNDER
+                        f1 = 5.0f
+                    }
                 }
             }
         }
@@ -223,7 +242,8 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
     }
 
     companion object {
-        protected val ID_LOYALTY =
+        @JvmStatic
+        val ID_LOYALTY =
             SynchedEntityData.defineId(
                 ArmourToolsModTridentEntity::class.java, EntityDataSerializers.BYTE)
         protected val ID_FOIL =

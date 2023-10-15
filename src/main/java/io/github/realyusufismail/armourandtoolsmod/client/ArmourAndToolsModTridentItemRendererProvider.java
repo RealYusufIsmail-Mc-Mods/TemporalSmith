@@ -18,17 +18,21 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.client;
 
-import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.ister.AqumarineTridentItemRendererISTER;
+import io.github.realyusufismail.armourandtoolsmod.client.renderer.mjolnir.MjolnirItemRendererISTER;
+import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.aq.AqumarineTridentItemRendererISTER;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 public class ArmourAndToolsModTridentItemRendererProvider {
   private static AqumarineTridentItemRendererISTER aqumarineTridentItemRendererISTER;
+  private static MjolnirItemRendererISTER mjolnirItemRendererISTER;
 
   public static void init(final RegisterClientReloadListenersEvent event) {
     aqumarineTridentItemRendererISTER = new AqumarineTridentItemRendererISTER();
+    mjolnirItemRendererISTER = new MjolnirItemRendererISTER();
 
     event.registerReloadListener(aqumarineTridentItemRendererISTER);
+    event.registerReloadListener(mjolnirItemRendererISTER);
   }
 
   public static IClientItemExtensions aqumarineTrident() {
@@ -36,6 +40,15 @@ public class ArmourAndToolsModTridentItemRendererProvider {
       @Override
       public AqumarineTridentItemRendererISTER getCustomRenderer() {
         return aqumarineTridentItemRendererISTER;
+      }
+    };
+  }
+
+  public static IClientItemExtensions mjolnir() {
+    return new IClientItemExtensions() {
+      @Override
+      public MjolnirItemRendererISTER getCustomRenderer() {
+        return mjolnirItemRendererISTER;
       }
     };
   }

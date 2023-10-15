@@ -21,13 +21,16 @@ package io.github.realyusufismail.armourandtoolsmod.items.trident
 import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModTridentItemRendererProvider
 import io.github.realyusufismail.armourandtoolsmod.common.entity.AqumarineTridentEntity
 import io.github.realyusufismail.armourandtoolsmod.common.entity.ArmourToolsModTridentEntity
+import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
 import java.util.function.Consumer
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraftforge.client.extensions.common.IClientItemExtensions
 
-open class AqumarineTridentItem : ArmourToolsModTridentItem() {
+open class AqumarineTridentItem :
+    ArmourToolsModTridentItem(
+        CustomToolMaterial.AQUMARINE_TRIDENT, Properties().stacksTo(1), 10F, -2.5F) {
 
     override fun getThrownEntity(
         world: Level,

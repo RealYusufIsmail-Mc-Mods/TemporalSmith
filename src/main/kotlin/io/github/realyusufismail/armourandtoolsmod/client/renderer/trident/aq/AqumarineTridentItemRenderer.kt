@@ -16,9 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.client.renderer.trident
+package io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.aq
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
+import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.ArmourToolsModTridentItemRenderer
 import io.github.realyusufismail.armourandtoolsmod.common.entity.ArmourToolsModTridentEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import net.minecraft.resources.ResourceLocation

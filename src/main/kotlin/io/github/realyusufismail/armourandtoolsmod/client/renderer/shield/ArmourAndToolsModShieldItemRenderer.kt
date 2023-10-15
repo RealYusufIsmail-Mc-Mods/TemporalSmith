@@ -53,8 +53,6 @@ class ArmourAndToolsModShieldItemRenderer : ArmourAndToolsModBlockEntityWithoutL
     private var shieldModel: ShieldModel? = null
 
     override fun onResourceManagerReload(manager: ResourceManager) {
-        ArmourAndToolsMod.logger.info("Reloading shield model")
-
         try {
             shieldModel = ShieldModel(this.entityModelSet.bakeLayer(ModelLayers.SHIELD))
         } catch (e: Exception) {

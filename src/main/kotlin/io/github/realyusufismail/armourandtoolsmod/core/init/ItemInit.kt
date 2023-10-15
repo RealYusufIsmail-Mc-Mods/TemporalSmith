@@ -24,6 +24,10 @@ import io.github.realyusufismail.armourandtoolsmod.core.material.ArmourMaterialI
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomShieldMaterial
 import io.github.realyusufismail.armourandtoolsmod.core.material.CustomToolMaterial
 import io.github.realyusufismail.armourandtoolsmod.items.CustomSwordItem
+import io.github.realyusufismail.armourandtoolsmod.items.hammer.HammerItem
+import io.github.realyusufismail.armourandtoolsmod.items.hammer.Mjolnir
+import io.github.realyusufismail.armourandtoolsmod.items.hammer.StormBreaker
+import io.github.realyusufismail.armourandtoolsmod.items.hammer.util.HammerLevel
 import io.github.realyusufismail.armourandtoolsmod.items.shield.ArmourToolsModShieldItem
 import io.github.realyusufismail.armourandtoolsmod.items.trident.AqumarineTridentItem
 import net.minecraft.world.item.*
@@ -219,205 +223,141 @@ object ItemInit {
     // Swords
     val RUBY_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_sword", RUBY) {
-            CustomSwordItem(
-                CustomToolMaterial.RUBY_SWORD,
-                8,
-                -2.6f,
-                Item.Properties().stacksTo(1).durability(800))
+            CustomSwordItem(CustomToolMaterial.RUBY_SWORD, 8, -2.6f, Item.Properties().stacksTo(1))
         }
 
     val ENDERITE_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("enderite_sword", ENDERITE) {
             CustomSwordItem(
-                CustomToolMaterial.ENDERITE_SWORD,
-                8,
-                -2.5f,
-                Item.Properties().stacksTo(1).durability(600))
+                CustomToolMaterial.ENDERITE_SWORD, 8, -2.5f, Item.Properties().stacksTo(1))
         }
 
     val AMETHYST_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_sword") {
             CustomSwordItem(
-                CustomToolMaterial.AMETHYST_SWORD,
-                8,
-                -2.5f,
-                Item.Properties().stacksTo(1).durability(600))
+                CustomToolMaterial.AMETHYST_SWORD, 8, -2.5f, Item.Properties().stacksTo(1))
         }
 
     val SAPPHIRE_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_sword", SAPPHIRE) {
             CustomSwordItem(
-                CustomToolMaterial.SAPPHIRE_SWORD,
-                9,
-                -2.6f,
-                Item.Properties().stacksTo(1).durability(800))
+                CustomToolMaterial.SAPPHIRE_SWORD, 9, -2.6f, Item.Properties().stacksTo(1))
         }
 
     val IMPERIUM_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("imperium_sword", IMPERIUM) {
             CustomSwordItem(
-                CustomToolMaterial.IMPERIUM_SWORD,
-                10,
-                -2.7f,
-                Item.Properties().stacksTo(1).durability(800))
+                CustomToolMaterial.IMPERIUM_SWORD, 10, -2.7f, Item.Properties().stacksTo(1))
         }
 
     // Pickaxes
     val RUBY_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_pickaxe", RUBY) {
-            PickaxeItem(
-                CustomToolMaterial.RUBY_PICKAXE,
-                5,
-                -2.8f,
-                Item.Properties().stacksTo(1).durability(800))
+            PickaxeItem(CustomToolMaterial.RUBY_PICKAXE, 5, -2.8f, Item.Properties().stacksTo(1))
         }
 
     val ENDERITE_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("enderite_pickaxe", ENDERITE) {
             PickaxeItem(
-                CustomToolMaterial.ENDERITE_PICKAXE,
-                6,
-                -2.7f,
-                Item.Properties().stacksTo(1).durability(800))
+                CustomToolMaterial.ENDERITE_PICKAXE, 6, -2.7f, Item.Properties().stacksTo(1))
         }
 
     val AMETHYST_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_pickaxe") {
             PickaxeItem(
-                CustomToolMaterial.AMETHYST_PICKAXE,
-                5,
-                -2.7f,
-                Item.Properties().stacksTo(1).durability(800))
+                CustomToolMaterial.AMETHYST_PICKAXE, 5, -2.7f, Item.Properties().stacksTo(1))
         }
 
     val SAPPHIRE_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_pickaxe", SAPPHIRE) {
             PickaxeItem(
-                CustomToolMaterial.SAPPHIRE_PICKAXE,
-                6,
-                -2.8f,
-                Item.Properties().stacksTo(1).durability(800))
+                CustomToolMaterial.SAPPHIRE_PICKAXE, 6, -2.8f, Item.Properties().stacksTo(1))
         }
 
     val IMPERIUM_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("imperium_pickaxe", IMPERIUM) {
             PickaxeItem(
-                CustomToolMaterial.IMPERIUM_PICKAXE,
-                7,
-                -2.9f,
-                Item.Properties().stacksTo(1).durability(800))
+                CustomToolMaterial.IMPERIUM_PICKAXE, 7, -2.9f, Item.Properties().stacksTo(1))
         }
 
     val MAGMA_STRIKE_PICKAXE: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("magma_strike_pickaxe") {
             PickaxeItem(
-                CustomToolMaterial.MAGMA_STRIKE_PICKAXE,
-                9,
-                -3.0f,
-                Item.Properties().stacksTo(1).durability(1000))
+                CustomToolMaterial.MAGMA_STRIKE_PICKAXE, 9, -3.0f, Item.Properties().stacksTo(1))
         }
 
     // Axes
     val RUBY_AXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_axe", RUBY) {
-            AxeItem(
-                CustomToolMaterial.RUBY_AXE,
-                8F,
-                -2.6f,
-                Item.Properties().stacksTo(1).durability(600))
+            AxeItem(CustomToolMaterial.RUBY_AXE, 8F, -2.6f, Item.Properties().stacksTo(1))
         }
 
     val ENDERITE_AXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("enderite_axe", ENDERITE) {
-            AxeItem(
-                CustomToolMaterial.ENDERITE_AXE,
-                9F,
-                -2.5f,
-                Item.Properties().stacksTo(1).durability(600))
+            AxeItem(CustomToolMaterial.ENDERITE_AXE, 9F, -2.5f, Item.Properties().stacksTo(1))
         }
 
     val AMETHYST_AXE: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_axe") {
-            AxeItem(
-                CustomToolMaterial.AMETHYST_AXE,
-                7.5F,
-                -2.5f,
-                Item.Properties().stacksTo(1).durability(600))
+            AxeItem(CustomToolMaterial.AMETHYST_AXE, 7.5F, -2.5f, Item.Properties().stacksTo(1))
         }
 
     val SAPPHIRE_AXE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_axe", SAPPHIRE) {
-            AxeItem(
-                CustomToolMaterial.SAPPHIRE_AXE,
-                8.5F,
-                -2.6f,
-                Item.Properties().stacksTo(1).durability(600))
+            AxeItem(CustomToolMaterial.SAPPHIRE_AXE, 8.5F, -2.6f, Item.Properties().stacksTo(1))
         }
 
     // Shovels
     val RUBY_SHOVEL: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_shovel", RUBY) {
-            ShovelItem(
-                CustomToolMaterial.RUBY_SHOVEL,
-                3.5F,
-                -3.0f,
-                Item.Properties().stacksTo(1).durability(600))
+            ShovelItem(CustomToolMaterial.RUBY_SHOVEL, 3.5F, -3.0f, Item.Properties().stacksTo(1))
         }
 
     val ENDERITE_SHOVEL: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("enderite_shovel", ENDERITE) {
             ShovelItem(
-                CustomToolMaterial.ENDERITE_SHOVEL,
-                4.5F,
-                -3.0f,
-                Item.Properties().stacksTo(1).durability(600))
+                CustomToolMaterial.ENDERITE_SHOVEL, 4.5F, -3.0f, Item.Properties().stacksTo(1))
         }
 
     val AMETHYST_SHOVEL: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_shovel") {
             ShovelItem(
-                CustomToolMaterial.AMETHYST_SHOVEL,
-                3.5F,
-                -3.0f,
-                Item.Properties().stacksTo(1).durability(600))
+                CustomToolMaterial.AMETHYST_SHOVEL, 3.5F, -3.0f, Item.Properties().stacksTo(1))
         }
 
     val SAPPHIRE_SHOVEL: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_shovel", SAPPHIRE) {
             ShovelItem(
-                CustomToolMaterial.SAPPHIRE_SHOVEL,
-                4.5F,
-                -3.5f,
-                Item.Properties().stacksTo(1).durability(600))
+                CustomToolMaterial.SAPPHIRE_SHOVEL, 4.5F, -3.5f, Item.Properties().stacksTo(1))
         }
 
     // Hoes
     val RUBY_HOE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("ruby_hoe", RUBY) {
-            HoeItem(
-                CustomToolMaterial.RUBY_HOE,
-                1,
-                -3.1f,
-                Item.Properties().stacksTo(1).durability(600))
+            HoeItem(CustomToolMaterial.RUBY_HOE, 1, -3.1f, Item.Properties().stacksTo(1))
         }
 
     val ENDERITE_HOE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("enderite_hoe", ENDERITE) {
-            HoeItem(
-                CustomToolMaterial.ENDERITE_HOE,
-                2,
-                -3.0f,
-                Item.Properties().stacksTo(1).durability(600))
+            HoeItem(CustomToolMaterial.ENDERITE_HOE, 2, -3.0f, Item.Properties().stacksTo(1))
         }
 
     val SAPPHIRE_HOE: ObjectHolderDelegate<Item> =
         ITEMS.registerSmeltableObject("sapphire_hoe", SAPPHIRE) {
-            HoeItem(
-                CustomToolMaterial.SAPPHIRE_HOE,
-                2,
-                -3.1f,
-                Item.Properties().stacksTo(1).durability(600))
+            HoeItem(CustomToolMaterial.SAPPHIRE_HOE, 2, -3.1f, Item.Properties().stacksTo(1))
         }
+
+    // Hammers
+
+    val DRAGON_DESTROYER: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("dragon_destroyer") {
+            HammerItem(CustomToolMaterial.DRAGON_DESTROYER, -3.6f, 10F, HammerLevel.LEGENDARY)
+        }
+
+    val MJOLNIR: ObjectHolderDelegate<Item> = ITEMS.registerObject("mjolnir") { Mjolnir() }
+
+    val STORMBREAKER: ObjectHolderDelegate<Item> =
+        ITEMS.registerObject("stormbreaker") { StormBreaker() }
 
     // Tridents
     val AQUMARINE_TRIDENT: ObjectHolderDelegate<Item> =

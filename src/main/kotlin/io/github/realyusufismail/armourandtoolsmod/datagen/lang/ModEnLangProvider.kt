@@ -21,6 +21,7 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.lang
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
+import io.github.realyusufismail.armourandtoolsmod.util.KeyBinding
 import io.github.realyusufismail.realyusufismailcore.data.support.lang.ModEnLangProviderSupport
 import net.minecraft.data.DataGenerator
 import net.minecraft.network.chat.Component
@@ -134,6 +135,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addItem(ItemInit.IMPERIUM_SWORD, "Imperium Sword")
         addItem(ItemInit.IMPERIUM_PICKAXE, "Imperium Pickaxe")
         addItem(ItemInit.MAGMA_STRIKE_PICKAXE, "Magma Strike Pickaxe")
+        addItem(ItemInit.DRAGON_DESTROYER, "Dragon Destroyer")
+        addItem(ItemInit.MJOLNIR, "Mjölnir")
+        addItem(ItemInit.STORMBREAKER, "Stormbreaker")
 
         // Shields
         addItem(ItemInit.RUBY_SHIELD, "Ruby Shield")
@@ -145,6 +149,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         // Trident
         addItem(ItemInit.AQUMARINE_TRIDENT, "Aqumarine Trident")
 
+        // Potions
+        addPotion("worthy_potion", "worthy_effect", "Worthy Potion")
+
         // others
         add("creativetab.armourandtoolsmod", "Armour and Item Mod")
         add("container.custom_armour_crafting_table", "Armour Crafting Table")
@@ -153,6 +160,11 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         add("container.custom_tool_crafting_table.description", "Craft your own custom tools!")
         add("container.ingot_fusion_toll_enhancer", "Ingot Fusion Toll Enhancer")
         add("container.ingot_fusion_toll_enhancer.description", "Enhance your tools and armour!")
+
+        // keybinds
+        add(KeyBinding.KEY_CATEGORY_ARMOUR_AND_TOOLS_MOD, "Armour and Item Mod")
+        add(KeyBinding.KEY_GET_MJOLNIR, "Get Mjölnir")
+        add(KeyBinding.KEY_STRIKE_LIGHTNING, "Strike Lightning")
 
         // advancements
         addAdvancement(
@@ -299,5 +311,13 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
     private fun addAdvancement(advancement: String, title: String, description: String) {
         add(Component.translatable("advancements.$MOD_ID.$advancement.title"), title)
         add(Component.translatable("advancements.$MOD_ID.$advancement.description"), description)
+    }
+
+    private fun addPotion(objectName: String, effectName: String, name: String) {
+        add(Component.translatable("effect.$MOD_ID.$effectName"), name)
+        add(Component.translatable("item.minecraft.potion.effect.$objectName"), name)
+        add(Component.translatable("item.minecraft.splash_potion.effect.$objectName"), name)
+        add(Component.translatable("item.minecraft.lingering_potion.effect.$objectName"), name)
+        add(Component.translatable("item.minecraft.tipped_arrow.effect.$objectName"), name)
     }
 }

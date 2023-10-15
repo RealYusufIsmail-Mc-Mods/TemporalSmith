@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.1-1.0.7.beta1] - 2023-10-23
+
+### Added Thor hammer. This is a work in progress and will be updated in the future.
+### Worthy enchantment is obtained by killing the ender dragon. This will allow then allowing you to get the hammer.
+### Pressing M while having the effect 'worthy' will allow you to get the hammer.
+### Pressing Z while having the effect 'worthy' will allow you to strike lightning. (Disabled for now due to issues)
+### Striking an entity with the hammer will cause lightning to strike the entity.
+### Added a new logo for the mod.
+### Fixed a few bugs.
+### Current known issues:
+### — When the hammer is thrown, it will be rendered as black lines. This is due to the model not being rendered properly.
+### — Pressing Z while having the effect 'worthy' will at this point cause no lightning to strike. This is due to there being an issue in getting the lighting to hit the entity or block.
+
 ## [1.20.1-1.0.6] - 2023-10-13
 
 ### Added Ingot Fusion Enchanter (been in the works for a month with more than two rewrites) :

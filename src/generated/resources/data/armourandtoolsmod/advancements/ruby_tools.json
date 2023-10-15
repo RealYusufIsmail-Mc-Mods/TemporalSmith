@@ -70,8 +70,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "armourandtoolsmod:ruby_sword",
-      "nbt": "{Damage:0}"
+      "item": "armourandtoolsmod:ruby_sword"
     },
     "show_toast": true,
     "title": {

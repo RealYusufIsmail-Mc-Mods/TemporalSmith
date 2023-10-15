@@ -34,8 +34,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "armourandtoolsmod:imperium_sword",
-      "nbt": "{Damage:0}"
+      "item": "armourandtoolsmod:imperium_sword"
     },
     "show_toast": true,
     "title": {

@@ -90,6 +90,7 @@
   "container.ingot_fusion_toll_enhancer": "Ingot Fusion Toll Enhancer",
   "container.ingot_fusion_toll_enhancer.description": "Enhance your tools and armour!",
   "creativetab.armourandtoolsmod": "Armour and Item Mod",
+  "effect.armourandtoolsmod.worthy_effect": "Worthy Potion",
   "item.armourandtoolsmod.amethyst_axe": "Amethyst Axe",
   "item.armourandtoolsmod.amethyst_boots": "Amethyst Boots",
   "item.armourandtoolsmod.amethyst_chestplate": "Amethyst Chestplate",
@@ -105,6 +106,7 @@
   "item.armourandtoolsmod.aqumarine_leggings": "Aqumarine Leggings",
   "item.armourandtoolsmod.aqumarine_shield": "Aqumarine Shield",
   "item.armourandtoolsmod.aqumarine_trident": "Aqumarine Trident",
+  "item.armourandtoolsmod.dragon_destroyer": "Dragon Destroyer",
   "item.armourandtoolsmod.enderite": "Enderite",
   "item.armourandtoolsmod.enderite_axe": "Enderite Axe",
   "item.armourandtoolsmod.enderite_boots": "Enderite Boots",
@@ -125,6 +127,7 @@
   "item.armourandtoolsmod.imperium_pickaxe": "Imperium Pickaxe",
   "item.armourandtoolsmod.imperium_sword": "Imperium Sword",
   "item.armourandtoolsmod.magma_strike_pickaxe": "Magma Strike Pickaxe",
+  "item.armourandtoolsmod.mjolnir": "Mjölnir",
   "item.armourandtoolsmod.rainbow": "Rainbow Ingot",
   "item.armourandtoolsmod.rainbow_boots": "Rainbow Boots",
   "item.armourandtoolsmod.rainbow_chestplate": "Rainbow Chestplate",
@@ -159,5 +162,13 @@
   "item.armourandtoolsmod.sapphire_pickaxe": "Sapphire Pickaxe",
   "item.armourandtoolsmod.sapphire_shield": "Sapphire Shield",
   "item.armourandtoolsmod.sapphire_shovel": "Sapphire Shovel",
-  "item.armourandtoolsmod.sapphire_sword": "Sapphire Sword"
+  "item.armourandtoolsmod.sapphire_sword": "Sapphire Sword",
+  "item.armourandtoolsmod.stormbreaker": "Stormbreaker",
+  "item.minecraft.lingering_potion.effect.worthy_potion": "Worthy Potion",
+  "item.minecraft.potion.effect.worthy_potion": "Worthy Potion",
+  "item.minecraft.splash_potion.effect.worthy_potion": "Worthy Potion",
+  "item.minecraft.tipped_arrow.effect.worthy_potion": "Worthy Potion",
+  "key.categories.armourandtoolsmod": "Armour and Item Mod",
+  "key.get_mjolnir": "Get Mjölnir",
+  "key.strike_lightning": "Strike Lightning"
 }

@@ -70,8 +70,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "armourandtoolsmod:sapphire_sword",
-      "nbt": "{Damage:0}"
+      "item": "armourandtoolsmod:sapphire_sword"
     },
     "show_toast": true,
     "title": {

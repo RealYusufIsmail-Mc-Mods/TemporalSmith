@@ -38,34 +38,41 @@ import net.minecraft.world.entity.ai.attributes.Attributes
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.projectile.AbstractArrow
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Tier
 import net.minecraft.world.item.TridentItem
 import net.minecraft.world.item.UseAnim
 import net.minecraft.world.item.enchantment.EnchantmentHelper
-import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
 
 /** @see TridentItem */
-abstract class ArmourToolsModTridentItem :
-    TridentItem(Properties().stacksTo(1).defaultDurability(600)) {
+abstract class ArmourToolsModTridentItem(
+    tier: Tier,
+    properties: Properties = Properties().stacksTo(1),
+    pAttackDamageModifier: Float,
+    pAttackSpeedModifier: Float,
+) : TridentItem(properties.defaultDurability(tier.uses)) {
     private var attributeModifiers: Multimap<Attribute, AttributeModifier> = ImmutableMultimap.of()
+    private val attackDamage: Float
 
     init {
         val builder = ImmutableMultimap.builder<Attribute, AttributeModifier>()
+        attackDamage = pAttackDamageModifier + tier.attackDamageBonus
+
         builder.put(
             Attributes.ATTACK_DAMAGE,
             AttributeModifier(
                 BASE_ATTACK_DAMAGE_UUID,
                 "Tool modifier",
-                8.0,
+                attackDamage.toDouble(),
                 AttributeModifier.Operation.ADDITION))
         builder.put(
             Attributes.ATTACK_SPEED,
             AttributeModifier(
                 BASE_ATTACK_SPEED_UUID,
                 "Tool modifier",
-                -2.9,
+                pAttackSpeedModifier.toDouble(),
                 AttributeModifier.Operation.ADDITION))
         this.attributeModifiers = builder.build()
     }
@@ -244,12 +251,5 @@ abstract class ArmourToolsModTridentItem :
     @Deprecated("Deprecated in Java", ReplaceWith("1"))
     override fun getEnchantmentValue(): Int {
         return 1
-    }
-
-    companion object {
-        fun getDrawTime(stack: ItemStack): Int {
-            return 10 -
-                EnchantmentHelper.getTagEnchantmentLevel(Enchantments.QUICK_CHARGE, stack) * 2
-        }
     }
 }

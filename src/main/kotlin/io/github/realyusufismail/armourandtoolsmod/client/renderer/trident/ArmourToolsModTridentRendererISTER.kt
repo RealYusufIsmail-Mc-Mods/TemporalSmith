@@ -16,10 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.ister
+package io.github.realyusufismail.armourandtoolsmod.client.renderer.trident
 
 import com.mojang.blaze3d.vertex.PoseStack
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModBlockEntityWithoutLevelRenderer
 import io.github.realyusufismail.armourandtoolsmod.items.trident.ArmourToolsModTridentItem
 import net.minecraft.client.Minecraft
@@ -56,8 +55,6 @@ abstract class ArmourToolsModTridentRendererISTER :
                 transformType == ItemDisplayContext.GUI ||
                     transformType == ItemDisplayContext.GROUND ||
                     transformType == ItemDisplayContext.FIXED
-            ArmourAndToolsMod.logger.info(
-                "Rendering Trident Item at $transformType, $combinedLight, $combinedOverlay")
             if (render2d) {
                 val bakedModel = mc.modelManager.getModel(getModelResourceLocation())
                 matrixStack.pushPose()
@@ -72,8 +69,6 @@ abstract class ArmourToolsModTridentRendererISTER :
                     bakedModel)
                 matrixStack.popPose()
             } else {
-                ArmourAndToolsMod.logger.info(
-                    "Rendering Trident Item at $transformType, $combinedLight, $combinedOverlay but not 2d")
                 matrixStack.pushPose()
                 matrixStack.scale(1.0f, -1.0f, -1.0f)
                 val ivertexbuilder1 =

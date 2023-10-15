@@ -21,6 +21,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.init;
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod;
 import io.github.realyusufismail.armourandtoolsmod.common.entity.AqumarineTridentEntity;
 import io.github.realyusufismail.armourandtoolsmod.common.entity.ArmourToolsModTridentEntity;
+import io.github.realyusufismail.armourandtoolsmod.common.entity.MjolnirEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -47,4 +48,19 @@ public class EntityTypeInit {
                               new AqumarineTridentEntity(
                                   EntityTypeInit.AQUMARINE_THROWN_TRIDENT.get(), world))
                       .build(ArmourAndToolsMod.MOD_ID + ":aqumarine_thrown_trident"));
+
+  public static final RegistryObject<EntityType<ArmourToolsModTridentEntity>> MJOLNIR =
+      ENTITY_TYPES.register(
+          "mjolnir",
+          () ->
+              EntityType.Builder.<ArmourToolsModTridentEntity>of(
+                      MjolnirEntity::new, MobCategory.MISC)
+                  .sized(0.5F, 0.5F)
+                  .fireImmune()
+                  .clientTrackingRange(4)
+                  .updateInterval(20)
+                  .setCustomClientFactory(
+                      (spawnEntity, world) ->
+                          new MjolnirEntity(EntityTypeInit.MJOLNIR.get(), world))
+                  .build(ArmourAndToolsMod.MOD_ID + ":mjolnir_thrown"));
 }

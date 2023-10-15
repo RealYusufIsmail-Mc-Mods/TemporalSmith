@@ -21,7 +21,7 @@ package io.github.realyusufismail.armourandtoolsmod
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModShieldItemRendererProvider
 import io.github.realyusufismail.armourandtoolsmod.client.ArmourAndToolsModTridentItemRendererProvider
-import io.github.realyusufismail.armourandtoolsmod.client.ClientSetup
+import io.github.realyusufismail.armourandtoolsmod.client.ClientEvents
 import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators
 import java.util.*
@@ -44,6 +44,8 @@ class ArmourAndToolsMod {
         EntityTypeInit.ENTITY_TYPES.register(bus)
         BlockEntityTypeInit.BLOCK_ENTITY_TYPES.register(bus)
         CreativeModeTabInit.CREATIVE_MODE_TAB.register(bus)
+        PotionsInit.POTION.register(bus)
+        MobEffectsInit.MOB_EFFECTS.register(bus)
 
         // Register ourselves for server and other game events we are interested in
         // Register the data generators
@@ -51,13 +53,20 @@ class ArmourAndToolsMod {
         // adds recipe category
         bus.addListener(RecipeCategoriesInit::registerRecipeBookCategories)
         // client setup listener
-        bus.addListener(ClientSetup::clientSetup)
+        bus.addListener(ClientEvents::clientSetup)
         // register shield renderer provider
         bus.addListener(ArmourAndToolsModShieldItemRendererProvider::init)
         // register trident renderer provider
         bus.addListener(ArmourAndToolsModTridentItemRendererProvider::init)
         // register entity renderers
-        bus.addListener(ClientSetup::registerEntityRenders)
+        bus.addListener(ClientEvents::registerEntityRenders)
+        // register key input event
+        bus.addListener(ClientEvents::onKeyRegister)
+        FORGE_BUS.addListener(ClientEvents::onKeyInput)
+        // layer render
+        bus.addListener(ClientEvents::registerLayerDefinition)
+        // entity death event
+        FORGE_BUS.addListener(ClientEvents::onEntityDeath)
 
         FORGE_BUS.register(this)
 

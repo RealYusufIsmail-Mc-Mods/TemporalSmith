@@ -51,7 +51,11 @@ enum class CustomToolMaterial(
     SAPPHIRE_HOE(5, 3000, 12, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
     IMPERIUM_SWORD(6, 4000, 20, Supplier { Ingredient.of(ItemInit.IMPERIUM.get()) }),
     IMPERIUM_PICKAXE(6, 4000, 20, Supplier { Ingredient.of(ItemInit.IMPERIUM.get()) }),
-    MAGMA_STRIKE_PICKAXE(6, 8000, 20, Supplier { Ingredient.of(ItemInit.IMPERIUM.get()) });
+    MAGMA_STRIKE_PICKAXE(6, 8000, 20, Supplier { Ingredient.of(ItemInit.IMPERIUM.get()) }),
+    DRAGON_DESTROYER(7, 10000, 25, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
+    MJOLNIR(10, 50000, 0, Supplier { Ingredient.of(ItemInit.GRAPHITE.get()) }),
+    STORMBREAKER(10, 50000, 0, Supplier { Ingredient.of(ItemInit.GRAPHITE.get()) }),
+    AQUMARINE_TRIDENT(7, 30000, 5, Supplier { Ingredient.of(ItemInit.AQUMARINE.get()) });
 
     private val harvestLevel = 0
     private val maxUses = 0

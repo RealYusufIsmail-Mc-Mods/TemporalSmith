@@ -16,9 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.ister
+package io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.aq
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
+import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.ArmourToolsModTridentRendererISTER
 import net.minecraft.client.resources.model.ModelResourceLocation
 import net.minecraft.resources.ResourceLocation
 
@@ -28,7 +29,6 @@ class AqumarineTridentItemRendererISTER : ArmourToolsModTridentRendererISTER() {
     }
 
     override fun getModelResourceLocation(): ModelResourceLocation {
-        ArmourAndToolsMod.logger.info("Returning model resource location")
         return ModelResourceLocation(
             ArmourAndToolsMod.getModIdAndName("aqumarine_trident"), "inventory")
     }
