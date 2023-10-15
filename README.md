@@ -4,6 +4,7 @@
 [![](http://cf.way2muchnoise.eu/480779.svg)](https://www.curseforge.com/minecraft/mc-mods/armour-and-items-mod)
 [![](http://cf.way2muchnoise.eu/versions/480779.svg)](https://www.curseforge.com/minecraft/mc-mods/armour-and-items-mod)
 [![License: Apache License](https://img.shields.io/badge/License-Apache_License-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Java CI](https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/actions/workflows/gradle.yml/badge.svg)](https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/actions/workflows/gradle.yml)
 
 # This Mod is currently being reworked so please be patient while things are being implemented.
 

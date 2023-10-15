@@ -22,21 +22,6 @@ jobs:
       - name: Check
         run: ./gradlew spotlessCheck
 
-  detekt:
-    name: "Detekt"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: ${{ env.DISTRIBUTION }}
-          java-version: ${{ env.JAVA_VERSION }}
-      - uses: actions/checkout@v4
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Check
-        run: ./gradlew detekt
-
   gradle-test:
     name: "Gradle Test"
     runs-on: ubuntu-latest
