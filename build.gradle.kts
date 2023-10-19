@@ -21,7 +21,7 @@ plugins {
     id("com.diffplug.spotless") version "6.20.0"
     id("net.minecraftforge.gradle") version "[6.0,6.2)"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.1"
     id("net.darkhax.curseforgegradle") version "1.1.16"
     id("org.jetbrains.dokka") version "1.9.0"
     jacoco // code coverage reports
