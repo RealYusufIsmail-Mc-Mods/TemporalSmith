@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.20.1-1.0.6] - 2023-10-13
+## [1.20.1-1.0.6] - 2023-10-19
 
 ### Added Ingot Fusion Enchanter (been in the works for a month with more than two rewrites) :
 ### This allows you to upgrade certain items. Currently only works with the MAGMA_STRIKE_PICKAXE. More to come in the future.
@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 ### Issue with how the item recipes are being displayed in the custom tool crafting tables. Will be fixed in the future.
 ### Added support for enchanted items to be crafted in the custom crafting tables.
 ### Fixed some other issues I came across while testing.
+### Big update coming soon adding thors hammer, and a few more exciting things.
 
 ## [1.20.1-1.0.5] - 2023-09-26
 
