@@ -1,6 +1,4 @@
-import io.gitlab.arturbosch.detekt.Detekt
 import java.net.URL
-import net.minecraftforge.gradle.userdev.UserDevExtension
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
@@ -19,177 +17,55 @@ plugins {
     kotlin("jvm") version "1.9.10"
     kotlin("plugin.allopen") version "1.9.10"
     id("com.diffplug.spotless") version "6.20.0"
-    id("net.minecraftforge.gradle") version "[6.0,6.2)"
-    id("org.parchmentmc.librarian.forgegradle") version "1.+"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
-    id("net.darkhax.curseforgegradle") version "1.1.16"
     id("org.jetbrains.dokka") version "1.9.0"
+    id("net.darkhax.curseforgegradle") version "1.1.16"
     jacoco // code coverage reports
 }
 
 project.group = "io.github.realyusufismail"
 
-project.version = "1.20.1-1.0.7.beta1"
+allprojects {
+    repositories {
+        maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
+        maven { url = uri("https://maven.blamejared.com") }
+        maven { url = uri("https://dvs1.progwml6.com/files/maven/") }
+        maven { url = uri("https://modmaven.dev") }
+        maven { url = uri("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/") }
+        mavenCentral()
+    }
 
-base.archivesName.set("armourandtoolsmod")
+    configurations { all { exclude(group = "org.slf4j", module = "slf4j-log4j12") } }
+}
 
-val mcVersion = "1.20.1"
+subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "jacoco")
 
-// A project ID is required to tell CurseForge which project the uploaded
-// file belongs to. This is public on your project page and is not private
-// information.
-var projectId = "480779"
+    dependencies {
+        // Json
+        implementation(
+            "com.fasterxml.jackson.module:jackson-module-kotlin:" + properties["jacksonVersion"])
 
-println(
-    """
-        Java: ${System.getProperty("java.version")}
-        JVM: ${System.getProperty("java.vm.version")} (${System.getProperty("java.vendor")})
-        Arch: ${System.getProperty("os.arch")}
-    """
-        .trimIndent())
+        // test
+        testImplementation("org.junit.jupiter:junit-jupiter:" + properties["junitVersion"])
+    }
 
-configure<UserDevExtension> {
-    mappings("parchment", "2023.09.03-$mcVersion")
+    tasks.test {
+        useJUnitPlatform()
+        finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+    }
 
-    accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
-
-    runs {
-        create("client") {
-            workingDirectory(file("run"))
-
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
+    tasks.jacocoTestReport {
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports after running tests."
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
         }
-
-        create("server") {
-            workingDirectory(file("run"))
-
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
-        }
-
-        create("gameTestServer") {
-            workingDirectory(file("run"))
-
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
-        }
-
-        create("data") {
-            workingDirectory(file("run-data"))
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            // Specify the mod id for data generation, where to output the resulting resource, and
-            // where to look for existing resources.
-            args(
-                "--mod",
-                base.archivesName.get(),
-                "--all",
-                "--output",
-                file("src/generated/resources/"),
-                "--existing",
-                file("src/main/resources/"))
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
-
-            // 'runData' is renamed to 'runDataGenerator' to make it more clear what it does.
-            taskName = "runDataGenerator"
-        }
+        finalizedBy("jacocoTestCoverageVerification")
     }
 }
 
-configurations { compileOnly { extendsFrom(configurations.annotationProcessor.get()) } }
-
-sourceSets.main { resources.srcDir("src/generated/resources") }
-
-repositories {
-    maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
-    maven { url = uri("https://maven.blamejared.com") }
-    maven { url = uri("https://dvs1.progwml6.com/files/maven/") }
-    maven { url = uri("https://modmaven.dev") }
-    maven { url = uri("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/") }
-    mavenCentral()
-}
-
-dependencies {
-    minecraft("net.minecraftforge:forge:" + properties["forgeVersion"])
-
-    // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:" + properties["kotlinForForgeVersion"])
-
-    // Logger
-    implementation("ch.qos.logback:logback-classic:" + properties["logbackVersion"])
-    implementation("ch.qos.logback:logback-core:" + properties["logbackVersion"])
-
-    // core
-    implementation("io.github.realyusufismail:realyusufismailcore:" + properties["coreVersion"])
-
-    // Geckolib4 for animation engine.
-    // implementation(fg.deobf("software.bernie.geckolib:geckolib-forge-" + mcVersion + ":" +
-    // properties["geckolibVersion"]))
-
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
-    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
-
-    // lombok
-    compileOnly("org.projectlombok:lombok:" + properties["lombokVersion"])
-    annotationProcessor("org.projectlombok:lombok:" + properties["lombokVersion"])
-
-    // Json
-    implementation(
-        "com.fasterxml.jackson.module:jackson-module-kotlin:" + properties["jacksonVersion"])
-
-    // test
-    testImplementation("org.junit.jupiter:junit-jupiter:" + properties["junitVersion"])
-}
-
-tasks.test {
-    useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
-}
-
-configurations { all { exclude(group = "org.slf4j", module = "slf4j-log4j12") } }
 
 spotless {
     kotlin {
@@ -275,54 +151,6 @@ java {
 }
 
 tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
-
-tasks.jacocoTestReport {
-    group = "Reporting"
-    description = "Generate Jacoco coverage reports after running tests."
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-    finalizedBy("jacocoTestCoverageVerification")
-}
-
-detekt {
-    config.setFrom(files("gradle/config/detekt.yml"))
-    baseline = file("gradle/config/detekt-baseline.xml")
-    allRules = false
-}
-
-tasks.withType<Detekt>().configureEach {
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-}
-
-tasks.create("cfPublish", net.darkhax.curseforgegradle.TaskPublishCurseForge::class) {
-    group = "CurseForge"
-    dependsOn("build")
-    disableVersionDetection()
-
-    val token =
-        if (project.findProperty("curseforge.token") != null)
-            project.property("curseforge.token") as String
-        else ""
-    apiToken = token
-
-    val jar = file("build/libs/${base.archivesName.get()}-${project.version}.jar")
-
-    // The main file to upload
-    val mainFile = upload(projectId, jar)
-    mainFile.changelog = file("CHANGELOG.md").readText()
-    mainFile.changelogType = "markdown"
-    mainFile.releaseType = "release"
-    mainFile.addEmbedded("kotlin-for-forge")
-    mainFile.addEmbedded("realyusufismail-core")
-    mainFile.addJavaVersion("Java 17")
-    mainFile.addModLoader("forge")
-    mainFile.addGameVersion(mcVersion)
-}
 
 tasks.getByName("dokkaHtml", DokkaTask::class) {
     dokkaSourceSets.configureEach {

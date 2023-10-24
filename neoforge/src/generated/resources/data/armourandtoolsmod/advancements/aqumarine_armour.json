@@ -1,0 +1,78 @@
+{
+  "parent": "armourandtoolsmod:aqumarine_ingot",
+  "criteria": {
+    "aqumarine_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:aqumarine_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "aqumarine_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:aqumarine_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "aqumarine_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:aqumarine_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "aqumarine_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:aqumarine_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.armourandtoolsmod.aqumarine_armour.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "armourandtoolsmod:aqumarine_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.armourandtoolsmod.aqumarine_armour.title"
+    }
+  },
+  "requirements": [
+    [
+      "aqumarine_helmet",
+      "aqumarine_chestplate",
+      "aqumarine_leggings",
+      "aqumarine_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

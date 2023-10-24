@@ -1,0 +1,17 @@
+{
+  "type": "armourandtoolsmod:custom_armour_crafter",
+  "category": "armour_feet",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "pattern": [
+    "A A",
+    "A A"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:amethyst_boots"
+  },
+  "show_notification": false
+}

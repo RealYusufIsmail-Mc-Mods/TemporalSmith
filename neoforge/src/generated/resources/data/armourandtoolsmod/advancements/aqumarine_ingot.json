@@ -1,0 +1,36 @@
+{
+  "parent": "armourandtoolsmod:aqumarine_ore",
+  "criteria": {
+    "get_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/aqumarine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.armourandtoolsmod.aqumarine_ingot.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "armourandtoolsmod:aqumarine"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.armourandtoolsmod.aqumarine_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_scrap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
