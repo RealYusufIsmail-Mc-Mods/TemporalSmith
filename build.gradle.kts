@@ -1,351 +1,224 @@
-import io.gitlab.arturbosch.detekt.Detekt
 import java.net.URL
-import net.minecraftforge.gradle.userdev.UserDevExtension
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories { mavenCentral() }
 
     dependencies {
+        val properties = project.properties
+
         classpath("org.jetbrains.dokka:dokka-base:1.9.0")
         classpath("io.github.realyusufismail:jconfig:1.0.8")
     }
 }
 
+
 plugins {
     kotlin("jvm") version "1.9.10"
     kotlin("plugin.allopen") version "1.9.10"
     id("com.diffplug.spotless") version "6.20.0"
-    id("net.minecraftforge.gradle") version "[6.0,6.2)"
-    id("org.parchmentmc.librarian.forgegradle") version "1.+"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
-    id("net.darkhax.curseforgegradle") version "1.1.16"
     id("org.jetbrains.dokka") version "1.9.0"
     jacoco // code coverage reports
 }
 
-project.group = "io.github.realyusufismail"
-
-project.version = "1.20.1-1.0.7.beta1"
-
-base.archivesName.set("armourandtoolsmod")
-
-val mcVersion = "1.20.1"
-
-// A project ID is required to tell CurseForge which project the uploaded
-// file belongs to. This is public on your project page and is not private
-// information.
-var projectId = "480779"
-
-println(
-    """
-        Java: ${System.getProperty("java.version")}
-        JVM: ${System.getProperty("java.vm.version")} (${System.getProperty("java.vendor")})
-        Arch: ${System.getProperty("os.arch")}
-    """
-        .trimIndent())
-
-configure<UserDevExtension> {
-    mappings("parchment", "2023.09.03-$mcVersion")
-
-    accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
-
-    runs {
-        create("client") {
-            workingDirectory(file("run"))
-
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
-        }
-
-        create("server") {
-            workingDirectory(file("run"))
-
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
-        }
-
-        create("gameTestServer") {
-            workingDirectory(file("run"))
-
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
-        }
-
-        create("data") {
-            workingDirectory(file("run-data"))
-            // add mixin
-            property("mixin.env.remapRefMap", "true")
-            property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-
-            // Recommended logging data for a userdev environment
-            property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
-
-            // Recommended logging level for the console
-            property("forge.logging.console.level", "debug")
-
-            // Specify the mod id for data generation, where to output the resulting resource, and
-            // where to look for existing resources.
-            args(
-                "--mod",
-                base.archivesName.get(),
-                "--all",
-                "--output",
-                file("src/generated/resources/"),
-                "--existing",
-                file("src/main/resources/"))
-
-            mods { create(base.archivesName.get()) { source(sourceSets["main"]) } }
-
-            // 'runData' is renamed to 'runDataGenerator' to make it more clear what it does.
-            taskName = "runDataGenerator"
-        }
-    }
-}
-
-configurations { compileOnly { extendsFrom(configurations.annotationProcessor.get()) } }
-
-sourceSets.main { resources.srcDir("src/generated/resources") }
-
 repositories {
-    maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
-    maven { url = uri("https://maven.blamejared.com") }
-    maven { url = uri("https://dvs1.progwml6.com/files/maven/") }
-    maven { url = uri("https://modmaven.dev") }
-    maven { url = uri("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/") }
     mavenCentral()
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:" + properties["forgeVersion"])
+    val properties = project.properties
 
-    // kotlin forge
-    implementation("thedarkcolour:kotlinforforge:" + properties["kotlinForForgeVersion"])
-
-    // Logger
-    implementation("ch.qos.logback:logback-classic:" + properties["logbackVersion"])
-    implementation("ch.qos.logback:logback-core:" + properties["logbackVersion"])
-
-    // core
-    implementation("io.github.realyusufismail:realyusufismailcore:" + properties["coreVersion"])
-
-    // Geckolib4 for animation engine.
-    // implementation(fg.deobf("software.bernie.geckolib:geckolib-forge-" + mcVersion + ":" +
-    // properties["geckolibVersion"]))
-
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
-    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
-
-    // lombok
-    compileOnly("org.projectlombok:lombok:" + properties["lombokVersion"])
-    annotationProcessor("org.projectlombok:lombok:" + properties["lombokVersion"])
-
-    // Json
-    implementation(
-        "com.fasterxml.jackson.module:jackson-module-kotlin:" + properties["jacksonVersion"])
 
     // test
     testImplementation("org.junit.jupiter:junit-jupiter:" + properties["junitVersion"])
 }
 
-tasks.test {
-    useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
-}
 
-configurations { all { exclude(group = "org.slf4j", module = "slf4j-log4j12") } }
-
-spotless {
-    kotlin {
-        // Excludes build folder since it contains generated java classes.
-        targetExclude("build/**")
-        ktfmt("0.42").dropboxStyle()
-
-        licenseHeader(
-            """/*
- * Copyright 2023 RealYusufIsmail.
- *
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *
- * you may not use this file except in compliance with the License.
- *
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */ """)
+tasks {
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
     }
 
-    kotlinGradle {
-        target("**/*.gradle.kts")
-        ktfmt("0.42").dropboxStyle()
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "17"
+    }
+
+    test {
+        useJUnitPlatform()
+        finalizedBy(jacocoTestReport)
+    }
+
+
+    jacocoTestReport {
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports after running tests."
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+        finalizedBy("jacocoTestCoverageVerification")
+    }
+
+    dokkaHtml {
+        dokkaSourceSets.configureEach {
+            includes.from("package.md")
+            jdkVersion.set(17)
+            sourceLink {
+                localDirectory.set(file("src/main/kotlin"))
+                remoteUrl.set(URL("https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/forge/src/main/kotlin"))
+                remoteLineSuffix.set("#L")
+            }
+            sourceLink {
+                localDirectory.set(file("src/main/java"))
+                remoteUrl.set(URL("https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/forge/src/main/java"))
+                remoteLineSuffix.set("#L")
+            }
+            sourceLink {
+                localDirectory.set(file("src/main/resources"))
+                remoteUrl.set(URL("https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/neoforge/src/main/java"))
+                remoteLineSuffix.set("#L")
+            }
+            sourceLink {
+                localDirectory.set(file("src/main/resources"))
+                remoteUrl.set(URL("https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/forge/src/main/kotlin"))
+                remoteLineSuffix.set("#L")
+            }
+            pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+                footerMessage = "Copyright © 2023 RealYusufIsmail MC Mods"
+            }
+        }
+    }
+}
+
+subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
+    apply(plugin = "com.diffplug.spotless")
+    apply(plugin = "org.jetbrains.dokka")
+    apply(plugin = "jacoco")
+
+    group = "io.github.realyusufismail"
+
+    configurations { compileOnly { extendsFrom(configurations.annotationProcessor.get()) } }
+
+    sourceSets {
+        named("main") {
+            resources.srcDir("src/generated/resources")
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // Lombok
+        compileOnly("org.projectlombok:lombok:${properties["lombokVersion"]}")
+        annotationProcessor("org.projectlombok:lombok:${properties["lombokVersion"]}")
+
+        // Test dependencies
+        testImplementation("org.junit.jupiter:junit-jupiter:${properties["junitVersion"]}")
+    }
+
+    tasks {
+        withType<Test> {
+            useJUnitPlatform()
+            finalizedBy(jacocoTestReport)
+        }
+
+        jacocoTestReport {
+            group = "Reporting"
+            description = "Generate Jacoco coverage reports after running tests."
+            reports {
+                xml.required.set(true)
+                html.required.set(true)
+            }
+            finalizedBy("jacocoTestCoverageVerification")
+        }
+
+        withType<JavaCompile> {
+            options.encoding = "UTF-8"
+            dependsOn(named("spotlessApply"))
+        }
+
+        withType<KotlinCompile> {
+            kotlinOptions.jvmTarget = "17"
+            dependsOn(named("spotlessApply"))
+        }
+
+        javadoc {
+            if (JavaVersion.current().isJava9Compatible) {
+                (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+            }
+        }
+
+        spotless {
+            kotlin {
+                // Excludes build folder since it contains generated Java classes.
+                targetExclude("build/**")
+                ktfmt("0.42").dropboxStyle()
+
+                licenseHeader(
+                    """
+                    /*
+                     * Copyright 2023 RealYusufIsmail.
+                     *
+                     * Licensed under the Apache License, Version 2.0 (the "License");
+                     * you may not use this file except in compliance with the License.
+                     * You may obtain a copy of the License at
+                     * http://www.apache.org/licenses/LICENSE-2.0
+                     * Unless required by applicable law or agreed to in writing, software
+                     * distributed under the License is distributed on an "AS IS" BASIS,
+                     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                     * See the License for the specific language governing permissions and
+                     * limitations under the License.
+                     */
+                    """.trimIndent()
+                )
+            }
+
+            kotlinGradle {
+                target("**/*.gradle.kts")
+                ktfmt("0.42").dropboxStyle()
+                trimTrailingWhitespace()
+                indentWithSpaces()
+                endWithNewline()
+            }
+
+            java {
+                target("**/*.java")
+                googleJavaFormat()
+                trimTrailingWhitespace()
+                indentWithSpaces()
+                endWithNewline()
+                licenseHeader(
+                    """
+                    /*
+                     * Copyright 2023 RealYusufIsmail.
+                     *
+                     * Licensed under the Apache License, Version 2.0 (the "License");
+                     * you may not use this file except in compliance with the License.
+                     * You may obtain a copy of the License at
+                     * http://www.apache.org/licenses/LICENSE-2.0
+                     * Unless required by applicable law or agreed to in writing, software
+                     * distributed under the License is distributed on an "AS IS" BASIS,
+                     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                     * See the License for the specific language governing permissions and
+                     * limitations under the License.
+                     */
+                    """.trimIndent()
+                )
+            }
+        }
     }
 
     java {
-        target("**/*.java")
-        googleJavaFormat()
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        licenseHeader(
-            """/*
- * Copyright 2023 RealYusufIsmail.
- *
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *
- * you may not use this file except in compliance with the License.
- *
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */ """)
-    }
-}
-
-tasks.javadoc {
-    if (JavaVersion.current().isJava9Compatible) {
-        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
-    }
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    dependsOn(tasks["spotlessApply"])
-}
-
-java {
-    toolchain {
-        withJavadocJar()
-        withSourcesJar()
-
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
-
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
-
-tasks.jacocoTestReport {
-    group = "Reporting"
-    description = "Generate Jacoco coverage reports after running tests."
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-    finalizedBy("jacocoTestCoverageVerification")
-}
-
-detekt {
-    config.setFrom(files("gradle/config/detekt.yml"))
-    baseline = file("gradle/config/detekt-baseline.xml")
-    allRules = false
-}
-
-tasks.withType<Detekt>().configureEach {
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-}
-
-tasks.create("cfPublish", net.darkhax.curseforgegradle.TaskPublishCurseForge::class) {
-    group = "CurseForge"
-    dependsOn("build")
-    disableVersionDetection()
-
-    val token =
-        if (project.findProperty("curseforge.token") != null)
-            project.property("curseforge.token") as String
-        else ""
-    apiToken = token
-
-    val jar = file("build/libs/${base.archivesName.get()}-${project.version}.jar")
-
-    // The main file to upload
-    val mainFile = upload(projectId, jar)
-    mainFile.changelog = file("CHANGELOG.md").readText()
-    mainFile.changelogType = "markdown"
-    mainFile.releaseType = "release"
-    mainFile.addEmbedded("kotlin-for-forge")
-    mainFile.addEmbedded("realyusufismail-core")
-    mainFile.addJavaVersion("Java 17")
-    mainFile.addModLoader("forge")
-    mainFile.addGameVersion(mcVersion)
-}
-
-tasks.getByName("dokkaHtml", DokkaTask::class) {
-    dokkaSourceSets.configureEach {
-        includes.from("package.md")
-        jdkVersion.set(17)
-        sourceLink {
-            localDirectory.set(file("src/main/kotlin"))
-            remoteUrl.set(
-                URL(
-                    "https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/main/src/main/kotlin"))
-            remoteLineSuffix.set("#L")
-        }
-
-        sourceLink {
-            localDirectory.set(file("src/main/java"))
-            remoteUrl.set(
-                URL(
-                    "https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/main/src/main/java"))
-            remoteLineSuffix.set("#L")
-        }
-
-        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-            footerMessage = "Copyright © 2023 RealYusufIsmail MC Mods"
+        toolchain {
+            withJavadocJar()
+            withSourcesJar()
+            languageVersion.set(JavaLanguageVersion.of(17))
         }
     }
 }

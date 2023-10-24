@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "armourandtoolsmod:block/ingot_fusion_toll_enhancer_front",
-    "side": "armourandtoolsmod:block/ingot_fusion_toll_enhancer_side",
-    "top": "armourandtoolsmod:block/ingot_fusion_toll_enhancer_top"
-  }
-}
