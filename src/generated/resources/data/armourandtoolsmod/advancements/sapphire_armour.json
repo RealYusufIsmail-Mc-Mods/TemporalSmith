@@ -1,0 +1,78 @@
+{
+  "parent": "armourandtoolsmod:sapphire_ingot",
+  "criteria": {
+    "sapphire_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:sapphire_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:sapphire_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:sapphire_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "armourandtoolsmod:sapphire_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.armourandtoolsmod.sapphire_armour.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "armourandtoolsmod:sapphire_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.armourandtoolsmod.sapphire_armour.title"
+    }
+  },
+  "requirements": [
+    [
+      "sapphire_helmet",
+      "sapphire_chestplate",
+      "sapphire_leggings",
+      "sapphire_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

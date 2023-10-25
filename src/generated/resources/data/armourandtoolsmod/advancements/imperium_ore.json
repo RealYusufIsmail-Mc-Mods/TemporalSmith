@@ -1,0 +1,36 @@
+{
+  "parent": "armourandtoolsmod:root",
+  "criteria": {
+    "get_ore": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/imperium_ores"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.armourandtoolsmod.imperium_ore.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "armourandtoolsmod:imperium_ore"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.armourandtoolsmod.imperium_ore.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_ore"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

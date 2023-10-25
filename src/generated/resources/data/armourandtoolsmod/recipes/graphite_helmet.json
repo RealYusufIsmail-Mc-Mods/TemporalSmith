@@ -1,0 +1,17 @@
+{
+  "type": "armourandtoolsmod:custom_armour_crafter",
+  "category": "armour_head",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/graphite"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A A"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:graphite_helmet"
+  },
+  "show_notification": false
+}

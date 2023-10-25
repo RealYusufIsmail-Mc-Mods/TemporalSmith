@@ -1,0 +1,18 @@
+{
+  "type": "armourandtoolsmod:custom_armour_crafter",
+  "category": "armour_chest",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/enderite"
+    }
+  },
+  "pattern": [
+    "A A",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:enderite_chestplate"
+  },
+  "show_notification": false
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "armourandtoolsmod:ruby_ore",
+  "criteria": {
+    "get_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/ruby"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.armourandtoolsmod.ruby_ingot.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "armourandtoolsmod:ruby"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.armourandtoolsmod.ruby_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_scrap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

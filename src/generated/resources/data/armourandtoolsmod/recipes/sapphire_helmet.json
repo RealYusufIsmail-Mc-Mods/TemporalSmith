@@ -1,0 +1,17 @@
+{
+  "type": "armourandtoolsmod:custom_armour_crafter",
+  "category": "armour_head",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/sapphire"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A A"
+  ],
+  "result": {
+    "item": "armourandtoolsmod:sapphire_helmet"
+  },
+  "show_notification": false
+}

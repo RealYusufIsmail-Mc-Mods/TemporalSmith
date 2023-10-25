@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "armourandtoolsmod:block/custom_tool_crafting_table"
+    }
+  }
+}
