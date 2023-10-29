@@ -1,0 +1,17 @@
+{
+  "type": "armourandtoolsmod:ingot_fusion_toll_enhancer",
+  "category": "tool",
+  "ingredient1": {
+    "item": "armourandtoolsmod:imperium"
+  },
+  "ingredient2": {
+    "item": "armourandtoolsmod:imperium_pickaxe"
+  },
+  "ingredient3": {
+    "item": "armourandtoolsmod:imperium"
+  },
+  "result": {
+    "count": 1,
+    "item": "armourandtoolsmod:magma_strike_pickaxe"
+  }
+}

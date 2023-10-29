@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "armourandtoolsmod:aqumarine_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "armourandtoolsmod:aqumarine"
+  }
+}

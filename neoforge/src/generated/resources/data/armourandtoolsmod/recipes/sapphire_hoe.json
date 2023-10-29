@@ -1,0 +1,21 @@
+{
+  "type": "armourandtoolsmod:custom_tool_crafter",
+  "category": "hoe",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/sapphire"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AA ",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "armourandtoolsmod:sapphire_hoe"
+  },
+  "showNotification": false
+}
