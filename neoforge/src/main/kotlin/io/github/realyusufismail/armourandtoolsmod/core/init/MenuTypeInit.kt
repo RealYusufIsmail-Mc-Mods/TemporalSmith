@@ -27,11 +27,11 @@ import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.inventory.MenuType.MenuSupplier
-import net.minecraftforge.common.extensions.IForgeMenuType
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.forge.registerObject
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension
+import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.ForgeRegistries
+import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
+import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 object MenuTypeInit {
     val MENU: DeferredRegister<MenuType<*>> =
@@ -50,7 +50,7 @@ object MenuTypeInit {
         ObjectHolderDelegate<MenuType<IngotFusionTollEnhancerMenu>> =
         MENU.registerObject("ingot_fusion_toll_enhancer") {
                 // TODO : Get null here.
-                IForgeMenuType.create { pContainerId, pInventory, pData ->
+                IMenuTypeExtension.create { pContainerId, pInventory, pData ->
                     IngotFusionTollEnhancerMenu(pContainerId, pInventory, pData)
                 }
             }

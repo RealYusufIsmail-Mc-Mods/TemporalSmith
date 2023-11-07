@@ -19,38 +19,35 @@
 package io.github.realyusufismail.armourandtoolsmod.recipe.armour
 
 import com.google.common.annotations.VisibleForTesting
-import com.google.common.collect.Maps
 import com.google.common.collect.Sets
-import com.google.gson.JsonArray
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
-import com.google.gson.JsonSyntaxException
+import com.mojang.serialization.Codec
+import com.mojang.serialization.DataResult
 import io.github.realyusufismail.armourandtoolsmod.blocks.armour.CustomArmourCraftingTableContainer
 import io.github.realyusufismail.armourandtoolsmod.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
+import io.github.realyusufismail.armourandtoolsmod.recipe.codec.CustomArmourCraftingTableRawShapedRecipe
+import kotlin.math.max
+import kotlin.math.min
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.util.GsonHelper
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.Level
-import net.minecraftforge.common.ForgeHooks
-import net.minecraftforge.common.crafting.CraftingHelper
-import net.minecraftforge.common.crafting.IShapedRecipe
+import net.neoforged.neoforge.common.CommonHooks
+import net.neoforged.neoforge.common.crafting.IShapedRecipe
+import org.apache.commons.lang3.NotImplementedException
 
 class CustomArmourCraftingTableShapedRecipe(
-    private val id: ResourceLocation,
-    private val group: String,
-    private val recipeCategory: CustomArmourCraftingBookCategory,
-    private val width: Int,
-    private val height: Int,
-    private val recipeItems: NonNullList<Ingredient>,
+    val gr: String,
+    val recipeCategory: CustomArmourCraftingBookCategory,
+    val width: Int,
+    val height: Int,
+    val recipeItems: NonNullList<Ingredient>,
     override val result: ItemStack,
-    private val showNotification: Boolean,
+    val showNotification: Boolean,
 ) : CustomArmourCraftingTableRecipe, IShapedRecipe<CustomArmourCraftingTableContainer> {
 
     /** Used to check if a recipe matches current crafting inventory */
@@ -119,15 +116,11 @@ class CustomArmourCraftingTableShapedRecipe(
 
     /** Recipes with equal group are combined into one button in the recipe book */
     override fun getGroup(): String {
-        return this.group
+        return this.gr
     }
 
     override fun getIngredients(): NonNullList<Ingredient> {
         return this.recipeItems
-    }
-
-    override fun getId(): ResourceLocation {
-        return this.id
     }
 
     override fun getToastSymbol(): ItemStack {
@@ -160,24 +153,26 @@ class CustomArmourCraftingTableShapedRecipe(
             nonnulllist
                 .stream()
                 .filter { ingredient: Ingredient -> !ingredient.isEmpty }
-                .anyMatch { ingredient: Ingredient? -> ForgeHooks.hasNoElements(ingredient) }
+                .anyMatch { ingredient: Ingredient? -> CommonHooks.hasNoElements(ingredient) }
     }
 
     companion object {
-        private var MAX_WIDTH = 3
-        private var MAX_HEIGHT = 3
+        @JvmField var MAX_WIDTH = 3
+
+        @JvmField var MAX_HEIGHT = 3
 
         @VisibleForTesting
-        fun shrink(vararg pToShrink: String?): Array<String?> {
+        @JvmStatic
+        fun shrink(p_301102_: List<String>): Array<String?> {
             var i = Int.MAX_VALUE
             var j = 0
             var k = 0
             var l = 0
-            for (i1 in pToShrink.indices) {
-                val s = pToShrink[i1]
-                i = i.coerceAtMost(firstNonSpace(s!!))
+            for (i1 in p_301102_.indices) {
+                val s = p_301102_[i1]
+                i = min(i.toDouble(), firstNonSpace(s).toDouble()).toInt()
                 val j1 = lastNonSpace(s)
-                j = j.coerceAtLeast(j1)
+                j = max(j.toDouble(), j1.toDouble()).toInt()
                 if (j1 < 0) {
                     if (k == i1) {
                         ++k
@@ -187,12 +182,12 @@ class CustomArmourCraftingTableShapedRecipe(
                     l = 0
                 }
             }
-            return if (pToShrink.size == l) {
+            return if (p_301102_.size == l) {
                 arrayOfNulls(0)
             } else {
-                val astring = arrayOfNulls<String>(pToShrink.size - l - k)
+                val astring = arrayOfNulls<String>(p_301102_.size - l - k)
                 for (k1 in astring.indices) {
-                    astring[k1] = pToShrink[k1 + k]?.substring(i, j + 1)
+                    astring[k1] = p_301102_[k1 + k].substring(i, j + 1)
                 }
                 astring
             }
@@ -213,129 +208,55 @@ class CustomArmourCraftingTableShapedRecipe(
             }
             return i
         }
-
-        fun patternFromJson(pPatternArray: JsonArray): Array<String?> {
-            val astring = arrayOfNulls<String>(pPatternArray.size())
-            if (astring.size > MAX_HEIGHT) {
-                throw JsonSyntaxException("Invalid pattern: too many rows, $MAX_HEIGHT is maximum")
-            } else if (astring.isEmpty()) {
-                throw JsonSyntaxException("Invalid pattern: empty pattern not allowed")
-            } else {
-                for (i in astring.indices) {
-                    val s = GsonHelper.convertToString(pPatternArray.get(i), "pattern[$i]")
-                    if (s.length > MAX_WIDTH) {
-                        throw JsonSyntaxException(
-                            "Invalid pattern: too many columns, $MAX_WIDTH is maximum")
-                    }
-                    if (i > 0 && astring[0]!!.length != s.length) {
-                        throw JsonSyntaxException(
-                            "Invalid pattern: each row must be the same width")
-                    }
-                    astring[i] = s
-                }
-                return astring
-            }
-        }
-
-        /** Returns a key json object as a Java HashMap. */
-        fun keyFromJson(pKeyEntry: JsonObject): MutableMap<String, Ingredient> {
-            val map: MutableMap<String, Ingredient> = Maps.newHashMap()
-            for (entry: Map.Entry<String, JsonElement> in pKeyEntry.entrySet()) {
-                if (entry.key.length != 1) {
-                    throw JsonSyntaxException(
-                        "Invalid key entry: '" +
-                            entry.key +
-                            "' is an invalid symbol (must be 1 character only).")
-                }
-                if ((" " == entry.key)) {
-                    throw JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.")
-                }
-                map[entry.key] = Ingredient.fromJson(entry.value)
-            }
-            map[" "] = Ingredient.EMPTY
-            return map
-        }
-
-        fun itemStackFromJson(pStackObject: JsonObject): ItemStack {
-            return CraftingHelper.getItemStack(pStackObject, true, true)
-        }
-
-        fun dissolvePattern(
-            pPattern: Array<String?>,
-            pKeys: Map<String, Ingredient>,
-            pPatternWidth: Int,
-            pPatternHeight: Int,
-        ): NonNullList<Ingredient> {
-            val nonnulllist = NonNullList.withSize(pPatternWidth * pPatternHeight, Ingredient.EMPTY)
-            val set: MutableSet<String> = Sets.newHashSet(pKeys.keys)
-            set.remove(" ")
-            for (i in pPattern.indices) {
-                for (j in 0 until (pPattern[i]?.length ?: 0)) {
-                    val s = pPattern[i]?.substring(j, j + 1)
-                    val ingredient =
-                        pKeys[s]
-                            ?: throw JsonSyntaxException(
-                                ("Pattern references symbol '" +
-                                    s +
-                                    "' but it's not defined in the key"))
-                    set.remove(s)
-                    nonnulllist[j + pPatternWidth * i] = ingredient
-                }
-            }
-            if (set.isNotEmpty()) {
-                throw JsonSyntaxException("Key defines symbols that aren't used in pattern: $set")
-            } else {
-                return nonnulllist
-            }
-        }
     }
 
     class Serializer : RecipeSerializer<CustomArmourCraftingTableShapedRecipe> {
-        override fun fromJson(
-            pRecipeId: ResourceLocation,
-            pJson: JsonObject,
-        ): CustomArmourCraftingTableShapedRecipe {
-            val s: String = GsonHelper.getAsString(pJson, "group", "")!!
 
-            val map: Map<String, Ingredient> = keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"))
+        private val CODEC =
+            CustomArmourCraftingTableRawShapedRecipe.CODEC.flatXmap({
+                p_301248_: CustomArmourCraftingTableRawShapedRecipe ->
+                val astring = shrink(p_301248_.pattern)
+                val i = astring[0]!!.length
+                val j = astring.size
+                val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
+                val set: MutableSet<String> = Sets.newHashSet(p_301248_.key.keys)
+                for (k in astring.indices) {
+                    val s = astring[k]
+                    for (l in 0 until s!!.length) {
+                        val s1 = s.substring(l, l + 1)
+                        val ingredient =
+                            (if (s1 == " ") Ingredient.EMPTY else p_301248_.key[s1])
+                                ?: return@flatXmap DataResult.error<
+                                    CustomArmourCraftingTableShapedRecipe> {
+                                    "Pattern references symbol '$s1' but it's not defined in the key"
+                                }
+                        set.remove(s1)
+                        nonnulllist[l + i * k] = ingredient
+                    }
+                }
+                if (set.isNotEmpty()) {
+                    return@flatXmap DataResult.error<CustomArmourCraftingTableShapedRecipe> {
+                        "Key defines symbols that aren't used in pattern: $set"
+                    }
+                } else {
+                    val shapedrecipe =
+                        CustomArmourCraftingTableShapedRecipe(
+                            p_301248_.group,
+                            p_301248_.category,
+                            i,
+                            j,
+                            nonnulllist,
+                            p_301248_.result,
+                            p_301248_.showNotification)
+                    return@flatXmap DataResult.success<CustomArmourCraftingTableShapedRecipe>(
+                        shapedrecipe)
+                }
+            }) { _: CustomArmourCraftingTableShapedRecipe ->
+                throw NotImplementedException("Serializing ShapedRecipe is not implemented yet.")
+            }
 
-            val craftingbookcategory =
-                CustomArmourCraftingBookCategory.CODEC.byName(
-                    GsonHelper.getAsString(pJson, "category", null as String?),
-                    CustomArmourCraftingBookCategory.MISC)
-
-            val astring: Array<String?> =
-                shrink(*patternFromJson(GsonHelper.getAsJsonArray(pJson, "pattern")))
-
-            val i = astring[0]?.length
-            val j = astring.size
-            val nonnulllist: NonNullList<Ingredient> = dissolvePattern(astring, map, i!!, j)
-
-            val itemstack: ItemStack =
-                itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"))
-
-            val flag = GsonHelper.getAsBoolean(pJson, "show_notification", true)
-
-            return CustomArmourCraftingTableShapedRecipe(
-                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
-        }
-
-        override fun fromNetwork(
-            pRecipeId: ResourceLocation,
-            pBuffer: FriendlyByteBuf,
-        ): CustomArmourCraftingTableShapedRecipe {
-            val i = pBuffer.readVarInt()
-            val j = pBuffer.readVarInt()
-            val s = pBuffer.readUtf()
-            val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
-            nonnulllist.replaceAll { Ingredient.fromNetwork(pBuffer) }
-            val itemstack = pBuffer.readItem()
-            val craftingbookcategory =
-                pBuffer.readEnum(CustomArmourCraftingBookCategory::class.java)
-            val flag = pBuffer.readBoolean()
-
-            return CustomArmourCraftingTableShapedRecipe(
-                pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
+        override fun codec(): Codec<CustomArmourCraftingTableShapedRecipe> {
+            return CODEC
         }
 
         override fun toNetwork(
@@ -344,12 +265,29 @@ class CustomArmourCraftingTableShapedRecipe(
         ) {
             pBuffer.writeVarInt(pRecipe.width)
             pBuffer.writeVarInt(pRecipe.height)
-            pBuffer.writeUtf(pRecipe.group)
+            pBuffer.writeUtf(pRecipe.gr)
             for (ingredient: Ingredient in pRecipe.recipeItems) {
                 ingredient.toNetwork(pBuffer)
             }
             pBuffer.writeItem(pRecipe.result)
             pBuffer.writeBoolean(pRecipe.showNotification)
+        }
+
+        override fun fromNetwork(
+            p_44106_: FriendlyByteBuf
+        ): CustomArmourCraftingTableShapedRecipe? {
+            val i = p_44106_.readVarInt()
+            val j = p_44106_.readVarInt()
+            val s = p_44106_.readUtf()
+            val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
+            nonnulllist.replaceAll { Ingredient.fromNetwork(p_44106_) }
+            val itemstack = p_44106_.readItem()
+            val craftingbookcategory =
+                p_44106_.readEnum(CustomArmourCraftingBookCategory::class.java)
+            val flag = p_44106_.readBoolean()
+
+            return CustomArmourCraftingTableShapedRecipe(
+                s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
         }
     }
 }

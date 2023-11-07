@@ -24,9 +24,9 @@ import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import net.minecraftforge.client.model.generators.BlockStateProvider
-import net.minecraftforge.common.data.ExistingFileHelper
-import net.minecraftforge.registries.ForgeRegistries
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider
+import net.neoforged.neoforge.common.data.ExistingFileHelper
+import net.neoforged.neoforge.registries.ForgeRegistries
 
 class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
     BlockStateProvider(output, MOD_ID, exFileHelper) {

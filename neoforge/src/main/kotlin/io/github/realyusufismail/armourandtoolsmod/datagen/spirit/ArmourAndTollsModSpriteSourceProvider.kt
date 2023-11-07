@@ -22,17 +22,23 @@ import com.google.common.collect.ImmutableMap
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import java.util.*
+import java.util.concurrent.CompletableFuture
 import net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile
+import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation
-import net.minecraftforge.common.data.ExistingFileHelper
-import net.minecraftforge.common.data.SpriteSourceProvider
+import net.neoforged.neoforge.common.data.ExistingFileHelper
+import net.neoforged.neoforge.common.data.SpriteSourceProvider
 
 /** Makes sure that the textures are loaded from the correct location. */
-class ArmourAndTollsModSpriteSourceProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
-    SpriteSourceProvider(output, exFileHelper, MOD_ID) {
-    override fun addSources() {
+class ArmourAndTollsModSpriteSourceProvider(
+    output: PackOutput,
+    exFileHelper: ExistingFileHelper,
+    lookup: CompletableFuture<HolderLookup.Provider>
+) : SpriteSourceProvider(output, lookup, MOD_ID, exFileHelper) {
+
+    override fun gather() {
         val blockAtlas = atlas(BLOCKS_ATLAS)
         val armorTrimsAtlas = atlas(ResourceLocation("armor_trims"))
 

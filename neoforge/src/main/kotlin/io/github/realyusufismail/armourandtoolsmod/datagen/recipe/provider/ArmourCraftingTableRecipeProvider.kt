@@ -23,14 +23,13 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder.CustomArmourCraftingTableRecipeBuilder
-import java.util.function.Consumer
-import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.world.item.Items
 
 class ArmourCraftingTableRecipeProvider(
     private val mainModRecipeProvider: MainModRecipeProvider,
-    private val consumer: Consumer<FinishedRecipe>,
+    private val consumer: RecipeOutput,
 ) : MainModRecipeProvider(mainModRecipeProvider) {
     private val hasItem = "has_item"
 

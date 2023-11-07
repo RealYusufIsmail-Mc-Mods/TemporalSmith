@@ -18,20 +18,34 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book
 
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity
+import net.minecraft.client.gui.components.WidgetSprites
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent
 import net.minecraft.world.inventory.Slot
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.crafting.Recipe
+import net.minecraft.world.item.crafting.RecipeHolder
 
 class IngotFusionTollEnhancerRecipeBookComponent : RecipeBookComponent() {
     private var fuels: Ingredient? = null
     private val fuelItems = IngotFusionTollEnhancerBlockEntity.getFuels().keys
 
+    // TODO : Check how this works
+    private val FILTER_SPRITES =
+        WidgetSprites(
+            ArmourAndToolsMod.getModIdAndName(
+                "sprites/recipe_book/ingot_fusion_toll_enhancer_filter_enabled"),
+            ArmourAndToolsMod.getModIdAndName(
+                "sprites/recipe_book/ingot_fusion_toll_enhancer_filter_disabled"),
+            ArmourAndToolsMod.getModIdAndName(
+                "sprites/recipe_book/ingot_fusion_toll_enhancer_filter_enabled_highlighted"),
+            ArmourAndToolsMod.getModIdAndName(
+                "sprites/recipe_book/ingot_fusion_toll_enhancer_filter_disabled_highlighted"))
+
     override fun initFilterButtonTextures() {
-        filterButton.initTextureValues(152, 182, 28, 18, RECIPE_BOOK_LOCATION)
+        filterButton.initTextureValues(FILTER_SPRITES)
     }
 
     override fun slotClicked(pSlot: Slot?) {
@@ -41,11 +55,11 @@ class IngotFusionTollEnhancerRecipeBookComponent : RecipeBookComponent() {
         }
     }
 
-    override fun setupGhostRecipe(pRecipe: Recipe<*>, pSlots: List<Slot>) {
-        val itemstack = pRecipe.getResultItem(minecraft.level!!.registryAccess())
-        ghostRecipe.recipe = pRecipe
+    override fun setupGhostRecipe(recipeHolder: RecipeHolder<*>, pSlots: List<Slot>) {
+        val itemstack = recipeHolder.value.getResultItem(minecraft.level!!.registryAccess())
+        ghostRecipe.recipe = recipeHolder
         ghostRecipe.addIngredient(Ingredient.of(itemstack), pSlots[2].x, pSlots[2].y)
-        val nonnulllist = pRecipe.ingredients
+        val nonnulllist = recipeHolder.value.ingredients
         val slot = pSlots[1]
         if (slot.item.isEmpty) {
             if (fuels == null) {

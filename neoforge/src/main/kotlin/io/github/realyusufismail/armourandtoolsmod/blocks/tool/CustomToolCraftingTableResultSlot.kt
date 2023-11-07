@@ -21,11 +21,11 @@ package io.github.realyusufismail.armourandtoolsmod.blocks.tool
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
 import net.minecraft.world.Container
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.inventory.RecipeHolder
+import net.minecraft.world.inventory.RecipeCraftingHolder
 import net.minecraft.world.inventory.Slot
 import net.minecraft.world.item.ItemStack
-import net.minecraftforge.common.ForgeHooks
-import net.minecraftforge.event.ForgeEventFactory
+import net.neoforged.neoforge.common.CommonHooks
+import net.neoforged.neoforge.event.EventHooks
 
 /** @see net.minecraft.world.inventory.ResultSlot */
 class CustomToolCraftingTableResultSlot(
@@ -74,24 +74,24 @@ class CustomToolCraftingTableResultSlot(
     override fun checkTakeAchievements(pStack: ItemStack) {
         if (this.removeCount > 0) {
             pStack.onCraftedBy(this.player.level(), this.player, this.removeCount)
-            ForgeEventFactory.firePlayerCraftingEvent(this.player, pStack, this.craftSlots)
+            EventHooks.firePlayerCraftingEvent(this.player, pStack, this.craftSlots)
         }
-        if (container is RecipeHolder) {
-            (container as RecipeHolder).awardUsedRecipes(this.player, listOf(pStack))
+        if (container is RecipeCraftingHolder) {
+            (container as RecipeCraftingHolder).awardUsedRecipes(this.player, listOf(pStack))
         }
         this.removeCount = 0
     }
 
     override fun onTake(pPlayer: Player, pStack: ItemStack) {
         checkTakeAchievements(pStack)
-        ForgeHooks.setCraftingPlayer(pPlayer)
+        CommonHooks.setCraftingPlayer(pPlayer)
         val nonnulllist =
             pPlayer
                 .level()
                 .recipeManager
                 .getRemainingItemsFor(
                     RecipeTypeInit.TOOL_CRAFTING.get(), this.craftSlots, pPlayer.level())
-        ForgeHooks.setCraftingPlayer(null)
+        CommonHooks.setCraftingPlayer(null)
         for (i in nonnulllist.indices) {
             var itemstack: ItemStack = this.craftSlots.getItem(i)
             val itemstack1 = nonnulllist[i]

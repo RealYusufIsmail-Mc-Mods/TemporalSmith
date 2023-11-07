@@ -133,13 +133,6 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         return this
     }
 
-    fun addEnchantments(
-        enchantmentsAndLevels: EnchantmentsAndLevels
-    ): CustomToolCraftingTableRecipeBuilder {
-        this.enchantmentsAndLevels.addAll(enchantmentsAndLevels)
-        return this
-    }
-
     fun hideFlags(hideFlags: Int): CustomToolCraftingTableRecipeBuilder {
         this.hideFlags = hideFlags
         return this
@@ -238,9 +231,9 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         key: Map<Char, Ingredient>,
         advancement: Advancement.Builder,
         advancementId: ResourceLocation,
-        showNotification: Boolean,
-        enchantmentsAndLevels: EnchantmentsAndLevels,
-        hideFlags: Int = 0,
+        private val showNotification: Boolean,
+        private val enchantmentsAndLevels: EnchantmentsAndLevels,
+        private val hideFlags: Int = 0,
     ) : FinishedRecipe {
         override fun serializeRecipeData(jsonObject: JsonObject) {
             if (group.isNotEmpty()) {

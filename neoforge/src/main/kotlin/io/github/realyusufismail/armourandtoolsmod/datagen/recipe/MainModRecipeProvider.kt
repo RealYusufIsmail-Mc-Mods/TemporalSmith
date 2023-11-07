@@ -20,25 +20,28 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.recipe
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.provider.*
-import java.util.function.Consumer
+import java.util.concurrent.CompletableFuture
+import net.minecraft.core.HolderLookup
 import net.minecraft.data.DataGenerator
-import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.RecipeProvider
 import net.minecraft.resources.ResourceLocation
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder
+import net.neoforged.neoforge.common.conditions.IConditionBuilder
 
-open class MainModRecipeProvider(private val generatorIn: DataGenerator) :
-    RecipeProvider(generatorIn.packOutput), IConditionBuilder {
+open class MainModRecipeProvider(
+    private val generatorIn: DataGenerator,
+    private val lookup: CompletableFuture<HolderLookup.Provider>
+) : RecipeProvider(generatorIn.packOutput, lookup), IConditionBuilder {
 
-    constructor(`this`: MainModRecipeProvider) : this(`this`.generatorIn)
+    constructor(`this`: MainModRecipeProvider) : this(`this`.generatorIn, `this`.lookup)
 
-    override fun buildRecipes(pWriter: Consumer<FinishedRecipe>) {
-        ArmourCraftingTableRecipeProvider(this, pWriter).build()
-        FurnaceRecipeProvider(this, pWriter).build()
-        NormalCraftingTableRecipeProvider(this, pWriter).build()
-        ToolCraftingTableRecipeProvider(this, pWriter).build()
-        NewSmithingTableRecipeProvider(this, pWriter).build()
-        IngotFusionTollEnhancerRecipeProvider(this, pWriter).build()
+    override fun buildRecipes(recipeOutput: RecipeOutput) {
+        ArmourCraftingTableRecipeProvider(this, recipeOutput).build()
+        FurnaceRecipeProvider(this, recipeOutput).build()
+        NormalCraftingTableRecipeProvider(this, recipeOutput).build()
+        ToolCraftingTableRecipeProvider(this, recipeOutput).build()
+        NewSmithingTableRecipeProvider(this, recipeOutput).build()
+        IngotFusionTollEnhancerRecipeProvider(this, recipeOutput).build()
     }
 
     open fun modId(path: String): ResourceLocation {

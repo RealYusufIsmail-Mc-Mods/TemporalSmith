@@ -20,8 +20,8 @@ package io.github.realyusufismail.armourandtoolsmod.client;
 
 import io.github.realyusufismail.armourandtoolsmod.client.renderer.mjolnir.MjolnirItemRendererISTER;
 import io.github.realyusufismail.armourandtoolsmod.client.renderer.trident.aq.AqumarineTridentItemRendererISTER;
-import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 
 public class ArmourAndToolsModTridentItemRendererProvider {
   private static AqumarineTridentItemRendererISTER aqumarineTridentItemRendererISTER;

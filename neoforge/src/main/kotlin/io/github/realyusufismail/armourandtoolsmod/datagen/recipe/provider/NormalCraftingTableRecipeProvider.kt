@@ -23,9 +23,8 @@ import io.github.realyusufismail.armourandtoolsmod.core.util.name
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder
 import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapelessRecipeBuilder
-import java.util.function.Consumer
-import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.tags.BlockTags
 import net.minecraft.tags.BlockTags.BASE_STONE_OVERWORLD
 import net.minecraft.tags.ItemTags
@@ -34,7 +33,7 @@ import net.minecraft.world.level.block.Blocks
 
 class NormalCraftingTableRecipeProvider(
     private val mainModRecipeProvider: MainModRecipeProvider,
-    private val pWriter: Consumer<FinishedRecipe>
+    private val pWriter: RecipeOutput
 ) : MainModRecipeProvider(mainModRecipeProvider) {
 
     fun build() {

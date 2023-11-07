@@ -51,15 +51,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.RecipeHolder;
+import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
@@ -72,7 +69,7 @@ import org.jetbrains.annotations.Nullable;
  * @see AbstractFurnaceBlockEntity
  */
 public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
-    implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
+    implements WorldlyContainer, RecipeCraftingHolder, StackedContentsCompatible {
 
   @Getter
   private final RecipeManager.CachedCheck<Container, IngotFusionTollEnhancerRecipe> quickCheck;
@@ -335,11 +332,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
         ingredient2 = ingredient2Remaining;
       } else if (!this.level.isClientSide) {
         Containers.dropItemStack(
-            this.level,
-            (double) blockPos.getX(),
-            (double) blockPos.getY(),
-            (double) blockPos.getZ(),
-            ingredient2Remaining);
+            this.level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), ingredient2Remaining);
       }
     } else {
       ingredient2.shrink(1);
@@ -373,13 +366,13 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   private boolean hasRecipe(ItemStack ingredient) {
     return level.getRecipeManager().getAllRecipesFor(type).stream()
-        .anyMatch(recipe -> recipe.isIngredient(ingredient));
+        .anyMatch(recipe -> recipe.value().isIngredient(ingredient));
   }
 
   private ItemStack getOutput(
       Level level, ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
     return level.getRecipeManager().getAllRecipesFor(type).stream()
-        .map(recipe -> recipe.getResult(ingredient1, ingredient2, ingredient3))
+        .map(recipe -> recipe.value().getResult(ingredient1, ingredient2, ingredient3))
         .filter(itemStack -> !itemStack.isEmpty())
         .findFirst()
         .orElse(ItemStack.EMPTY);
@@ -437,16 +430,15 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   }
 
   @Override
-  public void setRecipeUsed(@Nullable Recipe<?> pRecipe) {
-    if (pRecipe != null) {
-      ResourceLocation resourcelocation = pRecipe.getId();
+  public void setRecipeUsed(@Nullable RecipeHolder<?> recipe) {
+    if (recipe != null) {
+      ResourceLocation resourcelocation = recipe.id();
       this.recipesUsed.addTo(resourcelocation, 1);
     }
   }
 
-  @Nullable
   @Override
-  public Recipe<?> getRecipeUsed() {
+  public RecipeHolder<?> getRecipeUsed() {
     return null;
   }
 
@@ -460,11 +452,11 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
   public void awardUsedRecipes(Player pPlayer, List<ItemStack> pItems) {}
 
   public void awardUsedRecipesAndPopExperience(ServerPlayer pPlayer) {
-    List<Recipe<?>> list =
+    List<RecipeHolder<?>> list =
         this.getRecipesToAwardAndPopExperience(pPlayer.serverLevel(), pPlayer.position());
     pPlayer.awardRecipes(list);
 
-    for (Recipe<?> recipe : list) {
+    for (RecipeHolder<?> recipe : list) {
       if (recipe != null) {
         pPlayer.triggerRecipeCrafted(recipe, this.items);
       }
@@ -473,8 +465,8 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
     this.recipesUsed.clear();
   }
 
-  public List<Recipe<?>> getRecipesToAwardAndPopExperience(ServerLevel pLevel, Vec3 pPopVec) {
-    List<Recipe<?>> list = Lists.newArrayList();
+  public List<RecipeHolder<?>> getRecipesToAwardAndPopExperience(ServerLevel pLevel, Vec3 pPopVec) {
+    List<RecipeHolder<?>> list = Lists.newArrayList();
 
     for (Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
       pLevel
@@ -487,7 +479,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
                     pLevel,
                     pPopVec,
                     entry.getIntValue(),
-                    ((AbstractCookingRecipe) p_155023_).getExperience());
+                    ((AbstractCookingRecipe) p_155023_.value()).getExperience());
               });
     }
 

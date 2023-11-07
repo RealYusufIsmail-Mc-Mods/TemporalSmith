@@ -31,6 +31,7 @@ enum class CustomToolsCraftingBookCategory(private var bookName: String) : Strin
     MISC("misc");
 
     companion object {
+        @JvmField
         val CODEC: StringRepresentable.EnumCodec<CustomToolsCraftingBookCategory> =
             StringRepresentable.fromEnum { entries.toTypedArray() }
     }

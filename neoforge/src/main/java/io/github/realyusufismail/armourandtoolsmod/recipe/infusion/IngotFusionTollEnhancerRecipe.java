@@ -18,7 +18,8 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.recipe.infusion;
 
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory;
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit;
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit;
@@ -27,8 +28,6 @@ import lombok.Getter;
 import lombok.val;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -38,8 +37,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
 
-  protected final RecipeType<?> type;
-  protected final ResourceLocation id;
   @Getter public final Ingredient ingredient1;
   @Getter public final Ingredient ingredient2;
   @Getter public final Ingredient ingredient3;
@@ -47,15 +44,11 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
   @Getter @NotNull public final IngotFusionTollEnhancerRecipeBookCategory category;
 
   public IngotFusionTollEnhancerRecipe(
-      RecipeType<?> type,
-      ResourceLocation id,
+      IngotFusionTollEnhancerRecipeBookCategory category,
       Ingredient ingredient1,
       Ingredient ingredient2,
       Ingredient ingredient3,
-      ItemStack result,
-      IngotFusionTollEnhancerRecipeBookCategory category) {
-    this.type = type;
-    this.id = id;
+      ItemStack result) {
     this.ingredient1 = ingredient1;
     this.ingredient2 = ingredient2;
     this.ingredient3 = ingredient3;
@@ -86,18 +79,13 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
   }
 
   @Override
-  public ResourceLocation getId() {
-    return this.id;
-  }
-
-  @Override
   public RecipeSerializer<?> getSerializer() {
     return RecipeSerializerInit.INGOT_FUSION_TOLL_ENHANCER_RECIPE.get();
   }
 
   @Override
-  public RecipeType<?> getType() {
-    return this.type;
+  public @NotNull RecipeType<?> getType() {
+    return RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get();
   }
 
   public boolean isIngredient(ItemStack ingredient) {
@@ -126,42 +114,43 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
 
   public static class Serializer implements RecipeSerializer<IngotFusionTollEnhancerRecipe> {
 
+    private static final Codec<IngotFusionTollEnhancerRecipe> CODEC =
+        RecordCodecBuilder.create(
+            (p_44108_) ->
+                p_44108_
+                    .group(
+                        IngotFusionTollEnhancerRecipeBookCategory.CODEC
+                            .fieldOf("category")
+                            .orElse(IngotFusionTollEnhancerRecipeBookCategory.MISC)
+                            .forGetter(p_301108_ -> p_301108_.category),
+                        Ingredient.CODEC
+                            .fieldOf("ingredient1")
+                            .forGetter((p_44105_) -> p_44105_.ingredient1),
+                        Ingredient.CODEC
+                            .fieldOf("ingredient2")
+                            .forGetter((p_44104_) -> p_44104_.ingredient2),
+                        Ingredient.CODEC
+                            .fieldOf("ingredient3")
+                            .forGetter((p_44106_) -> p_44106_.ingredient3),
+                        CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC
+                            .fieldOf("result")
+                            .forGetter((p_44103_) -> p_44103_.result))
+                    .apply(p_44108_, IngotFusionTollEnhancerRecipe::new));
+
     @Override
-    public IngotFusionTollEnhancerRecipe fromJson(ResourceLocation pRecipeId, JsonObject json) {
-      val category =
-          IngotFusionTollEnhancerRecipeBookCategory.CODEC.byName(
-              GsonHelper.getAsString(json, "category", null),
-              IngotFusionTollEnhancerRecipeBookCategory.MISC);
-      val ingredient1 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient1"));
-      val ingredient2 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient2"));
-      val ingredient3 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient3"));
-      val result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-      return new IngotFusionTollEnhancerRecipe(
-          RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(),
-          pRecipeId,
-          ingredient1,
-          ingredient2,
-          ingredient3,
-          result,
-          category);
+    public @NotNull Codec<IngotFusionTollEnhancerRecipe> codec() {
+      return CODEC;
     }
 
     @Override
-    public @Nullable IngotFusionTollEnhancerRecipe fromNetwork(
-        ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
-      val category = pBuffer.readEnum(IngotFusionTollEnhancerRecipeBookCategory.class);
-      val ingredient1 = Ingredient.fromNetwork(pBuffer);
-      val ingredient2 = Ingredient.fromNetwork(pBuffer);
-      val ingredient3 = Ingredient.fromNetwork(pBuffer);
-      val result = pBuffer.readItem();
+    public @Nullable IngotFusionTollEnhancerRecipe fromNetwork(FriendlyByteBuf friendlyByteBuf) {
+      val category = friendlyByteBuf.readEnum(IngotFusionTollEnhancerRecipeBookCategory.class);
+      val ingredient1 = Ingredient.fromNetwork(friendlyByteBuf);
+      val ingredient2 = Ingredient.fromNetwork(friendlyByteBuf);
+      val ingredient3 = Ingredient.fromNetwork(friendlyByteBuf);
+      val result = friendlyByteBuf.readItem();
       return new IngotFusionTollEnhancerRecipe(
-          RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get(),
-          pRecipeId,
-          ingredient1,
-          ingredient2,
-          ingredient3,
-          result,
-          category);
+          category, ingredient1, ingredient2, ingredient3, result);
     }
 
     @Override

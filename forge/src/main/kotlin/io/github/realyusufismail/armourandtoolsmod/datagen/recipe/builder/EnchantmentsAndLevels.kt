@@ -22,7 +22,7 @@ import net.minecraft.world.item.enchantment.Enchantment
 
 class EnchantmentsAndLevels : MutableMap<Enchantment, Int> by mutableMapOf() {
 
-    fun add(enchantment: net.minecraft.world.item.enchantment.Enchantment, level: Int) {
+    fun add(enchantment: Enchantment, level: Int) {
         put(enchantment, level)
     }
 

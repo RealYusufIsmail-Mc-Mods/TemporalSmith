@@ -29,7 +29,7 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.minecraftforge.registries.RegistryObject
+import net.neoforged.neoforge.registries.RegistryObject
 
 class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_ID, "en_us") {
 

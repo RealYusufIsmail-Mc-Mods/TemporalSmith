@@ -61,6 +61,7 @@ enum class CustomToolMaterial(
     private val maxUses = 0
     private val enchantability = 0
     private val repairMaterial: Ingredient? = null
+
     override fun getUses(): Int {
         return maxUses
     }

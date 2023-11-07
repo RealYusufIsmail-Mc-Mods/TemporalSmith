@@ -20,7 +20,7 @@ package io.github.realyusufismail.armourandtoolsmod.core.util
 
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.minecraftforge.registries.ForgeRegistries
+import net.neoforged.neoforge.registries.ForgeRegistries
 
 val Item.name: String
     get() = this.toString()

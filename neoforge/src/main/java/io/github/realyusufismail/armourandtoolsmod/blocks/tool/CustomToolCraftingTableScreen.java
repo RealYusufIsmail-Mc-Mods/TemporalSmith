@@ -20,7 +20,6 @@ package io.github.realyusufismail.armourandtoolsmod.blocks.tool;
 
 import java.util.Objects;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
@@ -58,22 +57,12 @@ public class CustomToolCraftingTableScreen
         this.widthTooNarrow,
         this.menu);
     this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-    this.addRenderableWidget(
-        new ImageButton(
-            this.leftPos + 5,
-            this.height / 2 - 49,
-            20,
-            18,
-            0,
-            0,
-            19,
-            RECIPE_BUTTON_LOCATION,
-            (p_98484_) -> {
-              this.recipeBookComponent.toggleVisibility();
-              this.leftPos =
-                  this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-              p_98484_.setPosition(this.leftPos + 5, this.height / 2 - 49);
-            }));
+    this.recipeBookComponent.init(
+        this.width,
+        this.height,
+        Objects.requireNonNull(this.minecraft, "Minecraft is null in table screen"),
+        this.widthTooNarrow,
+        this.menu);
     this.addWidget(this.recipeBookComponent);
     this.setInitialFocus(this.recipeBookComponent);
     this.titleLabelX = 29;
@@ -93,7 +82,6 @@ public class CustomToolCraftingTableScreen
    * @param pPartialTick the partial tick time.
    */
   public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-    this.renderBackground(pGuiGraphics);
     if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
       this.renderBg(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
       this.recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);

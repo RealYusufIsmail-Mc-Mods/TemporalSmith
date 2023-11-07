@@ -30,7 +30,7 @@ import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftin
 import net.minecraft.client.RecipeBookCategories
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.minecraftforge.client.event.RegisterRecipeBookCategoriesEvent
+import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent
 
 object RecipeCategoriesInit {
 
@@ -172,8 +172,8 @@ object RecipeCategoriesInit {
             ARMOUR_CRAFTING_BOOTS.get(), listOf(ARMOUR_CRAFTING_BOOTS.get()))
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.ARMOUR_CRAFTING.get()) {
-            if (it is CustomArmourCraftingTableRecipe) {
-                when (it.category()) {
+            if (it.value() is CustomArmourCraftingTableRecipe) {
+                when ((it.value() as CustomArmourCraftingTableRecipe).category()) {
                     CustomArmourCraftingBookCategory.ARMOUR_HEAD -> ARMOUR_CRAFTING_HELMET.get()
                     CustomArmourCraftingBookCategory.ARMOUR_CHEST ->
                         ARMOUR_CRAFTING_CHESTPLATE.get()
@@ -235,8 +235,8 @@ object RecipeCategoriesInit {
         event.registerAggregateCategory(TOOL_CRAFTING_MISC.get(), listOf(TOOL_CRAFTING_MISC.get()))
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.TOOL_CRAFTING.get()) {
-            if (it is CustomToolCraftingTableRecipe) {
-                when (it.category()) {
+            if (it.value() is CustomToolCraftingTableRecipe) {
+                when ((it.value() as CustomToolCraftingTableRecipe).category()) {
                     CustomToolsCraftingBookCategory.SWORD -> TOOL_CRAFTING_SWORD.get()
                     CustomToolsCraftingBookCategory.PICKAXE -> TOOL_CRAFTING_PICKAXE.get()
                     CustomToolsCraftingBookCategory.AXE -> TOOL_CRAFTING_AXE.get()
@@ -277,8 +277,8 @@ object RecipeCategoriesInit {
             INGOT_FUSION_TOLL_ENHANCER_MISC.get(), listOf(INGOT_FUSION_TOLL_ENHANCER_MISC.get()))
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get()) {
-            if (it is IngotFusionTollEnhancerRecipe) {
-                when (it.category) {
+            if (it.value() is IngotFusionTollEnhancerRecipe) {
+                when ((it.value() as IngotFusionTollEnhancerRecipe).category) {
                     IngotFusionTollEnhancerRecipeBookCategory.TOOL ->
                         INGOT_FUSION_TOLL_ENHANCER_TOOL.get()
                     IngotFusionTollEnhancerRecipeBookCategory.ARMOUR ->

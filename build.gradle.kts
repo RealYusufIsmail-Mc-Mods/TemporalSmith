@@ -40,6 +40,7 @@ allprojects {
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "jacoco")
+    apply(plugin = "com.diffplug.spotless")
 
     dependencies {
         // Json
@@ -63,6 +64,69 @@ subprojects {
             html.required.set(true)
         }
         finalizedBy("jacocoTestCoverageVerification")
+    }
+
+    spotless {
+        kotlin {
+            // Excludes build folder since it contains generated java classes.
+            targetExclude("build/**")
+            ktfmt("0.42").dropboxStyle()
+
+            licenseHeader(
+                """/*
+ * Copyright 2023 RealYusufIsmail.
+ *
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *
+ * you may not use this file except in compliance with the License.
+ *
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ """)
+        }
+
+        kotlinGradle {
+            target("**/*.gradle.kts")
+            ktfmt("0.42").dropboxStyle()
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
+        }
+
+        java {
+            target("**/*.java")
+            googleJavaFormat()
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
+            licenseHeader(
+                """/*
+ * Copyright 2023 RealYusufIsmail.
+ *
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *
+ * you may not use this file except in compliance with the License.
+ *
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ """)
+        }
     }
 }
 

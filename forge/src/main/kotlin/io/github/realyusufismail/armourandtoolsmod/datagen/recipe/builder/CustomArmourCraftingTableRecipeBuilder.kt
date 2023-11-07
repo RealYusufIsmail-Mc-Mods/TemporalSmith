@@ -232,9 +232,9 @@ object CustomArmourCraftingTableRecipeBuilder {
         key: Map<Char, Ingredient>,
         advancement: Advancement.Builder,
         advancementId: ResourceLocation,
-        showNotification: Boolean,
-        val enchantmentsAndLevels: EnchantmentsAndLevels,
-        val hideFlags: Boolean,
+        private val showNotification: Boolean,
+        private val enchantmentsAndLevels: EnchantmentsAndLevels,
+        private val hideFlags: Boolean,
     ) : FinishedRecipe {
         override fun serializeRecipeData(jsonObject: JsonObject) {
             if (group.isNotEmpty()) {
