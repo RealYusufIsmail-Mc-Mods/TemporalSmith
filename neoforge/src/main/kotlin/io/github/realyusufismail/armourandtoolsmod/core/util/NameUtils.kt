@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.Block
 import net.neoforged.neoforge.registries.ForgeRegistries
 
 val Item.name: String
-    get() = this.toString()
+    get() = ForgeRegistries.ITEMS.getKey(this).toString().replace("armourandtoolsmod:", "")
 
 val Block.bName: String
     get() = ForgeRegistries.BLOCKS.getKey(this).toString().replace("armourandtoolsmod:", "")

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta3] - UNRELEASED
+
+# Updated json files to reflect Neo Forges changes.
+
 # [1.20.2-2.0.0.beta2] - 2023-11-13
 
 ### Added support for 1.20.2 for neo forge. No longer works with forge mods.

@@ -1,16 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:ingots/sapphire"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "armourandtoolsmod:sapphire_pickaxe"
@@ -20,7 +10,6 @@
   },
   "requirements": [
     [
-      "has_item",
       "has_the_recipe"
     ]
   ],
@@ -29,5 +18,5 @@
       "armourandtoolsmod:sapphire_pickaxe"
     ]
   },
-  "sends_telemetry_event": true
+  "sends_telemetry_event": false
 }
