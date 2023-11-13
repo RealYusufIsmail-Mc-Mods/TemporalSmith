@@ -40,36 +40,6 @@ import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.common.data.ForgeAdvancementProvider
 
 class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
-    private fun simpleGetItem(
-        consumer: Consumer<Advancement>,
-        item: ItemLike,
-        parent: Advancement
-    ): Advancement {
-        return simpleGetItem(consumer, item, parent, item.asItem().toString())
-    }
-
-    private fun simpleGetItem(
-        consumer: Consumer<Advancement>,
-        item: ItemLike,
-        parent: Advancement,
-        key: String
-    ): Advancement {
-        return simpleGetItem(consumer, item, ItemStack(item), parent, key)
-    }
-
-    private fun simpleGetItem(
-        consumer: Consumer<Advancement>,
-        item: ItemLike,
-        icon: ItemStack,
-        parent: Advancement,
-        key: String
-    ): Advancement {
-        return Advancement.Builder.advancement()
-            .parent(parent)
-            .display(icon, title(key), description(key), null, FrameType.TASK, true, true, false)
-            .addCriterion("get_item", getItem(item))
-            .save(consumer, id(key))
-    }
 
     private fun id(path: String): String {
         return ArmourAndToolsMod.getModIdAndName(path).toString()

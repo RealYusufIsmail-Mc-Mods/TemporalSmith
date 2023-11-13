@@ -37,6 +37,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.entity.ai.attributes.Attributes
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.projectile.AbstractArrow
+import net.minecraft.world.entity.projectile.ThrownTrident
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Tier
 import net.minecraft.world.item.TridentItem
@@ -94,12 +95,7 @@ abstract class ArmourToolsModTridentItem(
     }
 
     /** Called when the player stops using an Item (stops holding the right mouse button). */
-    override fun releaseUsing(
-        pStack: ItemStack,
-        pLevel: Level,
-        pEntityLiving: LivingEntity,
-        pTimeLeft: Int
-    ) {
+    override fun releaseUsing(pStack: ItemStack, pLevel: Level, pEntityLiving: LivingEntity, pTimeLeft: Int) {
         if (pEntityLiving is Player) {
             val i = getUseDuration(pStack) - pTimeLeft
             if (i >= 10) {
@@ -110,25 +106,27 @@ abstract class ArmourToolsModTridentItem(
                             p_43388_.broadcastBreakEvent(pEntityLiving.getUsedItemHand())
                         }
                         if (j == 0) {
-                            val throwntrident = getThrownEntity(pLevel, pEntityLiving, pStack)
-                            throwntrident.shootFromRotation(
+                            val thrownTrident = ThrownTrident(pLevel, pEntityLiving, pStack)
+                            thrownTrident.shootFromRotation(
                                 pEntityLiving,
-                                pEntityLiving.getXRot(),
-                                pEntityLiving.getYRot(),
+                                pEntityLiving.xRot,
+                                pEntityLiving.yRot,
                                 0.0f,
                                 2.5f + j.toFloat() * 0.5f,
-                                1.0f)
+                                1.0f
+                            )
                             if (pEntityLiving.abilities.instabuild) {
-                                throwntrident.pickup = AbstractArrow.Pickup.CREATIVE_ONLY
+                                thrownTrident.pickup = AbstractArrow.Pickup.CREATIVE_ONLY
                             }
-                            pLevel.addFreshEntity(throwntrident)
+                            pLevel.addFreshEntity(thrownTrident)
                             pLevel.playSound(
-                                null as Player?,
-                                throwntrident,
+                                null,
+                                thrownTrident,
                                 SoundEvents.TRIDENT_THROW,
                                 SoundSource.PLAYERS,
                                 1.0f,
-                                1.0f)
+                                1.0f
+                            )
                             if (!pEntityLiving.abilities.instabuild) {
                                 pEntityLiving.inventory.removeItem(pStack)
                             }
@@ -136,15 +134,15 @@ abstract class ArmourToolsModTridentItem(
                     }
                     pEntityLiving.awardStat(Stats.ITEM_USED[this])
                     if (j > 0) {
-                        val f7 = pEntityLiving.getYRot()
-                        val f = pEntityLiving.getXRot()
+                        val f7 = pEntityLiving.yRot
+                        val f = pEntityLiving.xRot
                         var f1 =
                             -Mth.sin(f7 * (Math.PI.toFloat() / 180f)) *
-                                Mth.cos(f * (Math.PI.toFloat() / 180f))
+                                    Mth.cos(f * (Math.PI.toFloat() / 180f))
                         var f2 = -Mth.sin(f * (Math.PI.toFloat() / 180f))
                         var f3 =
                             Mth.cos(f7 * (Math.PI.toFloat() / 180f)) *
-                                Mth.cos(f * (Math.PI.toFloat() / 180f))
+                                    Mth.cos(f * (Math.PI.toFloat() / 180f))
                         val f4 = Mth.sqrt(f1 * f1 + f2 * f2 + f3 * f3)
                         val f5 = 3.0f * ((1.0f + j.toFloat()) / 4.0f)
                         f1 *= f5 / f4
@@ -156,7 +154,7 @@ abstract class ArmourToolsModTridentItem(
                             val f6 = 1.1999999f
                             pEntityLiving.move(MoverType.SELF, Vec3(0.0, f6.toDouble(), 0.0))
                         }
-                        val soundevent: SoundEvent =
+                        val soundEvent: SoundEvent =
                             if (j >= 3) {
                                 SoundEvents.TRIDENT_RIPTIDE_3
                             } else if (j == 2) {
@@ -165,43 +163,30 @@ abstract class ArmourToolsModTridentItem(
                                 SoundEvents.TRIDENT_RIPTIDE_1
                             }
                         pLevel.playSound(
-                            null as Player?,
+                            null,
                             pEntityLiving,
-                            soundevent,
+                            soundEvent,
                             SoundSource.PLAYERS,
                             1.0f,
-                            1.0f)
+                            1.0f
+                        )
                     }
                 }
             }
         }
     }
 
-    /**
-     * Called to trigger the item's "innate" right click behavior. To handle when this item is used
-     * on a Block, see [.onItemUse].
-     */
-    override fun use(
-        pLevel: Level,
-        pPlayer: Player,
-        hand: InteractionHand
-    ): InteractionResultHolder<ItemStack> {
-        val itemStack: ItemStack = pPlayer.getItemInHand(hand)
-        return if (itemStack.damageValue >= itemStack.maxDamage - 1) {
-            InteractionResultHolder.fail(itemStack)
-        } else if (!requiresRainForRiptide()) {
-            pPlayer.startUsingItem(hand)
-            InteractionResultHolder.consume(itemStack)
-        } else if (EnchantmentHelper.getRiptide(itemStack) > 0 && !pPlayer.isInWaterOrRain) {
-            InteractionResultHolder.fail(itemStack)
-        } else {
-            pPlayer.startUsingItem(hand)
-            InteractionResultHolder.consume(itemStack)
-        }
-    }
 
-    fun requiresRainForRiptide(): Boolean {
-        return true
+    override fun use(p_43405_: Level, p_43406_: Player, p_43407_: InteractionHand): InteractionResultHolder<ItemStack> {
+        val itemstack = p_43406_.getItemInHand(p_43407_)
+        return if (itemstack.damageValue >= itemstack.maxDamage - 1) {
+            InteractionResultHolder.fail(itemstack)
+        } else if (EnchantmentHelper.getRiptide(itemstack) > 0 && !p_43406_.isInWaterOrRain) {
+            InteractionResultHolder.fail(itemstack)
+        } else {
+            p_43406_.startUsingItem(p_43407_)
+            InteractionResultHolder.consume(itemstack)
+        }
     }
 
     /**
