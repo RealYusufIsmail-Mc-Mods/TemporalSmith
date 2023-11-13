@@ -37,7 +37,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.entity.ai.attributes.Attributes
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.projectile.AbstractArrow
-import net.minecraft.world.entity.projectile.ThrownTrident
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Tier
 import net.minecraft.world.item.TridentItem
@@ -95,7 +94,12 @@ abstract class ArmourToolsModTridentItem(
     }
 
     /** Called when the player stops using an Item (stops holding the right mouse button). */
-    override fun releaseUsing(pStack: ItemStack, pLevel: Level, pEntityLiving: LivingEntity, pTimeLeft: Int) {
+    override fun releaseUsing(
+        pStack: ItemStack,
+        pLevel: Level,
+        pEntityLiving: LivingEntity,
+        pTimeLeft: Int
+    ) {
         if (pEntityLiving is Player) {
             val i = getUseDuration(pStack) - pTimeLeft
             if (i >= 10) {
@@ -106,15 +110,14 @@ abstract class ArmourToolsModTridentItem(
                             p_43388_.broadcastBreakEvent(pEntityLiving.getUsedItemHand())
                         }
                         if (j == 0) {
-                            val thrownTrident = ThrownTrident(pLevel, pEntityLiving, pStack)
+                            val thrownTrident = getThrownEntity(pLevel, pEntityLiving, pStack)
                             thrownTrident.shootFromRotation(
                                 pEntityLiving,
                                 pEntityLiving.xRot,
                                 pEntityLiving.yRot,
                                 0.0f,
                                 2.5f + j.toFloat() * 0.5f,
-                                1.0f
-                            )
+                                1.0f)
                             if (pEntityLiving.abilities.instabuild) {
                                 thrownTrident.pickup = AbstractArrow.Pickup.CREATIVE_ONLY
                             }
@@ -125,8 +128,7 @@ abstract class ArmourToolsModTridentItem(
                                 SoundEvents.TRIDENT_THROW,
                                 SoundSource.PLAYERS,
                                 1.0f,
-                                1.0f
-                            )
+                                1.0f)
                             if (!pEntityLiving.abilities.instabuild) {
                                 pEntityLiving.inventory.removeItem(pStack)
                             }
@@ -138,11 +140,11 @@ abstract class ArmourToolsModTridentItem(
                         val f = pEntityLiving.xRot
                         var f1 =
                             -Mth.sin(f7 * (Math.PI.toFloat() / 180f)) *
-                                    Mth.cos(f * (Math.PI.toFloat() / 180f))
+                                Mth.cos(f * (Math.PI.toFloat() / 180f))
                         var f2 = -Mth.sin(f * (Math.PI.toFloat() / 180f))
                         var f3 =
                             Mth.cos(f7 * (Math.PI.toFloat() / 180f)) *
-                                    Mth.cos(f * (Math.PI.toFloat() / 180f))
+                                Mth.cos(f * (Math.PI.toFloat() / 180f))
                         val f4 = Mth.sqrt(f1 * f1 + f2 * f2 + f3 * f3)
                         val f5 = 3.0f * ((1.0f + j.toFloat()) / 4.0f)
                         f1 *= f5 / f4
@@ -163,21 +165,18 @@ abstract class ArmourToolsModTridentItem(
                                 SoundEvents.TRIDENT_RIPTIDE_1
                             }
                         pLevel.playSound(
-                            null,
-                            pEntityLiving,
-                            soundEvent,
-                            SoundSource.PLAYERS,
-                            1.0f,
-                            1.0f
-                        )
+                            null, pEntityLiving, soundEvent, SoundSource.PLAYERS, 1.0f, 1.0f)
                     }
                 }
             }
         }
     }
 
-
-    override fun use(p_43405_: Level, p_43406_: Player, p_43407_: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(
+        p_43405_: Level,
+        p_43406_: Player,
+        p_43407_: InteractionHand
+    ): InteractionResultHolder<ItemStack> {
         val itemstack = p_43406_.getItemInHand(p_43407_)
         return if (itemstack.damageValue >= itemstack.maxDamage - 1) {
             InteractionResultHolder.fail(itemstack)

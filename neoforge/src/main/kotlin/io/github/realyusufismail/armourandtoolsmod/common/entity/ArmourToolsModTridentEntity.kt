@@ -22,6 +22,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientGamePacketListener
+import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.server.level.ServerLevel
@@ -77,7 +78,7 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
 
         val i = entityData.get(ID_LOYALTY).toInt()
         if (i > 0 && (dealtDamage || this.isNoPhysics) && entity != null) {
-            if (!isAcceptibleReturnOwner()) {
+            if (!isAcceptableReturnOwner()) {
                 if (!level().isClientSide && pickup == Pickup.ALLOWED) {
                     this.spawnAtLocation(this.pickupItem, 0.1f)
                 }
@@ -100,7 +101,7 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
         super.tick()
     }
 
-    fun isAcceptibleReturnOwner(): Boolean {
+    private fun isAcceptableReturnOwner(): Boolean {
         val shooter = this.owner
         return if (shooter != null && shooter.isAlive) {
             shooter !is ServerPlayer || !shooter.isSpectator()
@@ -111,10 +112,6 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
 
     override fun getPickupItem(): ItemStack {
         return tridentItem!!.copy()
-    }
-
-    fun isFoil(): Boolean {
-        return entityData.get(ID_FOIL)
     }
 
     /** Gets the EntityHitResult representing the entity hit */
@@ -243,10 +240,10 @@ abstract class ArmourToolsModTridentEntity : AbstractArrow {
 
     companion object {
         @JvmStatic
-        val ID_LOYALTY =
+        val ID_LOYALTY: EntityDataAccessor<Byte> =
             SynchedEntityData.defineId(
                 ArmourToolsModTridentEntity::class.java, EntityDataSerializers.BYTE)
-        protected val ID_FOIL =
+        protected val ID_FOIL: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(
                 ArmourToolsModTridentEntity::class.java, EntityDataSerializers.BOOLEAN)
     }

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.1-1.0.7.beta3] - 2023-11-13
+
+# Fixed issues with some item and armour materials not being registered properly.
+
 ## [1.20.1-1.0.7.beta2] - 2023-10-24
 
 ### Added support for new forge. Changelog for both versions will now be split. Currently both versions are the same.
