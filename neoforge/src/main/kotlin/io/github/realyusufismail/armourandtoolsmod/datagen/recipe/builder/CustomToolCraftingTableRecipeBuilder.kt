@@ -25,17 +25,14 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import io.github.realyusufismail.armourandtoolsmod.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeSerializerInit
+import io.github.realyusufismail.realyusufismailcore.recipe.util.EnchantmentsAndLevels
 import java.util.*
-import java.util.function.Consumer
-import net.minecraft.advancements.Advancement
-import net.minecraft.advancements.AdvancementRewards
-import net.minecraft.advancements.CriterionTriggerInstance
-import net.minecraft.advancements.RequirementsStrategy
+import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeBuilder
-import net.minecraft.data.recipes.RecipeBuilder.ROOT_RECIPE_ADVANCEMENT
 import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
@@ -43,13 +40,13 @@ import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.level.ItemLike
-import net.minecraftforge.registries.ForgeRegistries
+import net.neoforged.neoforge.registries.ForgeRegistries
 
 /** @see net.minecraft.data.recipes.ShapedRecipeBuilder */
 object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
     private val rows: MutableList<String> = Lists.newArrayList()
     private val key: MutableMap<Char, Ingredient> = Maps.newLinkedHashMap()
-    private var advancement: Advancement.Builder? = null
+    private val criteria: MutableMap<String, Criterion<*>> = Maps.newLinkedHashMap()
     private var group: String? = null
     private var bookCategory: CustomToolsCraftingBookCategory? = null
 
@@ -79,7 +76,6 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         this.result = itemLike.asItem()
         this.count = count
         this.bookCategory = bookCategory
-        this.advancement = Advancement.Builder.advancement()
         return this
     }
 
@@ -117,9 +113,9 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
 
     override fun unlockedBy(
         creterionId: String,
-        criterionTriggerInstance: CriterionTriggerInstance,
+        criterion: Criterion<*>,
     ): CustomToolCraftingTableRecipeBuilder {
-        advancement?.addCriterion(creterionId, criterionTriggerInstance)
+        this.criteria[creterionId] = criterion
         return this
     }
 
@@ -130,13 +126,6 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
 
     fun addEnchantment(enchantment: Enchantment, level: Int): CustomToolCraftingTableRecipeBuilder {
         enchantmentsAndLevels.add(enchantment, level)
-        return this
-    }
-
-    fun addEnchantments(
-        enchantmentsAndLevels: EnchantmentsAndLevels
-    ): CustomToolCraftingTableRecipeBuilder {
-        this.enchantmentsAndLevels.addAll(enchantmentsAndLevels)
         return this
     }
 
@@ -155,16 +144,19 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
     }
 
     override fun save(
-        finishedRecipeConsumer: Consumer<FinishedRecipe>,
+        recipeOutput: RecipeOutput,
         resourceLocation: ResourceLocation,
     ) {
         ensureValid(resourceLocation)
-        advancement
-            ?.parent(ROOT_RECIPE_ADVANCEMENT)
-            ?.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceLocation))
-            ?.rewards(AdvancementRewards.Builder.recipe(resourceLocation))
-            ?.requirements(RequirementsStrategy.OR)
-        finishedRecipeConsumer.accept(
+
+        val advancementBuilder: Advancement.Builder =
+            recipeOutput
+                .advancement()
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceLocation))
+                .rewards(AdvancementRewards.Builder.recipe(resourceLocation))
+                .requirements(AdvancementRequirements.Strategy.OR)
+
+        recipeOutput.accept(
             Result(
                 bookCategory ?: throw IllegalStateException("Recipe category is not set"),
                 resourceLocation,
@@ -173,8 +165,9 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
                 group ?: "",
                 rows,
                 key,
-                advancement ?: throw IllegalStateException("Advancement is not set"),
-                resourceLocation.withPrefix("recipes/" + recipeCategory!!.folderName + "/"),
+                advancementBuilder.build(
+                    resourceLocation.withPrefix(
+                        "recipes/" + this.recipeCategory!!.folderName + "/")),
                 showNotification,
                 enchantmentsAndLevels,
                 hideFlags))
@@ -189,7 +182,6 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         recipeCategory = null
         count = null
         result = null
-        advancement = null
     }
 
     private fun ensureValid(resourceLocation: ResourceLocation) {
@@ -222,7 +214,7 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
                     ("Shaped recipe " +
                         resourceLocation +
                         " only takes in a single item - should it be a shapeless recipe instead?"))
-            } else if (advancement?.criteria?.isEmpty() == true) {
+            } else if (criteria.isEmpty()) {
                 throw IllegalStateException("No way of obtaining recipe $resourceLocation")
             }
         }
@@ -236,11 +228,10 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         group: String,
         pattern: List<String>,
         key: Map<Char, Ingredient>,
-        advancement: Advancement.Builder,
-        advancementId: ResourceLocation,
-        showNotification: Boolean,
-        enchantmentsAndLevels: EnchantmentsAndLevels,
-        hideFlags: Int = 0,
+        advancement: AdvancementHolder,
+        private val showNotification: Boolean,
+        private val enchantmentsAndLevels: EnchantmentsAndLevels,
+        private val hideFlags: Int = 0,
     ) : FinishedRecipe {
         override fun serializeRecipeData(jsonObject: JsonObject) {
             if (group.isNotEmpty()) {
@@ -255,7 +246,7 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
             jsonObject.add("pattern", jsonarray)
             val jsonObject1 = JsonObject()
             for (entry: Map.Entry<Char, Ingredient> in key.entries) {
-                jsonObject1.add(entry.key.toString(), entry.value.toJson())
+                jsonObject1.add(entry.key.toString(), entry.value.toJson(false))
             }
             jsonObject.add("key", jsonObject1)
             val jsonObject2 = JsonObject()
@@ -288,20 +279,16 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
             jsonObject.add("result", jsonObject2)
         }
 
-        override fun getType(): RecipeSerializer<*> {
+        override fun id(): ResourceLocation {
+            return advancement.id()
+        }
+
+        override fun type(): RecipeSerializer<*> {
             return RecipeSerializerInit.CUSTOM_TOOL_CRAFTER.get()
         }
 
-        override fun getId(): ResourceLocation {
-            return id
-        }
-
-        override fun serializeAdvancement(): JsonObject? {
-            return advancement.serializeToJson()
-        }
-
-        override fun getAdvancementId(): ResourceLocation {
-            return advancementId
+        override fun advancement(): AdvancementHolder? {
+            return advancement
         }
 
         private val id: ResourceLocation
@@ -310,8 +297,7 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         private val group: String
         private val pattern: List<String>
         private val key: Map<Char, Ingredient>
-        private val advancement: Advancement.Builder
-        private val advancementId: ResourceLocation
+        private val advancement: AdvancementHolder
 
         init {
             this.id = id
@@ -321,7 +307,6 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
             this.pattern = pattern
             this.key = key
             this.advancement = advancement
-            this.advancementId = advancementId
         }
     }
 }

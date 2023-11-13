@@ -22,11 +22,9 @@ import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.core.init.TagsInit
+import java.util.*
 import java.util.function.Consumer
-import net.minecraft.advancements.Advancement
-import net.minecraft.advancements.CriterionTriggerInstance
-import net.minecraft.advancements.FrameType
-import net.minecraft.advancements.RequirementsStrategy
+import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.*
 import net.minecraft.core.HolderLookup
 import net.minecraft.network.chat.Component
@@ -36,60 +34,29 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.ItemLike
-import net.minecraftforge.common.data.ExistingFileHelper
-import net.minecraftforge.common.data.ForgeAdvancementProvider
+import net.neoforged.neoforge.common.data.AdvancementProvider
+import net.neoforged.neoforge.common.data.ExistingFileHelper
 
-class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
-    private fun simpleGetItem(
-        consumer: Consumer<Advancement>,
-        item: ItemLike,
-        parent: Advancement
-    ): Advancement {
-        return simpleGetItem(consumer, item, parent, item.asItem().toString())
-    }
-
-    private fun simpleGetItem(
-        consumer: Consumer<Advancement>,
-        item: ItemLike,
-        parent: Advancement,
-        key: String
-    ): Advancement {
-        return simpleGetItem(consumer, item, ItemStack(item), parent, key)
-    }
-
-    private fun simpleGetItem(
-        consumer: Consumer<Advancement>,
-        item: ItemLike,
-        icon: ItemStack,
-        parent: Advancement,
-        key: String
-    ): Advancement {
-        return Advancement.Builder.advancement()
-            .parent(parent)
-            .display(icon, title(key), description(key), null, FrameType.TASK, true, true, false)
-            .addCriterion("get_item", getItem(item))
-            .save(consumer, id(key))
-    }
-
+class Advancements : AdvancementProvider.AdvancementGenerator {
     private fun id(path: String): String {
         return ArmourAndToolsMod.getModIdAndName(path).toString()
     }
 
-    private fun getItem(vararg items: ItemLike): CriterionTriggerInstance {
+    private fun getItem(vararg items: ItemLike): Criterion<InventoryChangeTrigger.TriggerInstance> {
         return InventoryChangeTrigger.TriggerInstance.hasItems(*items)
     }
 
-    private fun getItem(tag: TagKey<Item>): CriterionTriggerInstance {
+    private fun getItem(tag: TagKey<Item>): Criterion<InventoryChangeTrigger.TriggerInstance> {
         return InventoryChangeTrigger.TriggerInstance.hasItems(
             ItemPredicate(
-                tag,
-                null,
+                Optional.of(tag),
+                Optional.ofNullable(null),
                 MinMaxBounds.Ints.ANY,
                 MinMaxBounds.Ints.ANY,
-                EnchantmentPredicate.NONE,
-                EnchantmentPredicate.NONE,
-                null,
-                NbtPredicate.ANY))
+                listOf(),
+                listOf(),
+                Optional.ofNullable(null),
+                Optional.ofNullable(null)))
     }
 
     private fun title(key: String): Component {
@@ -103,7 +70,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
 
     override fun generate(
         registries: HolderLookup.Provider,
-        consumer: Consumer<Advancement>,
+        consumer: Consumer<AdvancementHolder>,
         existingFileHelper: ExistingFileHelper
     ) {
         val rootIcon = ItemStack(ItemInit.AMETHYST_SWORD.get())
@@ -182,7 +149,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("ruby_chestplate", getItem(ItemInit.RUBY_CHESTPLATE.get()))
             .addCriterion("ruby_leggings", getItem(ItemInit.RUBY_LEGGINGS.get()))
             .addCriterion("ruby_boots", getItem(ItemInit.RUBY_BOOTS.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("ruby_armour"))
 
         Advancement.Builder.advancement()
@@ -201,7 +168,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("ruby_axe", getItem(ItemInit.RUBY_AXE.get()))
             .addCriterion("ruby_shovel", getItem(ItemInit.RUBY_SHOVEL.get()))
             .addCriterion("ruby_hoe", getItem(ItemInit.RUBY_HOE.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("ruby_tools"))
 
         // Sapphire
@@ -265,7 +232,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("sapphire_chestplate", getItem(ItemInit.SAPPHIRE_CHESTPLATE.get()))
             .addCriterion("sapphire_leggings", getItem(ItemInit.SAPPHIRE_LEGGINGS.get()))
             .addCriterion("sapphire_boots", getItem(ItemInit.SAPPHIRE_BOOTS.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("sapphire_armour"))
 
         Advancement.Builder.advancement()
@@ -284,7 +251,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("sapphire_axe", getItem(ItemInit.SAPPHIRE_AXE.get()))
             .addCriterion("sapphire_shovel", getItem(ItemInit.SAPPHIRE_SHOVEL.get()))
             .addCriterion("sapphire_hoe", getItem(ItemInit.SAPPHIRE_HOE.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("sapphire_tools"))
 
         // Graphite
@@ -348,7 +315,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("graphite_chestplate", getItem(ItemInit.GRAPHITE_CHESTPLATE.get()))
             .addCriterion("graphite_leggings", getItem(ItemInit.GRAPHITE_LEGGINGS.get()))
             .addCriterion("graphite_boots", getItem(ItemInit.GRAPHITE_BOOTS.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("graphite_armour"))
 
         // Aqumarine
@@ -412,7 +379,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("aqumarine_chestplate", getItem(ItemInit.AQUMARINE_CHESTPLATE.get()))
             .addCriterion("aqumarine_leggings", getItem(ItemInit.AQUMARINE_LEGGINGS.get()))
             .addCriterion("aqumarine_boots", getItem(ItemInit.AQUMARINE_BOOTS.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("aqumarine_armour"))
 
         // Rainbow
@@ -476,7 +443,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("rainbow_chestplate", getItem(ItemInit.RAINBOW_CHESTPLATE.get()))
             .addCriterion("rainbow_leggings", getItem(ItemInit.RAINBOW_LEGGINGS.get()))
             .addCriterion("rainbow_boots", getItem(ItemInit.RAINBOW_BOOTS.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("rainbow_armour"))
 
         // Enderite
@@ -540,7 +507,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("enderite_chestplate", getItem(ItemInit.ENDERITE_CHESTPLATE.get()))
             .addCriterion("enderite_leggings", getItem(ItemInit.ENDERITE_LEGGINGS.get()))
             .addCriterion("enderite_boots", getItem(ItemInit.ENDERITE_BOOTS.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("enderite_armour"))
 
         Advancement.Builder.advancement()
@@ -559,7 +526,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("enderite_axe", getItem(ItemInit.ENDERITE_AXE.get()))
             .addCriterion("enderite_shovel", getItem(ItemInit.ENDERITE_SHOVEL.get()))
             .addCriterion("enderite_hoe", getItem(ItemInit.ENDERITE_HOE.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("enderite_tools"))
 
         // Imperium
@@ -608,7 +575,7 @@ class Advancements : ForgeAdvancementProvider.AdvancementGenerator {
             .addCriterion("imperium_sword", getItem(ItemInit.IMPERIUM_SWORD.get()))
             .addCriterion("imperium_pickaxe", getItem(ItemInit.IMPERIUM_PICKAXE.get()))
             // .addCriterion("imperium_axe", getItem(ItemInit.IMPERIUM_AXE.get()))
-            .requirements(RequirementsStrategy.OR)
+            .requirements(AdvancementRequirements.Strategy.OR)
             .save(consumer, id("imperium_tools"))
     }
 }

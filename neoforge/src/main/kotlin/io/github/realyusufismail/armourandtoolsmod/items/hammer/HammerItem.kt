@@ -35,8 +35,8 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraftforge.common.ToolAction
-import net.minecraftforge.common.ToolActions
+import net.neoforged.neoforge.common.ToolAction
+import net.neoforged.neoforge.common.ToolActions
 
 /** @see SwordItem */
 open class HammerItem(
@@ -79,15 +79,11 @@ open class HammerItem(
 
     override fun getDestroySpeed(pStack: ItemStack, pState: BlockState): Float {
         val hammerLevel = this.hammerLevel
-        return getDestroySpeed(hammerLevel, pStack, pState)
+        return getDestroySpeed(hammerLevel, pState)
     }
 
-    private fun getDestroySpeed(
-        hammerLevel: HammerLevel,
-        pStack: ItemStack,
-        pState: BlockState
-    ): Float {
-        val block = pState.block
+    private fun getDestroySpeed(hammerLevel: HammerLevel, pState: BlockState): Float {
+        pState.block
         return if (pState.`is`(Blocks.COBWEB)) {
             15.0f
         } else {

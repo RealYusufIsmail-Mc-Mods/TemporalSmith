@@ -23,7 +23,7 @@ import java.util.function.Consumer
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.ShieldItem
 import net.minecraft.world.item.Tier
-import net.minecraftforge.client.extensions.common.IClientItemExtensions
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions
 
 class ArmourToolsModShieldItem(durability: Int, private val tier: Tier) :
     ShieldItem(Properties().stacksTo(1).durability(durability)) {

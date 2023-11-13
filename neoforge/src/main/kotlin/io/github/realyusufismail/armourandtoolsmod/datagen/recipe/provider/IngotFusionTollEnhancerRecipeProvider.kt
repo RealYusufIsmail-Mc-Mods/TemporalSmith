@@ -22,13 +22,12 @@ import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.book.IngotFus
 import io.github.realyusufismail.armourandtoolsmod.core.init.ItemInit
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.MainModRecipeProvider
 import io.github.realyusufismail.armourandtoolsmod.datagen.recipe.builder.IngotFusionTollEnhancerRecipeBuilder
-import java.util.function.Consumer
-import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.world.item.ItemStack
 
 class IngotFusionTollEnhancerRecipeProvider(
     private val mainModRecipeProvider: MainModRecipeProvider,
-    private val pWriter: Consumer<FinishedRecipe>
+    private val pWriter: RecipeOutput
 ) : MainModRecipeProvider(mainModRecipeProvider) {
 
     fun build() {

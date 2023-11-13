@@ -23,9 +23,9 @@ import kotlin.math.min
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
-import net.minecraftforge.event.ForgeEventFactory
-import net.minecraftforge.items.IItemHandler
-import net.minecraftforge.items.SlotItemHandler
+import net.neoforged.neoforge.event.EventHooks
+import net.neoforged.neoforge.items.IItemHandler
+import net.neoforged.neoforge.items.SlotItemHandler
 
 class OutputSlotItemHandler(itemHandler: IItemHandler, val player: Player) :
     SlotItemHandler(itemHandler, IngotFusionTollEnhancerBlockEntity.RESULT_SLOT, 138, 40) {
@@ -57,6 +57,6 @@ class OutputSlotItemHandler(itemHandler: IItemHandler, val player: Player) :
                 player)
         }
         removeCount = 0
-        ForgeEventFactory.firePlayerSmeltedEvent(this.player, pStack)
+        EventHooks.firePlayerSmeltedEvent(this.player, pStack)
     }
 }

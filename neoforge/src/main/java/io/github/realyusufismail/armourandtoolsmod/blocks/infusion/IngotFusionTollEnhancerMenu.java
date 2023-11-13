@@ -33,11 +33,12 @@ import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -71,7 +72,7 @@ public class IngotFusionTollEnhancerMenu extends RecipeBookMenu<Container> {
     addPlayerHotbar(pInventory);
 
     blockEntity
-        .getCapability(ForgeCapabilities.ITEM_HANDLER)
+        .getCapability(Capabilities.ITEM_HANDLER)
         .ifPresent(
             it -> {
               // slots to place ingredients
@@ -185,8 +186,8 @@ public class IngotFusionTollEnhancerMenu extends RecipeBookMenu<Container> {
   }
 
   @Override
-  public boolean recipeMatches(Recipe<? super Container> pRecipe) {
-    return pRecipe.matches(this.blockEntity, this.level);
+  public boolean recipeMatches(RecipeHolder<? extends Recipe<Container>> recipeHolder) {
+    return recipeHolder.value().matches(this.blockEntity, this.level);
   }
 
   @Override

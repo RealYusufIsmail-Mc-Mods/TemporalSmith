@@ -41,11 +41,11 @@ import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.phys.Vec3
-import net.minecraftforge.client.event.EntityRenderersEvent
-import net.minecraftforge.client.event.InputEvent
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent
-import net.minecraftforge.event.entity.living.LivingDeathEvent
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
+import net.neoforged.neoforge.client.event.EntityRenderersEvent
+import net.neoforged.neoforge.client.event.InputEvent
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent
 
 object ClientEvents {
     val MjolnirLayer = ModelLayerLocation(ArmourAndToolsMod.getModIdAndName("mjolnir"), "mjolnir")

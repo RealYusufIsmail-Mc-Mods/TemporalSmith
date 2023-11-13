@@ -70,16 +70,14 @@ public class IngotFusionTollEnhancerScreen
             this.height / 2 - 22,
             20,
             18,
-            0,
-            0,
-            19,
-            RECIPE_BUTTON_LOCATION,
-            (p_98484_) -> {
+            IngotFusionTollEnhancerRecipeBookComponent.RECIPE_BUTTON_SPRITES,
+            (p_289630_) -> {
               this.recipeBookComponent.toggleVisibility();
               this.leftPos =
                   this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-              p_98484_.setPosition(this.leftPos + 5, this.height / 2 - 22);
+              p_289630_.setPosition(this.leftPos + 5, this.height / 2 - 22);
             }));
+
     this.addWidget(this.recipeBookComponent);
     this.setInitialFocus(this.recipeBookComponent);
     this.titleLabelX = 29;
@@ -112,8 +110,6 @@ public class IngotFusionTollEnhancerScreen
   public void render(
       @NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
     try {
-      this.renderBackground(pGuiGraphics);
-
       if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
         this.renderBg(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
         this.recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);

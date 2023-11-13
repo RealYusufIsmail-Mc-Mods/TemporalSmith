@@ -22,10 +22,10 @@ import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import net.minecraft.world.effect.MobEffect
 import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.item.alchemy.Potion
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.forge.registerObject
+import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.ForgeRegistries
+import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
+import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 /** @see MobEffect */
 object PotionsInit {

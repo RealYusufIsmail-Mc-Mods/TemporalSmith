@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta2] - 2023-11-13
+
+### Added support for 1.20.2 for neo forge. No longer works with forge mods.
+### Fixed some minor issues.
+### Removed support for JEI for neo forge. Will be added back in the future once support for neo forge 1.20.2 is added.
+
 ## [1.20.1-1.0.7.beta2] - 2023-10-24
 
 ### Added support for new forge. Changelog for both versions will now be split.

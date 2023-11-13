@@ -21,11 +21,11 @@ package io.github.realyusufismail.armourandtoolsmod.datagen.advancment
 import java.util.concurrent.CompletableFuture
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
-import net.minecraftforge.common.data.ExistingFileHelper
-import net.minecraftforge.common.data.ForgeAdvancementProvider
+import net.neoforged.neoforge.common.data.AdvancementProvider
+import net.neoforged.neoforge.common.data.ExistingFileHelper
 
 class ModAdvancementProvider(
     output: PackOutput,
     registries: CompletableFuture<HolderLookup.Provider>,
     existingFileHelper: ExistingFileHelper
-) : ForgeAdvancementProvider(output, registries, existingFileHelper, listOf(Advancements()))
+) : AdvancementProvider(output, registries, existingFileHelper, listOf(Advancements()))

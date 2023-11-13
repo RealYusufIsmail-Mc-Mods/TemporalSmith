@@ -24,10 +24,10 @@ import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTo
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.crafting.RecipeType
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.forge.registerObject
+import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.ForgeRegistries
+import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
+import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 /** @see net.minecraft.stats.RecipeBookSettings */
 object RecipeTypeInit {

@@ -24,10 +24,10 @@ import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTo
 import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableShapedRecipe
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.forge.registerObject
+import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.ForgeRegistries
+import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
+import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 object RecipeSerializerInit {
     val SERIALIZERS: DeferredRegister<RecipeSerializer<*>> =

@@ -71,7 +71,7 @@ public class LITBlock extends Block {
   private static void interact(BlockState pState, Level pLevel, BlockPos pPos) {
     spawnParticles(pLevel, pPos);
     if (!pState.getValue(LIT)) {
-      pLevel.setBlock(pPos, pState.setValue(LIT, Boolean.valueOf(true)), 3);
+      pLevel.setBlock(pPos, pState.setValue(LIT, Boolean.TRUE), 3);
     }
   }
 

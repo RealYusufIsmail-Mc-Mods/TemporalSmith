@@ -28,6 +28,7 @@ enum class CustomArmourCraftingBookCategory(private var bookName: String) : Stri
     MISC("misc");
 
     companion object {
+        @JvmField
         val CODEC: StringRepresentable.EnumCodec<CustomArmourCraftingBookCategory> =
             StringRepresentable.fromEnum { entries.toTypedArray() }
     }

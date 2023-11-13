@@ -32,6 +32,7 @@ import net.minecraft.world.entity.player.StackedContents
 import net.minecraft.world.inventory.*
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Recipe
+import net.minecraft.world.item.crafting.RecipeHolder
 import net.minecraft.world.level.Level
 
 /** @see CraftingMenu */
@@ -88,7 +89,8 @@ class CustomArmourCraftingTableMenu(
             if (optional.isPresent) {
                 val craftingrecipe = optional.get()
                 if (pResult.setRecipeUsed(pLevel, serverplayer, craftingrecipe)) {
-                    val itemstack1 = craftingrecipe.assemble(pContainer, pLevel.registryAccess())
+                    val itemstack1 =
+                        craftingrecipe.value.assemble(pContainer, pLevel.registryAccess())
                     if (itemstack1.isItemEnabled(pLevel.enabledFeatures())) {
                         itemstack = itemstack1
                     }
@@ -119,8 +121,10 @@ class CustomArmourCraftingTableMenu(
         resultSlots.clearContent()
     }
 
-    override fun recipeMatches(pRecipe: Recipe<in CustomArmourCraftingTableContainer>): Boolean {
-        return pRecipe.matches(craftSlots, player.level())
+    override fun recipeMatches(
+        recipeHolder: RecipeHolder<out Recipe<CustomArmourCraftingTableContainer>>
+    ): Boolean {
+        return recipeHolder.value.matches(craftSlots, player.level())
     }
 
     /** Called when the container is closed. */

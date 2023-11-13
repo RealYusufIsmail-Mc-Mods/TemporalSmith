@@ -26,11 +26,11 @@ import io.github.realyusufismail.armourandtoolsmod.core.init.*
 import io.github.realyusufismail.armourandtoolsmod.datagen.DataGenerators
 import java.util.*
 import net.minecraft.resources.ResourceLocation
-import net.minecraftforge.fml.common.Mod
+import net.neoforged.fml.common.Mod
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import thedarkcolour.kotlinforforge.KotlinModLoadingContext
-import thedarkcolour.kotlinforforge.forge.FORGE_BUS
+import thedarkcolour.kotlinforforge.neoforge.KotlinModLoadingContext
+import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
 
 @Mod(MOD_ID)
 class ArmourAndToolsMod {

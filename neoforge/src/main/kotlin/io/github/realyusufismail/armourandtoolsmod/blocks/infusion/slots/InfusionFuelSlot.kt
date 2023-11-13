@@ -22,8 +22,8 @@ import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTo
 import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerMenu
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.minecraftforge.items.IItemHandler
-import net.minecraftforge.items.SlotItemHandler
+import net.neoforged.neoforge.items.IItemHandler
+import net.neoforged.neoforge.items.SlotItemHandler
 
 class InfusionFuelSlot(itemHandler: IItemHandler, private val menu: IngotFusionTollEnhancerMenu) :
     SlotItemHandler(itemHandler, IngotFusionTollEnhancerBlockEntity.FUEL_SLOT, 102, 65) {

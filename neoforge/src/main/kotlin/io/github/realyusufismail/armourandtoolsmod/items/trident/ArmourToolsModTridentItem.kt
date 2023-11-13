@@ -154,7 +154,7 @@ abstract class ArmourToolsModTridentItem(
                         pEntityLiving.startAutoSpinAttack(20)
                         if (pEntityLiving.onGround()) {
                             val f6 = 1.1999999f
-                            pEntityLiving.move(MoverType.SELF, Vec3(0.0, 1.1999999, 0.0))
+                            pEntityLiving.move(MoverType.SELF, Vec3(0.0, f6.toDouble(), 0.0))
                         }
                         val soundevent: SoundEvent =
                             if (j >= 3) {

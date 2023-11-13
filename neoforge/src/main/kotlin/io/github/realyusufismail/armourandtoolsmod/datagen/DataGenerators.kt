@@ -37,7 +37,7 @@ import net.minecraft.data.metadata.PackMetadataGenerator
 import net.minecraft.network.chat.Component
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection
-import net.minecraftforge.data.event.GatherDataEvent
+import net.neoforged.neoforge.data.event.GatherDataEvent
 
 object DataGenerators {
 
@@ -61,16 +61,17 @@ object DataGenerators {
             val blockTag = ModBlockTagsProvider(gen, existingFileHelper, lookup)
             gen.addProvider(true, blockTag)
             gen.addProvider(true, ModItemTagsProvider(gen, existingFileHelper, blockTag, lookup))
-            gen.addProvider(true, MainModRecipeProvider(gen))
+            gen.addProvider(true, MainModRecipeProvider(gen, lookup))
             gen.addProvider(true, ModWorldGenProvider(gen.packOutput, lookup))
             gen.addProvider(
-                true, ArmourAndTollsModSpriteSourceProvider(gen.packOutput, existingFileHelper))
+                true,
+                ArmourAndTollsModSpriteSourceProvider(gen.packOutput, existingFileHelper, lookup))
             gen.addProvider(
                 true, ModAdvancementProvider(gen.packOutput, lookup, existingFileHelper))
             gen.addProvider(true, PackMetadataGenerator(gen.packOutput))
                 .add(
                     PackMetadataSection.TYPE,
-                    PackMetadataSection(
+                    PackMetadataSection<Any>(
                         Component.literal("Armour and Tools Mod Resources"),
                         DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
                         Arrays.stream(PackType.entries.toTypedArray())

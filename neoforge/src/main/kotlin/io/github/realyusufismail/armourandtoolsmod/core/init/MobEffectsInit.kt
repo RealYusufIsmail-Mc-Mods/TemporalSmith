@@ -21,9 +21,9 @@ package io.github.realyusufismail.armourandtoolsmod.core.init
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.armourandtoolsmod.effect.WorthyEffect
 import net.minecraft.world.effect.MobEffect
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
-import net.minecraftforge.registries.RegistryObject
+import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.ForgeRegistries
+import net.neoforged.neoforge.registries.RegistryObject
 
 object MobEffectsInit {
     val MOB_EFFECTS: DeferredRegister<MobEffect> =

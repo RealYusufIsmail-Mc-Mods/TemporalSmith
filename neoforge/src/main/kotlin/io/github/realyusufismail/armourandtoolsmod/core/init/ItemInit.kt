@@ -31,11 +31,11 @@ import io.github.realyusufismail.armourandtoolsmod.items.hammer.util.HammerLevel
 import io.github.realyusufismail.armourandtoolsmod.items.shield.ArmourToolsModShieldItem
 import io.github.realyusufismail.armourandtoolsmod.items.trident.AqumarineTridentItem
 import net.minecraft.world.item.*
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
-import net.minecraftforge.registries.RegistryObject
-import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.forge.registerObject
+import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.ForgeRegistries
+import net.neoforged.neoforge.registries.RegistryObject
+import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
+import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 object ItemInit {
     val ITEMS: DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)

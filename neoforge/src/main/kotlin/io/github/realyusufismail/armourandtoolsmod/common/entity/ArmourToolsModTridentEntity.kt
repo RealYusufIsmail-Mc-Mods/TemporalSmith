@@ -40,7 +40,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.EntityHitResult
 import net.minecraft.world.phys.Vec3
-import net.minecraftforge.network.NetworkHooks
+import net.neoforged.neoforge.network.NetworkHooks
 
 /** @see ThrownTrident */
 abstract class ArmourToolsModTridentEntity : AbstractArrow {
