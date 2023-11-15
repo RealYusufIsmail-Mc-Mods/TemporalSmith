@@ -2,11 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta4] - 2023-11-15
+
+### Bumped Kotlin for forge version which fixes issue with trident not being able to be thrown.
+
 # [1.20.2-2.0.0.beta3] - 2023-11-13
 
-# Updated json files to reflect Neo Forges changes.
-# Identified issue with trident not being able to be thrown. Will be fixed in future.
-# Fixed issues with some item and armour materials not being registered properly.
+### Updated json files to reflect Neo Forges changes.
+### Identified issue with trident not being able to be thrown. Will be fixed in future.
+### Fixed issues with some item and armour materials not being registered properly.
 
 # [1.20.2-2.0.0.beta2] - 2023-11-13
 
