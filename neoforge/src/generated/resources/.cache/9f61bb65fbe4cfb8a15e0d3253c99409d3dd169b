@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-12T22:09:59.3196167	Item Models: armourandtoolsmod
+// 1.20.2	2023-11-13T13:36:40.6546142	Item Models: armourandtoolsmod
 6fdab53e9321f76ef7edd0a135b6879656abdad7 assets/armourandtoolsmod/models/item/amethyst_axe.json
 f523d3f594a0d1a51fb553f028ab2b20eee793dd assets/armourandtoolsmod/models/item/amethyst_boots.json
 8377e984c59ebdaa220b7d1c0973dfd4653e52fb assets/armourandtoolsmod/models/item/amethyst_chestplate.json
@@ -14,9 +14,9 @@ d25d68727720050a474df8206696ed1923d178f7 assets/armourandtoolsmod/models/item/aq
 d86d467659c9eff5444cbfb7f86a7b48181952f7 assets/armourandtoolsmod/models/item/aqumarine_leggings.json
 66c43671e133766f0cafda7a21e689b14650de6a assets/armourandtoolsmod/models/item/aqumarine_shield.json
 bca50717ce57de779eefd9596955c68311b8bab2 assets/armourandtoolsmod/models/item/aqumarine_shield_blocking.json
-204bcc35e65c8c0bba68a97b98b95c5780b47d5b assets/armourandtoolsmod/models/item/aqumarine_trident.json
+5ccf6e4fd5b09285b393d581a7f40cad7a703086 assets/armourandtoolsmod/models/item/aqumarine_trident.json
 e79b9d89f34ec757e7e3b292ca71b60e5635d5f4 assets/armourandtoolsmod/models/item/aqumarine_trident_gui.json
-ba1a482e4102dcf42e10990460997a3579ca5de2 assets/armourandtoolsmod/models/item/aqumarine_trident_throwing.json
+e90c98c424172ad521bc38f9883e9ea361c2e854 assets/armourandtoolsmod/models/item/aqumarine_trident_throwing.json
 ed3de052a84a65844b0c680060fa040a21b6be12 assets/armourandtoolsmod/models/item/enderite.json
 17fd6706e4cc93cd4e6ddcc5c4382222197efc1d assets/armourandtoolsmod/models/item/enderite_axe.json
 c8e7ac2776a4f4e4c233d09dbc3678fd70e26ef6 assets/armourandtoolsmod/models/item/enderite_boots.json

@@ -25,10 +25,10 @@ import net.minecraft.world.item.Tier
 import net.minecraft.world.item.crafting.Ingredient
 
 enum class CustomToolMaterial(
-    harvestLevel: Int,
-    maxUses: Int,
-    enchantability: Int,
-    repairMaterial: Supplier<Ingredient>
+    private val harvestLevel: Int,
+    private val maxUses: Int,
+    private val enchantability: Int,
+    private val repairMaterial: Supplier<Ingredient>
 ) : Tier {
     RUBY_SWORD(3, 2000, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
     RUBY_PICKAXE(3, 2500, 10, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
@@ -57,10 +57,6 @@ enum class CustomToolMaterial(
     STORMBREAKER(10, 50000, 0, Supplier { Ingredient.of(ItemInit.GRAPHITE.get()) }),
     AQUMARINE_TRIDENT(7, 30000, 5, Supplier { Ingredient.of(ItemInit.AQUMARINE.get()) });
 
-    private val harvestLevel = 0
-    private val maxUses = 0
-    private val enchantability = 0
-    private val repairMaterial: Ingredient? = null
     override fun getUses(): Int {
         return maxUses
     }
@@ -79,7 +75,7 @@ enum class CustomToolMaterial(
         return 0f
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("harvestLevel"))
     override fun getLevel(): Int {
         return harvestLevel
     }
@@ -89,6 +85,6 @@ enum class CustomToolMaterial(
     }
 
     override fun getRepairIngredient(): Ingredient {
-        return repairMaterial ?: Ingredient.EMPTY
+        return repairMaterial.get()
     }
 }

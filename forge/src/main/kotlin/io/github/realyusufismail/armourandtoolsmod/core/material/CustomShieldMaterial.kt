@@ -24,21 +24,16 @@ import net.minecraft.world.item.Tier
 import net.minecraft.world.item.crafting.Ingredient
 
 enum class CustomShieldMaterial(
-    harvestLevel: Int,
-    maxUses: Int,
-    enchantability: Int,
-    repairMaterial: Supplier<Ingredient>
+    private val harvestLevel: Int,
+    private val maxUses: Int,
+    private val enchantability: Int,
+    private val repairMaterial: Supplier<Ingredient>
 ) : Tier {
     RUBY_SHIELD(0, 310, 2, Supplier { Ingredient.of(ItemInit.RUBY.get()) }),
     SAPPHIRE_SHIELD(0, 330, 2, Supplier { Ingredient.of(ItemInit.SAPPHIRE.get()) }),
     GRAPHITE_SHIELD(0, 300, 2, Supplier { Ingredient.of(ItemInit.GRAPHITE.get()) }),
     AQUMARINE_SHIELD(0, 320, 2, Supplier { Ingredient.of(ItemInit.AQUMARINE.get()) }),
     RAINBOW_SHIELD(0, 340, 2, Supplier { Ingredient.of(ItemInit.RAINBOW.get()) });
-
-    private val harvestLevel = 0
-    private val maxUses = 0
-    private val enchantability = 0
-    private val repairMaterial: Ingredient? = null
 
     override fun getUses(): Int {
         return maxUses
@@ -68,6 +63,6 @@ enum class CustomShieldMaterial(
     }
 
     override fun getRepairIngredient(): Ingredient {
-        return repairMaterial ?: Ingredient.EMPTY
+        return repairMaterial.get()
     }
 }

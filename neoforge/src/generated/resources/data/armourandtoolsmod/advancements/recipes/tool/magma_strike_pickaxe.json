@@ -1,18 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_imperium_ingot": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "armourandtoolsmod:imperium"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "armourandtoolsmod:magma_strike_pickaxe"
@@ -22,7 +10,6 @@
   },
   "requirements": [
     [
-      "has_imperium_ingot",
       "has_the_recipe"
     ]
   ],
@@ -31,5 +18,5 @@
       "armourandtoolsmod:magma_strike_pickaxe"
     ]
   },
-  "sends_telemetry_event": true
+  "sends_telemetry_event": false
 }

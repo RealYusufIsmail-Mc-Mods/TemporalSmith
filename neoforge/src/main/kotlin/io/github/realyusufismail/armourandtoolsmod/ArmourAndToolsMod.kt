@@ -68,8 +68,6 @@ class ArmourAndToolsMod {
         // entity death event
         FORGE_BUS.addListener(ClientEvents::onEntityDeath)
 
-        FORGE_BUS.register(this)
-
         logger.info("Loaded Armour and Item Mod")
     }
 

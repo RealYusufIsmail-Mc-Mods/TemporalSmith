@@ -1,18 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "armourandtoolsmod:aqumarine_chestplate"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "armourandtoolsmod:blasting_aqumarine_chestplate"
@@ -22,7 +10,6 @@
   },
   "requirements": [
     [
-      "has_item",
       "has_the_recipe"
     ]
   ],
@@ -31,5 +18,5 @@
       "armourandtoolsmod:blasting_aqumarine_chestplate"
     ]
   },
-  "sends_telemetry_event": true
+  "sends_telemetry_event": false
 }
