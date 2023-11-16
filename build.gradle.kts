@@ -8,7 +8,7 @@ buildscript {
     repositories { mavenCentral() }
 
     dependencies {
-        classpath("org.jetbrains.dokka:dokka-base:1.9.0")
+        classpath("org.jetbrains.dokka:dokka-base:1.9.10")
         classpath("io.github.realyusufismail:jconfig:1.0.8")
     }
 }
