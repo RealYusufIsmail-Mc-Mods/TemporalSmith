@@ -1,7 +1,7 @@
 import net.minecraftforge.gradle.userdev.UserDevExtension
 
 plugins {
-    kotlin("jvm") version "1.9.10"
+    kotlin("jvm") version "1.9.20"
     id("net.minecraftforge.gradle") version "[6.0,6.2)"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
 }
