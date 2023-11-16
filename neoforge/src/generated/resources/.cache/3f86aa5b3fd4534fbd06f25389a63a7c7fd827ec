@@ -1,0 +1,25 @@
+// 1.20.2	2023-11-16T22:20:28.520017	Tags for minecraft:block mod id temporalsmith
+82963b29c120fb55c17c40fe37b1c98c60346b84 data/forge/tags/blocks/deepslate_ores/aqumarine_ores.json
+edd052247952263e801a8ba38de967b85c9c1dc4 data/forge/tags/blocks/deepslate_ores/graphite_ores.json
+fc6b7da8497984df4efddd78ed393469f77e7495 data/forge/tags/blocks/deepslate_ores/imperium_ores.json
+d0b34f000c868dd7777162e2a47905d3f0d9b05b data/forge/tags/blocks/deepslate_ores/rainbow_ores.json
+20fdb86899bfe49b4d201bdafb9a1a3ec3442b69 data/forge/tags/blocks/deepslate_ores/ruby_ores.json
+66cc8c08bbee5110fa4750035c00f7c6fb87dd99 data/forge/tags/blocks/deepslate_ores/sapphire_ores.json
+97b75ae1bfd7e3dd7cbd13d11362898f058bcf1b data/forge/tags/blocks/needs_gold_tool.json
+fbd5467f6bc42e9d5bafb76a19a2d58236759424 data/forge/tags/blocks/ores/aqumarine_ores.json
+89a2cb81b32881c3c0b11d88725ea163ac31fc3e data/forge/tags/blocks/ores/enderite_ores.json
+9704fda3f8331a1336cc7787ab7974566836368e data/forge/tags/blocks/ores/graphite_ores.json
+d6e70cabdff9399432daa8f21099fa5f4e8bd191 data/forge/tags/blocks/ores/imperium_ores.json
+af3dc48733e19dee93034c83222421363f709509 data/forge/tags/blocks/ores/rainbow_ores.json
+c5c1877f114ea13e499cc5a8585d5655c49489a9 data/forge/tags/blocks/ores/ruby_ores.json
+6400376d847decde21bb406d533cb02554810b74 data/forge/tags/blocks/ores/sapphire_ores.json
+b547e669f12c0d9cf9aab2d704b07244ab5325af data/forge/tags/blocks/storage_blocks/aqumarine.json
+2a312b5b913bb99f9ecc0630737fc15267ee6baf data/forge/tags/blocks/storage_blocks/enderite.json
+c13f34abf2e1ad8aa96bf050df7ef5cc00f4fe1d data/forge/tags/blocks/storage_blocks/graphite.json
+dcbd959620590264e88e226bd2c40f6552839ec6 data/forge/tags/blocks/storage_blocks/rainbow.json
+478f3b90295d8c712528b7b1f7d9ae4daad23121 data/forge/tags/blocks/storage_blocks/ruby.json
+0ed63eea01e2600c587763dd7f609c87ae6e53d2 data/forge/tags/blocks/storage_blocks/sapphire.json
+9342a4dce08f9f426ccde2ef8342f461f702df44 data/minecraft/tags/blocks/mineable/pickaxe.json
+118f91ee0e0e87a0393fd90770b0fa4db7c74e3e data/minecraft/tags/blocks/needs_diamond_tool.json
+dd9f28c0503a62d38ea0f2332885885ccedae3f1 data/minecraft/tags/blocks/needs_iron_tool.json
+cef73fd4903f2919af82514cf812d9da3579a438 data/minecraft/tags/blocks/needs_stone_tool.json

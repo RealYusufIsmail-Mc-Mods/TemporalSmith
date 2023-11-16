@@ -16,14 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.integration.armour
+package io.github.realyusufismail.temporalsmith.integration.armour
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
-import io.github.realyusufismail.armourandtoolsmod.blocks.CustomArmourCraftingTable
-import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
-import io.github.realyusufismail.armourandtoolsmod.integration.ArmourAndToolsModJEIPlugin
-import io.github.realyusufismail.armourandtoolsmod.integration.generic.GenericCraftingTableJEIRecipeCategory
-import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
+import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.blocks.CustomArmourCraftingTable
+import io.github.realyusufismail.temporalsmith.core.init.BlockInit
+import io.github.realyusufismail.temporalsmith.integration.temporalsmithJEIPlugin
+import io.github.realyusufismail.temporalsmith.integration.generic.GenericCraftingTableJEIRecipeCategory
+import io.github.realyusufismail.temporalsmith.recipe.armour.CustomArmourCraftingTableRecipe
 import java.util.*
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
 import mezz.jei.api.gui.drawable.IDrawable
@@ -38,7 +38,7 @@ class CustomArmourCraftingTableJEIRecipeCategory(guiHelper: IGuiHelper) :
         guiHelper, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get()) {
 
     override fun getRecipeType(): RecipeType<CustomArmourCraftingTableRecipe> {
-        return ArmourAndToolsModJEIPlugin.armourCraftingTableRecipeType
+        return temporalsmithJEIPlugin.armourCraftingTableRecipeType
     }
 
     override fun getTitle(): Component {
@@ -85,6 +85,6 @@ class CustomArmourCraftingTableJEIRecipeCategory(guiHelper: IGuiHelper) :
     }
 
     companion object {
-        val UID = ArmourAndToolsMod.getModIdAndName("custom_armour_crafting_table")
+        val UID = temporalsmith.getModIdAndName("custom_armour_crafting_table")
     }
 }

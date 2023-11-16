@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "temporalsmith:block/ingot_fusion_toll_enhancer_front",
+    "side": "temporalsmith:block/ingot_fusion_toll_enhancer_side",
+    "top": "temporalsmith:block/ingot_fusion_toll_enhancer_top"
+  }
+}

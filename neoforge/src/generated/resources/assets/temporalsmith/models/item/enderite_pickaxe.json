@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "temporalsmith:item/enderite_pickaxe"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "sword",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/enderite"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " A ",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:enderite_sword"
+  },
+  "showNotification": false
+}

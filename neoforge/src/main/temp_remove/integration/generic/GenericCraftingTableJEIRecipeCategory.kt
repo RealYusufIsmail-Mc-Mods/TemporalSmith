@@ -16,9 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.integration.generic
+package io.github.realyusufismail.temporalsmith.integration.generic
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
+import io.github.realyusufismail.temporalsmith.temporalsmith
 import mezz.jei.api.constants.VanillaTypes
 import mezz.jei.api.gui.drawable.IDrawable
 import mezz.jei.api.helpers.IGuiHelper
@@ -31,7 +31,7 @@ abstract class GenericCraftingTableJEIRecipeCategory<T>(guiHelper: IGuiHelper, v
     protected val bg: IDrawable
     protected val ic: IDrawable
     private val craftingTableGuiLocation =
-        ArmourAndToolsMod.getModIdAndName("textures/gui/container/custom_crafting_table_Jei.png")
+        temporalsmith.getModIdAndName("textures/gui/container/custom_crafting_table_Jei.png")
     private val w = 173
     private val h = 69
 

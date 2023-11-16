@@ -1,0 +1,36 @@
+{
+  "parent": "temporalsmith:graphite_ore",
+  "criteria": {
+    "get_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/graphite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.graphite_ingot.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:graphite"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.graphite_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_scrap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

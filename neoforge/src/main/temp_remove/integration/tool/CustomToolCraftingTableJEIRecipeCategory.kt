@@ -16,14 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.integration.tool
+package io.github.realyusufismail.temporalsmith.integration.tool
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
-import io.github.realyusufismail.armourandtoolsmod.blocks.CustomToolCraftingTable
-import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
-import io.github.realyusufismail.armourandtoolsmod.integration.ArmourAndToolsModJEIPlugin
-import io.github.realyusufismail.armourandtoolsmod.integration.generic.GenericCraftingTableJEIRecipeCategory
-import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
+import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.blocks.CustomToolCraftingTable
+import io.github.realyusufismail.temporalsmith.core.init.BlockInit
+import io.github.realyusufismail.temporalsmith.integration.temporalsmithJEIPlugin
+import io.github.realyusufismail.temporalsmith.integration.generic.GenericCraftingTableJEIRecipeCategory
+import io.github.realyusufismail.temporalsmith.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
 import mezz.jei.api.gui.drawable.IDrawable
 import mezz.jei.api.helpers.IGuiHelper
@@ -37,7 +37,7 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
         guiHelper, BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get()) {
 
     override fun getRecipeType(): RecipeType<CustomToolCraftingTableRecipe> {
-        return ArmourAndToolsModJEIPlugin.toolCraftingTableRecipeType
+        return temporalsmithJEIPlugin.toolCraftingTableRecipeType
     }
 
     override fun getTitle(): Component {
@@ -89,6 +89,6 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
     }
 
     companion object {
-        val UID = ArmourAndToolsMod.getModIdAndName("custom_tool_crafting_table")
+        val UID = temporalsmith.getModIdAndName("custom_tool_crafting_table")
     }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "temporalsmith:custom_armour_crafter",
+  "category": "armour_feet",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/graphite"
+    }
+  },
+  "pattern": [
+    "A A",
+    "A A"
+  ],
+  "result": {
+    "item": "temporalsmith:graphite_boots"
+  },
+  "show_notification": false
+}
