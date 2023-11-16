@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing_trim",
+  "addition": {
+    "item": "minecraft:tide_armor_trim_smithing_template"
+  },
+  "base": {
+    "item": "temporalsmith:ruby_helmet"
+  },
+  "template": {
+    "item": "minecraft:diamond"
+  }
+}

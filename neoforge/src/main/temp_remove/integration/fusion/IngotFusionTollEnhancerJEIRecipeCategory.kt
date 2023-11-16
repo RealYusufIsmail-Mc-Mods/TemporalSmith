@@ -16,14 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.integration.fusion
+package io.github.realyusufismail.temporalsmith.integration.fusion
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
-import io.github.realyusufismail.armourandtoolsmod.blocks.IngotFusionTollEnhancer
-import io.github.realyusufismail.armourandtoolsmod.blocks.infusion.IngotFusionTollEnhancerBlockEntity
-import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
-import io.github.realyusufismail.armourandtoolsmod.integration.ArmourAndToolsModJEIPlugin
-import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTollEnhancerRecipe
+import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.blocks.IngotFusionTollEnhancer
+import io.github.realyusufismail.temporalsmith.blocks.infusion.IngotFusionTollEnhancerBlockEntity
+import io.github.realyusufismail.temporalsmith.core.init.BlockInit
+import io.github.realyusufismail.temporalsmith.integration.temporalsmithJEIPlugin
+import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
 import mezz.jei.api.constants.VanillaTypes
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
 import mezz.jei.api.gui.drawable.IDrawable
@@ -38,7 +38,7 @@ import net.minecraft.world.item.ItemStack
 class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
     IRecipeCategory<IngotFusionTollEnhancerRecipe> {
     private val fusionJEIGuiLocation =
-        ArmourAndToolsMod.getModIdAndName(
+        temporalsmith.getModIdAndName(
             "textures/gui/container/ingot_fusion_toll_enhancer_jei.png")
     private val bg: IDrawable
     private val ic: IDrawable
@@ -60,7 +60,7 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
      * @since 9.5.0
      */
     override fun getRecipeType(): RecipeType<IngotFusionTollEnhancerRecipe> {
-        return ArmourAndToolsModJEIPlugin.ingotFusionTollEnhancerRecipeType
+        return temporalsmithJEIPlugin.ingotFusionTollEnhancerRecipeType
     }
 
     /**
@@ -120,6 +120,6 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
     }
 
     companion object {
-        val UID = ArmourAndToolsMod.getModIdAndName("ingot_fusion_toll_enhancer_jei")
+        val UID = temporalsmith.getModIdAndName("ingot_fusion_toll_enhancer_jei")
     }
 }

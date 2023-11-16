@@ -5,7 +5,7 @@ plugins {
 
 project.version = properties["modVersion"] as String
 
-base.archivesName.set("armourandtoolsmod-neoforge")
+base.archivesName.set("temporalsmith-neoforge")
 
 val mcVersion = properties["mcVersion"] as String
 var projectId = properties["projectId"] as String
@@ -118,7 +118,11 @@ tasks.withType(ProcessResources::class.java) {
             "mod_license" to "Apache-2.0",
             "mod_version" to project.version,
             "mod_authors" to "RealYusufIsmail",
-            "mod_description" to "A Minecraft mod that adds more armour and tools",
+            "mod_description" to
+                """
+                Descend into the boundless realms of TemporalSmith, where time intertwines with the craft of the Aetheric Arsenal. Unleash the power of enchanted swords and tools forged beyond the constraints of time. Explore mystical dimensions, each brimming with unique challenges and treasures. Elevate your Minecraft experience with a fusion of temporal mastery, otherworldly landscapes, and an expansive array of armaments. The journey awaits; delve into the time-woven secrets of TemporalSmith. (A lot of stuff to be added)
+            """
+                    .trimIndent(),
             "pack_format_number" to "18")
 
     inputs.properties(replaceProperties)

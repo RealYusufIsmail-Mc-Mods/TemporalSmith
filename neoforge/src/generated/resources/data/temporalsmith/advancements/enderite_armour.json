@@ -1,0 +1,78 @@
+{
+  "parent": "temporalsmith:enderite_ingot",
+  "criteria": {
+    "enderite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:enderite_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "enderite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:enderite_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "enderite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:enderite_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "enderite_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:enderite_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.enderite_armour.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:enderite_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.enderite_armour.title"
+    }
+  },
+  "requirements": [
+    [
+      "enderite_helmet",
+      "enderite_chestplate",
+      "enderite_leggings",
+      "enderite_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

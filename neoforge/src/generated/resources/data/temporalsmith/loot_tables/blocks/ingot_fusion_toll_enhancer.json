@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "temporalsmith:ingot_fusion_toll_enhancer"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "temporalsmith:blocks/ingot_fusion_toll_enhancer"
+}

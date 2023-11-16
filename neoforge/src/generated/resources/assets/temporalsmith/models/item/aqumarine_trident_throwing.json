@@ -1,0 +1,24 @@
+{
+  "base": {
+    "parent": "minecraft:item/trident_throwing",
+    "textures": {
+      "particle": "temporalsmith:item/aqumarine_trident"
+    }
+  },
+  "gui_light": "front",
+  "loader": "neoforge:separate_transforms",
+  "perspectives": {
+    "fixed": {
+      "parent": "temporalsmith:item/aqumarine_trident_gui"
+    },
+    "ground": {
+      "parent": "temporalsmith:item/aqumarine_trident_gui"
+    },
+    "gui": {
+      "parent": "temporalsmith:item/aqumarine_trident_gui"
+    }
+  },
+  "textures": {
+    "particle": "temporalsmith:item/aqumarine_trident"
+  }
+}

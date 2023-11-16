@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "temporalsmith:block/deepslate_imperium_ore"
+  }
+}

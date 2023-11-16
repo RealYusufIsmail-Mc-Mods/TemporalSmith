@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <conversionRule conversionWord="highlight"
-                    converterClass="io.github.realyusufismail.armourandtoolsmod.logger.LoggerColorScheme"/>
+                    converterClass="io.github.realyusufismail.temporalsmith.logger.LoggerColorScheme"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -22,7 +22,7 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="io.github.realyusufismail.armourandtoolsmod" level="${LOG_LEVEL:-INFO}" additivity="false">
+    <logger name="io.github.realyusufismail.temporalsmith" level="${LOG_LEVEL:-INFO}" additivity="false">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="LOGFILE"/>
         <appender-ref ref="METRICS"/>

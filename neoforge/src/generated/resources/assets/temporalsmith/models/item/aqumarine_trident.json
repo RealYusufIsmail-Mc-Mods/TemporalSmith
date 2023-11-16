@@ -1,0 +1,51 @@
+{
+  "base": {
+    "parent": "minecraft:item/trident_in_hand",
+    "display": {
+      "head": {
+        "rotation": [
+          0,
+          180,
+          120
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ],
+        "translation": [
+          8,
+          10,
+          -11
+        ]
+      }
+    },
+    "textures": {
+      "particle": "temporalsmith:item/aqumarine_trident"
+    }
+  },
+  "gui_light": "front",
+  "loader": "neoforge:separate_transforms",
+  "overrides": [
+    {
+      "model": "temporalsmith:item/aqumarine_trident_throwing",
+      "predicate": {
+        "temporalsmith:throwing": 1.0
+      }
+    }
+  ],
+  "perspectives": {
+    "fixed": {
+      "parent": "temporalsmith:item/aqumarine_trident_gui"
+    },
+    "ground": {
+      "parent": "temporalsmith:item/aqumarine_trident_gui"
+    },
+    "gui": {
+      "parent": "temporalsmith:item/aqumarine_trident_gui"
+    }
+  },
+  "textures": {
+    "particle": "temporalsmith:item/aqumarine_trident"
+  }
+}

@@ -16,30 +16,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.core.init
+package io.github.realyusufismail.temporalsmith.core.init
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
-import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTollEnhancerRecipe
-import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
+import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.recipe.armour.CustomArmourCraftingTableRecipe
+import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
+import io.github.realyusufismail.temporalsmith.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.recipe.RecipeType
 
 object JEIRecipeTypes {
     val toolCrafting: RecipeType<CustomToolCraftingTableRecipe> =
         RecipeType.create(
-            ArmourAndToolsMod.MOD_ID,
+            temporalsmith.MOD_ID,
             "custom_tool_crafting_table",
             CustomToolCraftingTableRecipe::class.java)
 
     val armourCrafting: RecipeType<CustomArmourCraftingTableRecipe> =
         RecipeType.create(
-            ArmourAndToolsMod.MOD_ID,
+            temporalsmith.MOD_ID,
             "custom_armour_crafting_table",
             CustomArmourCraftingTableRecipe::class.java)
 
     val ingotFusionTollEnhancer: RecipeType<IngotFusionTollEnhancerRecipe> =
         RecipeType.create(
-            ArmourAndToolsMod.MOD_ID,
+            temporalsmith.MOD_ID,
             "ingot_fusion_toll_enhancer",
             IngotFusionTollEnhancerRecipe::class.java)
 }

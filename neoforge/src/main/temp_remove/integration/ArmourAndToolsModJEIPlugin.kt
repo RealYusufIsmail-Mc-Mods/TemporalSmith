@@ -16,18 +16,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.armourandtoolsmod.integration
+package io.github.realyusufismail.temporalsmith.integration
 
-import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
-import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
-import io.github.realyusufismail.armourandtoolsmod.core.init.JEIRecipeTypes
-import io.github.realyusufismail.armourandtoolsmod.core.init.RecipeTypeInit
-import io.github.realyusufismail.armourandtoolsmod.integration.armour.CustomArmourCraftingTableJEIRecipeCategory
-import io.github.realyusufismail.armourandtoolsmod.integration.fusion.IngotFusionTollEnhancerJEIRecipeCategory
-import io.github.realyusufismail.armourandtoolsmod.integration.tool.CustomToolCraftingTableJEIRecipeCategory
-import io.github.realyusufismail.armourandtoolsmod.recipe.armour.CustomArmourCraftingTableRecipe
-import io.github.realyusufismail.armourandtoolsmod.recipe.infusion.IngotFusionTollEnhancerRecipe
-import io.github.realyusufismail.armourandtoolsmod.recipe.tool.CustomToolCraftingTableRecipe
+import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.core.init.BlockInit
+import io.github.realyusufismail.temporalsmith.core.init.JEIRecipeTypes
+import io.github.realyusufismail.temporalsmith.core.init.RecipeTypeInit
+import io.github.realyusufismail.temporalsmith.integration.armour.CustomArmourCraftingTableJEIRecipeCategory
+import io.github.realyusufismail.temporalsmith.integration.fusion.IngotFusionTollEnhancerJEIRecipeCategory
+import io.github.realyusufismail.temporalsmith.integration.tool.CustomToolCraftingTableJEIRecipeCategory
+import io.github.realyusufismail.temporalsmith.recipe.armour.CustomArmourCraftingTableRecipe
+import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
+import io.github.realyusufismail.temporalsmith.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.IModPlugin
 import mezz.jei.api.JeiPlugin
 import mezz.jei.api.recipe.RecipeType
@@ -37,9 +37,9 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
 
 @JeiPlugin
-class ArmourAndToolsModJEIPlugin : IModPlugin {
+class temporalsmithJEIPlugin : IModPlugin {
     private val pluginId: ResourceLocation =
-        ArmourAndToolsMod.getModIdAndName("armour_and_tools_mod_plugin")
+        temporalsmith.getModIdAndName("armour_and_tools_mod_plugin")
 
     override fun registerCategories(registration: IRecipeCategoryRegistration) {
         registration.addRecipeCategories(

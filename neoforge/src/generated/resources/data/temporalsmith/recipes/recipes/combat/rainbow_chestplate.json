@@ -1,0 +1,18 @@
+{
+  "type": "temporalsmith:custom_armour_crafter",
+  "category": "armour_chest",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aqumarine"
+    }
+  },
+  "pattern": [
+    "A A",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "item": "temporalsmith:rainbow_chestplate"
+  },
+  "show_notification": false
+}

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta5] - 2023-11-16
+
+### Rebranded mod to TemporalSmith: Aetheric Arsenal Expansion
+
 # [1.20.2-2.0.0.beta4] - 2023-11-15
 
 ### Bumped Kotlin for forge version which fixes issue with trident not being able to be thrown.

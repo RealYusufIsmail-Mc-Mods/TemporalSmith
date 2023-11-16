@@ -1,0 +1,36 @@
+{
+  "parent": "temporalsmith:ruby_ingot",
+  "criteria": {
+    "get_block": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/ruby"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.ruby_block.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:ruby_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.ruby_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_block"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

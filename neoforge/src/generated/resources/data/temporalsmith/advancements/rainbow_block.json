@@ -1,0 +1,36 @@
+{
+  "parent": "temporalsmith:rainbow_ingot",
+  "criteria": {
+    "get_block": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/rainbow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.rainbow_block.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:rainbow_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.rainbow_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_block"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

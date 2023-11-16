@@ -1,0 +1,91 @@
+{
+  "parent": "temporalsmith:sapphire_ingot",
+  "criteria": {
+    "sapphire_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:sapphire_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_hoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:sapphire_hoe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:sapphire_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:sapphire_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:sapphire_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.sapphire_tools.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:sapphire_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.sapphire_tools.title"
+    }
+  },
+  "requirements": [
+    [
+      "sapphire_sword",
+      "sapphire_pickaxe",
+      "sapphire_axe",
+      "sapphire_shovel",
+      "sapphire_hoe"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

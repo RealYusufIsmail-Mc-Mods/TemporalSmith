@@ -1,4 +1,4 @@
-rootProject.name = "Armour-and-Tools-Mod"
+rootProject.name = "TemporalSmith"
 
 pluginManagement {
     repositories {
