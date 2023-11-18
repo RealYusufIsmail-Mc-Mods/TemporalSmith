@@ -1,0 +1,19 @@
+{
+  "ambient_light": 0.0,
+  "bed_works": true,
+  "coordinate_scale": 0,
+  "effects": "minecraft:the_end",
+  "has_ceiling": true,
+  "has_raids": false,
+  "has_skylight": true,
+  "height": 256.0,
+  "infiniburn": "minecraft:infiniburn_overworld",
+  "logical_height": 0.0,
+  "min_y": -64.0,
+  "monster_spawn_block_light_limit": 0,
+  "monster_spawn_light_level": {},
+  "natural": false,
+  "piglin_safe": true,
+  "respawn_anchor_works": true,
+  "ultrawarm": false
+}
