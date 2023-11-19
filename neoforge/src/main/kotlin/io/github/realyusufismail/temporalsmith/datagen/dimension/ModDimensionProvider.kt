@@ -18,7 +18,6 @@
  */ 
 package io.github.realyusufismail.temporalsmith.datagen.dimension
 
-import io.github.realyusufismail.realyusufismailcore.data.gen.dimension.DimensionProvider
 import io.github.realyusufismail.realyusufismailcore.data.gen.dimension.builder.DimensionBuilder
 import io.github.realyusufismail.realyusufismailcore.data.gen.dimension.builder.GeneratorBuilder
 import io.github.realyusufismail.realyusufismailcore.data.gen.dimension.builder.generator.builder.BiomeSourceBuilder

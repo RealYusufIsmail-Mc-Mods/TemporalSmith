@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:overworld",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "minecraft:desert"
+    },
+    "settings": {
+      "type": "minecraft:noise",
+      "settings": "minecraft:end"
+    }
+  }
+}
