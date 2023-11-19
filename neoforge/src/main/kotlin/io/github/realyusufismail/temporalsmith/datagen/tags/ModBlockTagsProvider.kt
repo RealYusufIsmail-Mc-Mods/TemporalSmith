@@ -72,6 +72,8 @@ class ModBlockTagsProvider(
         tag(TagsInit.BlockTagsInit.STORAGE_AQUMARINE).add(BlockInit.AQUMARINE_BLOCK.get())
         tag(TagsInit.BlockTagsInit.STORAGE_ENDERITE).add(BlockInit.ENDERITE_BLOCK.get())
 
+        tag(TagsInit.BlockTagsInit.PORTAL_FRAME_BLOCKS).add(BlockInit.SAPPHIRE_BLOCK.get())
+
         // use BlockTags.MINEABLE_WITH_PICKAXE
         BlockInit.ORE_BLOCKS.forEach { oreBlock ->
             tag(BlockTags.MINEABLE_WITH_PICKAXE).add(oreBlock.key.get())

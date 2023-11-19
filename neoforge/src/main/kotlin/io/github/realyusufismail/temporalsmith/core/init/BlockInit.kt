@@ -21,6 +21,7 @@ package io.github.realyusufismail.temporalsmith.core.init
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.temporalsmith.blocks.CustomToolCraftingTable
+import io.github.realyusufismail.temporalsmith.blocks.EnderiteBlock
 import io.github.realyusufismail.temporalsmith.blocks.IngotFusionTollEnhancer
 import io.github.realyusufismail.temporalsmith.blocks.lit.RainbowLitBlock
 import io.github.realyusufismail.temporalsmith.blocks.lit.RubyLitBlock
@@ -146,6 +147,7 @@ object BlockInit {
             ItemInit.RUBY,
             BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.IRON_PICKAXE)
+
     val RAINBOW_BLOCK =
         registerOreBlock(
             "rainbow_block",
@@ -159,6 +161,7 @@ object BlockInit {
             ItemInit.SAPPHIRE,
             BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.GOLD_PICKAXE)
+
     val GRAPHITE_BLOCK =
         registerOreBlock(
             "graphite_block",
@@ -173,11 +176,11 @@ object BlockInit {
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
+    @JvmField
     val ENDERITE_BLOCK =
-        registerOreBlock(
+        registerSpecial(
             "enderite_block",
-            ItemInit.ENDERITE,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+             ::EnderiteBlock,
             MinableBlockType.DIAMOND_PICKAXE)
 
     // custom recipe tables

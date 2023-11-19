@@ -65,7 +65,8 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 3, // veins per chunk
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20)))
+        )
 
         register(
             context,
@@ -74,7 +75,8 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20)))
+        )
 
         register(
             context,
@@ -83,7 +85,8 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(30))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(30)))
+        )
 
         register(
             context,
@@ -92,7 +95,8 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40)))
+        )
 
         register(
             context,
@@ -101,7 +105,8 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 3,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40)))
+        )
 
         register(
             context,
@@ -110,7 +115,8 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40)))
+        )
 
         register(
             context,
@@ -119,7 +125,8 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(50))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(50)))
+        )
     }
 
     private fun createKey(name: String): ResourceKey<PlacedFeature> {
