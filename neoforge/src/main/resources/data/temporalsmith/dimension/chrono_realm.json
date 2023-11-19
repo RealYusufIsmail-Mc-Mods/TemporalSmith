@@ -1,5 +1,5 @@
 {
-  "type": "temporalsmith:chrono_realm",
+  "type": "temporalsmith:chrono_realm_type",
   "generator": {
     "type": "minecraft:noise",
     "settings": "minecraft:overworld",

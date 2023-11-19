@@ -1,5 +1,5 @@
 {
-  "type": "armourandtoolsmod:chrono_realm",
+  "type": "armourandtoolsmod:chrono_realm_type",
   "generator": {
     "type": "minecraft:noise",
     "settings": "minecraft:overworld",

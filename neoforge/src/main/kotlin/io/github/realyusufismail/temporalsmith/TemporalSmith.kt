@@ -49,7 +49,7 @@ class TemporalSmith {
         CreativeModeTabInit.CREATIVE_MODE_TAB.register(bus)
         PotionsInit.POTION.register(bus)
         MobEffectsInit.MOB_EFFECTS.register(bus)
-        DimensionsInit.register()
+        DimensionsInit.registerDimensions()
 
         // Register ourselves for server and other game events we are interested in
         // Register the data generators
