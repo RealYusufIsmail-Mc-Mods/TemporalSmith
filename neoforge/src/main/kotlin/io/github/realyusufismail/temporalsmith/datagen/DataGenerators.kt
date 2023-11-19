@@ -71,6 +71,7 @@ object DataGenerators {
             gen.addProvider(
                 true, ModAdvancementProvider(gen.packOutput, lookup, existingFileHelper))
             gen.addProvider(true, ModDimensionTypeProvider(gen))
+            gen.addProvider(true, ModDimensionProvider(gen.packOutput))
             gen.addProvider(true, PackMetadataGenerator(gen.packOutput))
                 .add(
                     PackMetadataSection.TYPE,
@@ -86,7 +87,6 @@ object DataGenerators {
                                 Collectors.toMap(
                                     Function.identity(),
                                     DetectedVersion.BUILT_IN::getPackVersion))))
-            gen.addProvider(true, ModDimensionProvider(gen.packOutput))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)
         }

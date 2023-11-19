@@ -7,7 +7,6 @@
       "biome": "minecraft:desert"
     },
     "settings": {
-      "type": "minecraft:noise",
       "settings": "minecraft:end"
     }
   }
