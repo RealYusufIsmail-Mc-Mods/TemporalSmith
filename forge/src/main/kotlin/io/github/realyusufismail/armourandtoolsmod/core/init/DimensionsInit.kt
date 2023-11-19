@@ -16,28 +16,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.temporalsmith.core.init
+package io.github.realyusufismail.armourandtoolsmod.core.init
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith
-import net.minecraft.core.registries.Registries
-import net.minecraft.data.worldgen.BootstapContext
-import net.minecraft.resources.ResourceKey
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.util.RandomSource
-import net.minecraft.util.valueproviders.IntProvider
-import net.minecraft.util.valueproviders.IntProviderType
-import net.minecraft.world.level.Level
+import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
 import net.minecraft.world.level.dimension.DimensionType
-import net.neoforged.neoforge.registries.ForgeRegistries
-import java.util.*
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
+import net.minecraft.world.level.Level
 
 object DimensionsInit {
     val CHRON_REAL: ResourceKey<Level> =
-        ResourceKey.create(Registries.DIMENSION, TemporalSmith.getModIdAndName("chrono_realm"))
+        ResourceKey.create(Registries.DIMENSION, ArmourAndToolsMod.getModIdAndName("chrono_realm"))
     val CHRON_REAL_TYPE: ResourceKey<DimensionType> =
-        ResourceKey.create(Registries.DIMENSION_TYPE, TemporalSmith.getModIdAndName("chrono_realm"))
+        ResourceKey.create(Registries.DIMENSION_TYPE, CHRON_REAL.location())
 
     fun register() {
-        TemporalSmith.logger.info("Registering dimensions for ${TemporalSmith.MOD_ID}")
+        ArmourAndToolsMod.logger.info("Registering dimensions for ${ArmourAndToolsMod.MOD_ID}")
     }
 }

@@ -19,6 +19,7 @@
 package io.github.realyusufismail.temporalsmith.datagen.world
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
+import io.github.realyusufismail.temporalsmith.core.init.DimensionsInit
 import io.github.realyusufismail.temporalsmith.worldgen.ModConfiguredFeatures
 import io.github.realyusufismail.temporalsmith.worldgen.ModPlacedFeatures
 import java.util.concurrent.CompletableFuture

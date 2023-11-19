@@ -20,8 +20,6 @@ package io.github.realyusufismail.temporalsmith.datagen
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.logger
 import io.github.realyusufismail.temporalsmith.datagen.advancment.ModAdvancementProvider
-import io.github.realyusufismail.temporalsmith.datagen.dimension.ModDimensionProvider
-import io.github.realyusufismail.temporalsmith.datagen.dimension.ModDimensionTypeProvider
 import io.github.realyusufismail.temporalsmith.datagen.lang.ModEnLangProvider
 import io.github.realyusufismail.temporalsmith.datagen.loot.ModLootTables
 import io.github.realyusufismail.temporalsmith.datagen.recipe.MainModRecipeProvider
@@ -70,8 +68,6 @@ object DataGenerators {
                 ArmourAndTollsModSpriteSourceProvider(gen.packOutput, existingFileHelper, lookup))
             gen.addProvider(
                 true, ModAdvancementProvider(gen.packOutput, lookup, existingFileHelper))
-            gen.addProvider(true, ModDimensionTypeProvider(gen))
-            gen.addProvider(true, ModDimensionProvider(gen.packOutput))
             gen.addProvider(true, PackMetadataGenerator(gen.packOutput))
                 .add(
                     PackMetadataSection.TYPE,
