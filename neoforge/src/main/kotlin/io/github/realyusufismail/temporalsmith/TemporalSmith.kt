@@ -28,7 +28,9 @@ import io.github.realyusufismail.temporalsmith.datagen.DataGenerators
 import java.util.*
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.fml.ModList
+import net.neoforged.fml.ModLoadingContext
 import net.neoforged.fml.common.Mod
+import net.neoforged.fml.config.ModConfig
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -81,6 +83,9 @@ class TemporalSmith {
                 }
             }
         }
+
+        ModLoadingContext.get()
+            .registerConfig(ModConfig.Type.COMMON, TemporalSmithConfig.COMMON_SPEC)
     }
 
     companion object TemporalSmith {

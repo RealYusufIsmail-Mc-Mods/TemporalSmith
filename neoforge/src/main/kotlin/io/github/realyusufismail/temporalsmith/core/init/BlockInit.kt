@@ -178,10 +178,7 @@ object BlockInit {
 
     @JvmField
     val ENDERITE_BLOCK =
-        registerSpecial(
-            "enderite_block",
-             ::EnderiteBlock,
-            MinableBlockType.DIAMOND_PICKAXE)
+        registerSpecial("enderite_block", ::EnderiteBlock, MinableBlockType.DIAMOND_PICKAXE)
 
     // custom recipe tables
     val CUSTOM_ARMOUR_CRAFTING_TABLE =

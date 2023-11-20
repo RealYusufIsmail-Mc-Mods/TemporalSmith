@@ -32,7 +32,6 @@ import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraft.client.model.geom.ModelLayerLocation
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.renderer.item.ItemProperties
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
@@ -47,7 +46,6 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent
 import net.neoforged.neoforge.client.event.InputEvent
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent
-import net.neoforged.neoforge.registries.RegisterEvent
 
 object ClientEvents {
     val MjolnirLayer = ModelLayerLocation(TemporalSmith.getModIdAndName("mjolnir"), "mjolnir")
