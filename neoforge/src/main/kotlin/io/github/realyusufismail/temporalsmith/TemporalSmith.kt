@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith
 
+import io.github.realyusufismail.realyusufismailcore.RealYusufIsmailCore.logger
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
 import io.github.realyusufismail.temporalsmith.client.TemporalSmithShieldItemRendererProvider
@@ -27,7 +28,9 @@ import io.github.realyusufismail.temporalsmith.datagen.DataGenerators
 import java.util.*
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.fml.ModList
+import net.neoforged.fml.ModLoadingContext
 import net.neoforged.fml.common.Mod
+import net.neoforged.fml.config.ModConfig
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -48,6 +51,8 @@ class TemporalSmith {
         CreativeModeTabInit.CREATIVE_MODE_TAB.register(bus)
         PotionsInit.POTION.register(bus)
         MobEffectsInit.MOB_EFFECTS.register(bus)
+        POIInit.POI.register(bus)
+        DimensionsInit.registerDimensions()
 
         // Register ourselves for server and other game events we are interested in
         // Register the data generators
@@ -78,6 +83,9 @@ class TemporalSmith {
                 }
             }
         }
+
+        ModLoadingContext.get()
+            .registerConfig(ModConfig.Type.COMMON, TemporalSmithConfig.COMMON_SPEC)
     }
 
     companion object TemporalSmith {

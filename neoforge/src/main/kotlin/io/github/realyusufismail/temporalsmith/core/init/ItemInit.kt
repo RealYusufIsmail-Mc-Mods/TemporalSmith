@@ -29,377 +29,362 @@ import io.github.realyusufismail.temporalsmith.items.hammer.Mjolnir
 import io.github.realyusufismail.temporalsmith.items.hammer.StormBreaker
 import io.github.realyusufismail.temporalsmith.items.hammer.util.HammerLevel
 import io.github.realyusufismail.temporalsmith.items.shield.ModShieldItem
+import io.github.realyusufismail.temporalsmith.items.sword.EnderiteSword
 import io.github.realyusufismail.temporalsmith.items.trident.AqumarineTridentItem
 import net.minecraft.world.item.*
+import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.neoforged.neoforge.registries.ForgeRegistries
-import net.neoforged.neoforge.registries.RegistryObject
-import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 object ItemInit {
-    val ITEMS: DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)
-    val SMELT_ABLE_ITEM: MutableMap<ObjectHolderDelegate<Item>, ObjectHolderDelegate<Item>> =
-        mutableMapOf()
+    val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(MOD_ID)
+    val SMELT_ABLE_ITEM: MutableMap<DeferredItem<Item>, DeferredItem<Item>> = mutableMapOf()
 
     // ore ingots
-    val RUBY: ObjectHolderDelegate<Item> = ITEMS.registerObject("ruby") { Item(Item.Properties()) }
-    val SAPPHIRE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("sapphire") { Item(Item.Properties()) }
-    val GRAPHITE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("graphite") { Item(Item.Properties()) }
-    val AQUMARINE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("aqumarine") { Item(Item.Properties()) }
-    val RAINBOW: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("rainbow") { Item(Item.Properties()) }
-    val ENDERITE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("enderite") { Item(Item.Properties()) }
-    val IMPERIUM: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("imperium") { Item(Item.Properties()) }
+    val RUBY: DeferredItem<Item> = ITEMS.register("ruby") { -> Item(Item.Properties()) }
+    val SAPPHIRE: DeferredItem<Item> = ITEMS.register("sapphire") { -> Item(Item.Properties()) }
+    val GRAPHITE: DeferredItem<Item> = ITEMS.register("graphite") { -> Item(Item.Properties()) }
+    val AQUMARINE: DeferredItem<Item> = ITEMS.register("aqumarine") { -> Item(Item.Properties()) }
+    val RAINBOW: DeferredItem<Item> = ITEMS.register("rainbow") { -> Item(Item.Properties()) }
+    val ENDERITE: DeferredItem<Item> = ITEMS.register("enderite") { -> Item(Item.Properties()) }
+    val IMPERIUM: DeferredItem<Item> = ITEMS.register("imperium") { -> Item(Item.Properties()) }
 
     // raw ores
-    val RAW_RUBY: ObjectHolderDelegate<Item> =
+    val RAW_RUBY: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("raw_ruby", RUBY) { Item(Item.Properties()) }
-    val RAW_SAPPHIRE: ObjectHolderDelegate<Item> =
+    val RAW_SAPPHIRE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("raw_sapphire", SAPPHIRE) { Item(Item.Properties()) }
-    val RAW_GRAPHITE: ObjectHolderDelegate<Item> =
+    val RAW_GRAPHITE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("raw_graphite", GRAPHITE) { Item(Item.Properties()) }
-    val RAW_AQUMARINE: ObjectHolderDelegate<Item> =
+    val RAW_AQUMARINE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("raw_aqumarine", AQUMARINE) { Item(Item.Properties()) }
-    val RAW_RAINBOW: ObjectHolderDelegate<Item> =
+    val RAW_RAINBOW: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("raw_rainbow", RAINBOW) { Item(Item.Properties()) }
-    val RAW_ENDERITE: ObjectHolderDelegate<Item> =
+    val RAW_ENDERITE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("raw_enderite", ENDERITE) { Item(Item.Properties()) }
-    val RAW_IMPERIUM: ObjectHolderDelegate<Item> =
+    val RAW_IMPERIUM: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("raw_imperium", IMPERIUM) { Item(Item.Properties()) }
 
     // armour
-    val AMETHYST_HELMET: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_helmet") {
+    val AMETHYST_HELMET: DeferredItem<Item> =
+        ITEMS.register("amethyst_helmet") { ->
             AmethystArmour(ArmourMaterialInit.AMETHYST, ArmorItem.Type.HELMET, Item.Properties())
         }
 
-    val AMETHYST_CHESTPLATE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_chestplate") {
+    val AMETHYST_CHESTPLATE: DeferredItem<Item> =
+        ITEMS.register("amethyst_chestplate") { ->
             AmethystArmour(
                 ArmourMaterialInit.AMETHYST, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
-    val AMETHYST_LEGGINGS: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_leggings") {
+    val AMETHYST_LEGGINGS: DeferredItem<Item> =
+        ITEMS.register("amethyst_leggings") { ->
             AmethystArmour(ArmourMaterialInit.AMETHYST, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
-    val AMETHYST_BOOTS: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_boots") {
+    val AMETHYST_BOOTS: DeferredItem<Item> =
+        ITEMS.register("amethyst_boots") { ->
             AmethystArmour(ArmourMaterialInit.AMETHYST, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
-    val RUBY_HELMET: ObjectHolderDelegate<Item> =
+    val RUBY_HELMET: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_helmet", RUBY) {
             RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.HELMET, Item.Properties())
         }
 
-    val RUBY_CHESTPLATE: ObjectHolderDelegate<Item> =
+    val RUBY_CHESTPLATE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_chestplate", RUBY) {
             RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
-    val RUBY_LEGGINGS: ObjectHolderDelegate<Item> =
+    val RUBY_LEGGINGS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_leggings", RUBY) {
             RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
-    val RUBY_BOOTS: ObjectHolderDelegate<Item> =
+    val RUBY_BOOTS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_boots", RUBY) {
             RubyArmour(ArmourMaterialInit.RUBY, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
-    val SAPPHIRE_HELMET: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_HELMET: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_helmet", SAPPHIRE) {
             SapphireArmour(ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.HELMET, Item.Properties())
         }
 
-    val SAPPHIRE_CHESTPLATE: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_CHESTPLATE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_chestplate", SAPPHIRE) {
             SapphireArmour(
                 ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
-    val SAPPHIRE_LEGGINGS: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_LEGGINGS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_leggings", SAPPHIRE) {
             SapphireArmour(ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
-    val SAPPHIRE_BOOTS: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_BOOTS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_boots", SAPPHIRE) {
             SapphireArmour(ArmourMaterialInit.SAPPHIRE, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
-    val GRAPHITE_HELMET: ObjectHolderDelegate<Item> =
+    val GRAPHITE_HELMET: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("graphite_helmet", GRAPHITE) {
             GraphiteArmour(ArmourMaterialInit.GRAPHITE, ArmorItem.Type.HELMET, Item.Properties())
         }
 
-    val GRAPHITE_CHESTPLATE: ObjectHolderDelegate<Item> =
+    val GRAPHITE_CHESTPLATE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("graphite_chestplate", GRAPHITE) {
             GraphiteArmour(
                 ArmourMaterialInit.GRAPHITE, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
-    val GRAPHITE_LEGGINGS: ObjectHolderDelegate<Item> =
+    val GRAPHITE_LEGGINGS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("graphite_leggings", GRAPHITE) {
             GraphiteArmour(ArmourMaterialInit.GRAPHITE, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
-    val GRAPHITE_BOOTS: ObjectHolderDelegate<Item> =
+    val GRAPHITE_BOOTS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("graphite_boots", GRAPHITE) {
             GraphiteArmour(ArmourMaterialInit.GRAPHITE, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
-    val AQUMARINE_HELMET: ObjectHolderDelegate<Item> =
+    val AQUMARINE_HELMET: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("aqumarine_helmet", AQUMARINE) {
             AqumarineArmour(ArmourMaterialInit.AQUMARINE, ArmorItem.Type.HELMET, Item.Properties())
         }
 
-    val AQUMARINE_CHESTPLATE: ObjectHolderDelegate<Item> =
+    val AQUMARINE_CHESTPLATE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("aqumarine_chestplate", AQUMARINE) {
             AqumarineArmour(
                 ArmourMaterialInit.AQUMARINE, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
-    val AQUMARINE_LEGGINGS: ObjectHolderDelegate<Item> =
+    val AQUMARINE_LEGGINGS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("aqumarine_leggings", AQUMARINE) {
             AqumarineArmour(
                 ArmourMaterialInit.AQUMARINE, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
-    val AQUMARINE_BOOTS: ObjectHolderDelegate<Item> =
+    val AQUMARINE_BOOTS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("aqumarine_boots", AQUMARINE) {
             AqumarineArmour(ArmourMaterialInit.AQUMARINE, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
-    val RAINBOW_HELMET: ObjectHolderDelegate<Item> =
+    val RAINBOW_HELMET: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("rainbow_helmet", RAINBOW) {
             RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.HELMET, Item.Properties())
         }
 
-    val RAINBOW_CHESTPLATE: ObjectHolderDelegate<Item> =
+    val RAINBOW_CHESTPLATE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("rainbow_chestplate", RAINBOW) {
             RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
-    val RAINBOW_LEGGINGS: ObjectHolderDelegate<Item> =
+    val RAINBOW_LEGGINGS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("rainbow_leggings", RAINBOW) {
             RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
-    val RAINBOW_BOOTS: ObjectHolderDelegate<Item> =
+    val RAINBOW_BOOTS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("rainbow_boots", RAINBOW) {
             RainbowArmour(ArmourMaterialInit.RAINBOW, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
-    val ENDERITE_HELMET: ObjectHolderDelegate<Item> =
+    val ENDERITE_HELMET: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_helmet", ENDERITE) {
             EnderiteArmour(ArmourMaterialInit.ENDERITE, ArmorItem.Type.HELMET, Item.Properties())
         }
 
-    val ENDERITE_CHESTPLATE: ObjectHolderDelegate<Item> =
+    val ENDERITE_CHESTPLATE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_chestplate", ENDERITE) {
             EnderiteArmour(
                 ArmourMaterialInit.ENDERITE, ArmorItem.Type.CHESTPLATE, Item.Properties())
         }
 
-    val ENDERITE_LEGGINGS: ObjectHolderDelegate<Item> =
+    val ENDERITE_LEGGINGS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_leggings", ENDERITE) {
             EnderiteArmour(ArmourMaterialInit.ENDERITE, ArmorItem.Type.LEGGINGS, Item.Properties())
         }
 
-    val ENDERITE_BOOTS: ObjectHolderDelegate<Item> =
+    val ENDERITE_BOOTS: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_boots", ENDERITE) {
             EnderiteArmour(ArmourMaterialInit.ENDERITE, ArmorItem.Type.BOOTS, Item.Properties())
         }
 
     // Swords
-    val RUBY_SWORD: ObjectHolderDelegate<Item> =
+    val RUBY_SWORD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_sword", RUBY) {
             CustomSwordItem(CustomToolMaterial.RUBY_SWORD, 8, -2.6f, Item.Properties().stacksTo(1))
         }
 
-    val ENDERITE_SWORD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("enderite_sword", ENDERITE) {
-            CustomSwordItem(
-                CustomToolMaterial.ENDERITE_SWORD, 8, -2.5f, Item.Properties().stacksTo(1))
-        }
+    val ENDERITE_SWORD: DeferredItem<Item> =
+        ITEMS.registerSmeltableObject("enderite_sword", ENDERITE, ::EnderiteSword)
 
-    val AMETHYST_SWORD: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_sword") {
+    val AMETHYST_SWORD: DeferredItem<Item> =
+        ITEMS.register("amethyst_sword") { ->
             CustomSwordItem(
                 CustomToolMaterial.AMETHYST_SWORD, 8, -2.5f, Item.Properties().stacksTo(1))
         }
 
-    val SAPPHIRE_SWORD: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_SWORD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_sword", SAPPHIRE) {
             CustomSwordItem(
                 CustomToolMaterial.SAPPHIRE_SWORD, 9, -2.6f, Item.Properties().stacksTo(1))
         }
 
-    val IMPERIUM_SWORD: ObjectHolderDelegate<Item> =
+    val IMPERIUM_SWORD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("imperium_sword", IMPERIUM) {
             CustomSwordItem(
                 CustomToolMaterial.IMPERIUM_SWORD, 10, -2.7f, Item.Properties().stacksTo(1))
         }
 
     // Pickaxes
-    val RUBY_PICKAXE: ObjectHolderDelegate<Item> =
+    val RUBY_PICKAXE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_pickaxe", RUBY) {
             PickaxeItem(CustomToolMaterial.RUBY_PICKAXE, 5, -2.8f, Item.Properties().stacksTo(1))
         }
 
-    val ENDERITE_PICKAXE: ObjectHolderDelegate<Item> =
+    val ENDERITE_PICKAXE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_pickaxe", ENDERITE) {
             PickaxeItem(
                 CustomToolMaterial.ENDERITE_PICKAXE, 6, -2.7f, Item.Properties().stacksTo(1))
         }
 
-    val AMETHYST_PICKAXE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_pickaxe") {
+    val AMETHYST_PICKAXE: DeferredItem<Item> =
+        ITEMS.register("amethyst_pickaxe") { ->
             PickaxeItem(
                 CustomToolMaterial.AMETHYST_PICKAXE, 5, -2.7f, Item.Properties().stacksTo(1))
         }
 
-    val SAPPHIRE_PICKAXE: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_PICKAXE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_pickaxe", SAPPHIRE) {
             PickaxeItem(
                 CustomToolMaterial.SAPPHIRE_PICKAXE, 6, -2.8f, Item.Properties().stacksTo(1))
         }
 
-    val IMPERIUM_PICKAXE: ObjectHolderDelegate<Item> =
+    val IMPERIUM_PICKAXE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("imperium_pickaxe", IMPERIUM) {
             PickaxeItem(
                 CustomToolMaterial.IMPERIUM_PICKAXE, 7, -2.9f, Item.Properties().stacksTo(1))
         }
 
-    val MAGMA_STRIKE_PICKAXE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("magma_strike_pickaxe") {
+    val MAGMA_STRIKE_PICKAXE: DeferredItem<Item> =
+        ITEMS.register("magma_strike_pickaxe") { ->
             PickaxeItem(
                 CustomToolMaterial.MAGMA_STRIKE_PICKAXE, 9, -3.0f, Item.Properties().stacksTo(1))
         }
 
     // Axes
-    val RUBY_AXE: ObjectHolderDelegate<Item> =
+    val RUBY_AXE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_axe", RUBY) {
             AxeItem(CustomToolMaterial.RUBY_AXE, 8F, -2.6f, Item.Properties().stacksTo(1))
         }
 
-    val ENDERITE_AXE: ObjectHolderDelegate<Item> =
+    val ENDERITE_AXE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_axe", ENDERITE) {
             AxeItem(CustomToolMaterial.ENDERITE_AXE, 9F, -2.5f, Item.Properties().stacksTo(1))
         }
 
-    val AMETHYST_AXE: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_axe") {
+    val AMETHYST_AXE: DeferredItem<Item> =
+        ITEMS.register("amethyst_axe") { ->
             AxeItem(CustomToolMaterial.AMETHYST_AXE, 7.5F, -2.5f, Item.Properties().stacksTo(1))
         }
 
-    val SAPPHIRE_AXE: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_AXE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_axe", SAPPHIRE) {
             AxeItem(CustomToolMaterial.SAPPHIRE_AXE, 8.5F, -2.6f, Item.Properties().stacksTo(1))
         }
 
     // Shovels
-    val RUBY_SHOVEL: ObjectHolderDelegate<Item> =
+    val RUBY_SHOVEL: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_shovel", RUBY) {
             ShovelItem(CustomToolMaterial.RUBY_SHOVEL, 3.5F, -3.0f, Item.Properties().stacksTo(1))
         }
 
-    val ENDERITE_SHOVEL: ObjectHolderDelegate<Item> =
+    val ENDERITE_SHOVEL: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_shovel", ENDERITE) {
             ShovelItem(
                 CustomToolMaterial.ENDERITE_SHOVEL, 4.5F, -3.0f, Item.Properties().stacksTo(1))
         }
 
-    val AMETHYST_SHOVEL: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("amethyst_shovel") {
+    val AMETHYST_SHOVEL: DeferredItem<Item> =
+        ITEMS.register("amethyst_shovel") { ->
             ShovelItem(
                 CustomToolMaterial.AMETHYST_SHOVEL, 3.5F, -3.0f, Item.Properties().stacksTo(1))
         }
 
-    val SAPPHIRE_SHOVEL: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_SHOVEL: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_shovel", SAPPHIRE) {
             ShovelItem(
                 CustomToolMaterial.SAPPHIRE_SHOVEL, 4.5F, -3.5f, Item.Properties().stacksTo(1))
         }
 
     // Hoes
-    val RUBY_HOE: ObjectHolderDelegate<Item> =
+    val RUBY_HOE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_hoe", RUBY) {
             HoeItem(CustomToolMaterial.RUBY_HOE, 1, -3.1f, Item.Properties().stacksTo(1))
         }
 
-    val ENDERITE_HOE: ObjectHolderDelegate<Item> =
+    val ENDERITE_HOE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("enderite_hoe", ENDERITE) {
             HoeItem(CustomToolMaterial.ENDERITE_HOE, 2, -3.0f, Item.Properties().stacksTo(1))
         }
 
-    val SAPPHIRE_HOE: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_HOE: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_hoe", SAPPHIRE) {
             HoeItem(CustomToolMaterial.SAPPHIRE_HOE, 2, -3.1f, Item.Properties().stacksTo(1))
         }
 
     // Hammers
 
-    val DRAGON_DESTROYER: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("dragon_destroyer") {
+    val DRAGON_DESTROYER: DeferredItem<Item> =
+        ITEMS.register("dragon_destroyer") { ->
             HammerItem(CustomToolMaterial.DRAGON_DESTROYER, -3.6f, 10F, HammerLevel.LEGENDARY)
         }
 
-    val MJOLNIR: ObjectHolderDelegate<Item> = ITEMS.registerObject("mjolnir") { Mjolnir() }
+    val MJOLNIR: DeferredItem<Item> = ITEMS.register("mjolnir") { -> Mjolnir() }
 
-    val STORMBREAKER: ObjectHolderDelegate<Item> =
-        ITEMS.registerObject("stormbreaker") { StormBreaker() }
+    val STORMBREAKER: DeferredItem<Item> = ITEMS.register("stormbreaker") { -> StormBreaker() }
 
     // Tridents
-    val AQUMARINE_TRIDENT: ObjectHolderDelegate<Item> =
+    val AQUMARINE_TRIDENT: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("aqumarine_trident", AQUMARINE) { AqumarineTridentItem() }
 
     // Shields
-    val RUBY_SHIELD: ObjectHolderDelegate<Item> =
+    val RUBY_SHIELD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("ruby_shield", RUBY) {
             ModShieldItem(410, CustomShieldMaterial.RUBY_SHIELD)
         }
 
-    val SAPPHIRE_SHIELD: ObjectHolderDelegate<Item> =
+    val SAPPHIRE_SHIELD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("sapphire_shield", SAPPHIRE) {
             ModShieldItem(420, CustomShieldMaterial.SAPPHIRE_SHIELD)
         }
 
-    val GRAPHITE_SHIELD: ObjectHolderDelegate<Item> =
+    val GRAPHITE_SHIELD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("graphite_shield", GRAPHITE) {
             ModShieldItem(400, CustomShieldMaterial.GRAPHITE_SHIELD)
         }
 
-    val AQUMARINE_SHIELD: ObjectHolderDelegate<Item> =
+    val AQUMARINE_SHIELD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("aqumarine_shield", AQUMARINE) {
             ModShieldItem(450, CustomShieldMaterial.AQUMARINE_SHIELD)
         }
 
-    val RAINBOW_SHIELD: ObjectHolderDelegate<Item> =
+    val RAINBOW_SHIELD: DeferredItem<Item> =
         ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) {
             ModShieldItem(430, CustomShieldMaterial.RAINBOW_SHIELD)
         }
 
-    private fun DeferredRegister<Item>.registerSmeltableObject(
+    private fun DeferredRegister.Items.registerSmeltableObject(
         name: String,
-        associatedOreIngot: ObjectHolderDelegate<Item>,
+        associatedOreIngot: DeferredItem<Item>,
         supplier: () -> Item
-    ): ObjectHolderDelegate<Item> {
-        val registryObject: RegistryObject<Item> = this.register(name, supplier)
+    ): DeferredItem<Item> {
+        val registryObject = this.register(name, supplier)
 
-        val o = ObjectHolderDelegate(registryObject)
-
-        SMELT_ABLE_ITEM[o] = associatedOreIngot
+        SMELT_ABLE_ITEM[registryObject] = associatedOreIngot
         // note that this anonymous class inherits three types
-        return o
+        return registryObject
     }
 }

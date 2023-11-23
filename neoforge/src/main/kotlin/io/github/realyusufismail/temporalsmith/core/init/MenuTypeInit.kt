@@ -22,57 +22,41 @@ import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_I
 import io.github.realyusufismail.temporalsmith.blocks.armour.CustomArmourCraftingTableMenu
 import io.github.realyusufismail.temporalsmith.blocks.infusion.IngotFusionTollEnhancerMenu
 import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTableMenu
+import net.minecraft.core.registries.Registries
 import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.inventory.MenuType.MenuSupplier
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension
+import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.neoforged.neoforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 object MenuTypeInit {
-    val MENU: DeferredRegister<MenuType<*>> =
-        DeferredRegister.create(ForgeRegistries.MENU_TYPES, MOD_ID)
+    val MENU: DeferredRegister<MenuType<*>> = DeferredRegister.create(Registries.MENU, MOD_ID)
 
     val CUSTOM_ARMOUR_CRAFTING_TABLE_MENU:
-        ObjectHolderDelegate<MenuType<CustomArmourCraftingTableMenu>> =
+        DeferredHolder<MenuType<*>, MenuType<CustomArmourCraftingTableMenu>> =
         register("custom_armour_crafting_table", ::CustomArmourCraftingTableMenu)
 
     val CUSTOM_TOOL_CRAFTING_TABLE_MENU:
-        ObjectHolderDelegate<MenuType<CustomToolCraftingTableMenu>> =
+        DeferredHolder<MenuType<*>, MenuType<CustomToolCraftingTableMenu>> =
         register("custom_tool_crafting_table", ::CustomToolCraftingTableMenu)
 
     @JvmField
     val INGOT_FUSION_TOLL_ENHANCER_MENU:
-        ObjectHolderDelegate<MenuType<IngotFusionTollEnhancerMenu>> =
-        MENU.registerObject("ingot_fusion_toll_enhancer") {
-                // TODO : Get null here.
-                IMenuTypeExtension.create { pContainerId, pInventory, pData ->
-                    IngotFusionTollEnhancerMenu(pContainerId, pInventory, pData)
-                }
+        DeferredHolder<MenuType<*>, MenuType<IngotFusionTollEnhancerMenu>> =
+        MENU.register("ingot_fusion_toll_enhancer") { ->
+            IMenuTypeExtension.create { pContainerId, pInventory, pData ->
+                IngotFusionTollEnhancerMenu(pContainerId, pInventory, pData)
             }
-            .setGuiTitle("container.ingot_fusion_toll_enhancer")
+        }
 
     private fun <T : AbstractContainerMenu> register(
         name: String,
         pFactory: MenuSupplier<T>,
         featureFlagSet: FeatureFlagSet = FeatureFlags.REGISTRY.allFlags()
-    ): ObjectHolderDelegate<MenuType<T>> {
-        return MENU.registerObject(name) { MenuType(pFactory, featureFlagSet) }
-            .setGuiTitle("container.$name")
-    }
-
-    private var menuGuiTitle: String? = null
-
-    private fun <V> ObjectHolderDelegate<V>.setGuiTitle(s: String): ObjectHolderDelegate<V> {
-        menuGuiTitle = s
-        return this
-    }
-
-    fun <V> ObjectHolderDelegate<V>.getMenuGuiTitle(): String {
-        return menuGuiTitle ?: throw IllegalStateException("Menu gui title not set")
+    ): DeferredHolder<MenuType<*>, MenuType<T>> {
+        return MENU.register(name) { -> MenuType(pFactory, featureFlagSet) }
     }
 }

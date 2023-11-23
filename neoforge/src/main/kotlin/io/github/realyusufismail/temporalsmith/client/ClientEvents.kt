@@ -31,6 +31,8 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraft.client.model.geom.ModelLayerLocation
 import net.minecraft.client.multiplayer.ClientLevel
+import net.minecraft.client.renderer.ItemBlockRenderTypes
+import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.item.ItemProperties
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
@@ -52,6 +54,11 @@ object ClientEvents {
 
     fun clientSetup(event: FMLClientSetupEvent) {
         event.enqueueWork { registerScreens() }
+
+        event.enqueueWork {
+            ItemBlockRenderTypes.setRenderLayer(
+                BlockInit.ENDERITE_PORTAL_BLOCK.get(), RenderType.translucent())
+        }
 
         event.enqueueWork {
             ItemProperties.register(ItemInit.RUBY_SHIELD.get(), ResourceLocation("blocking")) {

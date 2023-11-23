@@ -29,7 +29,8 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.neoforged.neoforge.registries.RegistryObject
+import net.neoforged.neoforge.registries.DeferredBlock
+import net.neoforged.neoforge.registries.DeferredItem
 
 class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_ID, "en_us") {
 
@@ -292,11 +293,11 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
             "enderite_tools", "That ender tools", "Way to go! You are now increasing your attack!")
     }
 
-    override fun <T : Item> item(entry: RegistryObject<T>, name: String) {
+    override fun <T : Item> item(entry: DeferredItem<T>, name: String) {
         add(entry.get(), name)
     }
 
-    override fun <T : Block> block(entry: RegistryObject<T>, name: String) {
+    override fun <T : Block> block(entry: DeferredBlock<T>, name: String) {
         add(entry.get(), name)
     }
 

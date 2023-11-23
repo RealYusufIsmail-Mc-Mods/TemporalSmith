@@ -25,28 +25,34 @@ import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.Block
+import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.neoforged.neoforge.registries.RegistryObject
 
 object CreativeModeTabInit {
     val CREATIVE_MODE_TAB: DeferredRegister<CreativeModeTab> =
         DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TemporalSmith.MOD_ID)
 
-    val ARMOUR_AND_TOOLS_GROUP: RegistryObject<CreativeModeTab> =
-        CREATIVE_MODE_TAB.register("armour_and_tools_tab") {
+    val ARMOUR_AND_TOOLS_GROUP: DeferredHolder<CreativeModeTab, CreativeModeTab> =
+        CREATIVE_MODE_TAB.register("armour_and_tools_tab") { ->
             CreativeModeTab.builder()
                 .displayItems {
                     _: CreativeModeTab.ItemDisplayParameters,
                     output: CreativeModeTab.Output ->
                     ItemInit.ITEMS.entries
                         .stream()
-                        .map { item: RegistryObject<Item> -> item.get().asItem() }
-                        .forEach { pItem: Item -> output.accept(pItem) }
+                        .map { item: DeferredHolder<Item, out Item> -> item.get().asItem() }
+                        .forEach { pItem: Item ->
+                            if (pItem != BlockInit.ENDERITE_PORTAL_BLOCK.get().asItem())
+                                output.accept(pItem)
+                        }
 
                     BlockInit.BLOCKS.entries
                         .stream()
-                        .map { item: RegistryObject<Block> -> item.get().asItem() }
-                        .forEach { pItem: Item -> output.accept(pItem) }
+                        .map { item: DeferredHolder<Block, out Block> -> item.get().asItem() }
+                        .forEach { pItem: Item ->
+                            if (pItem != BlockInit.ENDERITE_PORTAL_BLOCK.get().asItem())
+                                output.accept(pItem)
+                        }
                 }
                 .icon { ItemStack(ItemInit.SAPPHIRE.get()) }
                 .title(Component.translatable("creativetab.temporalsmith"))

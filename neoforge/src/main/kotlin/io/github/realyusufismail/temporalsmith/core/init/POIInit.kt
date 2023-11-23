@@ -18,18 +18,19 @@
  */ 
 package io.github.realyusufismail.temporalsmith.core.init
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
-import io.github.realyusufismail.temporalsmith.effect.WorthyEffect
+import io.github.realyusufismail.temporalsmith.TemporalSmith
 import net.minecraft.core.registries.Registries
-import net.minecraft.world.effect.MobEffect
+import net.minecraft.world.entity.ai.village.poi.PoiType
 import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
 
-object MobEffectsInit {
-    val MOB_EFFECTS: DeferredRegister<MobEffect> =
-        DeferredRegister.create(Registries.MOB_EFFECT, MOD_ID)
+object POIInit {
+    val POI: DeferredRegister<PoiType> =
+        DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, TemporalSmith.MOD_ID)
 
-    // WORTHY_EFFECT has no effect, it just an indication that the potion is worthy to use mjolnir
-    val WORTHY_EFFECT: DeferredHolder<MobEffect, WorthyEffect> =
-        MOB_EFFECTS.register("worthy_effect") { -> WorthyEffect() }
+    @JvmField
+    val ENDERITE_PORTAL_BLOCK: DeferredHolder<PoiType, PoiType> =
+        POI.register("enderite_portal_block") { ->
+            PoiType(setOf(BlockInit.ENDERITE_PORTAL_BLOCK.get().defaultBlockState()), 0, 1)
+        }
 }

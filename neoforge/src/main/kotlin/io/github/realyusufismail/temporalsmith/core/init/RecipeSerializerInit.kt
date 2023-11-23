@@ -22,34 +22,34 @@ import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_I
 import io.github.realyusufismail.temporalsmith.recipe.armour.CustomArmourCraftingTableShapedRecipe
 import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.temporalsmith.recipe.tool.CustomToolCraftingTableShapedRecipe
+import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
+import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.neoforged.neoforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 object RecipeSerializerInit {
     val SERIALIZERS: DeferredRegister<RecipeSerializer<*>> =
-        DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MOD_ID)
+        DeferredRegister.create(Registries.RECIPE_SERIALIZER, MOD_ID)
 
     val CUSTOM_ARMOUR_CRAFTER:
-        ObjectHolderDelegate<RecipeSerializer<CustomArmourCraftingTableShapedRecipe>> =
+        DeferredHolder<
+            RecipeSerializer<*>, RecipeSerializer<CustomArmourCraftingTableShapedRecipe>> =
         register("custom_armour_crafter", CustomArmourCraftingTableShapedRecipe.Serializer())
 
     val CUSTOM_TOOL_CRAFTER:
-        ObjectHolderDelegate<RecipeSerializer<CustomToolCraftingTableShapedRecipe>> =
+        DeferredHolder<RecipeSerializer<*>, RecipeSerializer<CustomToolCraftingTableShapedRecipe>> =
         register("custom_tool_crafter", CustomToolCraftingTableShapedRecipe.Serializer())
 
     @JvmField
     val INGOT_FUSION_TOLL_ENHANCER_RECIPE:
-        ObjectHolderDelegate<RecipeSerializer<IngotFusionTollEnhancerRecipe>> =
+        DeferredHolder<RecipeSerializer<*>, RecipeSerializer<IngotFusionTollEnhancerRecipe>> =
         register("ingot_fusion_toll_enhancer", IngotFusionTollEnhancerRecipe.Serializer())
 
     private fun <S : RecipeSerializer<T>, T : Recipe<*>> register(
         pKey: String,
         pRecipeSerializer: S,
-    ): ObjectHolderDelegate<S> {
-        return SERIALIZERS.registerObject(pKey) { pRecipeSerializer }
+    ): DeferredHolder<RecipeSerializer<*>, S> {
+        return SERIALIZERS.register(pKey) { -> pRecipeSerializer }
     }
 }

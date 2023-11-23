@@ -20,17 +20,18 @@ package io.github.realyusufismail.temporalsmith.core.init;
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith;
 import io.github.realyusufismail.temporalsmith.blocks.infusion.IngotFusionTollEnhancerBlockEntity;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
 
 public class BlockEntityTypeInit {
 
   public static DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
-      DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, TemporalSmith.MOD_ID);
+      DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, TemporalSmith.MOD_ID);
 
-  public static RegistryObject<BlockEntityType<IngotFusionTollEnhancerBlockEntity>>
+  public static DeferredHolder<
+          BlockEntityType<?>, BlockEntityType<IngotFusionTollEnhancerBlockEntity>>
       INGOT_FUSION_TOLL_ENHANCER =
           BLOCK_ENTITY_TYPES.register(
               "ingot_fusion_toll_enhancer",
