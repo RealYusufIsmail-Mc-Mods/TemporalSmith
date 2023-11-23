@@ -31,6 +31,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -52,13 +53,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
-public class EnderiteBlock extends Block {
+public class EnderitePortalBlock extends Block {
 
   public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
   protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
   protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-  public EnderiteBlock() {
+  public EnderitePortalBlock() {
     super(
         Properties.copy(Blocks.DIAMOND_BLOCK)
             .strength(5.0F, 6.0F)
@@ -172,7 +173,7 @@ public class EnderiteBlock extends Block {
           (double) pos.getX() + 0.5D,
           (double) pos.getY() + 0.5D,
           (double) pos.getZ() + 0.5D,
-          UGSoundEvents.UNDERGARDEN_PORTAL_AMBIENT.get(),
+          SoundEvents.PORTAL_AMBIENT,
           SoundSource.BLOCKS,
           0.5F,
           random.nextFloat() * 0.4F + 0.8F,
@@ -195,7 +196,8 @@ public class EnderiteBlock extends Block {
         zSpeed = random.nextFloat() * 2.0F * (float) j;
       }
 
-      level.addParticle(UGParticleTypes.UNDERGARDEN_PORTAL.get(), x, y, z, xSpeed, ySpeed, zSpeed);
+      // level.addParticle(UGParticleTypes.UNDERGARDEN_PORTAL.get(), x, y, z, xSpeed, ySpeed,
+      // zSpeed);
     }
   }
 
@@ -346,7 +348,7 @@ public class EnderiteBlock extends Block {
     }
 
     private static boolean isEmpty(BlockState state) {
-      return state.isAir() || state.is(BlockInit.ENDERITE_BLOCK.get());
+      return state.isAir() || state.is(BlockInit.ENDERITE_PORTAL_BLOCK.get());
     }
 
     public boolean isValid() {
@@ -359,7 +361,7 @@ public class EnderiteBlock extends Block {
 
     public void createPortalBlocks() {
       BlockState blockstate =
-          BlockInit.ENDERITE_BLOCK
+          BlockInit.ENDERITE_PORTAL_BLOCK
               .get()
               .defaultBlockState()
               .setValue(NetherPortalBlock.AXIS, this.axis);

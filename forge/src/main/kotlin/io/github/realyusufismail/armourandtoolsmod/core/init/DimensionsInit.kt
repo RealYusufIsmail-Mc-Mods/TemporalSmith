@@ -19,10 +19,10 @@
 package io.github.realyusufismail.armourandtoolsmod.core.init
 
 import io.github.realyusufismail.armourandtoolsmod.ArmourAndToolsMod
-import net.minecraft.world.level.dimension.DimensionType
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.dimension.DimensionType
 
 object DimensionsInit {
     val CHRON_REAL: ResourceKey<Level> =

@@ -19,7 +19,7 @@
 package io.github.realyusufismail.temporalsmith.dimension;
 
 import io.github.realyusufismail.temporalsmith.TemporalSmithConfig;
-import io.github.realyusufismail.temporalsmith.blocks.EnderiteBlock;
+import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalBlock;
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit;
 import io.github.realyusufismail.temporalsmith.core.init.DimensionsInit;
 import io.github.realyusufismail.temporalsmith.core.init.POIInit;
@@ -56,14 +56,12 @@ public class ModTeleporter implements ITeleporter {
 
   protected final ServerLevel level;
 
-  public static ModConfigSpec.ConfigValue<String> return_portal_frame_block_id;
-
   private final BlockState frame =
       !ForgeRegistries.BLOCKS.containsKey(
               ResourceLocation.tryParse(
                   Objects.requireNonNull(TemporalSmithConfig.Common.returnPortalFrameBlockId)
                       .get()))
-          ? Blocks.STONE_BRICKS.defaultBlockState()
+          ? BlockInit.ENDERITE_BLOCK.get().defaultBlockState()
           : Objects.requireNonNull(
                   ForgeRegistries.BLOCKS.getValue(
                       ResourceLocation.tryParse(
@@ -85,7 +83,7 @@ public class ModTeleporter implements ITeleporter {
                 (poiType) ->
                     poiType.is(
                         Objects.requireNonNull(
-                            POIInit.ENDERITE_BLOCK.getRegistryObject().getKey())),
+                            POIInit.ENDERITE_PORTAL_BLOCK.getRegistryObject().getKey())),
                 pos,
                 64,
                 PoiManager.Occupancy.ANY)
@@ -218,7 +216,7 @@ public class ModTeleporter implements ITeleporter {
     }
 
     BlockState blockstate =
-        BlockInit.ENDERITE_BLOCK.get().defaultBlockState().setValue(EnderiteBlock.AXIS, axis);
+        BlockInit.ENDERITE_BLOCK.get().defaultBlockState().setValue(EnderitePortalBlock.AXIS, axis);
 
     for (int k2 = 0; k2 < 2; ++k2) {
       for (int l2 = 0; l2 < 3; ++l2) {
@@ -328,7 +326,7 @@ public class ModTeleporter implements ITeleporter {
       Direction.Axis portalAxis =
           this.level
               .getBlockState(entity.portalEntrancePos)
-              .getOptionalValue(EnderiteBlock.AXIS)
+              .getOptionalValue(EnderitePortalBlock.AXIS)
               .orElse(Direction.Axis.X);
       return this.makePortal(pos, portalAxis);
     }
