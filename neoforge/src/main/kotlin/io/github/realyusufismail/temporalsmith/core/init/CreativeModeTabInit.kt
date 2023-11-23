@@ -41,12 +41,18 @@ object CreativeModeTabInit {
                     ItemInit.ITEMS.entries
                         .stream()
                         .map { item: DeferredHolder<Item, out Item> -> item.get().asItem() }
-                        .forEach { pItem: Item -> output.accept(pItem) }
+                        .forEach { pItem: Item ->
+                            if (pItem != BlockInit.ENDERITE_PORTAL_BLOCK.get().asItem())
+                                output.accept(pItem)
+                        }
 
                     BlockInit.BLOCKS.entries
                         .stream()
                         .map { item: DeferredHolder<Block, out Block> -> item.get().asItem() }
-                        .forEach { pItem: Item -> output.accept(pItem) }
+                        .forEach { pItem: Item ->
+                            if (pItem != BlockInit.ENDERITE_PORTAL_BLOCK.get().asItem())
+                                output.accept(pItem)
+                        }
                 }
                 .icon { ItemStack(ItemInit.SAPPHIRE.get()) }
                 .title(Component.translatable("creativetab.temporalsmith"))

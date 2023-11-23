@@ -213,7 +213,10 @@ public class ModTeleporter implements ITeleporter {
     }
 
     BlockState blockstate =
-        BlockInit.ENDERITE_PORTAL_BLOCK.get().defaultBlockState().setValue(EnderitePortalBlock.AXIS, axis);
+        BlockInit.ENDERITE_PORTAL_BLOCK
+            .get()
+            .defaultBlockState()
+            .setValue(EnderitePortalBlock.AXIS, axis);
 
     for (int k2 = 0; k2 < 2; ++k2) {
       for (int l2 = 0; l2 < 3; ++l2) {

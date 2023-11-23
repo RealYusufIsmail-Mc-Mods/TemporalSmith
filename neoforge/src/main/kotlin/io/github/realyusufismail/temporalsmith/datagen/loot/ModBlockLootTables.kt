@@ -84,16 +84,16 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         dropSelf(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         dropSelf(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
         dropSelf(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
-        dropSelf(BlockInit.ENDERITE_PORTAL_BLOCK.get())
     }
 
     override fun getKnownBlocks(): Iterable<Block> {
         return BuiltInRegistries.BLOCK.stream()
-            .filter { entry: Block? ->
+            .filter { entry: Block ->
                 Optional.ofNullable(BuiltInRegistries.BLOCK.getKey(entry))
                     .filter { key: ResourceLocation -> key.namespace == MOD_ID }
                     .isPresent
             }
+            .filter { entry: Block -> entry != BlockInit.ENDERITE_PORTAL_BLOCK.get() }
             .collect(Collectors.toSet())
     }
 }

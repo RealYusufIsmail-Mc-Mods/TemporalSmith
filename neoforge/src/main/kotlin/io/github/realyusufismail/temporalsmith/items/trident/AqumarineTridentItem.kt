@@ -18,22 +18,13 @@
  */ 
 package io.github.realyusufismail.temporalsmith.items.trident
 
-import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalBlock
 import io.github.realyusufismail.temporalsmith.client.TemporalSmithTridentItemRendererProvider
 import io.github.realyusufismail.temporalsmith.common.entity.AqumarineTridentEntity
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity
-import io.github.realyusufismail.temporalsmith.core.init.BlockInit
-import io.github.realyusufismail.temporalsmith.core.init.DimensionsInit
 import io.github.realyusufismail.temporalsmith.core.material.CustomToolMaterial
 import java.util.function.Consumer
-import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
-import net.minecraft.sounds.SoundEvents
-import net.minecraft.sounds.SoundSource
-import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.Level
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions
 
