@@ -20,9 +20,7 @@ package io.github.realyusufismail.temporalsmith
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
-import net.minecraft.world.level.block.Blocks
 import net.neoforged.neoforge.common.ModConfigSpec
-import net.neoforged.neoforge.registries.ForgeRegistries
 import org.apache.commons.lang3.tuple.Pair
 
 object TemporalSmithConfig {
@@ -34,7 +32,7 @@ object TemporalSmithConfig {
                 builder
                     .comment("The block id of the return portal frame")
                     .translation("$MOD_ID.config.return_portal_frame_block_id")
-                    .define("Return Portal Frame Block ID", ForgeRegistries.BLOCKS.getKey(BlockInit.ENDERITE_BLOCK.get()).toString())
+                    .define("Return Portal Frame Block ID", BlockInit.ENDERITE_BLOCK.id.toString())
 
 
             builder.build()
