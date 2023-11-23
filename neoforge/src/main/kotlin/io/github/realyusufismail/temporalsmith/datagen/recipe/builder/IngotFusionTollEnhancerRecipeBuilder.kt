@@ -25,6 +25,7 @@ import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
 import java.util.*
 import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.resources.ResourceLocation
@@ -32,7 +33,6 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
-import net.neoforged.neoforge.registries.ForgeRegistries
 
 class IngotFusionTollEnhancerRecipeBuilder(
     private val recipeCategory: IngotFusionTollEnhancerRecipeBookCategory,
@@ -116,7 +116,7 @@ class IngotFusionTollEnhancerRecipeBuilder(
 
         private fun serializeResult(stack: ItemStack): JsonObject {
             val json = JsonObject()
-            json.addProperty("item", ForgeRegistries.ITEMS.getKey(stack.item).toString())
+            json.addProperty("item", BuiltInRegistries.ITEM.getKey(stack.item).toString())
             json.addProperty("count", stack.count)
             if (stack.hasTag()) {
                 json.addProperty("nbt", stack.tag.toString())

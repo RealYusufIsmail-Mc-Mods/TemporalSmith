@@ -29,6 +29,7 @@ import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
 import java.util.*
 import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
@@ -39,7 +40,6 @@ import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.level.ItemLike
-import net.neoforged.neoforge.registries.ForgeRegistries
 
 /** @see net.minecraft.data.recipes.ShapedRecipeBuilder */
 object CustomArmourCraftingTableRecipeBuilder {
@@ -252,7 +252,7 @@ object CustomArmourCraftingTableRecipeBuilder {
             jsonObject.add("key", jsonObject1)
             val jsonObject2 = JsonObject()
             jsonObject2.addProperty(
-                "item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(result)).toString())
+                "item", Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(result)).toString())
             if (count > 1) {
                 jsonObject2.addProperty("count", count)
             }
@@ -265,7 +265,7 @@ object CustomArmourCraftingTableRecipeBuilder {
                 for (entry: Map.Entry<Enchantment, Int> in enchantmentsAndLevels.entries) {
                     jsonObject4.addProperty(
                         "id",
-                        Objects.requireNonNull(ForgeRegistries.ENCHANTMENTS.getKey(entry.key))
+                        Objects.requireNonNull(BuiltInRegistries.ENCHANTMENT.getKey(entry.key))
                             .toString())
                     jsonObject4.addProperty("lvl", entry.value)
                     jsonArray1.add(jsonObject4)

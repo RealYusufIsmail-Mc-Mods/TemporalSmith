@@ -20,13 +20,13 @@ package io.github.realyusufismail.temporalsmith.datagen.texture
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
-import net.neoforged.neoforge.registries.ForgeRegistries
 
 class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
     BlockStateProvider(output, MOD_ID, exFileHelper) {
@@ -68,14 +68,14 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     private fun customCraftingTable(block: Block) {
-        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
 
         val builder = models().withExistingParent(name.path, "block/cube")
 
         builder.texture(
             "down",
             ResourceLocation(
-                "minecraft", "block/" + ForgeRegistries.BLOCKS.getKey(Blocks.IRON_BLOCK)!!.path))
+                "minecraft", "block/" + BuiltInRegistries.BLOCK.getKey(Blocks.IRON_BLOCK)!!.path))
         builder.texture("east", modLoc("block/" + name.path + "_side"))
         builder.texture("north", modLoc("block/" + name.path + "_front"))
         builder.texture("particle", modLoc("block/" + name.path + "_front"))
@@ -87,13 +87,13 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     private fun normalBlock(block: Block) {
-        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
         simpleBlock(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
         simpleBlockItem(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
     }
 
     private fun orientableBlock(block: Block) {
-        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
         val builder = models().withExistingParent(name.path, "block/orientable")
         builder.texture("top", modLoc("block/${name.path}_top"))
         builder.texture("side", modLoc("block/${name.path}_side"))
@@ -103,8 +103,8 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     private fun orientableBlockOn(block: Block) {
-        val nameWithOn = (ForgeRegistries.BLOCKS.getKey(block) ?: return).path + "_on"
-        val name = ForgeRegistries.BLOCKS.getKey(block) ?: return
+        val nameWithOn = (BuiltInRegistries.BLOCK.getKey(block) ?: return).path + "_on"
+        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
         val builder = models().withExistingParent(nameWithOn, "block/orientable")
         builder.texture("top", modLoc("block/${name.path}_top"))
         builder.texture("side", modLoc("block/${name.path}_side"))

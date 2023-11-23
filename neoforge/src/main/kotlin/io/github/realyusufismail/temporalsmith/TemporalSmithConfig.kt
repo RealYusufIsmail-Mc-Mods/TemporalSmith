@@ -34,7 +34,6 @@ object TemporalSmithConfig {
                     .translation("$MOD_ID.config.return_portal_frame_block_id")
                     .define("Return Portal Frame Block ID", BlockInit.ENDERITE_BLOCK.id.toString())
 
-
             builder.build()
         }
 

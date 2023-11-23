@@ -23,11 +23,11 @@ import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import java.util.*
 import java.util.stream.Collectors
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.loot.BlockLootSubProvider
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.level.block.Block
-import net.neoforged.neoforge.registries.ForgeRegistries
 
 class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.allFlags()) {
     override fun generate() {
@@ -84,13 +84,13 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         dropSelf(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         dropSelf(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
         dropSelf(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
+        dropSelf(BlockInit.ENDERITE_PORTAL_BLOCK.get())
     }
 
     override fun getKnownBlocks(): Iterable<Block> {
-        return ForgeRegistries.BLOCKS.values
-            .stream()
+        return BuiltInRegistries.BLOCK.stream()
             .filter { entry: Block? ->
-                Optional.ofNullable(ForgeRegistries.BLOCKS.getKey(entry))
+                Optional.ofNullable(BuiltInRegistries.BLOCK.getKey(entry))
                     .filter { key: ResourceLocation -> key.namespace == MOD_ID }
                     .isPresent
             }

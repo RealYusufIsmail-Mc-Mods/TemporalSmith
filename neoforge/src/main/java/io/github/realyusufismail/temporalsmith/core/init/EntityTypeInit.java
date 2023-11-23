@@ -22,32 +22,34 @@ import io.github.realyusufismail.temporalsmith.TemporalSmith;
 import io.github.realyusufismail.temporalsmith.common.entity.AqumarineTridentEntity;
 import io.github.realyusufismail.temporalsmith.common.entity.MjolnirEntity;
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
 
 public class EntityTypeInit {
   public static DeferredRegister<EntityType<?>> ENTITY_TYPES =
-      DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, TemporalSmith.MOD_ID);
+      DeferredRegister.create(Registries.ENTITY_TYPE, TemporalSmith.MOD_ID);
 
-  public static final RegistryObject<EntityType<ModTridentEntity>> AQUMARINE_THROWN_TRIDENT =
-      ENTITY_TYPES.register(
-          "aqumarine_thrown_trident",
-          () ->
-              EntityType.Builder.<ModTridentEntity>of(AqumarineTridentEntity::new, MobCategory.MISC)
-                  .sized(0.5F, 0.5F)
-                  .fireImmune()
-                  .clientTrackingRange(4)
-                  .updateInterval(20)
-                  .setCustomClientFactory(
-                      (spawnEntity, world) ->
-                          new AqumarineTridentEntity(
-                              EntityTypeInit.AQUMARINE_THROWN_TRIDENT.get(), world))
-                  .build(TemporalSmith.MOD_ID + ":aqumarine_thrown_trident"));
+  public static final DeferredHolder<EntityType<?>, EntityType<ModTridentEntity>>
+      AQUMARINE_THROWN_TRIDENT =
+          ENTITY_TYPES.register(
+              "aqumarine_thrown_trident",
+              () ->
+                  EntityType.Builder.<ModTridentEntity>of(
+                          AqumarineTridentEntity::new, MobCategory.MISC)
+                      .sized(0.5F, 0.5F)
+                      .fireImmune()
+                      .clientTrackingRange(4)
+                      .updateInterval(20)
+                      .setCustomClientFactory(
+                          (spawnEntity, world) ->
+                              new AqumarineTridentEntity(
+                                  EntityTypeInit.AQUMARINE_THROWN_TRIDENT.get(), world))
+                      .build(TemporalSmith.MOD_ID + ":aqumarine_thrown_trident"));
 
-  public static final RegistryObject<EntityType<ModTridentEntity>> MJOLNIR =
+  public static final DeferredHolder<EntityType<?>, EntityType<ModTridentEntity>> MJOLNIR =
       ENTITY_TYPES.register(
           "mjolnir",
           () ->

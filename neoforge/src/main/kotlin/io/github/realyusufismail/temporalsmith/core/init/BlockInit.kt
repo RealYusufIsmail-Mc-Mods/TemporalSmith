@@ -30,29 +30,27 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
+import net.neoforged.neoforge.registries.DeferredBlock
+import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.neoforged.neoforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
+import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 
 object BlockInit {
-    val BLOCKS: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID)
+    val BLOCKS: DeferredRegister.Blocks = DeferredRegister.createBlocks(MOD_ID)
 
-    val ORE_BLOCKS: MutableMap<ObjectHolderDelegate<Block>, ObjectHolderDelegate<Item>> =
-        mutableMapOf()
+    val ORE_BLOCKS: MutableMap<DeferredBlock<Block>, DeferredItem<Item>> = mutableMapOf()
 
-    val SMELT_ABLE_BLOCKS: MutableMap<ObjectHolderDelegate<Block>, ObjectHolderDelegate<Item>> =
-        mutableMapOf()
+    val SMELT_ABLE_BLOCKS: MutableMap<DeferredBlock<Block>, DeferredItem<Item>> = mutableMapOf()
 
-    val MINABLE_STONE_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+    val MINABLE_STONE_PICKAXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
 
-    val MINABLE_IRON_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+    val MINABLE_IRON_PICKAXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
 
-    val MINABLE_GOLD_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+    val MINABLE_GOLD_PICKAXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
 
-    val MINABLE_DIAMOND_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+    val MINABLE_DIAMOND_PICKAXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
 
-    val MINABLE_NETHERITE_PICKAXE_BLOCKS: MutableList<ObjectHolderDelegate<Block>> = mutableListOf()
+    val MINABLE_NETHERITE_PICKAXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
 
     // ores
     val RUBY_ORE =
@@ -178,7 +176,11 @@ object BlockInit {
 
     @JvmField
     val ENDERITE_BLOCK =
-        registerOreBlock("enderite_block", ItemInit.ENDERITE, BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(), MinableBlockType.DIAMOND_PICKAXE)
+        registerOreBlock(
+            "enderite_block",
+            ItemInit.ENDERITE,
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            MinableBlockType.DIAMOND_PICKAXE)
 
     // custom recipe tables
     val CUSTOM_ARMOUR_CRAFTING_TABLE =
@@ -192,29 +194,28 @@ object BlockInit {
         registerSpecial("ingot_fusion_toll_enhancer", ::IngotFusionTollEnhancer)
 
     @JvmField
-    val ENDERITE_PORTAL_BLOCK =
-        registerSpecial("enderite_portal_block", ::EnderitePortalBlock)
+    val ENDERITE_PORTAL_BLOCK = registerSpecial("enderite_portal_block", ::EnderitePortalBlock)
 
     private fun <T : Block> registerSpecial(
         name: String,
         supplier: () -> T,
         minableTool: MinableBlockType = MinableBlockType.STONE_PICKAXE,
-    ): ObjectHolderDelegate<T> {
-        val blockReg = BLOCKS.registerObject(name, supplier)
-        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
-        checkTypeOfMinableBlock(blockReg as ObjectHolderDelegate<Block>, minableTool)
+    ): DeferredBlock<T> {
+        val blockReg = BLOCKS.register(name, supplier)
+        ItemInit.ITEMS.register(name) { -> BlockItem(blockReg.get(), Item.Properties()) }
+        checkTypeOfMinableBlock(blockReg as DeferredBlock<Block>, minableTool)
         return blockReg
     }
 
     private fun registerSpecialSmeltAbleBlock(
         name: String,
-        associatedOreIngot: ObjectHolderDelegate<Item>,
+        associatedOreIngot: DeferredItem<Item>,
         minableTool: MinableBlockType,
         supplier: () -> Block
-    ): ObjectHolderDelegate<Block> {
+    ): DeferredBlock<Block> {
 
-        val blockReg = BLOCKS.registerObject(name, supplier)
-        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        val blockReg = BLOCKS.register(name, supplier)
+        ItemInit.ITEMS.register(name) { -> BlockItem(blockReg.get(), Item.Properties()) }
 
         SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         checkTypeOfMinableBlock(blockReg, minableTool)
@@ -224,14 +225,14 @@ object BlockInit {
 
     private fun registerOreBlock(
         name: String,
-        associatedOreIngot: ObjectHolderDelegate<Item>,
+        associatedOreIngot: DeferredItem<Item>,
         property: BlockBehaviour.Properties,
         minableTool: MinableBlockType
-    ): ObjectHolderDelegate<Block> {
+    ): DeferredBlock<Block> {
 
-        val blockReg = BLOCKS.registerObject(name) { Block(property) }
+        val blockReg = BLOCKS.register(name) { -> Block(property) }
 
-        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        ItemInit.ITEMS.register(name) { -> BlockItem(blockReg.get(), Item.Properties()) }
 
         ORE_BLOCKS[blockReg] = associatedOreIngot
         checkTypeOfMinableBlock(blockReg, minableTool)
@@ -241,13 +242,13 @@ object BlockInit {
 
     private fun registerSmeltAbleBlock(
         name: String,
-        associatedOreIngot: ObjectHolderDelegate<Item>,
+        associatedOreIngot: DeferredItem<Item>,
         property: BlockBehaviour.Properties,
         minableTool: MinableBlockType
-    ): ObjectHolderDelegate<Block> {
+    ): DeferredBlock<Block> {
 
-        val blockReg = BLOCKS.registerObject(name) { Block(property) }
-        ItemInit.ITEMS.registerObject(name) { BlockItem(blockReg.get(), Item.Properties()) }
+        val blockReg = BLOCKS.register(name) { -> Block(property) }
+        ItemInit.ITEMS.register(name) { -> BlockItem(blockReg.get(), Item.Properties()) }
 
         SMELT_ABLE_BLOCKS[blockReg] = associatedOreIngot
         checkTypeOfMinableBlock(blockReg, minableTool)
@@ -255,10 +256,7 @@ object BlockInit {
         return blockReg
     }
 
-    private fun checkTypeOfMinableBlock(
-        block: ObjectHolderDelegate<Block>,
-        type: MinableBlockType
-    ) {
+    private fun checkTypeOfMinableBlock(block: DeferredBlock<Block>, type: MinableBlockType) {
         when (type) {
             MinableBlockType.STONE_PICKAXE -> MINABLE_STONE_PICKAXE_BLOCKS.add(block)
             MinableBlockType.IRON_PICKAXE -> MINABLE_IRON_PICKAXE_BLOCKS.add(block)

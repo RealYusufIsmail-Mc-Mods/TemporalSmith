@@ -51,6 +51,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
 public class EnderitePortalBlock extends Block {
@@ -61,7 +62,7 @@ public class EnderitePortalBlock extends Block {
 
   public EnderitePortalBlock() {
     super(
-        Properties.copy(Blocks.DIAMOND_BLOCK)
+        Properties.copy(Blocks.NETHER_PORTAL)
             .strength(5.0F, 6.0F)
             .lightLevel(
                 (state) -> {
@@ -75,13 +76,10 @@ public class EnderitePortalBlock extends Block {
   @Override
   public VoxelShape getShape(
       BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-    switch (state.getValue(AXIS)) {
-      case Z:
-        return Z_AABB;
-      case X:
-      default:
-        return X_AABB;
-    }
+      return switch (state.getValue(AXIS)) {
+          case Z -> Z_AABB;
+          default -> X_AABB;
+      };
   }
 
   public boolean trySpawnPortal(LevelAccessor level, BlockPos pos) {

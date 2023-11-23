@@ -19,22 +19,21 @@
 package io.github.realyusufismail.temporalsmith.core.init
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith
+import net.minecraft.core.registries.Registries
 import net.minecraft.world.effect.MobEffect
 import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.item.alchemy.Potion
+import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.neoforged.neoforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.neoforge.forge.ObjectHolderDelegate
-import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 /** @see MobEffect */
 object PotionsInit {
     val POTION: DeferredRegister<Potion> =
-        DeferredRegister.create(ForgeRegistries.POTIONS, TemporalSmith.MOD_ID)
+        DeferredRegister.create(Registries.POTION, TemporalSmith.MOD_ID)
 
     // WORTHY_POTION has no effect, it just an indication that the potion is worthy to use mjolnir
-    val WORTHY_POTION: ObjectHolderDelegate<Potion> =
-        POTION.registerObject("worthy_potion") {
+    val WORTHY_POTION: DeferredHolder<Potion, Potion> =
+        POTION.register("worthy_potion") { ->
             Potion(MobEffectInstance(MobEffectsInit.WORTHY_EFFECT.get(), 9999, 0, false, false))
         }
 }

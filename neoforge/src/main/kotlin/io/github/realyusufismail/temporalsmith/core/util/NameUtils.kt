@@ -18,12 +18,12 @@
  */ 
 package io.github.realyusufismail.temporalsmith.core.util
 
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.neoforged.neoforge.registries.ForgeRegistries
 
 val Item.name: String
-    get() = ForgeRegistries.ITEMS.getKey(this).toString().replace("temporalsmith:", "")
+    get() = BuiltInRegistries.ITEM.getKey(this).toString().replace("temporalsmith:", "")
 
 val Block.bName: String
-    get() = ForgeRegistries.BLOCKS.getKey(this).toString().replace("temporalsmith:", "")
+    get() = BuiltInRegistries.BLOCK.getKey(this).toString().replace("temporalsmith:", "")

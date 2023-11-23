@@ -25,6 +25,8 @@ import io.github.realyusufismail.temporalsmith.client.TemporalSmithShieldItemRen
 import io.github.realyusufismail.temporalsmith.client.TemporalSmithTridentItemRendererProvider
 import io.github.realyusufismail.temporalsmith.core.init.*
 import io.github.realyusufismail.temporalsmith.datagen.DataGenerators
+import net.minecraft.client.renderer.ItemBlockRenderTypes
+import net.minecraft.client.renderer.RenderType
 import java.util.*
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.fml.ModList
@@ -86,6 +88,7 @@ class TemporalSmith {
 
         ModLoadingContext.get()
             .registerConfig(ModConfig.Type.COMMON, TemporalSmithConfig.COMMON_SPEC)
+
     }
 
     companion object TemporalSmith {

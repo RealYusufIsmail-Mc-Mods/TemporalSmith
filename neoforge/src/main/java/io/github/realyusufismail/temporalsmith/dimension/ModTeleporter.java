@@ -30,6 +30,7 @@ import java.util.function.Function;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,22 +49,20 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.util.ITeleporter;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 public class ModTeleporter implements ITeleporter {
 
   protected final ServerLevel level;
 
   private final BlockState frame =
-      !ForgeRegistries.BLOCKS.containsKey(
+      !BuiltInRegistries.BLOCK.containsKey(
               ResourceLocation.tryParse(
                   Objects.requireNonNull(TemporalSmithConfig.Common.returnPortalFrameBlockId)
                       .get()))
           ? BlockInit.ENDERITE_BLOCK.get().defaultBlockState()
           : Objects.requireNonNull(
-                  ForgeRegistries.BLOCKS.getValue(
+                  BuiltInRegistries.BLOCK.get(
                       ResourceLocation.tryParse(
                           Objects.requireNonNull(
                                   TemporalSmithConfig.Common.returnPortalFrameBlockId)
@@ -81,9 +80,7 @@ public class ModTeleporter implements ITeleporter {
         poiManager
             .getInSquare(
                 (poiType) ->
-                    poiType.is(
-                        Objects.requireNonNull(
-                            POIInit.ENDERITE_PORTAL_BLOCK.getRegistryObject().getKey())),
+                    poiType.is(Objects.requireNonNull(POIInit.ENDERITE_PORTAL_BLOCK.getKey())),
                 pos,
                 64,
                 PoiManager.Occupancy.ANY)
@@ -216,7 +213,7 @@ public class ModTeleporter implements ITeleporter {
     }
 
     BlockState blockstate =
-        BlockInit.ENDERITE_BLOCK.get().defaultBlockState().setValue(EnderitePortalBlock.AXIS, axis);
+        BlockInit.ENDERITE_PORTAL_BLOCK.get().defaultBlockState().setValue(EnderitePortalBlock.AXIS, axis);
 
     for (int k2 = 0; k2 < 2; ++k2) {
       for (int l2 = 0; l2 < 3; ++l2) {

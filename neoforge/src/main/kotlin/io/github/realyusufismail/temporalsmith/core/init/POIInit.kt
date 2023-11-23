@@ -19,17 +19,18 @@
 package io.github.realyusufismail.temporalsmith.core.init
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith
+import net.minecraft.core.registries.Registries
 import net.minecraft.world.entity.ai.village.poi.PoiType
+import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.neoforged.neoforge.registries.ForgeRegistries
-import thedarkcolour.kotlinforforge.neoforge.forge.registerObject
 
 object POIInit {
-    val POI: DeferredRegister<PoiType> = DeferredRegister.create(ForgeRegistries.POI_TYPES, TemporalSmith.MOD_ID)
+    val POI: DeferredRegister<PoiType> =
+        DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, TemporalSmith.MOD_ID)
 
     @JvmField
-    val ENDERITE_PORTAL_BLOCK =
-        POI.registerObject("enderite_portal_block") {
+    val ENDERITE_PORTAL_BLOCK: DeferredHolder<PoiType, PoiType> =
+        POI.register("enderite_portal_block") { ->
             PoiType(setOf(BlockInit.ENDERITE_PORTAL_BLOCK.get().defaultBlockState()), 0, 1)
         }
 }
