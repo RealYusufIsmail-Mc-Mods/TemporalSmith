@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta6] - 2023-11-23
+
+### Added support for the new dimension called ChronoRealm. To activate build a normal portal using enderite block and ignite useing the enderite sword. Documentation will be added in the future.
+### Added support for latest version of Neo Forge. A lot of changes have been made to the mod. Please report any issues you find.
+
 # [1.20.2-2.0.0.beta5] - 2023-11-16
 
 ### Rebranded mod to TemporalSmith: Aetheric Arsenal Expansion
