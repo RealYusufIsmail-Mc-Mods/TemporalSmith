@@ -1,33 +1,32 @@
 modLoader = "kotlinforforge"
 loaderVersion = "[4,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 license = "Apache 2.0" #mandatory
-issueTrackerURL = "https://github.com/RealYusufIsmail/Armour-and-Tools-Mod/issues"
+issueTrackerURL = "https://github.com/RealYusufIsmail-Mc-Mods/TemporalSmith"
 [[mods]]
-modId = "armourandtoolsmod"
-version = "1.20.1-1.0.7.beta4"
-displayName = "Armour and Tools Mod"
+modId = "temporalsmith"
+version = "1.20.1-1.0.7.beta5"
+displayName = "TemporalSmith: Aetheric Arsenal Expansion"
 logoFile = "logo.png"
-updateJSONURL = "https://forge.curseupdate.com/480779/armourandtoolsmod"
+updateJSONURL = "https://forge.curseupdate.com/480779/temporalsmith"
 description = '''
-This Minecraft mod adds new armours and tools, as well as new dimensions and bosses to the game. However, some features are still being developed and will be added in the future. With the new armour and tools, players can customize their play style and approach combat in new ways. The new dimensions offer unique challenges, enemies, and rewards, while the bosses provide exciting battles and new strategies to master. (To be added). Overall, this mod provides a fresh and exciting experience for Minecraft players, with more features to come in the future such as lightsabres and thors hammers,
-'''
+Descend into the boundless realms of TemporalSmith, where time intertwines with the craft of the Aetheric Arsenal. Unleash the power of enchanted swords and tools forged beyond the constraints of time. Explore mystical dimensions, each brimming with unique challenges and treasures. Elevate your Minecraft experience with a fusion of temporal mastery, otherworldly landscapes, and an expansive array of armaments. The journey awaits; delve into the time-woven secrets of TemporalSmith. (A lot of stuff to be added)'''
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.armourandtoolsmod]]
+[[dependencies.temporalsmith]]
 modId = "forge"
 mandatory = true
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.armourandtoolsmod]]
+[[dependencies.temporalsmith]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1, 1.21)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.armourandtoolsmod]]
+[[dependencies.temporalsmith]]
 modId = "realyusufismailcore"
 mandatory = true
 versionRange = "[1.20.1-1.0.1,)"

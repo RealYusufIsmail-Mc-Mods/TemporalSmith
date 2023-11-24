@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "temporalsmith:block/enderite_block"
+    }
+  }
+}

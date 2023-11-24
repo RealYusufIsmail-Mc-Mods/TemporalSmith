@@ -1,0 +1,36 @@
+{
+  "parent": "temporalsmith:imperium_ore",
+  "criteria": {
+    "get_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/imperium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.imperium_ingot.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:imperium"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.imperium_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_scrap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

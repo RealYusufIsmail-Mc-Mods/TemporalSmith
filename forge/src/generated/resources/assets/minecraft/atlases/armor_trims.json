@@ -16,10 +16,10 @@
         "ruby_redstone": "minecraft:trims/color_palettes/redstone"
       },
       "textures": [
-        "armourandtoolsmod:trims/items/ruby_head_trim",
-        "armourandtoolsmod:trims/items/ruby_chest_trim",
-        "armourandtoolsmod:trims/items/ruby_legs_trim",
-        "armourandtoolsmod:trims/items/ruby_feet_trim"
+        "temporalsmith:trims/items/ruby_head_trim",
+        "temporalsmith:trims/items/ruby_chest_trim",
+        "temporalsmith:trims/items/ruby_legs_trim",
+        "temporalsmith:trims/items/ruby_feet_trim"
       ]
     }
   ]

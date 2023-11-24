@@ -39,8 +39,8 @@
   "advancements.temporalsmith.rainbow_ore.title": "That rare polychromatic ore",
   "advancements.temporalsmith.rainbow_tools.description": "Way to go! You are now increasing your attack!",
   "advancements.temporalsmith.rainbow_tools.title": "That polychromatic tools",
-  "advancements.temporalsmith.root.description": "Thanks for downloading Armour and Tools Mod! Enjoy!",
-  "advancements.temporalsmith.root.title": "Download Armour and Tools Mod",
+  "advancements.temporalsmith.root.description": "Thanks for downloading Temporal Smith! Now you can play with the mod!",
+  "advancements.temporalsmith.root.title": "Download Temporal Smith",
   "advancements.temporalsmith.ruby_armour.description": "Well done! You are now increasing your defence!",
   "advancements.temporalsmith.ruby_armour.title": "That crimson armour",
   "advancements.temporalsmith.ruby_block.description": "Well that's a way to show off your wealth!",
@@ -168,7 +168,7 @@
   "item.temporalsmith.sapphire_shovel": "Sapphire Shovel",
   "item.temporalsmith.sapphire_sword": "Sapphire Sword",
   "item.temporalsmith.stormbreaker": "Stormbreaker",
-  "key.categories.temporalsmith": "Armour and Item Mod",
+  "key.categories.temporalsmith": "Temporal Smith Mod",
   "key.get_mjolnir": "Get Mjölnir",
   "key.strike_lightning": "Strike Lightning"
 }

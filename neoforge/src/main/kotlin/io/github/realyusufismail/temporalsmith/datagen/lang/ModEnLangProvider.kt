@@ -163,15 +163,15 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         add("container.ingot_fusion_toll_enhancer.description", "Enhance your tools and armour!")
 
         // keybinds
-        add(KeyBinding.KEY_CATEGORY_ARMOUR_AND_TOOLS_MOD, "Armour and Item Mod")
+        add(KeyBinding.KEY_CATEGORY_TEMPORAL_SMITH_MOD, "Temporal Smith Mod")
         add(KeyBinding.KEY_GET_MJOLNIR, "Get Mjölnir")
         add(KeyBinding.KEY_STRIKE_LIGHTNING, "Strike Lightning")
 
         // advancements
         addAdvancement(
             "root",
-            "Download Armour and Tools Mod",
-            "Thanks for downloading Armour and Tools Mod! Enjoy!")
+            "Download Temporal Smith",
+            "Thanks for downloading Temporal Smith! Now you can play with the mod!")
 
         // Ruby
 

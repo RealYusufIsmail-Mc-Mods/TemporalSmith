@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 300,
+  "experience": 0.6,
+  "ingredient": {
+    "item": "temporalsmith:ruby_chestplate"
+  },
+  "result": "temporalsmith:ruby"
+}

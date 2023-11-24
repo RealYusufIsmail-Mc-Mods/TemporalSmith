@@ -1,0 +1,18 @@
+{
+  "type": "temporalsmith:custom_armour_crafter",
+  "category": "armour_legs",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A A",
+    "A A"
+  ],
+  "result": {
+    "item": "temporalsmith:amethyst_leggings"
+  },
+  "show_notification": false
+}

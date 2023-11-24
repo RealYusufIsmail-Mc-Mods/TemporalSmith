@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/iron_block",
+    "east": "temporalsmith:block/custom_armour_crafting_table_side",
+    "north": "temporalsmith:block/custom_armour_crafting_table_front",
+    "particle": "temporalsmith:block/custom_armour_crafting_table_front",
+    "south": "temporalsmith:block/custom_armour_crafting_table_side",
+    "up": "temporalsmith:block/custom_armour_crafting_table_top",
+    "west": "temporalsmith:block/custom_armour_crafting_table_front"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "parent": "temporalsmith:imperium_ingot",
+  "criteria": {
+    "imperium_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:imperium_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "imperium_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:imperium_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.imperium_tools.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:imperium_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.imperium_tools.title"
+    }
+  },
+  "requirements": [
+    [
+      "imperium_sword",
+      "imperium_pickaxe"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

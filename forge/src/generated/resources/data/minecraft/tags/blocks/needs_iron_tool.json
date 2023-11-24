@@ -1,9 +1,9 @@
 {
   "values": [
-    "armourandtoolsmod:ruby_ore",
-    "armourandtoolsmod:imperium_ore",
-    "armourandtoolsmod:deepslate_ruby_ore",
-    "armourandtoolsmod:deepslate_imperium_ore",
-    "armourandtoolsmod:ruby_block"
+    "temporalsmith:ruby_ore",
+    "temporalsmith:imperium_ore",
+    "temporalsmith:deepslate_ruby_ore",
+    "temporalsmith:deepslate_imperium_ore",
+    "temporalsmith:ruby_block"
   ]
 }

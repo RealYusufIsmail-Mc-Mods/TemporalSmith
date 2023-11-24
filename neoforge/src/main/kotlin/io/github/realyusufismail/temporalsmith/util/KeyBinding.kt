@@ -24,7 +24,7 @@ import net.neoforged.neoforge.client.settings.KeyConflictContext
 import org.lwjgl.glfw.GLFW
 
 object KeyBinding {
-    const val KEY_CATEGORY_ARMOUR_AND_TOOLS_MOD = "key.categories.temporalsmith"
+    const val KEY_CATEGORY_TEMPORAL_SMITH_MOD = "key.categories.temporalsmith"
     const val KEY_GET_MJOLNIR = "key.get_mjolnir"
     const val KEY_STRIKE_LIGHTNING = "key.strike_lightning"
 
@@ -34,7 +34,7 @@ object KeyBinding {
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_M,
-            KEY_CATEGORY_ARMOUR_AND_TOOLS_MOD)
+            KEY_CATEGORY_TEMPORAL_SMITH_MOD)
 
     val STRIKE_LIGHTNING =
         KeyMapping(
@@ -42,5 +42,5 @@ object KeyBinding {
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_Z,
-            KEY_CATEGORY_ARMOUR_AND_TOOLS_MOD)
+            KEY_CATEGORY_TEMPORAL_SMITH_MOD)
 }

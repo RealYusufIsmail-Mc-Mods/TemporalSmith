@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "cookingtime": 300,
-  "experience": 0.6,
-  "ingredient": {
-    "item": "armourandtoolsmod:graphite_ore"
-  },
-  "result": "armourandtoolsmod:graphite"
-}
