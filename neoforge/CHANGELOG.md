@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta7] - 2023-11-24
+
+### Quick fix with same lang name set for the old name of the mod.
+
 # [1.20.2-2.0.0.beta6] - 2023-11-23
 
 ### Added support for the new dimension called ChronoRealm. To activate build a normal portal using enderite block and ignite useing the enderite sword. Documentation will be added in the future.

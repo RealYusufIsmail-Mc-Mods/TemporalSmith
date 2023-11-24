@@ -33,7 +33,7 @@ object CreativeModeTabInit {
         DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TemporalSmith.MOD_ID)
 
     val ARMOUR_AND_TOOLS_GROUP: DeferredHolder<CreativeModeTab, CreativeModeTab> =
-        CREATIVE_MODE_TAB.register("armour_and_tools_tab") { ->
+        CREATIVE_MODE_TAB.register("temporalsmith_tab") { ->
             CreativeModeTab.builder()
                 .displayItems {
                     _: CreativeModeTab.ItemDisplayParameters,

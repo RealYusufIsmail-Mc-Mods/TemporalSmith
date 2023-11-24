@@ -1,0 +1,30 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "sword",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/imperium"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " A ",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:imperium_sword",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "minecraft:fire_aspect",
+          "lvl": 2
+        }
+      ],
+      "HideFlags": 0
+    }
+  },
+  "showNotification": false
+}

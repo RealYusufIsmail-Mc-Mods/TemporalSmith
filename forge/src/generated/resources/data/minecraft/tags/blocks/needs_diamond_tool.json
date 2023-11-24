@@ -1,15 +1,15 @@
 {
   "values": [
-    "armourandtoolsmod:rainbow_ore",
-    "armourandtoolsmod:graphite_ore",
-    "armourandtoolsmod:aqumarine_ore",
-    "armourandtoolsmod:enderite_ore",
-    "armourandtoolsmod:deepslate_rainbow_ore",
-    "armourandtoolsmod:deepslate_graphite_ore",
-    "armourandtoolsmod:deepslate_aqumarine_ore",
-    "armourandtoolsmod:rainbow_block",
-    "armourandtoolsmod:graphite_block",
-    "armourandtoolsmod:aqumarine_block",
-    "armourandtoolsmod:enderite_block"
+    "temporalsmith:rainbow_ore",
+    "temporalsmith:graphite_ore",
+    "temporalsmith:aqumarine_ore",
+    "temporalsmith:enderite_ore",
+    "temporalsmith:deepslate_rainbow_ore",
+    "temporalsmith:deepslate_graphite_ore",
+    "temporalsmith:deepslate_aqumarine_ore",
+    "temporalsmith:rainbow_block",
+    "temporalsmith:graphite_block",
+    "temporalsmith:aqumarine_block",
+    "temporalsmith:enderite_block"
   ]
 }

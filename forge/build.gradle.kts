@@ -1,14 +1,14 @@
 import net.minecraftforge.gradle.userdev.UserDevExtension
 
 plugins {
-    kotlin("jvm") version "1.9.10"
+    kotlin("jvm")
     id("net.minecraftforge.gradle") version "[6.0,6.2)"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
 }
 
 project.version = properties["modVersion"] as String
 
-base.archivesName.set("armourandtoolsmod-forge")
+base.archivesName.set("temporalsmith-forge")
 
 val mcVersion = properties["mcVersion"] as String
 var projectId = properties["projectId"] as String

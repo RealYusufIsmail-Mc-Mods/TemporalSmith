@@ -1,0 +1,78 @@
+{
+  "parent": "temporalsmith:graphite_ingot",
+  "criteria": {
+    "graphite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:graphite_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "graphite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:graphite_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "graphite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:graphite_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "graphite_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:graphite_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.graphite_armour.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:graphite_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.graphite_armour.title"
+    }
+  },
+  "requirements": [
+    [
+      "graphite_helmet",
+      "graphite_chestplate",
+      "graphite_leggings",
+      "graphite_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

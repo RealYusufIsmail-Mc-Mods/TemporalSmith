@@ -2,23 +2,23 @@
   "sources": [
     {
       "type": "minecraft:single",
-      "resource": "armourandtoolsmod:entity/shield/ruby"
+      "resource": "temporalsmith:entity/shield/ruby"
     },
     {
       "type": "minecraft:single",
-      "resource": "armourandtoolsmod:entity/shield/aqumarine"
+      "resource": "temporalsmith:entity/shield/aqumarine"
     },
     {
       "type": "minecraft:single",
-      "resource": "armourandtoolsmod:entity/shield/rainbow"
+      "resource": "temporalsmith:entity/shield/rainbow"
     },
     {
       "type": "minecraft:single",
-      "resource": "armourandtoolsmod:entity/shield/sapphire"
+      "resource": "temporalsmith:entity/shield/sapphire"
     },
     {
       "type": "minecraft:single",
-      "resource": "armourandtoolsmod:entity/shield/graphite"
+      "resource": "temporalsmith:entity/shield/graphite"
     }
   ]
 }

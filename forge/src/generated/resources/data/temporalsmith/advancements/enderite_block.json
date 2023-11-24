@@ -1,0 +1,36 @@
+{
+  "parent": "temporalsmith:enderite_ingot",
+  "criteria": {
+    "get_block": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/enderite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.enderite_block.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:enderite_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.enderite_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_block"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

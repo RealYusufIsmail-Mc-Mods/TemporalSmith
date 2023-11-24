@@ -1,23 +1,19 @@
-import java.net.URL
-import org.jetbrains.dokka.base.DokkaBase
-import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories { mavenCentral() }
 
     dependencies {
-        classpath("org.jetbrains.dokka:dokka-base:1.9.0")
-        classpath("io.github.realyusufismail:jconfig:1.0.8")
+        classpath("org.jetbrains.dokka:dokka-base:1.9.10")
+        classpath("io.github.realyusufismail:jconfig:1.1.1")
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.9.10"
-    kotlin("plugin.allopen") version "1.9.10"
-    id("com.diffplug.spotless") version "6.20.0"
-    id("org.jetbrains.dokka") version "1.9.0"
+    kotlin("jvm") version "1.9.20"
+    kotlin("plugin.allopen") version "1.9.20"
+    id("com.diffplug.spotless") version "6.22.0"
+    id("org.jetbrains.dokka") version "1.9.10"
     id("net.darkhax.curseforgegradle") version "1.1.16"
     jacoco // code coverage reports
 }
@@ -214,29 +210,3 @@ java {
 }
 
 tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
-
-tasks.getByName("dokkaHtml", DokkaTask::class) {
-    dokkaSourceSets.configureEach {
-        includes.from("package.md")
-        jdkVersion.set(17)
-        sourceLink {
-            localDirectory.set(file("src/main/kotlin"))
-            remoteUrl.set(
-                URL(
-                    "https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/main/src/main/kotlin"))
-            remoteLineSuffix.set("#L")
-        }
-
-        sourceLink {
-            localDirectory.set(file("src/main/java"))
-            remoteUrl.set(
-                URL(
-                    "https://github.com/RealYusufIsmail-Mc-Mods/Armour-and-Tools-Mod/blob/main/src/main/java"))
-            remoteLineSuffix.set("#L")
-        }
-
-        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-            footerMessage = "Copyright © 2023 RealYusufIsmail MC Mods"
-        }
-    }
-}

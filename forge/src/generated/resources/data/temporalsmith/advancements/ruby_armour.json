@@ -1,0 +1,78 @@
+{
+  "parent": "temporalsmith:ruby_ingot",
+  "criteria": {
+    "ruby_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:ruby_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ruby_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:ruby_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ruby_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:ruby_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ruby_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "temporalsmith:ruby_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.temporalsmith.ruby_armour.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "temporalsmith:ruby_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.temporalsmith.ruby_armour.title"
+    }
+  },
+  "requirements": [
+    [
+      "ruby_helmet",
+      "ruby_chestplate",
+      "ruby_leggings",
+      "ruby_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

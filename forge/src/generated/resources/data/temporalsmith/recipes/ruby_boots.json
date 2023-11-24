@@ -1,0 +1,17 @@
+{
+  "type": "temporalsmith:custom_armour_crafter",
+  "category": "armour_feet",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/ruby"
+    }
+  },
+  "pattern": [
+    "A A",
+    "A A"
+  ],
+  "result": {
+    "item": "temporalsmith:ruby_boots"
+  },
+  "show_notification": false
+}
