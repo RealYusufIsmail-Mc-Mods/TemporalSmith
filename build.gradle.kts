@@ -11,7 +11,7 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.9.20"
-    kotlin("plugin.allopen") version "1.9.20"
+    kotlin("plugin.allopen") version "1.9.21"
     id("com.diffplug.spotless") version "6.22.0"
     id("org.jetbrains.dokka") version "1.9.10"
     id("net.darkhax.curseforgegradle") version "1.1.16"
