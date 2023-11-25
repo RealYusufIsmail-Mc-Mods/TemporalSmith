@@ -21,6 +21,7 @@ package io.github.realyusufismail.temporalsmith.core.init
 import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.temporalsmith.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.temporalsmith.blocks.CustomToolCraftingTable
+import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalFrame
 import io.github.realyusufismail.temporalsmith.blocks.IngotFusionTollEnhancer
 import io.github.realyusufismail.temporalsmith.blocks.lit.RainbowLitBlock
 import io.github.realyusufismail.temporalsmith.blocks.lit.RubyLitBlock
@@ -173,6 +174,7 @@ object BlockInit {
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
+    @JvmField
     val ENDERITE_BLOCK =
         registerOreBlock(
             "enderite_block",
@@ -190,6 +192,9 @@ object BlockInit {
     @JvmField
     val INGOT_FUSION_TOLL_ENHANCER =
         registerSpecial("ingot_fusion_toll_enhancer", ::IngotFusionTollEnhancer)
+
+    @JvmField
+    val ENDERITE_PORTAL_FRAME = registerSpecial("enderite_portal_frame", ::EnderitePortalFrame)
 
     private fun <T : Block> registerSpecial(
         name: String,

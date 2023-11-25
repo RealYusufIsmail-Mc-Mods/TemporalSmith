@@ -1,17 +1,17 @@
 {
 	"credit": "Made by Dunkan",
 	"textures": {
-		"0": "armourandtoolsmod:item/lightsaber/purple/texture30",
-		"1": "armourandtoolsmod:item/lightsaber/purple/texture31",
-		"2": "armourandtoolsmod:item/lightsaber/purple/texture32",
-		"3": "armourandtoolsmod:item/lightsaber/purple/texture11",
-		"4": "armourandtoolsmod:item/lightsaber/purple/texture51",
-		"5": "armourandtoolsmod:item/lightsaber/purple/texture28",
-		"7": "armourandtoolsmod:item/lightsaber/purple/texture36",
-		"9": "armourandtoolsmod:item/lightsaber/purple/purple_stained_glass",
-		"10": "armourandtoolsmod:item/lightsaber/purple/texture63",
-		"11": "armourandtoolsmod:item/lightsaber/purple/texture6",
-		"particle": "armourandtoolsmod:item/lightsaber/purple/purple_stained_glass"
+		"0": "temporalsmith:item/lightsaber/purple/texture30",
+		"1": "temporalsmith:item/lightsaber/purple/texture31",
+		"2": "temporalsmith:item/lightsaber/purple/texture32",
+		"3": "temporalsmith:item/lightsaber/purple/texture11",
+		"4": "temporalsmith:item/lightsaber/purple/texture51",
+		"5": "temporalsmith:item/lightsaber/purple/texture28",
+		"7": "temporalsmith:item/lightsaber/purple/texture36",
+		"9": "temporalsmith:item/lightsaber/purple/purple_stained_glass",
+		"10": "temporalsmith:item/lightsaber/purple/texture63",
+		"11": "temporalsmith:item/lightsaber/purple/texture6",
+		"particle": "temporalsmith:item/lightsaber/purple/purple_stained_glass"
 	},
 	"elements": [
 		{

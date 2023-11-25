@@ -1,16 +1,16 @@
 {
 	"credit": "Made by Dunkan",
 	"textures": {
-		"0": "armourandtoolsmod:item/lightsaber/yellow/texture30",
-		"1": "armourandtoolsmod:item/lightsaber/yellow/texture31",
-		"2": "armourandtoolsmod:item/lightsaber/yellow/texture32",
-		"3": "armourandtoolsmod:item/lightsaber/yellow/texture11",
-		"7": "armourandtoolsmod:item/lightsaber/yellow/texture36",
-		"8": "armourandtoolsmod:item/lightsaber/yellow/texture34",
-		"9": "armourandtoolsmod:item/lightsaber/yellow/texture5 proz",
-		"10": "armourandtoolsmod:item/lightsaber/yellow/texture15",
-		"11": "armourandtoolsmod:item/lightsaber/yellow/texture47",
-		"particle": "armourandtoolsmod:item/lightsaber/yellow/texture5 proz"
+		"0": "temporalsmith:item/lightsaber/yellow/texture30",
+		"1": "temporalsmith:item/lightsaber/yellow/texture31",
+		"2": "temporalsmith:item/lightsaber/yellow/texture32",
+		"3": "temporalsmith:item/lightsaber/yellow/texture11",
+		"7": "temporalsmith:item/lightsaber/yellow/texture36",
+		"8": "temporalsmith:item/lightsaber/yellow/texture34",
+		"9": "temporalsmith:item/lightsaber/yellow/texture5 proz",
+		"10": "temporalsmith:item/lightsaber/yellow/texture15",
+		"11": "temporalsmith:item/lightsaber/yellow/texture47",
+		"particle": "temporalsmith:item/lightsaber/yellow/texture5 proz"
 	},
 	"elements": [
 		{

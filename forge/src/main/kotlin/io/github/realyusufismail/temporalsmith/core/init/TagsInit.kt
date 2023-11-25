@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.core.init
 
+import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.BlockTags
 import net.minecraft.tags.ItemTags
@@ -119,6 +120,12 @@ object TagsInit {
         val STORAGE_ENDERITE =
             ResourceLocation.tryParse("forge:storage_blocks/enderite")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
+
+        // other
+        @JvmField
+        val PORTAL_FRAME_BLOCKS =
+            ResourceLocation.tryParse("$MOD_ID:portal_frame_blocks")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
     }
 
     object ItemTagsInit {
@@ -186,6 +193,11 @@ object TagsInit {
         val DEEPSLATE_ORES_IMPERIUM: TagKey<Item> =
             ItemTags.create(
                 ResourceLocation.tryParse("forge:deepslate_ores/imperium_ores")
+                    ?: throw Exception("Failed to create tag"))
+
+        val PORTAL_FRAME_BLOCKS: TagKey<Item> =
+            ItemTags.create(
+                ResourceLocation.tryParse("$MOD_ID:portal_frame_blocks")
                     ?: throw Exception("Failed to create tag"))
 
         // storage blocks

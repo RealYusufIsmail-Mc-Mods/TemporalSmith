@@ -25,10 +25,12 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.dimension.DimensionType
 
 object DimensionsInit {
-    val CHRON_REAL: ResourceKey<Level> =
+    @JvmField
+    val CHRONO_REALM: ResourceKey<Level> =
         ResourceKey.create(Registries.DIMENSION, TemporalSmith.getModIdAndName("chrono_realm"))
-    val CHRON_REAL_TYPE: ResourceKey<DimensionType> =
-        ResourceKey.create(Registries.DIMENSION_TYPE, CHRON_REAL.location())
+    val CHRONO_REALM_TYPE: ResourceKey<DimensionType> =
+        ResourceKey.create(
+            Registries.DIMENSION_TYPE, TemporalSmith.getModIdAndName("chrono_realm_type"))
 
     fun register() {
         TemporalSmith.logger.info("Registering dimensions for ${TemporalSmith.MOD_ID}")

@@ -1,16 +1,16 @@
 {
 	"credit": "Made by Dunkan",
 	"textures": {
-		"0": "armourandtoolsmod:item/lightsaber/blue/texture30",
-		"1": "armourandtoolsmod:item/lightsaber/blue/texture31",
-		"2": "armourandtoolsmod:item/lightsaber/blue/texture32",
-		"3": "armourandtoolsmod:item/lightsaber/blue/texture11",
-		"4": "armourandtoolsmod:item/lightsaber/blue/texture51",
-		"5": "armourandtoolsmod:item/lightsaber/blue/texture28",
-		"6": "armourandtoolsmod:item/lightsaber/blue/texture17",
-		"7": "armourandtoolsmod:item/lightsaber/blue/texture36",
-		"9": "armourandtoolsmod:item/lightsaber/blue/blue_stained_glass",
-		"particle": "armourandtoolsmod:item/lightsaber/blue/blue_stained_glass"
+		"0": "temporalsmith:item/lightsaber/blue/texture30",
+		"1": "temporalsmith:item/lightsaber/blue/texture31",
+		"2": "temporalsmith:item/lightsaber/blue/texture32",
+		"3": "temporalsmith:item/lightsaber/blue/texture11",
+		"4": "temporalsmith:item/lightsaber/blue/texture51",
+		"5": "temporalsmith:item/lightsaber/blue/texture28",
+		"6": "temporalsmith:item/lightsaber/blue/texture17",
+		"7": "temporalsmith:item/lightsaber/blue/texture36",
+		"9": "temporalsmith:item/lightsaber/blue/blue_stained_glass",
+		"particle": "temporalsmith:item/lightsaber/blue/blue_stained_glass"
 	},
 	"elements": [
 		{

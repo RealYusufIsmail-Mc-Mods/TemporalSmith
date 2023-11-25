@@ -1,14 +1,14 @@
 {
 	"credit": "Made by Dunkan",
 	"textures": {
-		"0": "armourandtoolsmod:item/lightsaber/green/texture30",
-		"1": "armourandtoolsmod:item/lightsaber/green/texture31",
-		"2": "armourandtoolsmod:item/lightsaber/green/texture32",
-		"3": "armourandtoolsmod:item/lightsaber/green/texture11",
-		"6": "armourandtoolsmod:item/lightsaber/green/texture24",
-		"7": "armourandtoolsmod:item/lightsaber/green/texture36",
-		"9": "armourandtoolsmod:item/lightsaber/green/texture7 proz",
-		"particle": "armourandtoolsmod:item/lightsaber/green/texture7 proz"
+		"0": "temporalsmith:item/lightsaber/green/texture30",
+		"1": "temporalsmith:item/lightsaber/green/texture31",
+		"2": "temporalsmith:item/lightsaber/green/texture32",
+		"3": "temporalsmith:item/lightsaber/green/texture11",
+		"6": "temporalsmith:item/lightsaber/green/texture24",
+		"7": "temporalsmith:item/lightsaber/green/texture36",
+		"9": "temporalsmith:item/lightsaber/green/texture7 proz",
+		"particle": "temporalsmith:item/lightsaber/green/texture7 proz"
 	},
 	"elements": [
 		{

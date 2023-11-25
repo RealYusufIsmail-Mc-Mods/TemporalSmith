@@ -1,14 +1,14 @@
 {
 	"credit": "Made by Dunkan",
 	"textures": {
-		"0": "armourandtoolsmod:item/lightsaber/orange/texture30",
-		"1": "armourandtoolsmod:item/lightsaber/orange/texture31",
-		"2": "armourandtoolsmod:item/lightsaber/orange/texture32",
-		"6": "armourandtoolsmod:item/lightsaber/orange/texture17",
-		"7": "armourandtoolsmod:item/lightsaber/orange/texture36",
-		"9": "armourandtoolsmod:item/lightsaber/orange/orange_stained_glass",
-		"10": "armourandtoolsmod:item/lightsaber/orange/texture19",
-		"particle": "armourandtoolsmod:item/lightsaber/orange/orange_stained_glass"
+		"0": "temporalsmith:item/lightsaber/orange/texture30",
+		"1": "temporalsmith:item/lightsaber/orange/texture31",
+		"2": "temporalsmith:item/lightsaber/orange/texture32",
+		"6": "temporalsmith:item/lightsaber/orange/texture17",
+		"7": "temporalsmith:item/lightsaber/orange/texture36",
+		"9": "temporalsmith:item/lightsaber/orange/orange_stained_glass",
+		"10": "temporalsmith:item/lightsaber/orange/texture19",
+		"particle": "temporalsmith:item/lightsaber/orange/orange_stained_glass"
 	},
 	"elements": [
 		{

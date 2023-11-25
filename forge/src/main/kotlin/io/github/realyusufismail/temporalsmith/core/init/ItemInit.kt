@@ -29,6 +29,7 @@ import io.github.realyusufismail.temporalsmith.items.hammer.Mjolnir
 import io.github.realyusufismail.temporalsmith.items.hammer.StormBreaker
 import io.github.realyusufismail.temporalsmith.items.hammer.util.HammerLevel
 import io.github.realyusufismail.temporalsmith.items.shield.ModShieldItem
+import io.github.realyusufismail.temporalsmith.items.sword.EnderiteSword
 import io.github.realyusufismail.temporalsmith.items.trident.AqumarineTridentItem
 import net.minecraft.world.item.*
 import net.minecraftforge.registries.DeferredRegister
@@ -227,10 +228,7 @@ object ItemInit {
         }
 
     val ENDERITE_SWORD: ObjectHolderDelegate<Item> =
-        ITEMS.registerSmeltableObject("enderite_sword", ENDERITE) {
-            CustomSwordItem(
-                CustomToolMaterial.ENDERITE_SWORD, 8, -2.5f, Item.Properties().stacksTo(1))
-        }
+        ITEMS.registerSmeltableObject("enderite_sword", ENDERITE, ::EnderiteSword)
 
     val AMETHYST_SWORD: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("amethyst_sword") {

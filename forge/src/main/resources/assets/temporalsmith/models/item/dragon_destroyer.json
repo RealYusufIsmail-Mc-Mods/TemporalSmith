@@ -1,13 +1,13 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"5": "armourandtoolsmod:item/dragon_destroyer/hammer",
-		"6": "armourandtoolsmod:item/dragon_destroyer/toppommelone",
-		"7": "armourandtoolsmod:item/dragon_destroyer/toppommeltwo",
-		"8": "armourandtoolsmod:item/dragon_destroyer/middlehandle",
-		"9": "armourandtoolsmod:item/dragon_destroyer/botoompommelmiddle",
-		"10": "armourandtoolsmod:item/dragon_destroyer/bottompommelbottom",
-		"particle": "armourandtoolsmod:item/dragon_destroyer/middlehandle"
+		"5": "temporalsmith:item/dragon_destroyer/hammer",
+		"6": "temporalsmith:item/dragon_destroyer/toppommelone",
+		"7": "temporalsmith:item/dragon_destroyer/toppommeltwo",
+		"8": "temporalsmith:item/dragon_destroyer/middlehandle",
+		"9": "temporalsmith:item/dragon_destroyer/botoompommelmiddle",
+		"10": "temporalsmith:item/dragon_destroyer/bottompommelbottom",
+		"particle": "temporalsmith:item/dragon_destroyer/middlehandle"
 	},
 	"elements": [
 		{

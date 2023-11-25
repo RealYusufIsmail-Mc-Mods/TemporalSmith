@@ -18,31 +18,32 @@
  */ 
 package io.github.realyusufismail.temporalsmith
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
+import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
-import net.neoforged.neoforge.common.ModConfigSpec
+import net.minecraftforge.common.ForgeConfigSpec
 import org.apache.commons.lang3.tuple.Pair
 
 object TemporalSmithConfig {
-
-    class Common(builder: ModConfigSpec.Builder) {
+    class Common(builder: ForgeConfigSpec.Builder) {
 
         init {
             returnPortalFrameBlockId =
                 builder
                     .comment("The block id of the return portal frame")
                     .translation("$MOD_ID.config.return_portal_frame_block_id")
-                    .define("Return Portal Frame Block ID", BlockInit.ENDERITE_BLOCK.id.toString())
+                    .define(
+                        "Return Portal Frame Block ID",
+                        BlockInit.ENDERITE_BLOCK.registryObject.id.toString())
 
             builder.build()
         }
 
         companion object {
-            @JvmField var returnPortalFrameBlockId: ModConfigSpec.ConfigValue<String>? = null
+            @JvmField var returnPortalFrameBlockId: ForgeConfigSpec.ConfigValue<String>? = null
         }
     }
 
-    val specPair: Pair<Common, ModConfigSpec> = ModConfigSpec.Builder().configure(::Common)
+    val specPair: Pair<Common, ForgeConfigSpec> = ForgeConfigSpec.Builder().configure(::Common)
 
-    val COMMON_SPEC: ModConfigSpec = specPair.right
+    val COMMON_SPEC: ForgeConfigSpec = specPair.right
 }
