@@ -41,12 +41,18 @@ object CreativeModeTabInit {
                     ItemInit.ITEMS.entries
                         .stream()
                         .map { item: RegistryObject<Item> -> item.get().asItem() }
-                        .forEach { pItem: Item -> output.accept(pItem) }
+                        .forEach { pItem: Item ->
+                            if (pItem != BlockInit.ENDERITE_PORTAL_FRAME.get().asItem())
+                                output.accept(pItem)
+                        }
 
                     BlockInit.BLOCKS.entries
                         .stream()
                         .map { item: RegistryObject<Block> -> item.get().asItem() }
-                        .forEach { pItem: Item -> output.accept(pItem) }
+                        .forEach { pItem: Item ->
+                            if (pItem != BlockInit.ENDERITE_PORTAL_FRAME.get().asItem())
+                                output.accept(pItem)
+                        }
                 }
                 .icon { ItemStack(ItemInit.SAPPHIRE.get()) }
                 .title(Component.translatable("creativetab.temporalsmith"))

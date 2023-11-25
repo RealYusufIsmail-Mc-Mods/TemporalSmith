@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "axis=z": { "model": "temporalsmith:block/enderite_portal_block_ew" },
-    "axis=x": { "model": "temporalsmith:block/enderite_portal_block_ns" }
-  }
-}

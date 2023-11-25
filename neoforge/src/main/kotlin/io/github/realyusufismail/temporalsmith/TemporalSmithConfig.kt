@@ -45,5 +45,4 @@ object TemporalSmithConfig {
     val specPair: Pair<Common, ModConfigSpec> = ModConfigSpec.Builder().configure(::Common)
 
     val COMMON_SPEC: ModConfigSpec = specPair.right
-    val COMMON: Common = specPair.left
 }

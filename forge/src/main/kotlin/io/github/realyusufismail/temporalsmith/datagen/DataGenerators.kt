@@ -70,7 +70,14 @@ object DataGenerators {
                 .add(
                     PackMetadataSection.TYPE,
                     PackMetadataSection(
-                        Component.literal("Armour and Tools Mod Resources"),
+                        Component.literal(
+                            """
+                            Descend into the boundless realms of TemporalSmith, where time intertwines with the craft of the Aetheric Arsenal. 
+                            Unleash the power of enchanted swords and tools forged beyond the constraints of time. Explore mystical dimensions, each brimming with unique challenges and treasures. 
+                            Elevate your Minecraft experience with a fusion of temporal mastery, otherworldly landscapes, and an expansive array of armaments. 
+                            The journey awaits; delve into the time-woven secrets of TemporalSmith. (A lot of stuff to be added)
+                        """
+                                .trimIndent()),
                         DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
                         Arrays.stream(PackType.entries.toTypedArray())
                             .collect(

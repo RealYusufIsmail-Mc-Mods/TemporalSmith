@@ -1,7 +1,7 @@
 {
   "textures": {
-    "particle": "temporalsmith:block/enderite_portal_block",
-    "portal": "temporalsmith:block/enderite_portal_block"
+    "particle": "temporalsmith:block/enderite_portal_frame",
+    "portal": "temporalsmith:block/enderite_portal_frame"
   },
   "elements": [
     {   "from": [ 6, 0, 0 ],

@@ -21,7 +21,7 @@ package io.github.realyusufismail.temporalsmith.items
 import io.github.realyusufismail.temporalsmith.core.material.CustomToolMaterial
 import net.minecraft.world.item.SwordItem
 
-class CustomSwordItem(
+open class CustomSwordItem(
     material: CustomToolMaterial,
     attackDamage: Int,
     attackSpeed: Float,

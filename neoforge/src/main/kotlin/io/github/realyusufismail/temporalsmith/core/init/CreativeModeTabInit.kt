@@ -42,7 +42,7 @@ object CreativeModeTabInit {
                         .stream()
                         .map { item: DeferredHolder<Item, out Item> -> item.get().asItem() }
                         .forEach { pItem: Item ->
-                            if (pItem != BlockInit.ENDERITE_PORTAL_BLOCK.get().asItem())
+                            if (pItem != BlockInit.ENDERITE_PORTAL_FRAME.get().asItem())
                                 output.accept(pItem)
                         }
 
@@ -50,7 +50,7 @@ object CreativeModeTabInit {
                         .stream()
                         .map { item: DeferredHolder<Block, out Block> -> item.get().asItem() }
                         .forEach { pItem: Item ->
-                            if (pItem != BlockInit.ENDERITE_PORTAL_BLOCK.get().asItem())
+                            if (pItem != BlockInit.ENDERITE_PORTAL_FRAME.get().asItem())
                                 output.accept(pItem)
                         }
                 }

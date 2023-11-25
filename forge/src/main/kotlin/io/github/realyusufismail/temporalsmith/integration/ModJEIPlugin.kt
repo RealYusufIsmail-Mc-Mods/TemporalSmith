@@ -38,8 +38,7 @@ import net.minecraft.world.item.ItemStack
 
 @JeiPlugin
 class ModJEIPlugin : IModPlugin {
-    private val pluginId: ResourceLocation =
-        TemporalSmith.getModIdAndName("armour_and_tools_mod_plugin")
+    private val pluginId: ResourceLocation = TemporalSmith.getModIdAndName("temporalsmith_plugin")
 
     override fun registerCategories(registration: IRecipeCategoryRegistration) {
         registration.addRecipeCategories(

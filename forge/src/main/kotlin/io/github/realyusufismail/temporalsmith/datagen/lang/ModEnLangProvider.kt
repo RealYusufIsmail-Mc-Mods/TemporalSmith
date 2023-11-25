@@ -64,6 +64,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addBlock(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE, "Custom Tool Crafting Table")
         addBlock(BlockInit.INGOT_FUSION_TOLL_ENHANCER, "Ingot Fusion Toll Enhancer")
 
+        // portal frame
+        addBlock(BlockInit.ENDERITE_PORTAL_FRAME, "Enderite Portal Frame")
+
         // ore ingot
         addItem(ItemInit.RUBY, "Ruby")
         addItem(ItemInit.SAPPHIRE, "Sapphire")

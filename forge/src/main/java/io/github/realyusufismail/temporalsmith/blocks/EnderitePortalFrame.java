@@ -18,14 +18,13 @@
  */ 
 package io.github.realyusufismail.temporalsmith.blocks;
 
-import static net.neoforged.neoforge.common.NeoForge.EVENT_BUS;
+import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit;
 import io.github.realyusufismail.temporalsmith.core.init.DimensionsInit;
 import io.github.realyusufismail.temporalsmith.core.init.TagsInit;
-import io.github.realyusufismail.temporalsmith.dimension.ModTeleporter;
+import io.github.realyusufismail.temporalsmith.dimesnion.ModTeleporter;
 import javax.annotation.Nullable;
-import lombok.val;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
@@ -51,17 +50,18 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import org.jetbrains.annotations.NotNull;
 
-public class EnderitePortalBlock extends Block {
+public class EnderitePortalFrame extends Block {
 
   public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
   protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
   protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-  public EnderitePortalBlock() {
+  public EnderitePortalFrame() {
     super(
-        Properties.copy(Blocks.NETHER_PORTAL)
+        Properties.copy(Blocks.END_PORTAL_FRAME)
             .strength(5.0F, 6.0F)
             .lightLevel(
                 (state) -> {
@@ -73,7 +73,7 @@ public class EnderitePortalBlock extends Block {
   }
 
   @Override
-  public VoxelShape getShape(
+  public @NotNull VoxelShape getShape(
       BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
     return switch (state.getValue(AXIS)) {
       case Z -> Z_AABB;
@@ -93,9 +93,8 @@ public class EnderitePortalBlock extends Block {
 
   public static boolean onTrySpawnPortal(
       LevelAccessor world, BlockPos pos, EnderitePortalShape size) {
-    val spawn =
-        EVENT_BUS.post(new BlockEvent.PortalSpawnEvent(world, pos, world.getBlockState(pos), size));
-    return spawn.isCanceled();
+    return EVENT_BUS.post(
+        new BlockEvent.PortalSpawnEvent(world, pos, world.getBlockState(pos), size));
   }
 
   @Nullable
@@ -152,7 +151,7 @@ public class EnderitePortalBlock extends Block {
             if (destinationWorld != null
                 && minecraftserver.isNetherEnabled()
                 && !entity.isPassenger()) {
-              entity.level().getProfiler().push("undergarden_portal");
+              entity.level().getProfiler().push("chrono_portal");
               entity.setPortalCooldown();
               entity.changeDimension(destinationWorld, new ModTeleporter(destinationWorld));
               entity.level().getProfiler().pop();
@@ -233,7 +232,7 @@ public class EnderitePortalBlock extends Block {
     private static final int MIN_HEIGHT = 2;
     public static final int MAX_HEIGHT = 21;
     private static final BlockBehaviour.StatePredicate FRAME =
-        (state, getter, pos) -> state.is(TagsInit.BlockTagsInit.PORTAL_FRAME_BLOCKS);
+        (state, getter, pos) -> state.is(TagsInit.BlockTagsInit.PORTAL_MAKER_BLOCKS);
     private final LevelAccessor level;
     private final Direction.Axis axis;
     private final Direction rightDir;
@@ -345,7 +344,7 @@ public class EnderitePortalBlock extends Block {
     }
 
     private static boolean isEmpty(BlockState state) {
-      return state.isAir() || state.is(BlockInit.ENDERITE_PORTAL_BLOCK.get());
+      return state.isAir() || state.is(BlockInit.ENDERITE_PORTAL_FRAME.get());
     }
 
     public boolean isValid() {
@@ -358,7 +357,7 @@ public class EnderitePortalBlock extends Block {
 
     public void createPortalBlocks() {
       BlockState blockstate =
-          BlockInit.ENDERITE_PORTAL_BLOCK
+          BlockInit.ENDERITE_PORTAL_FRAME
               .get()
               .defaultBlockState()
               .setValue(NetherPortalBlock.AXIS, this.axis);

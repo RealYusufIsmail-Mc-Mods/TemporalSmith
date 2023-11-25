@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-24T11:59:52.3826984	Tags for minecraft:block mod id temporalsmith
+// 1.20.1	2023-11-25T18:19:26.130605	Tags for minecraft:block mod id temporalsmith
 82963b29c120fb55c17c40fe37b1c98c60346b84 data/forge/tags/blocks/deepslate_ores/aqumarine_ores.json
 edd052247952263e801a8ba38de967b85c9c1dc4 data/forge/tags/blocks/deepslate_ores/graphite_ores.json
 fc6b7da8497984df4efddd78ed393469f77e7495 data/forge/tags/blocks/deepslate_ores/imperium_ores.json
@@ -19,7 +19,8 @@ c13f34abf2e1ad8aa96bf050df7ef5cc00f4fe1d data/forge/tags/blocks/storage_blocks/g
 dcbd959620590264e88e226bd2c40f6552839ec6 data/forge/tags/blocks/storage_blocks/rainbow.json
 478f3b90295d8c712528b7b1f7d9ae4daad23121 data/forge/tags/blocks/storage_blocks/ruby.json
 0ed63eea01e2600c587763dd7f609c87ae6e53d2 data/forge/tags/blocks/storage_blocks/sapphire.json
-9342a4dce08f9f426ccde2ef8342f461f702df44 data/minecraft/tags/blocks/mineable/pickaxe.json
+97b808e7ab9c47286d18528dc564e186166d9830 data/minecraft/tags/blocks/mineable/pickaxe.json
 118f91ee0e0e87a0393fd90770b0fa4db7c74e3e data/minecraft/tags/blocks/needs_diamond_tool.json
 dd9f28c0503a62d38ea0f2332885885ccedae3f1 data/minecraft/tags/blocks/needs_iron_tool.json
 cef73fd4903f2919af82514cf812d9da3579a438 data/minecraft/tags/blocks/needs_stone_tool.json
+2a312b5b913bb99f9ecc0630737fc15267ee6baf data/temporalsmith/tags/blocks/portal_maker_blocks.json

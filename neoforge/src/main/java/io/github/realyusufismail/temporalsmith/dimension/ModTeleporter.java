@@ -19,7 +19,7 @@
 package io.github.realyusufismail.temporalsmith.dimension;
 
 import io.github.realyusufismail.temporalsmith.TemporalSmithConfig;
-import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalBlock;
+import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalFrame;
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit;
 import io.github.realyusufismail.temporalsmith.core.init.DimensionsInit;
 import io.github.realyusufismail.temporalsmith.core.init.POIInit;
@@ -80,7 +80,7 @@ public class ModTeleporter implements ITeleporter {
         poiManager
             .getInSquare(
                 (poiType) ->
-                    poiType.is(Objects.requireNonNull(POIInit.ENDERITE_PORTAL_BLOCK.getKey())),
+                    poiType.is(Objects.requireNonNull(POIInit.ENDERITE_PORTAL_FRAME.getKey())),
                 pos,
                 64,
                 PoiManager.Occupancy.ANY)
@@ -213,10 +213,10 @@ public class ModTeleporter implements ITeleporter {
     }
 
     BlockState blockstate =
-        BlockInit.ENDERITE_PORTAL_BLOCK
+        BlockInit.ENDERITE_PORTAL_FRAME
             .get()
             .defaultBlockState()
-            .setValue(EnderitePortalBlock.AXIS, axis);
+            .setValue(EnderitePortalFrame.AXIS, axis);
 
     for (int k2 = 0; k2 < 2; ++k2) {
       for (int l2 = 0; l2 < 3; ++l2) {
@@ -326,7 +326,7 @@ public class ModTeleporter implements ITeleporter {
       Direction.Axis portalAxis =
           this.level
               .getBlockState(entity.portalEntrancePos)
-              .getOptionalValue(EnderitePortalBlock.AXIS)
+              .getOptionalValue(EnderitePortalFrame.AXIS)
               .orElse(Direction.Axis.X);
       return this.makePortal(pos, portalAxis);
     }

@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "armourandtoolsmod:item/lightsaber/blue_lightsaber",
-		"particle": "armourandtoolsmod:item/lightsaber/blue_lightsaber"
+		"0": "temporalsmith:item/lightsaber/blue_lightsaber",
+		"particle": "temporalsmith:item/lightsaber/blue_lightsaber"
 	},
 	"elements": [
 		{

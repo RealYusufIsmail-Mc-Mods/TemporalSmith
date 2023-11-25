@@ -29,8 +29,8 @@ object POIInit {
         DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, TemporalSmith.MOD_ID)
 
     @JvmField
-    val ENDERITE_PORTAL_BLOCK: DeferredHolder<PoiType, PoiType> =
-        POI.register("enderite_portal_block") { ->
-            PoiType(setOf(BlockInit.ENDERITE_PORTAL_BLOCK.get().defaultBlockState()), 0, 1)
+    val ENDERITE_PORTAL_FRAME: DeferredHolder<PoiType, PoiType> =
+        POI.register("enderite_portal_frame") { ->
+            PoiType(setOf(BlockInit.ENDERITE_PORTAL_FRAME.get().defaultBlockState()), 0, 1)
         }
 }

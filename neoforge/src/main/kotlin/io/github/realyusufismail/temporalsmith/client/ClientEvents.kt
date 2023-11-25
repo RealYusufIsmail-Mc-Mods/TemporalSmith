@@ -57,7 +57,7 @@ object ClientEvents {
 
         event.enqueueWork {
             ItemBlockRenderTypes.setRenderLayer(
-                BlockInit.ENDERITE_PORTAL_BLOCK.get(), RenderType.translucent())
+                BlockInit.ENDERITE_PORTAL_FRAME.get(), RenderType.translucent())
         }
 
         event.enqueueWork {

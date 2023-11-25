@@ -94,6 +94,7 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
                     .filter { key: ResourceLocation -> key.namespace == MOD_ID }
                     .isPresent
             }
+            .filter { entry: Block -> entry != BlockInit.ENDERITE_PORTAL_FRAME.get() }
             .collect(Collectors.toSet())
     }
 }

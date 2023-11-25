@@ -26,7 +26,9 @@ import io.github.realyusufismail.temporalsmith.core.init.*
 import io.github.realyusufismail.temporalsmith.datagen.DataGenerators
 import java.util.*
 import net.minecraft.resources.ResourceLocation
+import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.config.ModConfig
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import thedarkcolour.kotlinforforge.KotlinModLoadingContext
@@ -46,6 +48,7 @@ class TemporalSmith {
         CreativeModeTabInit.CREATIVE_MODE_TAB.register(bus)
         PotionsInit.POTION.register(bus)
         MobEffectsInit.MOB_EFFECTS.register(bus)
+        POIInit.POI.register(bus)
         DimensionsInit.register()
 
         // Register ourselves for server and other game events we are interested in
@@ -70,6 +73,9 @@ class TemporalSmith {
         FORGE_BUS.addListener(ClientEvents::onEntityDeath)
 
         FORGE_BUS.register(this)
+
+        ModLoadingContext.get()
+            .registerConfig(ModConfig.Type.COMMON, TemporalSmithConfig.COMMON_SPEC)
 
         logger.info("Temporal Smith is loaded!")
     }
