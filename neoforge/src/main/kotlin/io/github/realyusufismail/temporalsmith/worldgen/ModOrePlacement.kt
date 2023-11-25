@@ -21,7 +21,7 @@ package io.github.realyusufismail.temporalsmith.worldgen
 import net.minecraft.world.level.levelgen.placement.*
 
 object ModOrePlacement {
-    fun orePlacement(
+    private fun orePlacement(
         placementModifier: PlacementModifier,
         placementModifier1: PlacementModifier
     ): List<PlacementModifier> {
