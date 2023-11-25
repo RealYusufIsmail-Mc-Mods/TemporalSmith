@@ -53,13 +53,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
-public class EnderitePortalBlock extends Block {
+public class EnderitePortalFrame extends Block {
 
   public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
   protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
   protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-  public EnderitePortalBlock() {
+  public EnderitePortalFrame() {
     super(
         Properties.copy(Blocks.NETHER_PORTAL)
             .strength(5.0F, 6.0F)
@@ -152,7 +152,7 @@ public class EnderitePortalBlock extends Block {
             if (destinationWorld != null
                 && minecraftserver.isNetherEnabled()
                 && !entity.isPassenger()) {
-              entity.level().getProfiler().push("undergarden_portal");
+              entity.level().getProfiler().push("chrono_realm_portal");
               entity.setPortalCooldown();
               entity.changeDimension(destinationWorld, new ModTeleporter(destinationWorld));
               entity.level().getProfiler().pop();
@@ -233,7 +233,7 @@ public class EnderitePortalBlock extends Block {
     private static final int MIN_HEIGHT = 2;
     public static final int MAX_HEIGHT = 21;
     private static final BlockBehaviour.StatePredicate FRAME =
-        (state, getter, pos) -> state.is(TagsInit.BlockTagsInit.PORTAL_FRAME_BLOCKS);
+        (state, getter, pos) -> state.is(TagsInit.BlockTagsInit.PORTAL_MAKER_BLOCKS);
     private final LevelAccessor level;
     private final Direction.Axis axis;
     private final Direction rightDir;
@@ -345,7 +345,7 @@ public class EnderitePortalBlock extends Block {
     }
 
     private static boolean isEmpty(BlockState state) {
-      return state.isAir() || state.is(BlockInit.ENDERITE_PORTAL_BLOCK.get());
+      return state.isAir() || state.is(BlockInit.ENDERITE_PORTAL_FRAME.get());
     }
 
     public boolean isValid() {
@@ -358,7 +358,7 @@ public class EnderitePortalBlock extends Block {
 
     public void createPortalBlocks() {
       BlockState blockstate =
-          BlockInit.ENDERITE_PORTAL_BLOCK
+          BlockInit.ENDERITE_PORTAL_FRAME
               .get()
               .defaultBlockState()
               .setValue(NetherPortalBlock.AXIS, this.axis);

@@ -123,8 +123,8 @@ object TagsInit {
 
         // other
         @JvmField
-        val PORTAL_FRAME_BLOCKS =
-            ResourceLocation.tryParse("$MOD_ID:portal_frame_blocks")?.let { BlockTags.create(it) }
+        val PORTAL_MAKER_BLOCKS =
+            ResourceLocation.tryParse("$MOD_ID:portal_maker_blocks")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
     }
 

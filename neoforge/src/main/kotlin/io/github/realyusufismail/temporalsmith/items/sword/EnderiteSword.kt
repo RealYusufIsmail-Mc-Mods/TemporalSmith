@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.items.sword
 
-import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalBlock
+import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalFrame
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.DimensionsInit
 import io.github.realyusufismail.temporalsmith.core.material.CustomToolMaterial
@@ -41,7 +41,7 @@ class EnderiteSword :
                 context.player!!.level().dimension() === Level.OVERWORLD) {
                 for (direction in Direction.Plane.VERTICAL) {
                     val framePos: BlockPos = context.clickedPos.relative(direction)
-                    return if ((BlockInit.ENDERITE_PORTAL_BLOCK.get() as EnderitePortalBlock)
+                    return if ((BlockInit.ENDERITE_PORTAL_FRAME.get() as EnderitePortalFrame)
                         .trySpawnPortal(context.level, framePos)) {
                         context.level.playSound(
                             context.player,

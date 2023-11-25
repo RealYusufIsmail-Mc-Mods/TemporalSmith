@@ -21,7 +21,7 @@ package io.github.realyusufismail.temporalsmith.core.init
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.temporalsmith.blocks.CustomToolCraftingTable
-import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalBlock
+import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalFrame
 import io.github.realyusufismail.temporalsmith.blocks.IngotFusionTollEnhancer
 import io.github.realyusufismail.temporalsmith.blocks.lit.RainbowLitBlock
 import io.github.realyusufismail.temporalsmith.blocks.lit.RubyLitBlock
@@ -33,7 +33,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour
 import net.neoforged.neoforge.registries.DeferredBlock
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
-import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 
 object BlockInit {
     val BLOCKS: DeferredRegister.Blocks = DeferredRegister.createBlocks(MOD_ID)
@@ -194,7 +193,7 @@ object BlockInit {
         registerSpecial("ingot_fusion_toll_enhancer", ::IngotFusionTollEnhancer)
 
     @JvmField
-    val ENDERITE_PORTAL_BLOCK = registerSpecial("enderite_portal_block", ::EnderitePortalBlock)
+    val ENDERITE_PORTAL_FRAME = registerSpecial("enderite_portal_frame", ::EnderitePortalFrame)
 
     private fun <T : Block> registerSpecial(
         name: String,

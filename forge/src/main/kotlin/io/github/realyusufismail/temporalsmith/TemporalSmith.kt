@@ -72,10 +72,10 @@ class TemporalSmith {
         // entity death event
         FORGE_BUS.addListener(ClientEvents::onEntityDeath)
 
+        FORGE_BUS.register(this)
+
         ModLoadingContext.get()
             .registerConfig(ModConfig.Type.COMMON, TemporalSmithConfig.COMMON_SPEC)
-
-        FORGE_BUS.register(this)
 
         logger.info("Temporal Smith is loaded!")
     }

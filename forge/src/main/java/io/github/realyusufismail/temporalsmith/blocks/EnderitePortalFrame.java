@@ -51,6 +51,7 @@ import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.event.level.BlockEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class EnderitePortalFrame extends Block {
 
@@ -72,7 +73,7 @@ public class EnderitePortalFrame extends Block {
   }
 
   @Override
-  public VoxelShape getShape(
+  public @NotNull VoxelShape getShape(
       BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
     return switch (state.getValue(AXIS)) {
       case Z -> Z_AABB;
@@ -231,7 +232,7 @@ public class EnderitePortalFrame extends Block {
     private static final int MIN_HEIGHT = 2;
     public static final int MAX_HEIGHT = 21;
     private static final BlockBehaviour.StatePredicate FRAME =
-        (state, getter, pos) -> state.is(TagsInit.BlockTagsInit.PORTAL_FRAME_BLOCKS);
+        (state, getter, pos) -> state.is(TagsInit.BlockTagsInit.PORTAL_MAKER_BLOCKS);
     private final LevelAccessor level;
     private final Direction.Axis axis;
     private final Direction rightDir;
