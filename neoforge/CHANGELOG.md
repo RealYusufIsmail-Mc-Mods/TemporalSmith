@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta8] - 2023-11-24
+
+### Minor bug fixes.
+
 # [1.20.2-2.0.0.beta7] - 2023-11-24
 
 ### Quick fix with same lang name set for the old name of the mod.

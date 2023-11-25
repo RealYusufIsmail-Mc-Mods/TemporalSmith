@@ -4,7 +4,7 @@ license = "Apache 2.0" #mandatory
 issueTrackerURL = "https://github.com/RealYusufIsmail-Mc-Mods/TemporalSmith"
 [[mods]]
 modId = "temporalsmith"
-version = "1.20.1-1.0.7.beta5"
+version = "1.20.1-1.0.7.beta6"
 displayName = "TemporalSmith: Aetheric Arsenal Expansion"
 logoFile = "logo.png"
 updateJSONURL = "https://forge.curseupdate.com/480779/temporalsmith"
