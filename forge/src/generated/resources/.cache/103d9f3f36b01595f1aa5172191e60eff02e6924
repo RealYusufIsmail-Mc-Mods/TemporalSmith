@@ -1,4 +1,11 @@
-// 1.20.1	2023-11-24T11:59:52.3927342	Registries
+// 1.20.1	2023-11-26T11:49:26.914369	Registries
+40e43a07a21eb92762a71d83f82b794e55d2405d data/temporalsmith/forge/biome_modifier/add_aqumarine_ore.json
+6b1bd1f5192827b4c1b935ef43bc8344e7ed9b6f data/temporalsmith/forge/biome_modifier/add_enderite_ore.json
+07cff8acbbd023a45fcae7acb9d757807d793fe2 data/temporalsmith/forge/biome_modifier/add_graphite_ore.json
+dc4a1c8776b49c89d1efac51d73fb85642985706 data/temporalsmith/forge/biome_modifier/add_imperium_ore.json
+0b2e8d21bfb83dfa1d0d687c625dbbebb0c79d1a data/temporalsmith/forge/biome_modifier/add_rainbow_ore.json
+404fb81a6363d0760da316e8e2399fae1624c4e2 data/temporalsmith/forge/biome_modifier/add_ruby_ore.json
+6161e883a542612fdfb52f4370104673ab2e1bca data/temporalsmith/forge/biome_modifier/add_sapphire_ore.json
 52e07796b3598ae2784352122ffaaf4500ac1385 data/temporalsmith/worldgen/configured_feature/aqumarine_ore.json
 06d2f6fc59b416a218d7f1908e39c8e8cd38f0cd data/temporalsmith/worldgen/configured_feature/enderite_ore.json
 200476c7e225de0670ae88f408d09f3539f4a637 data/temporalsmith/worldgen/configured_feature/graphite_ore.json

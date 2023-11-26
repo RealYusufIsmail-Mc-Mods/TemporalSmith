@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "temporalsmith:enderite_ore",
+  "step": "underground_ores"
+}

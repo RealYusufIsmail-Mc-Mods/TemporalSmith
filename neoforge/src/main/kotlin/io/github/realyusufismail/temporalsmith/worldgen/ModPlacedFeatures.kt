@@ -30,6 +30,7 @@ import net.minecraft.world.level.levelgen.placement.HeightRangePlacement
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import net.minecraft.world.level.levelgen.placement.PlacementModifier
 
+/** @see net.minecraft.data.worldgen.placement.OrePlacements */
 object ModPlacedFeatures {
 
     val RUBY_ORE: ResourceKey<PlacedFeature> = createKey("ruby_ore")
@@ -65,7 +66,9 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 3, // veins per chunk
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
+                    // veins from y level -64 to 20
+                    VerticalAnchor.absolute(-64),
+                    VerticalAnchor.absolute(20))))
 
         register(
             context,
@@ -74,7 +77,7 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
 
         register(
             context,
@@ -110,7 +113,7 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(80))))
 
         register(
             context,
@@ -119,7 +122,7 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(50))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
     }
 
     private fun createKey(name: String): ResourceKey<PlacedFeature> {

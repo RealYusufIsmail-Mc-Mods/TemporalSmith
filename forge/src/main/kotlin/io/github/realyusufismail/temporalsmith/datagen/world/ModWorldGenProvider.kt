@@ -19,6 +19,7 @@
 package io.github.realyusufismail.temporalsmith.datagen.world
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.temporalsmith.worldgen.ModBiomeModifiers
 import io.github.realyusufismail.temporalsmith.worldgen.ModConfiguredFeatures
 import io.github.realyusufismail.temporalsmith.worldgen.ModPlacedFeatures
 import java.util.concurrent.CompletableFuture
@@ -27,6 +28,7 @@ import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.PackOutput
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider
+import net.minecraftforge.registries.ForgeRegistries
 
 class ModWorldGenProvider(
     output: PackOutput,
@@ -35,4 +37,5 @@ class ModWorldGenProvider(
         RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
+            .add(ForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootStrap)
 ) : DatapackBuiltinEntriesProvider(output, registries, builder, mutableSetOf(MOD_ID))

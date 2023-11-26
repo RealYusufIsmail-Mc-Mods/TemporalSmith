@@ -34,6 +34,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTes
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest
 
+/** @see net.minecraft.data.worldgen.features.OreFeatures */
 object ModConfiguredFeatures {
 
     // overworld
@@ -102,6 +103,7 @@ object ModConfiguredFeatures {
                 OreConfiguration.target(
                     netherrackReplaceables, BlockInit.IMPERIUM_ORE.get().defaultBlockState()))
 
+        // the number is the vein size
         register(context, OVERWORLD_RUBY_ORE, Feature.ORE, OreConfiguration(ruby, 4))
         register(context, OVERWORLD_SAPPHIRE_ORE, Feature.ORE, OreConfiguration(sapphire, 3))
         register(context, OVERWORLD_GRAPHITE_ORE, Feature.ORE, OreConfiguration(graphite, 4))
