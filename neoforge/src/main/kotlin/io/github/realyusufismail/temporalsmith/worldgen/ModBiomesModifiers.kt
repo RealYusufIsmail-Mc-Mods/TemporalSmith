@@ -30,7 +30,7 @@ import net.neoforged.neoforge.common.world.BiomeModifier
 import net.neoforged.neoforge.common.world.BiomeModifiers
 import net.neoforged.neoforge.registries.NeoForgeRegistries
 
-object ModBiomeModifiers {
+object ModBiomesModifiers {
     val ADD_RUBY_ORE: ResourceKey<BiomeModifier> = registerKey("add_ruby_ore")
     val ADD_SAPPHIRE_ORE: ResourceKey<BiomeModifier> = registerKey("add_sapphire_ore")
     val ADD_GRAPHITE_ORE: ResourceKey<BiomeModifier> = registerKey("add_graphite_ore")

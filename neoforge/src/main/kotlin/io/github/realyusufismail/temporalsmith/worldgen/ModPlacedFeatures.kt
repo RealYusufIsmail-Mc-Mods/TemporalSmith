@@ -77,7 +77,7 @@ object ModPlacedFeatures {
             ModOrePlacement.commonOrePlacement(
                 4,
                 HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(20))))
+                    VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
 
         register(
             context,

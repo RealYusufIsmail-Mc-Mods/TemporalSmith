@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.20.2-2.0.0.beta9] - 2023-11-24
+# [1.20.2-2.0.0.beta9] - 2023-11-26
 
 ### Ore gen has now been tested and fixed. All ores should now generate properly.
 
