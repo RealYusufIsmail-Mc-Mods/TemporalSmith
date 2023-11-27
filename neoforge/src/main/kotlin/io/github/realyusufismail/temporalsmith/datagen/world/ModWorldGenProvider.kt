@@ -19,6 +19,7 @@
 package io.github.realyusufismail.temporalsmith.datagen.world
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
+import io.github.realyusufismail.temporalsmith.worldgen.ModBiomes
 import io.github.realyusufismail.temporalsmith.worldgen.ModBiomesModifiers
 import io.github.realyusufismail.temporalsmith.worldgen.ModConfiguredFeatures
 import io.github.realyusufismail.temporalsmith.worldgen.ModPlacedFeatures
@@ -38,4 +39,5 @@ class ModWorldGenProvider(
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomesModifiers::bootStrap)
+            .add(Registries.BIOME, ModBiomes::boostrap)
 ) : DatapackBuiltinEntriesProvider(output, registries, builder, mutableSetOf(MOD_ID))

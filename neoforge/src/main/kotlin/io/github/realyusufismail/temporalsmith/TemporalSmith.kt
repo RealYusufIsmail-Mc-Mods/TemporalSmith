@@ -52,6 +52,7 @@ class TemporalSmith {
         PotionsInit.POTION.register(bus)
         MobEffectsInit.MOB_EFFECTS.register(bus)
         POIInit.POI.register(bus)
+        SoundInit.SOUND_EVENTS.register(bus)
         DimensionsInit.registerDimensions()
 
         // Register ourselves for server and other game events we are interested in

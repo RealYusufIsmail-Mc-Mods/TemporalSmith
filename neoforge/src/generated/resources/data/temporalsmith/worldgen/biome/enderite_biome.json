@@ -1,0 +1,50 @@
+{
+  "carvers": {},
+  "downfall": 0.8,
+  "effects": {
+    "fog_color": 537167,
+    "foliage_color": 1990988,
+    "grass_color": 2448453,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "temporalsmith:enderite_ambient",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 50,
+      "min_delay": 0,
+      "replace_current_music": true,
+      "sound": "temporalsmith:enderite_ambient"
+    },
+    "sky_color": 537167,
+    "water_color": 1262400,
+    "water_fog_color": 867666
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:amethyst_geode"
+    ],
+    [],
+    [],
+    [],
+    [
+      "temporalsmith:enderite_ore"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.7
+}
