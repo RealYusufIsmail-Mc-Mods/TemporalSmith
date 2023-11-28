@@ -26,19 +26,18 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.animal.IronGolem;
 
 public class EnderiteGolemCrackinessLayer
     extends RenderLayer<EnderiteGolem, EnderiteGolemModel<EnderiteGolem>> {
-  private static final Map<IronGolem.Crackiness, ResourceLocation> resourceLocations =
+  private static final Map<EnderiteGolem.Crackiness, ResourceLocation> resourceLocations =
       ImmutableMap.of(
-          IronGolem.Crackiness.LOW,
+          EnderiteGolem.Crackiness.LOW,
           TemporalSmith.getModIdAndName(
               "textures/entity/enderite_golem/enderite_golem_crackiness_low.png"),
-          IronGolem.Crackiness.MEDIUM,
+          EnderiteGolem.Crackiness.MEDIUM,
           TemporalSmith.getModIdAndName(
               "textures/entity/enderite_golem/enderite_golem_crackiness_medium.png"),
-          IronGolem.Crackiness.HIGH,
+          EnderiteGolem.Crackiness.HIGH,
           TemporalSmith.getModIdAndName(
               "textures/entity/enderite_golem/enderite_golem_crackiness_high.png"));
 
@@ -60,19 +59,25 @@ public class EnderiteGolemCrackinessLayer
       float p_117156_,
       float p_117157_) {
     if (!p_117151_.isInvisible()) {
-      EnderiteGolem.Crackiness irongolem$crackiness = p_117151_.getCrackiness();
-      if (irongolem$crackiness != EnderiteGolem.Crackiness.NONE) {
-        ResourceLocation resourcelocation = resourceLocations.get(irongolem$crackiness);
-        renderColoredCutoutModel(
-            this.getParentModel(),
-            resourcelocation,
-            p_117148_,
-            p_117149_,
-            p_117150_,
-            p_117151_,
-            1.0F,
-            1.0F,
-            1.0F);
+      EnderiteGolem.Crackiness enderiteGolumCrackness = p_117151_.getCrackiness();
+      if (enderiteGolumCrackness != EnderiteGolem.Crackiness.NONE) {
+        ResourceLocation resourcelocation = resourceLocations.get(enderiteGolumCrackness);
+
+        if (resourcelocation != null) {
+          renderColoredCutoutModel(
+              this.getParentModel(),
+              resourcelocation,
+              p_117148_,
+              p_117149_,
+              p_117150_,
+              p_117151_,
+              1.0F,
+              1.0F,
+              1.0F);
+        } else {
+          throw new IllegalStateException(
+              "Invalid crackiness: " + enderiteGolumCrackness + " for: " + p_117151_);
+        }
       }
     }
   }

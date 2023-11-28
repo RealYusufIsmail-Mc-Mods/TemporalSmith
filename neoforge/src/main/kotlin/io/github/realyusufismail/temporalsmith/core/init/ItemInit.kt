@@ -45,6 +45,7 @@ object ItemInit {
     val GRAPHITE: DeferredItem<Item> = ITEMS.register("graphite") { -> Item(Item.Properties()) }
     val AQUMARINE: DeferredItem<Item> = ITEMS.register("aqumarine") { -> Item(Item.Properties()) }
     val RAINBOW: DeferredItem<Item> = ITEMS.register("rainbow") { -> Item(Item.Properties()) }
+    @JvmField
     val ENDERITE: DeferredItem<Item> = ITEMS.register("enderite") { -> Item(Item.Properties()) }
     val IMPERIUM: DeferredItem<Item> = ITEMS.register("imperium") { -> Item(Item.Properties()) }
 

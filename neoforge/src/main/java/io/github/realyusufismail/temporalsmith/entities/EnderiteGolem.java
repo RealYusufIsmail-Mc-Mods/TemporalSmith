@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 import javax.annotation.Nullable;
+
+import io.github.realyusufismail.temporalsmith.core.init.ItemInit;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -277,7 +279,7 @@ public class EnderiteGolem extends AbstractGolem implements NeutralMob {
   @Override
   protected InteractionResult mobInteract(Player p_28861_, InteractionHand p_28862_) {
     ItemStack itemstack = p_28861_.getItemInHand(p_28862_);
-    if (!itemstack.is(Items.IRON_INGOT)) {
+    if (!itemstack.is(ItemInit.ENDERITE)) {
       return InteractionResult.PASS;
     } else {
       float f = this.getHealth();
