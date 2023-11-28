@@ -36,7 +36,7 @@ import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
 
 object ItemInit {
-    val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(MOD_ID)
+    @JvmField val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(MOD_ID)
     val SMELT_ABLE_ITEM: MutableMap<DeferredItem<Item>, DeferredItem<Item>> = mutableMapOf()
 
     // ore ingots

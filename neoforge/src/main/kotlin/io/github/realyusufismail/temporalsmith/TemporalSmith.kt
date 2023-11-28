@@ -75,6 +75,8 @@ class TemporalSmith {
         bus.addListener(ClientEvents::registerLayerDefinition)
         // entity death event
         FORGE_BUS.addListener(ClientEvents::onEntityDeath)
+        // entity attribute creation event
+        bus.addListener(ClientEvents::onRegisterEntities)
 
         KotlinModLoadingContext.get().getKEventBus().addListener(FMLClientSetupEvent::class.java) {
             event: FMLClientSetupEvent ->
@@ -90,8 +92,9 @@ class TemporalSmith {
     }
 
     companion object TemporalSmith {
-        val logger: Logger = LoggerFactory.getLogger(TemporalSmith::class.java)
+        @JvmStatic val logger: Logger = LoggerFactory.getLogger(TemporalSmith::class.java)
 
+        @JvmStatic
         fun getModIdAndName(name: String): ResourceLocation {
             return ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault()))
         }

@@ -121,11 +121,10 @@ object ModBiomes {
                     .grassColorOverride(0x255C45)
                     .foliageColorOverride(0x1E614C)
                     .fogColor(0x08324F)
-                    .ambientMoodSound(
-                        AmbientMoodSettings(
-                            SoundEvents.AMBIENT_CAVE, 6000, 8, 2.0))
+                    .ambientMoodSound(AmbientMoodSettings(SoundEvents.AMBIENT_CAVE, 6000, 8, 2.0))
                     .backgroundMusic(
-                        Music(SoundInit.ENDERITE_AMBIENT as Holder<SoundEvent>, 12000, 24000, false))
+                        Music(
+                            SoundInit.ENDERITE_AMBIENT as Holder<SoundEvent>, 12000, 24000, false))
                     .build())
             .build()
     }

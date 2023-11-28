@@ -25,6 +25,10 @@ import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTab
 import io.github.realyusufismail.temporalsmith.client.renderer.mjolnir.MjolnirItemRenderer
 import io.github.realyusufismail.temporalsmith.client.renderer.trident.aq.AqumarineTridentItemRenderer
 import io.github.realyusufismail.temporalsmith.core.init.*
+import io.github.realyusufismail.temporalsmith.entities.EnderiteGolem
+import io.github.realyusufismail.temporalsmith.entities.EnderiteGolemModel
+import io.github.realyusufismail.temporalsmith.entities.EnderiteGolemRenderer
+import io.github.realyusufismail.temporalsmith.items.egg.ModSpawnEggItem
 import io.github.realyusufismail.temporalsmith.models.MjolnirModel
 import io.github.realyusufismail.temporalsmith.util.KeyBinding
 import net.minecraft.client.Minecraft
@@ -47,10 +51,13 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.client.event.EntityRenderersEvent
 import net.neoforged.neoforge.client.event.InputEvent
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent
 
 object ClientEvents {
     val MjolnirLayer = ModelLayerLocation(TemporalSmith.getModIdAndName("mjolnir"), "mjolnir")
+    val EnderiteGolemLayer =
+        ModelLayerLocation(TemporalSmith.getModIdAndName("enderite_golem"), "enderite_golem")
 
     fun clientSetup(event: FMLClientSetupEvent) {
         event.enqueueWork { registerScreens() }
@@ -137,19 +144,31 @@ object ClientEvents {
     }
 
     fun registerEntityRenders(event: EntityRenderersEvent.RegisterRenderers) {
+
+        // Tridents
         event.registerEntityRenderer(
             EntityTypeInit.AQUMARINE_THROWN_TRIDENT.get(), ::AqumarineTridentItemRenderer)
 
+        // Hammers
         event.registerEntityRenderer(EntityTypeInit.MJOLNIR.get(), ::MjolnirItemRenderer)
+
+        // Mobs
+        event.registerEntityRenderer(EntityTypeInit.ENDERITE_GOLEM.get(), ::EnderiteGolemRenderer)
     }
 
     fun registerLayerDefinition(event: EntityRenderersEvent.RegisterLayerDefinitions) {
         event.registerLayerDefinition(MjolnirLayer, MjolnirModel::createLayer)
+        event.registerLayerDefinition(EnderiteGolemLayer) { EnderiteGolemModel.createBodyLayer() }
     }
 
     fun onKeyRegister(event: RegisterKeyMappingsEvent) {
         event.register(KeyBinding.GET_MJOLNIR)
         event.register(KeyBinding.STRIKE_LIGHTNING)
+    }
+
+    fun onRegisterEntities(event: EntityAttributeCreationEvent) {
+        ModSpawnEggItem.spawnEggs()
+        event.put(EntityTypeInit.ENDERITE_GOLEM.get(), EnderiteGolem.createAttributes().build())
     }
 
     fun onKeyInput(event: InputEvent.Key) {
