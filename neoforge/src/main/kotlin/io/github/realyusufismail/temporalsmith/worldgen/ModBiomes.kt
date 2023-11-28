@@ -28,6 +28,7 @@ import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.sounds.Music
 import net.minecraft.sounds.SoundEvent
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.level.biome.*
 import net.minecraft.world.level.levelgen.GenerationStep
 
@@ -122,9 +123,9 @@ object ModBiomes {
                     .fogColor(0x08324F)
                     .ambientMoodSound(
                         AmbientMoodSettings(
-                            SoundInit.ENDERITE_AMBIENT as Holder<SoundEvent>, 6000, 8, 2.0))
+                            SoundEvents.AMBIENT_CAVE, 6000, 8, 2.0))
                     .backgroundMusic(
-                        Music(SoundInit.ENDERITE_AMBIENT as Holder<SoundEvent>, 0, 50, true))
+                        Music(SoundInit.ENDERITE_AMBIENT as Holder<SoundEvent>, 12000, 24000, false))
                     .build())
             .build()
     }

@@ -8,13 +8,13 @@
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "temporalsmith:enderite_ambient",
+      "sound": "minecraft:ambient.cave",
       "tick_delay": 6000
     },
     "music": {
-      "max_delay": 50,
-      "min_delay": 0,
-      "replace_current_music": true,
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
       "sound": "temporalsmith:enderite_ambient"
     },
     "sky_color": 537167,
