@@ -23,7 +23,7 @@ import static io.github.realyusufismail.temporalsmith.TemporalSmith.MOD_ID;
 import io.github.realyusufismail.temporalsmith.common.entity.AqumarineTridentEntity;
 import io.github.realyusufismail.temporalsmith.common.entity.MjolnirEntity;
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity;
-import io.github.realyusufismail.temporalsmith.entities.EnderiteGolem;
+import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

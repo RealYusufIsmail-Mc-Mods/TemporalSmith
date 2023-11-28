@@ -25,11 +25,11 @@ import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTab
 import io.github.realyusufismail.temporalsmith.client.renderer.mjolnir.MjolnirItemRenderer
 import io.github.realyusufismail.temporalsmith.client.renderer.trident.aq.AqumarineTridentItemRenderer
 import io.github.realyusufismail.temporalsmith.core.init.*
-import io.github.realyusufismail.temporalsmith.entities.EnderiteGolem
-import io.github.realyusufismail.temporalsmith.entities.EnderiteGolemModel
-import io.github.realyusufismail.temporalsmith.entities.EnderiteGolemRenderer
+import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolem
+import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolemModel
+import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolemRenderer
+import io.github.realyusufismail.temporalsmith.entities.hammer.MjolnirModel
 import io.github.realyusufismail.temporalsmith.items.egg.ModSpawnEggItem
-import io.github.realyusufismail.temporalsmith.models.MjolnirModel
 import io.github.realyusufismail.temporalsmith.util.KeyBinding
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.MenuScreens
@@ -157,7 +157,7 @@ object ClientEvents {
     }
 
     fun registerLayerDefinition(event: EntityRenderersEvent.RegisterLayerDefinitions) {
-        event.registerLayerDefinition(MjolnirLayer, MjolnirModel::createLayer)
+        event.registerLayerDefinition(MjolnirLayer) { MjolnirModel.createBodyLayer() }
         event.registerLayerDefinition(EnderiteGolemLayer) { EnderiteGolemModel.createBodyLayer() }
     }
 
