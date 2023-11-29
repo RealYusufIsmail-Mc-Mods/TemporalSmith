@@ -38,6 +38,7 @@ import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.renderer.ItemBlockRenderTypes
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.item.ItemProperties
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
@@ -45,19 +46,27 @@ import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Inventory
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.phys.Vec3
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.client.event.EntityRenderersEvent
 import net.neoforged.neoforge.client.event.InputEvent
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
+import net.neoforged.neoforge.event.TickEvent
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent
 
 object ClientEvents {
     val MjolnirLayer = ModelLayerLocation(TemporalSmith.getModIdAndName("mjolnir"), "mjolnir")
     val EnderiteGolemLayer =
         ModelLayerLocation(TemporalSmith.getModIdAndName("enderite_golem"), "enderite_golem")
+
+    // booleans
+    private var giveMjolnirToPlayer = false
 
     fun clientSetup(event: FMLClientSetupEvent) {
         event.enqueueWork { registerScreens() }
@@ -173,19 +182,7 @@ object ClientEvents {
 
     fun onKeyInput(event: InputEvent.Key) {
         if (KeyBinding.GET_MJOLNIR.consumeClick()) {
-            val player = Minecraft.getInstance().player
-            if (player != null) {
-                val effects = player.activeEffectsMap
-
-                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
-                    // if they alread have mjolnir, ignore
-                    if (player.inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
-                        return
-                    } else {
-                        player.inventory.add(ItemInit.MJOLNIR.get().defaultInstance)
-                    }
-                }
-            }
+            giveMjolnirToPlayer = true
         }
     }
 
@@ -208,6 +205,70 @@ object ClientEvents {
                     lightning?.setPos(vec.x, vec.y, vec.z)
                     killer.level().addFreshEntity(lightning as Entity)
                 }
+            }
+        }
+    }
+
+    fun onPlayerTickEvent(event: TickEvent.PlayerTickEvent) {
+        if (event.player is Player) {
+
+            val player = event.player as Player
+
+            val inventory = player.inventory
+            val effects = player.activeEffectsMap
+
+            // if player does not have the hammer make sure they can't fly
+
+            if (!inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
+                player.abilities.mayfly = false
+                player.abilities.flying = false
+                player.abilities.flyingSpeed = 0.05f
+                player.abilities.invulnerable = false
+            } else {
+                player.abilities.mayfly = true
+                player.abilities.flyingSpeed = 0.06f
+                player.abilities.invulnerable = true
+            }
+
+            if (giveMjolnirToPlayer) {
+
+                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get()) && !inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
+                    inventory.add(ItemInit.MJOLNIR.get().defaultInstance)
+                } else if (!effects.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                    player.sendSystemMessage(Component.literal("You are not worthy to wield thors hammer"))
+                }
+
+                giveMjolnirToPlayer = false
+            }
+        }
+    }
+
+    fun onLivingFallEvent(event : LivingFallEvent) {
+        if (event.entity is Player) {
+            val player = event.entity as Player
+
+            if (player.activeEffectsMap.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                event.distance = 0.0f
+            }
+        }
+    }
+
+    fun onLivingHurtEvent(event : LivingHurtEvent) {
+        if (event.entity is Player) {
+            val player = event.entity as Player
+
+            if (player.activeEffectsMap.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                event.amount = 0.0f
+            }
+        }
+    }
+
+    fun onLivingDamageEvent(event : LivingHurtEvent) {
+        if (event.entity is Player) {
+            val player = event.entity as Player
+
+            if (player.activeEffectsMap.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                event.amount = 0.0f
             }
         }
     }

@@ -22,7 +22,6 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.math.Axis
 import io.github.realyusufismail.temporalsmith.TemporalSmith
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
-import io.github.realyusufismail.temporalsmith.common.entity.MjolnirEntity
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity
 import io.github.realyusufismail.temporalsmith.entities.mjolnir.MjolnirModel
 import net.minecraft.client.renderer.MultiBufferSource
@@ -36,8 +35,8 @@ import net.minecraft.util.Mth
 class MjolnirItemRenderer(context: EntityRendererProvider.Context) :
     EntityRenderer<ModTridentEntity>(context) {
     private val location: ResourceLocation =
-        TemporalSmith.getModIdAndName("textures/entity/item/mjolnir/all.png")
-    private var mjolnirModel: MjolnirModel<MjolnirEntity>? = null
+        TemporalSmith.getModIdAndName("textures/item/mjolnir/all.png")
+    private var mjolnirModel: MjolnirModel? = null
 
     init {
         mjolnirModel = MjolnirModel(context.bakeLayer(ClientEvents.MjolnirLayer))

@@ -32,6 +32,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Tier
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions
 
 open class Mjolnir(
@@ -40,6 +41,7 @@ open class Mjolnir(
     pAttackSpeedModifier: Float = 15.0f,
     pAttackDamageModifier: Float = -3f
 ) : ArmourToolsModTridentItem(tier, properties, pAttackSpeedModifier, pAttackDamageModifier) {
+
     override fun onUseTick(
         pLevel: Level,
         pLivingEntity: LivingEntity,
@@ -53,20 +55,6 @@ open class Mjolnir(
         if (!hasWorthyEffect) {
             Containers.dropItemStack(
                 pLevel, pLivingEntity.x, pLivingEntity.y, pLivingEntity.z, pStack)
-        }
-    }
-
-    override fun inventoryTick(
-        pStack: ItemStack,
-        pLevel: Level,
-        pEntity: Entity,
-        pSlotId: Int,
-        pIsSelected: Boolean
-    ) {
-        if (pEntity is Player) {
-            pEntity.abilities.mayfly = true
-            pEntity.abilities.flyingSpeed = 0.06f
-            pEntity.abilities.invulnerable = true
         }
     }
 

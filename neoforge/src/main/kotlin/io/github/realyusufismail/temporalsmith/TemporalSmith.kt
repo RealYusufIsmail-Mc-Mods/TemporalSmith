@@ -77,6 +77,13 @@ class TemporalSmith {
         FORGE_BUS.addListener(ClientEvents::onEntityDeath)
         // entity attribute creation event
         bus.addListener(ClientEvents::onRegisterEntities)
+        // player tick event
+        FORGE_BUS.addListener(ClientEvents::onPlayerTickEvent)
+        // falling living entity event
+        FORGE_BUS.addListener(ClientEvents::onLivingFallEvent)
+        // living hurt event
+        FORGE_BUS.addListener(ClientEvents::onLivingHurtEvent)
+        FORGE_BUS.addListener(ClientEvents::onLivingDamageEvent)
 
         KotlinModLoadingContext.get().getKEventBus().addListener(FMLClientSetupEvent::class.java) {
             event: FMLClientSetupEvent ->

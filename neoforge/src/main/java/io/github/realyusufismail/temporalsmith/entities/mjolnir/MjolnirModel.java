@@ -20,22 +20,20 @@ package io.github.realyusufismail.temporalsmith.entities.mjolnir;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import io.github.realyusufismail.temporalsmith.client.ClientEvents;
-import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.client.renderer.RenderType;
 import org.jetbrains.annotations.NotNull;
 
-public class MjolnirModel<T extends Entity> extends EntityModel<T> {
-  public static final ModelLayerLocation LAYER_LOCATION = ClientEvents.INSTANCE.getMjolnirLayer();
+public class MjolnirModel extends Model {
   private final ModelPart Themiddlepart;
   private final ModelPart Sidepart;
   private final ModelPart handle;
 
   public MjolnirModel(ModelPart root) {
+    super(RenderType::entityCutoutNoCull);
     this.Themiddlepart = root.getChild("Themiddlepart");
     this.Sidepart = root.getChild("Sidepart");
     this.handle = root.getChild("handle");
@@ -281,15 +279,6 @@ public class MjolnirModel<T extends Entity> extends EntityModel<T> {
 
     return LayerDefinition.create(meshdefinition, 128, 128);
   }
-
-  @Override
-  public void setupAnim(
-      @NotNull T entity,
-      float limbSwing,
-      float limbSwingAmount,
-      float ageInTicks,
-      float netHeadYaw,
-      float headPitch) {}
 
   @Override
   public void renderToBuffer(
