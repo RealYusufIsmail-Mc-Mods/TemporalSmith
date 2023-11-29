@@ -24,7 +24,7 @@ import io.github.realyusufismail.temporalsmith.TemporalSmith
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
 import io.github.realyusufismail.temporalsmith.common.entity.MjolnirEntity
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity
-import io.github.realyusufismail.temporalsmith.entities.hammer.MjolnirModel
+import io.github.realyusufismail.temporalsmith.entities.mjolnir.MjolnirModel
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.entity.EntityRenderer
 import net.minecraft.client.renderer.entity.EntityRendererProvider

@@ -28,7 +28,7 @@ import io.github.realyusufismail.temporalsmith.core.init.*
 import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolem
 import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolemModel
 import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolemRenderer
-import io.github.realyusufismail.temporalsmith.entities.hammer.MjolnirModel
+import io.github.realyusufismail.temporalsmith.entities.mjolnir.MjolnirModel
 import io.github.realyusufismail.temporalsmith.items.egg.ModSpawnEggItem
 import io.github.realyusufismail.temporalsmith.util.KeyBinding
 import net.minecraft.client.Minecraft
