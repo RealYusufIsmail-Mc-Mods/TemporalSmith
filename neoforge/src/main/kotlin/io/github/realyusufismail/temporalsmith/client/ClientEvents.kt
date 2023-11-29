@@ -31,7 +31,6 @@ import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolemRende
 import io.github.realyusufismail.temporalsmith.entities.mjolnir.MjolnirModel
 import io.github.realyusufismail.temporalsmith.items.egg.ModSpawnEggItem
 import io.github.realyusufismail.temporalsmith.util.KeyBinding
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraft.client.model.geom.ModelLayerLocation
 import net.minecraft.client.multiplayer.ClientLevel
@@ -46,7 +45,6 @@ import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.phys.Vec3
@@ -232,10 +230,12 @@ object ClientEvents {
 
             if (giveMjolnirToPlayer) {
 
-                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get()) && !inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
+                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get()) &&
+                    !inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
                     inventory.add(ItemInit.MJOLNIR.get().defaultInstance)
                 } else if (!effects.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
-                    player.sendSystemMessage(Component.literal("You are not worthy to wield thors hammer"))
+                    player.sendSystemMessage(
+                        Component.literal("You are not worthy to wield thors hammer"))
                 }
 
                 giveMjolnirToPlayer = false
@@ -243,7 +243,7 @@ object ClientEvents {
         }
     }
 
-    fun onLivingFallEvent(event : LivingFallEvent) {
+    fun onLivingFallEvent(event: LivingFallEvent) {
         if (event.entity is Player) {
             val player = event.entity as Player
 
@@ -253,7 +253,7 @@ object ClientEvents {
         }
     }
 
-    fun onLivingHurtEvent(event : LivingHurtEvent) {
+    fun onLivingHurtEvent(event: LivingHurtEvent) {
         if (event.entity is Player) {
             val player = event.entity as Player
 
@@ -263,7 +263,7 @@ object ClientEvents {
         }
     }
 
-    fun onLivingDamageEvent(event : LivingHurtEvent) {
+    fun onLivingDamageEvent(event: LivingHurtEvent) {
         if (event.entity is Player) {
             val player = event.entity as Player
 
