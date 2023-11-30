@@ -20,11 +20,13 @@ package io.github.realyusufismail.temporalsmith.datagen.texture
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
+import io.github.realyusufismail.temporalsmith.core.util.bName
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.RotatedPillarBlock
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 
@@ -59,6 +61,12 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         normalBlock(BlockInit.GRAPHITE_BLOCK.get())
         normalBlock(BlockInit.AQUMARINE_BLOCK.get())
         normalBlock(BlockInit.ENDERITE_BLOCK.get())
+
+        // logs
+        logBlock(BlockInit.ENDERITE_LOG.get())
+
+        // planks
+       normalBlock(BlockInit.ENDERITE_PLANKS.get())
 
         // other
         customCraftingTable(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
@@ -109,5 +117,14 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         builder.texture("top", modLoc("block/${name.path}_top"))
         builder.texture("side", modLoc("block/${name.path}_side"))
         builder.texture("front", modLoc("block/${name.path}_front"))
+    }
+
+    override fun logBlock(block : RotatedPillarBlock) {
+        axisBlock(block, blockTexture(block), extend(blockTexture(block), "_top"))
+        this.simpleBlockItem(block, models().cubeColumn(block.bName, blockTexture(block), extend(blockTexture(block), "_top")))
+    }
+
+    private fun extend(rl: ResourceLocation, suffix: String): ResourceLocation {
+        return ResourceLocation(rl.namespace, rl.path + suffix)
     }
 }

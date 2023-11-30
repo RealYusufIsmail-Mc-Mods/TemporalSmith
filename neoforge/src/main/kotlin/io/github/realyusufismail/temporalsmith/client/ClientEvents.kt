@@ -218,13 +218,15 @@ object ClientEvents {
             // if player does not have the hammer make sure they can't fly
 
             if (!inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
-                player.abilities.mayfly = false
-                player.abilities.flying = false
-                player.abilities.flyingSpeed = 0.05f
-                player.abilities.invulnerable = false
+                // check if they are not in creative mode
+                if (!player.abilities.instabuild) {
+                    player.abilities.mayfly = false
+                    player.abilities.flyingSpeed = 0.05f
+                    player.abilities.invulnerable = false
+                }
             } else {
                 player.abilities.mayfly = true
-                player.abilities.flyingSpeed = 0.06f
+                player.abilities.flyingSpeed = 0.07f
                 player.abilities.invulnerable = true
             }
 

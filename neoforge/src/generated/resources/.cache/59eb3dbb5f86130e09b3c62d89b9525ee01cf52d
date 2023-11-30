@@ -1,4 +1,4 @@
-// 1.20.2	2023-11-23T21:21:53.68928	Loot Tables
+// 1.20.2	2023-11-30T19:20:10.868162	Loot Tables
 94fa78c06977fb9934f334a8c6f098cb6b212022 data/temporalsmith/loot_tables/blocks/aqumarine_block.json
 7b5557e48855ffd9b66b3b14e92969c0ad73aa21 data/temporalsmith/loot_tables/blocks/aqumarine_ore.json
 7d29ccb81310873aa10bc8803c2a25c5764f87e2 data/temporalsmith/loot_tables/blocks/custom_armour_crafting_table.json
@@ -10,7 +10,9 @@ e39bb6d3761962dc2f86ab6dc30e1146aafc5f91 data/temporalsmith/loot_tables/blocks/d
 49aff66e99619a46f1cbc2d9c1deb7cbea649394 data/temporalsmith/loot_tables/blocks/deepslate_ruby_ore.json
 7b1f102aff92820ded204b74092f985baad858d7 data/temporalsmith/loot_tables/blocks/deepslate_sapphire_ore.json
 9ebcb651a70b51dbe961d599bd3b52690980ece6 data/temporalsmith/loot_tables/blocks/enderite_block.json
+3d34dd2c757af172bf6cbad35da66a800e3a4922 data/temporalsmith/loot_tables/blocks/enderite_log.json
 065c085691f9eb6b9c24cb135a225876bf790b96 data/temporalsmith/loot_tables/blocks/enderite_ore.json
+a9f85546ea78c661a5902759ef38c79856d3eb93 data/temporalsmith/loot_tables/blocks/enderite_planks.json
 d237d79d76e6c62dac2dbae7de4bb9a6b51bb6ff data/temporalsmith/loot_tables/blocks/graphite_block.json
 13f85449dd24215c45dc35681ba3ca2ade1d4607 data/temporalsmith/loot_tables/blocks/graphite_ore.json
 5692a941a36ca1fb7dcf356ff18e2bab63ebcc21 data/temporalsmith/loot_tables/blocks/imperium_ore.json

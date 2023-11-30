@@ -76,13 +76,6 @@ public class EntityTypeInit {
               createStandardEntityType(
                   "enderite_golem", EnderiteGolem::new, MobCategory.MISC, 1.4F, 2.7F, 10));
 
-  private static final Item.Properties spawn_egg_props = new Item.Properties();
-
-  public static final DeferredItem<Item> ENDERITE_GOLEM_SPAWN_EGG =
-      ItemInit.ITEMS.register(
-          "enderite_golem_spawn_egg",
-          () -> new DeferredSpawnEggItem(ENDERITE_GOLEM, 0xC4AA79, 0x7A5F22, spawn_egg_props));
-
   private static <T extends Entity> EntityType<T> createStandardEntityType(
       String entity_name,
       EntityType.EntityFactory<T> factory,

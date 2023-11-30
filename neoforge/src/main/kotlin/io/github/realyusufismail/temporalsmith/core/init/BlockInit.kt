@@ -19,10 +19,7 @@
 package io.github.realyusufismail.temporalsmith.core.init
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
-import io.github.realyusufismail.temporalsmith.blocks.CustomArmourCraftingTable
-import io.github.realyusufismail.temporalsmith.blocks.CustomToolCraftingTable
-import io.github.realyusufismail.temporalsmith.blocks.EnderitePortalFrame
-import io.github.realyusufismail.temporalsmith.blocks.IngotFusionTollEnhancer
+import io.github.realyusufismail.temporalsmith.blocks.*
 import io.github.realyusufismail.temporalsmith.blocks.lit.RainbowLitBlock
 import io.github.realyusufismail.temporalsmith.blocks.lit.RubyLitBlock
 import net.minecraft.world.item.BlockItem
@@ -50,6 +47,8 @@ object BlockInit {
     val MINABLE_DIAMOND_PICKAXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
 
     val MINABLE_NETHERITE_PICKAXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
+
+    val MINABLE_WOODEN_AXE_BLOCKS: MutableList<DeferredBlock<Block>> = mutableListOf()
 
     // ores
     val RUBY_ORE =
@@ -181,6 +180,14 @@ object BlockInit {
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
+    // logs
+    val ENDERITE_LOG =
+        registerSpecial("enderite_log", ::EnderiteLog, MinableBlockType.WOODEN_AXE)
+
+    // planks
+    val ENDERITE_PLANKS =
+        registerSpecial("enderite_planks", ::EnderitePlanks, MinableBlockType.WOODEN_AXE)
+
     // custom recipe tables
     val CUSTOM_ARMOUR_CRAFTING_TABLE =
         registerSpecial("custom_armour_crafting_table", ::CustomArmourCraftingTable)
@@ -262,6 +269,7 @@ object BlockInit {
             MinableBlockType.GOLD_PICKAXE -> MINABLE_GOLD_PICKAXE_BLOCKS.add(block)
             MinableBlockType.DIAMOND_PICKAXE -> MINABLE_DIAMOND_PICKAXE_BLOCKS.add(block)
             MinableBlockType.NETHERITE_PICKAXE -> MINABLE_NETHERITE_PICKAXE_BLOCKS.add(block)
+            MinableBlockType.WOODEN_AXE -> MINABLE_WOODEN_AXE_BLOCKS.add(block)
         }
     }
 }

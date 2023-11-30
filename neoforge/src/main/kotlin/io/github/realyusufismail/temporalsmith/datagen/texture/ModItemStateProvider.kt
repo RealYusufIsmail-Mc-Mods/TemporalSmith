@@ -90,6 +90,9 @@ class ModItemStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper)
         item(ItemInit.ENDERITE_LEGGINGS.get())
         item(ItemInit.ENDERITE_BOOTS.get())
 
+        // spawn eggs
+        item(ItemInit.ENDERITE_GOLEM_SPAWN_EGG.get())
+
         // tools
 
         tool(ItemInit.RUBY_SWORD.get())

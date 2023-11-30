@@ -1,4 +1,4 @@
-// 1.20.2	2023-11-16T22:20:28.51812	Item Models: temporalsmith
+// 1.20.2	2023-11-30T18:05:33.987846	Item Models: temporalsmith
 c944664c5c8be4439e0016b8e101ad0f02dedfd1 assets/temporalsmith/models/item/amethyst_axe.json
 05cb548d8cfe3bf55c7d5a80c0fc92f3763b03f4 assets/temporalsmith/models/item/amethyst_boots.json
 d193ac5d52e5d0e62ae7b48b226198bca3033789 assets/temporalsmith/models/item/amethyst_chestplate.json
@@ -21,6 +21,7 @@ a0c91459372e7e36718f1f9451e82b5841512c37 assets/temporalsmith/models/item/enderi
 23e941a299be2f7dbbe8b73d11aa75f14174574b assets/temporalsmith/models/item/enderite_axe.json
 feac6327f2e1d894c584f4a725d7a34ed41a9332 assets/temporalsmith/models/item/enderite_boots.json
 78f08f24b9532dedf4131e90012af76060c6dc9b assets/temporalsmith/models/item/enderite_chestplate.json
+f46318d09b38d1615c64d78a3c1e925740403352 assets/temporalsmith/models/item/enderite_golem_spawn_egg.json
 b414e3492dc41e8b90ccefffffa5bdab49a9db10 assets/temporalsmith/models/item/enderite_helmet.json
 060d65e693e1ebff7de42a9e857c96de403a0d0b assets/temporalsmith/models/item/enderite_hoe.json
 7b2a62a69b85c454246cdd0861b99e3d9320e45a assets/temporalsmith/models/item/enderite_leggings.json

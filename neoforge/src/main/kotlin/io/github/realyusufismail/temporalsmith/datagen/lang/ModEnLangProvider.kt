@@ -21,6 +21,7 @@ package io.github.realyusufismail.temporalsmith.datagen.lang
 import io.github.realyusufismail.realyusufismailcore.data.support.lang.ModEnLangProviderSupport
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
+import io.github.realyusufismail.temporalsmith.core.init.EntityTypeInit
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.util.KeyBinding
 import net.minecraft.data.DataGenerator
@@ -59,6 +60,12 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addBlock(BlockInit.DEEPSLATE_RAINBOW_ORE, "Deepslate Rainbow Ore")
         addBlock(BlockInit.DEEPSLATE_AQUMARINE_ORE, "Deepslate Aqumarine Ore")
         addBlock(BlockInit.DEEPSLATE_IMPERIUM_ORE, "Deepslate Imperium Ore")
+
+        // logs
+        addBlock(BlockInit.ENDERITE_LOG, "Enderite Log")
+
+        // planks
+        addBlock(BlockInit.ENDERITE_PLANKS, "Enderite Planks")
 
         // custom crafting tables
         addBlock(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE, "Custom Armour Crafting Table")
@@ -152,6 +159,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
 
         // Trident
         addItem(ItemInit.AQUMARINE_TRIDENT, "Aqumarine Trident")
+
+        // Spawn Eggs
+        addItem(ItemInit.ENDERITE_GOLEM_SPAWN_EGG, "Enderite Golem Spawn Egg")
 
         // Potions
         addPotion("worthy_potion", "worthy_effect", "Worthy Potion")
