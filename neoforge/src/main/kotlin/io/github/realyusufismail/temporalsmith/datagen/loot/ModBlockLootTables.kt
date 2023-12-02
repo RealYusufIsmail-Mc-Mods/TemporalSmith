@@ -86,6 +86,7 @@ class ModBlockLootTables : BlockLootSubProvider(setOf(), FeatureFlags.REGISTRY.a
         dropSelf(BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
         dropSelf(BlockInit.ENDERITE_LOG.get())
         dropSelf(BlockInit.ENDERITE_PLANKS.get())
+        dropSelf(BlockInit.ENDERITE_SAPLING.get())
     }
 
     override fun getKnownBlocks(): Iterable<Block> {

@@ -31,11 +31,11 @@ import io.github.realyusufismail.temporalsmith.items.hammer.util.HammerLevel
 import io.github.realyusufismail.temporalsmith.items.shield.ModShieldItem
 import io.github.realyusufismail.temporalsmith.items.sword.EnderiteSword
 import io.github.realyusufismail.temporalsmith.items.trident.AqumarineTridentItem
+import java.util.function.Supplier
 import net.minecraft.world.item.*
 import net.neoforged.neoforge.common.DeferredSpawnEggItem
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
-import java.util.function.Supplier
 
 object ItemInit {
     @JvmField val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(MOD_ID)
@@ -381,17 +381,13 @@ object ItemInit {
 
     // spawn egges
 
-    val ENDERITE_GOLEM_SPAWN_EGG = ITEMS.register(
-        "enderite_golem_spawn_egg",
-        Supplier<Item> {
-            DeferredSpawnEggItem(
-                EntityTypeInit.ENDERITE_GOLEM,
-                0xC4AA79,
-                0x7A5F22,
-                Item.Properties()
-            )
-        })
-
+    val ENDERITE_GOLEM_SPAWN_EGG =
+        ITEMS.register(
+            "enderite_golem_spawn_egg",
+            Supplier<Item> {
+                DeferredSpawnEggItem(
+                    EntityTypeInit.ENDERITE_GOLEM, 0xC4AA79, 0x7A5F22, Item.Properties())
+            })
 
     private fun DeferredRegister.Items.registerSmeltableObject(
         name: String,

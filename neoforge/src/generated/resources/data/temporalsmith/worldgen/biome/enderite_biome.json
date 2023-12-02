@@ -32,6 +32,11 @@
     [],
     [
       "temporalsmith:enderite_ore"
+    ],
+    [],
+    [],
+    [
+      "temporalsmith:enderite_sapling"
     ]
   ],
   "has_precipitation": true,

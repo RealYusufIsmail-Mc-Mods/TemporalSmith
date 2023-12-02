@@ -1,4 +1,4 @@
-// 1.20.2	2023-11-30T20:27:35.194262	Armour and Tools Mod Blockstates
+// 1.20.2	2023-12-01T15:04:11.608351	Armour and Tools Mod Blockstates
 98e67552137937bcefb638188a41422100ce6084 assets/temporalsmith/blockstates/aqumarine_block.json
 5d8b07c2d0681ab698b6b620b610abfb44a43a65 assets/temporalsmith/blockstates/aqumarine_ore.json
 79aacdcade435214443a431ec249338aa5ecb28f assets/temporalsmith/blockstates/custom_armour_crafting_table.json
@@ -13,6 +13,7 @@ fc9e2ead2b891dfc9c764f3e1cd015f527581666 assets/temporalsmith/blockstates/enderi
 58caae063445ea7ec0df24f2e1d78446fdbd53e8 assets/temporalsmith/blockstates/enderite_log.json
 bd202bd2a64929649368c43f8f585753a288ac68 assets/temporalsmith/blockstates/enderite_ore.json
 96c56a6feca3b3ee5f9ccfde26785631f99c7134 assets/temporalsmith/blockstates/enderite_planks.json
+2da441708f17099082e1a45db02eabbbad0380e0 assets/temporalsmith/blockstates/enderite_sapling.json
 c9bb08138170eb217d0351322471e87fce2dc1e9 assets/temporalsmith/blockstates/graphite_block.json
 944ca17e7c66fdc7250f35eb2ab72bbbe017b57e assets/temporalsmith/blockstates/graphite_ore.json
 95429089b1b03e16b3d137ba0251c882c5bc047f assets/temporalsmith/blockstates/imperium_ore.json
@@ -38,6 +39,7 @@ c84a9ac85aa17cbc2d45536161523b7a57d738d6 assets/temporalsmith/models/block/ender
 0191c668ebe1619d89f6333b2edba8e523aee918 assets/temporalsmith/models/block/enderite_log_horizontal.json
 3ded90eb30eb769523b16a9c7367217c565b4b6e assets/temporalsmith/models/block/enderite_ore.json
 5a321293b32559e31d52e08d4b0751f5df176b74 assets/temporalsmith/models/block/enderite_planks.json
+b78e41c7ba9eb746fce6b2f2b87b9978005253ea assets/temporalsmith/models/block/enderite_sapling.json
 c6543d609d8c8add9ef99149e0557dd849a1f753 assets/temporalsmith/models/block/graphite_block.json
 34653633e1aa60b32ae0c88d88980e794c2de0a2 assets/temporalsmith/models/block/graphite_ore.json
 a5831fad6d28ed694abfe8556283b55ab4401379 assets/temporalsmith/models/block/imperium_ore.json
@@ -63,6 +65,7 @@ de26134bdd75d8b18b465cedd644f26c282629bf assets/temporalsmith/models/item/aqumar
 4e018c7b81192ee68bf32ff30e09220ade62382c assets/temporalsmith/models/item/enderite_log.json
 c96b06d76f3e04159f25b40a379db2030672dd69 assets/temporalsmith/models/item/enderite_ore.json
 472c1aa06cc2a893ef1c13c1ddfbfb3d4d7d3efc assets/temporalsmith/models/item/enderite_planks.json
+9d8612e14434195279654c7646208ab3d00eb20b assets/temporalsmith/models/item/enderite_sapling.json
 a2d782ef056e1452315b4b65ebf84d75f4bc8ea4 assets/temporalsmith/models/item/graphite_block.json
 2c56800900305e9caacb48549f096f0b547f0fc1 assets/temporalsmith/models/item/graphite_ore.json
 b549b3cf2661b902cb6b3b616e3fa94afffb996a assets/temporalsmith/models/item/imperium_ore.json

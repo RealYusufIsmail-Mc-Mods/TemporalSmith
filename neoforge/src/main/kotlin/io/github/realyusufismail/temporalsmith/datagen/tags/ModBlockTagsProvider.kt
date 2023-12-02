@@ -105,9 +105,7 @@ class ModBlockTagsProvider(
             tag(netheriteTag).add(oreBlock.get())
         }
 
-        BlockInit.MINABLE_WOODEN_AXE_BLOCKS.forEach { oreBlock ->
-            tag(woodTag).add(oreBlock.get())
-        }
+        BlockInit.MINABLE_WOODEN_AXE_BLOCKS.forEach { oreBlock -> tag(woodTag).add(oreBlock.get()) }
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         tag(BlockTags.NEEDS_STONE_TOOL).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())

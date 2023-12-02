@@ -18,7 +18,18 @@
  */ 
 package io.github.realyusufismail.temporalsmith.blocks
 
-import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.block.RotatedPillarBlock
+import io.github.realyusufismail.temporalsmith.worldgen.ModConfiguredFeatures
+import net.minecraft.resources.ResourceKey
+import net.minecraft.util.RandomSource
+import net.minecraft.world.level.block.grower.AbstractTreeGrower
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 
-class EnderiteLog : RotatedPillarBlock(Properties.copy(Blocks.OAK_LOG))
+class EnderiteSapling : AbstractTreeGrower() {
+
+    override fun getConfiguredFeature(
+        pRandom: RandomSource,
+        pHasFlowers: Boolean
+    ): ResourceKey<ConfiguredFeature<*, *>> {
+        return ModConfiguredFeatures.ENDERITE_SAPLING
+    }
+}

@@ -40,7 +40,7 @@ object ModBiomes {
         context.register(ENDERITE_BIOME, enderiteBiome(context))
     }
 
-    fun enderiteBiome(context: BootstapContext<Biome>): Biome {
+    private fun enderiteBiome(context: BootstapContext<Biome>): Biome {
 
         // Hostile Mobs:
 
@@ -104,8 +104,14 @@ object ModBiomes {
                 context.lookup(Registries.CONFIGURED_CARVER))
 
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder)
+
+        // ore generation
         biomeBuilder.addFeature(
             GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.ENDERITE_ORE)
+
+        // tree generation
+        biomeBuilder.addFeature(
+            GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ENDERITE_SAPLING)
 
         return Biome.BiomeBuilder()
             .hasPrecipitation(true)

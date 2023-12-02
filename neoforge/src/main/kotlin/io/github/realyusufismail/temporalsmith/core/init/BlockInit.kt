@@ -26,6 +26,7 @@ import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.SaplingBlock
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.neoforged.neoforge.registries.DeferredBlock
 import net.neoforged.neoforge.registries.DeferredItem
@@ -181,12 +182,21 @@ object BlockInit {
             MinableBlockType.DIAMOND_PICKAXE)
 
     // logs
-    val ENDERITE_LOG =
-        registerSpecial("enderite_log", ::EnderiteLog, MinableBlockType.WOODEN_AXE)
+    val ENDERITE_LOG = registerSpecial("enderite_log", ::EnderiteLog, MinableBlockType.WOODEN_AXE)
 
     // planks
     val ENDERITE_PLANKS =
         registerSpecial("enderite_planks", ::EnderitePlanks, MinableBlockType.WOODEN_AXE)
+
+    // saplings
+    val ENDERITE_SAPLING =
+        registerSpecial(
+            "enderite_sapling",
+            {
+                SaplingBlock(
+                    EnderiteSapling(), BlockBehaviour.Properties.copy(Blocks.JUNGLE_SAPLING))
+            },
+            MinableBlockType.WOODEN_AXE)
 
     // custom recipe tables
     val CUSTOM_ARMOUR_CRAFTING_TABLE =

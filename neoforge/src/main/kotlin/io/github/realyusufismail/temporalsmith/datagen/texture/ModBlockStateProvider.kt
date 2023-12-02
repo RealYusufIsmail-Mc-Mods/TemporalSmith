@@ -66,7 +66,10 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         logBlock(BlockInit.ENDERITE_LOG.get())
 
         // planks
-       normalBlock(BlockInit.ENDERITE_PLANKS.get())
+        normalBlock(BlockInit.ENDERITE_PLANKS.get())
+
+        // saplings
+        saplingBlock(BlockInit.ENDERITE_SAPLING.get())
 
         // other
         customCraftingTable(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
@@ -76,14 +79,14 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     private fun customCraftingTable(block: Block) {
-        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
+        val name = BuiltInRegistries.BLOCK.getKey(block)
 
         val builder = models().withExistingParent(name.path, "block/cube")
 
         builder.texture(
             "down",
             ResourceLocation(
-                "minecraft", "block/" + BuiltInRegistries.BLOCK.getKey(Blocks.IRON_BLOCK)!!.path))
+                "minecraft", "block/" + BuiltInRegistries.BLOCK.getKey(Blocks.IRON_BLOCK).path))
         builder.texture("east", modLoc("block/" + name.path + "_side"))
         builder.texture("north", modLoc("block/" + name.path + "_front"))
         builder.texture("particle", modLoc("block/" + name.path + "_front"))
@@ -95,13 +98,13 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     private fun normalBlock(block: Block) {
-        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
+        val name = BuiltInRegistries.BLOCK.getKey(block)
         simpleBlock(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
         simpleBlockItem(block, models().cubeAll(name.path, modLoc("block/${name.path}")))
     }
 
     private fun orientableBlock(block: Block) {
-        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
+        val name = BuiltInRegistries.BLOCK.getKey(block)
         val builder = models().withExistingParent(name.path, "block/orientable")
         builder.texture("top", modLoc("block/${name.path}_top"))
         builder.texture("side", modLoc("block/${name.path}_side"))
@@ -111,20 +114,29 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     private fun orientableBlockOn(block: Block) {
-        val nameWithOn = (BuiltInRegistries.BLOCK.getKey(block) ?: return).path + "_on"
-        val name = BuiltInRegistries.BLOCK.getKey(block) ?: return
+        val nameWithOn = BuiltInRegistries.BLOCK.getKey(block).path + "_on"
+        val name = BuiltInRegistries.BLOCK.getKey(block)
         val builder = models().withExistingParent(nameWithOn, "block/orientable")
         builder.texture("top", modLoc("block/${name.path}_top"))
         builder.texture("side", modLoc("block/${name.path}_side"))
         builder.texture("front", modLoc("block/${name.path}_front"))
     }
 
-    override fun logBlock(block : RotatedPillarBlock) {
+    override fun logBlock(block: RotatedPillarBlock) {
         axisBlock(block, blockTexture(block), extend(blockTexture(block), "_top"))
-        this.simpleBlockItem(block, models().cubeColumn(block.bName, blockTexture(block), extend(blockTexture(block), "_top")))
+        this.simpleBlockItem(
+            block,
+            models()
+                .cubeColumn(block.bName, blockTexture(block), extend(blockTexture(block), "_top")))
     }
 
     private fun extend(rl: ResourceLocation, suffix: String): ResourceLocation {
         return ResourceLocation(rl.namespace, rl.path + suffix)
+    }
+
+    private fun saplingBlock(block: Block) {
+        val name = BuiltInRegistries.BLOCK.getKey(block)
+        this.simpleBlock(block, models().cross(name.path, modLoc("block/${name.path}")))
+        this.simpleBlockItem(block, models().cross(name.path, modLoc("block/${name.path}")))
     }
 }

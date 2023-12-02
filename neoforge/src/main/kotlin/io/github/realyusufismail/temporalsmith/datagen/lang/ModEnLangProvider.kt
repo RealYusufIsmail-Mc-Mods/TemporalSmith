@@ -21,7 +21,6 @@ package io.github.realyusufismail.temporalsmith.datagen.lang
 import io.github.realyusufismail.realyusufismailcore.data.support.lang.ModEnLangProviderSupport
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
-import io.github.realyusufismail.temporalsmith.core.init.EntityTypeInit
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.util.KeyBinding
 import net.minecraft.data.DataGenerator
@@ -66,6 +65,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
 
         // planks
         addBlock(BlockInit.ENDERITE_PLANKS, "Enderite Planks")
+
+        // saplings
+        addBlock(BlockInit.ENDERITE_SAPLING, "Enderite Sapling")
 
         // custom crafting tables
         addBlock(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE, "Custom Armour Crafting Table")
