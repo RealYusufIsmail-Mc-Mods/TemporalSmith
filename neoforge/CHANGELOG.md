@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.2-2.0.0.beta10] - 2023-12-07
+
+### Fixed alot of issues with Thor's hammer. It should now work as intended with no issues.
+### Added a new biome called Enderite Biome. This is a work in progress and will be updated in the future. It is found in the ChronoRealm dimension.
+
+
 # [1.20.2-2.0.0.beta9] - 2023-11-26
 
 ### Ore gen has now been tested and fixed. All ores should now generate properly.
