@@ -5,7 +5,7 @@ buildscript {
 
     dependencies {
         classpath("org.jetbrains.dokka:dokka-base:1.9.10")
-        classpath("io.github.realyusufismail:jconfig:1.1.1")
+        classpath("io.github.realyusufismail:jconfig:1.1.2")
     }
 }
 
