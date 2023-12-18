@@ -23,7 +23,7 @@ import com.mojang.math.Axis
 import io.github.realyusufismail.temporalsmith.TemporalSmith
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity
-import io.github.realyusufismail.temporalsmith.models.MjolnirModel
+import io.github.realyusufismail.temporalsmith.entities.mjolnir.MjolnirModel
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.entity.EntityRenderer
 import net.minecraft.client.renderer.entity.EntityRendererProvider
@@ -35,7 +35,7 @@ import net.minecraft.util.Mth
 class MjolnirItemRenderer(context: EntityRendererProvider.Context) :
     EntityRenderer<ModTridentEntity>(context) {
     private val location: ResourceLocation =
-        TemporalSmith.getModIdAndName("textures/entity/item/mjolnir/all.png")
+        TemporalSmith.getModIdAndName("textures/item/mjolnir/all.png")
     private var mjolnirModel: MjolnirModel? = null
 
     init {

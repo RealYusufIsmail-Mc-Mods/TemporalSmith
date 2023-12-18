@@ -25,11 +25,17 @@ import net.minecraft.data.worldgen.BootstapContext
 import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.BlockTags
+import net.minecraft.util.valueproviders.ConstantInt
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import net.minecraft.world.level.levelgen.feature.Feature
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider
+import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest
@@ -47,6 +53,9 @@ object ModConfiguredFeatures {
 
     // end
     val END_ENDERITE_ORE = registerKey("enderite_ore")
+
+    // sapling
+    val ENDERITE_SAPLING = registerKey("enderite_sapling")
 
     fun bootstrap(context: BootstapContext<ConfiguredFeature<*, *>>) {
         val stoneReplaceables: RuleTest = TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES)
@@ -111,6 +120,19 @@ object ModConfiguredFeatures {
         register(context, OVERWORLD_RAINBOW_ORE, Feature.ORE, OreConfiguration(rainbow, 3))
         register(context, END_ENDERITE_ORE, Feature.ORE, OreConfiguration(enderite, 4))
         register(context, OVERWORLD_IMPERIUM_ORE, Feature.ORE, OreConfiguration(imperium, 4))
+
+        register(
+            context,
+            ENDERITE_SAPLING,
+            Feature.TREE,
+            TreeConfiguration.TreeConfigurationBuilder(
+                    BlockStateProvider.simple(BlockInit.ENDERITE_LOG.get()),
+                    // baseHeight, heightRandA, heightRandB
+                    StraightTrunkPlacer(5, 2, 0),
+                    BlockStateProvider.simple(Blocks.OAK_LEAVES),
+                    BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 5),
+                    TwoLayersFeatureSize(2, 1, 2))
+                .build())
     }
 
     private fun registerKey(name: String): ResourceKey<ConfiguredFeature<*, *>> {

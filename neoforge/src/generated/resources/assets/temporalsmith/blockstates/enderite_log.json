@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "temporalsmith:block/enderite_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "temporalsmith:block/enderite_log"
+    },
+    "axis=z": {
+      "model": "temporalsmith:block/enderite_log_horizontal",
+      "x": 90
+    }
+  }
+}

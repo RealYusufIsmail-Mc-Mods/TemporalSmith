@@ -19,9 +19,12 @@
 package io.github.realyusufismail.temporalsmith.worldgen
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
+import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import net.minecraft.core.Holder
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.worldgen.BootstapContext
+import net.minecraft.data.worldgen.placement.PlacementUtils
+import net.minecraft.data.worldgen.placement.VegetationPlacements
 import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.levelgen.VerticalAnchor
@@ -40,6 +43,8 @@ object ModPlacedFeatures {
     val RAINBOW_ORE: ResourceKey<PlacedFeature> = createKey("rainbow_ore")
     val ENDERITE_ORE: ResourceKey<PlacedFeature> = createKey("enderite_ore")
     val IMPERIUM_ORE: ResourceKey<PlacedFeature> = createKey("imperium_ore")
+
+    val ENDERITE_SAPLING: ResourceKey<PlacedFeature> = createKey("enderite_sapling")
 
     fun bootstrap(context: BootstapContext<PlacedFeature>) {
         val configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE)
@@ -123,6 +128,14 @@ object ModPlacedFeatures {
                 4,
                 HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40))))
+
+        register(
+            context,
+            ENDERITE_SAPLING,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.ENDERITE_SAPLING),
+            VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(1, 0.1f, 2), // 3 extra saplings per chunk
+                BlockInit.ENDERITE_SAPLING.get()))
     }
 
     private fun createKey(name: String): ResourceKey<PlacedFeature> {

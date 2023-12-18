@@ -23,5 +23,6 @@ enum class MinableBlockType {
     IRON_PICKAXE,
     GOLD_PICKAXE,
     DIAMOND_PICKAXE,
-    NETHERITE_PICKAXE
+    NETHERITE_PICKAXE,
+    WOODEN_AXE
 }

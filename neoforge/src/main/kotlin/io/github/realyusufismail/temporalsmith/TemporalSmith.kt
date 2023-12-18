@@ -52,6 +52,7 @@ class TemporalSmith {
         PotionsInit.POTION.register(bus)
         MobEffectsInit.MOB_EFFECTS.register(bus)
         POIInit.POI.register(bus)
+        SoundInit.SOUND_EVENTS.register(bus)
         DimensionsInit.registerDimensions()
 
         // Register ourselves for server and other game events we are interested in
@@ -74,6 +75,15 @@ class TemporalSmith {
         bus.addListener(ClientEvents::registerLayerDefinition)
         // entity death event
         FORGE_BUS.addListener(ClientEvents::onEntityDeath)
+        // entity attribute creation event
+        bus.addListener(ClientEvents::onRegisterEntities)
+        // player tick event
+        FORGE_BUS.addListener(ClientEvents::onPlayerTickEvent)
+        // falling living entity event
+        FORGE_BUS.addListener(ClientEvents::onLivingFallEvent)
+        // living hurt event
+        FORGE_BUS.addListener(ClientEvents::onLivingHurtEvent)
+        FORGE_BUS.addListener(ClientEvents::onLivingDamageEvent)
 
         KotlinModLoadingContext.get().getKEventBus().addListener(FMLClientSetupEvent::class.java) {
             event: FMLClientSetupEvent ->
@@ -89,8 +99,9 @@ class TemporalSmith {
     }
 
     companion object TemporalSmith {
-        val logger: Logger = LoggerFactory.getLogger(TemporalSmith::class.java)
+        @JvmStatic val logger: Logger = LoggerFactory.getLogger(TemporalSmith::class.java)
 
+        @JvmStatic
         fun getModIdAndName(name: String): ResourceLocation {
             return ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault()))
         }

@@ -60,6 +60,15 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
         addBlock(BlockInit.DEEPSLATE_AQUMARINE_ORE, "Deepslate Aqumarine Ore")
         addBlock(BlockInit.DEEPSLATE_IMPERIUM_ORE, "Deepslate Imperium Ore")
 
+        // logs
+        addBlock(BlockInit.ENDERITE_LOG, "Enderite Log")
+
+        // planks
+        addBlock(BlockInit.ENDERITE_PLANKS, "Enderite Planks")
+
+        // saplings
+        addBlock(BlockInit.ENDERITE_SAPLING, "Enderite Sapling")
+
         // custom crafting tables
         addBlock(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE, "Custom Armour Crafting Table")
         addBlock(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE, "Custom Tool Crafting Table")
@@ -152,6 +161,9 @@ class ModEnLangProvider(gen: DataGenerator) : ModEnLangProviderSupport(gen, MOD_
 
         // Trident
         addItem(ItemInit.AQUMARINE_TRIDENT, "Aqumarine Trident")
+
+        // Spawn Eggs
+        addItem(ItemInit.ENDERITE_GOLEM_SPAWN_EGG, "Enderite Golem Spawn Egg")
 
         // Potions
         addPotion("worthy_potion", "worthy_effect", "Worthy Potion")

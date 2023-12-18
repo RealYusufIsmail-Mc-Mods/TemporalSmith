@@ -31,12 +31,14 @@ import io.github.realyusufismail.temporalsmith.items.hammer.util.HammerLevel
 import io.github.realyusufismail.temporalsmith.items.shield.ModShieldItem
 import io.github.realyusufismail.temporalsmith.items.sword.EnderiteSword
 import io.github.realyusufismail.temporalsmith.items.trident.AqumarineTridentItem
+import java.util.function.Supplier
 import net.minecraft.world.item.*
+import net.neoforged.neoforge.common.DeferredSpawnEggItem
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
 
 object ItemInit {
-    val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(MOD_ID)
+    @JvmField val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(MOD_ID)
     val SMELT_ABLE_ITEM: MutableMap<DeferredItem<Item>, DeferredItem<Item>> = mutableMapOf()
 
     // ore ingots
@@ -45,6 +47,7 @@ object ItemInit {
     val GRAPHITE: DeferredItem<Item> = ITEMS.register("graphite") { -> Item(Item.Properties()) }
     val AQUMARINE: DeferredItem<Item> = ITEMS.register("aqumarine") { -> Item(Item.Properties()) }
     val RAINBOW: DeferredItem<Item> = ITEMS.register("rainbow") { -> Item(Item.Properties()) }
+    @JvmField
     val ENDERITE: DeferredItem<Item> = ITEMS.register("enderite") { -> Item(Item.Properties()) }
     val IMPERIUM: DeferredItem<Item> = ITEMS.register("imperium") { -> Item(Item.Properties()) }
 
@@ -375,6 +378,16 @@ object ItemInit {
         ITEMS.registerSmeltableObject("rainbow_shield", RAINBOW) {
             ModShieldItem(430, CustomShieldMaterial.RAINBOW_SHIELD)
         }
+
+    // spawn egges
+
+    val ENDERITE_GOLEM_SPAWN_EGG =
+        ITEMS.register(
+            "enderite_golem_spawn_egg",
+            Supplier<Item> {
+                DeferredSpawnEggItem(
+                    EntityTypeInit.ENDERITE_GOLEM, 0xC4AA79, 0x7A5F22, Item.Properties())
+            })
 
     private fun DeferredRegister.Items.registerSmeltableObject(
         name: String,

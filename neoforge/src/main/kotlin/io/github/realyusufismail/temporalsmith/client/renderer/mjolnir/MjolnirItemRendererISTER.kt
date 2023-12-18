@@ -22,8 +22,8 @@ import com.mojang.blaze3d.vertex.PoseStack
 import io.github.realyusufismail.temporalsmith.TemporalSmith
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
 import io.github.realyusufismail.temporalsmith.client.ModBlockEntityWithoutLevelRenderer
+import io.github.realyusufismail.temporalsmith.entities.mjolnir.MjolnirModel
 import io.github.realyusufismail.temporalsmith.items.hammer.Mjolnir
-import io.github.realyusufismail.temporalsmith.models.MjolnirModel
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.entity.ItemRenderer
@@ -35,7 +35,7 @@ import net.minecraft.world.item.ItemStack
 
 class MjolnirItemRendererISTER : ModBlockEntityWithoutLevelRenderer() {
     private val location: ResourceLocation =
-        TemporalSmith.getModIdAndName("textures/entity/item/mjolnir/all.png")
+        TemporalSmith.getModIdAndName("textures/item/mjolnir/all.png")
     private var mjolnirModel: MjolnirModel? = null
 
     override fun onResourceManagerReload(manager: ResourceManager) {

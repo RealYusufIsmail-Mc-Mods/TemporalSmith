@@ -1,4 +1,4 @@
-// 1.20.2	2023-11-25T18:18:52.9352	Tags for minecraft:block mod id temporalsmith
+// 1.20.2	2023-12-01T14:59:40.049478	Tags for minecraft:block mod id temporalsmith
 82963b29c120fb55c17c40fe37b1c98c60346b84 data/forge/tags/blocks/deepslate_ores/aqumarine_ores.json
 edd052247952263e801a8ba38de967b85c9c1dc4 data/forge/tags/blocks/deepslate_ores/graphite_ores.json
 fc6b7da8497984df4efddd78ed393469f77e7495 data/forge/tags/blocks/deepslate_ores/imperium_ores.json
@@ -6,6 +6,7 @@ d0b34f000c868dd7777162e2a47905d3f0d9b05b data/forge/tags/blocks/deepslate_ores/r
 20fdb86899bfe49b4d201bdafb9a1a3ec3442b69 data/forge/tags/blocks/deepslate_ores/ruby_ores.json
 66cc8c08bbee5110fa4750035c00f7c6fb87dd99 data/forge/tags/blocks/deepslate_ores/sapphire_ores.json
 97b75ae1bfd7e3dd7cbd13d11362898f058bcf1b data/forge/tags/blocks/needs_gold_tool.json
+f749d0ed38706a0ee78399721870470e662aac09 data/forge/tags/blocks/needs_wood_tool.json
 fbd5467f6bc42e9d5bafb76a19a2d58236759424 data/forge/tags/blocks/ores/aqumarine_ores.json
 89a2cb81b32881c3c0b11d88725ea163ac31fc3e data/forge/tags/blocks/ores/enderite_ores.json
 9704fda3f8331a1336cc7787ab7974566836368e data/forge/tags/blocks/ores/graphite_ores.json

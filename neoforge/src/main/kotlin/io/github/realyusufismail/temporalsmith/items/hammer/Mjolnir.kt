@@ -26,9 +26,7 @@ import io.github.realyusufismail.temporalsmith.core.material.CustomToolMaterial
 import io.github.realyusufismail.temporalsmith.items.trident.ArmourToolsModTridentItem
 import java.util.function.Consumer
 import net.minecraft.world.Containers
-import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Tier
 import net.minecraft.world.level.Level
@@ -40,6 +38,7 @@ open class Mjolnir(
     pAttackSpeedModifier: Float = 15.0f,
     pAttackDamageModifier: Float = -3f
 ) : ArmourToolsModTridentItem(tier, properties, pAttackSpeedModifier, pAttackDamageModifier) {
+
     override fun onUseTick(
         pLevel: Level,
         pLivingEntity: LivingEntity,
@@ -53,20 +52,6 @@ open class Mjolnir(
         if (!hasWorthyEffect) {
             Containers.dropItemStack(
                 pLevel, pLivingEntity.x, pLivingEntity.y, pLivingEntity.z, pStack)
-        }
-    }
-
-    override fun inventoryTick(
-        pStack: ItemStack,
-        pLevel: Level,
-        pEntity: Entity,
-        pSlotId: Int,
-        pIsSelected: Boolean
-    ) {
-        if (pEntity is Player) {
-            pEntity.abilities.mayfly = true
-            pEntity.abilities.flyingSpeed = 0.06f
-            pEntity.abilities.invulnerable = true
         }
     }
 

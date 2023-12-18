@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("net.neoforged.gradle.userdev") version "7.0.26"
+    id("net.neoforged.gradle.userdev") version "7.0.57"
 }
 
 project.version = properties["modVersion"] as String

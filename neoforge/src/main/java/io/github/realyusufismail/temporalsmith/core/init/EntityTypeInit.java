@@ -18,11 +18,14 @@
  */ 
 package io.github.realyusufismail.temporalsmith.core.init;
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith;
+import static io.github.realyusufismail.temporalsmith.TemporalSmith.MOD_ID;
+
 import io.github.realyusufismail.temporalsmith.common.entity.AqumarineTridentEntity;
 import io.github.realyusufismail.temporalsmith.common.entity.MjolnirEntity;
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity;
+import io.github.realyusufismail.temporalsmith.entities.golum.EnderiteGolem;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -30,7 +33,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class EntityTypeInit {
   public static DeferredRegister<EntityType<?>> ENTITY_TYPES =
-      DeferredRegister.create(Registries.ENTITY_TYPE, TemporalSmith.MOD_ID);
+      DeferredRegister.create(Registries.ENTITY_TYPE, MOD_ID);
 
   public static final DeferredHolder<EntityType<?>, EntityType<ModTridentEntity>>
       AQUMARINE_THROWN_TRIDENT =
@@ -47,7 +50,7 @@ public class EntityTypeInit {
                           (spawnEntity, world) ->
                               new AqumarineTridentEntity(
                                   EntityTypeInit.AQUMARINE_THROWN_TRIDENT.get(), world))
-                      .build(TemporalSmith.MOD_ID + ":aqumarine_thrown_trident"));
+                      .build(MOD_ID + ":aqumarine_thrown_trident"));
 
   public static final DeferredHolder<EntityType<?>, EntityType<ModTridentEntity>> MJOLNIR =
       ENTITY_TYPES.register(
@@ -61,5 +64,25 @@ public class EntityTypeInit {
                   .setCustomClientFactory(
                       (spawnEntity, world) ->
                           new MjolnirEntity(EntityTypeInit.MJOLNIR.get(), world))
-                  .build(TemporalSmith.MOD_ID + ":mjolnir_thrown"));
+                  .build(MOD_ID + ":mjolnir_thrown"));
+
+  public static final DeferredHolder<EntityType<?>, EntityType<EnderiteGolem>> ENDERITE_GOLEM =
+      ENTITY_TYPES.register(
+          "enderite_golem",
+          () ->
+              createStandardEntityType(
+                  "enderite_golem", EnderiteGolem::new, MobCategory.MISC, 1.4F, 2.7F, 10));
+
+  private static <T extends Entity> EntityType<T> createStandardEntityType(
+      String entity_name,
+      EntityType.EntityFactory<T> factory,
+      MobCategory classification,
+      float width,
+      float height,
+      int tracking_range) {
+    return EntityType.Builder.of(factory, classification)
+        .sized(width, height)
+        .clientTrackingRange(tracking_range)
+        .build(MOD_ID + ":" + entity_name);
+  }
 }

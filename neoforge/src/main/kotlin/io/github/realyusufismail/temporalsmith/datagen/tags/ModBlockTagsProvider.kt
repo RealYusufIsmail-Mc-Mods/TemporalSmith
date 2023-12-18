@@ -41,6 +41,7 @@ class ModBlockTagsProvider(
         // custom tags
         val goldTage = createForgeTag("forge:needs_gold_tool")
         val netheriteTag = createForgeTag("forge:needs_netherite_tool")
+        val woodTag = createForgeTag("forge:needs_wood_tool")
 
         // ores
         tag(TagsInit.BlockTagsInit.ORES_RUBY).add(BlockInit.RUBY_ORE.get())
@@ -103,6 +104,8 @@ class ModBlockTagsProvider(
         BlockInit.MINABLE_NETHERITE_PICKAXE_BLOCKS.forEach { oreBlock ->
             tag(netheriteTag).add(oreBlock.get())
         }
+
+        BlockInit.MINABLE_WOODEN_AXE_BLOCKS.forEach { oreBlock -> tag(woodTag).add(oreBlock.get()) }
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
         tag(BlockTags.NEEDS_STONE_TOOL).add(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
