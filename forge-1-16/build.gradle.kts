@@ -1,17 +1,9 @@
-buildscript {
-    repositories {
-        maven(url = "https://maven.minecraftforge.net")
-        mavenCentral()
-    }
-    dependencies {
-        classpath(group = "net.minecraftforge.gradle", name = "ForgeGradle", version = "5.1.+", changing = true)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0")
-    }
-}
+import net.minecraftforge.gradle.userdev.UserDevExtension
+import java.util.Date
 
 plugins {
     kotlin("jvm")
-    id("net.minecraftforge.gradle")
+    id("net.minecraftforge.gradle") version "[6.0,6.2)"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
 }
 
@@ -21,7 +13,12 @@ val mcVersion = properties["mcVersion"] as String
 var projectId = properties["projectId"] as String
 val modId = properties["modId"] as String
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 
 println("Java: ${System.getProperty("java.version")} JVM: ${System.getProperty("java.vm.version")}(${System.getProperty("java.vendor")}) Arch: ${System.getProperty("os.arch")}")
 
@@ -115,11 +112,8 @@ configure<UserDevExtension> {
 }
 
 
-sourceSets {
-    main.resources {
-        srcDir("src/generated/resources")
-    }
-}
+sourceSets.main { resources.srcDir("src/generated/resources") }
+
 
 configurations { compileOnly { extendsFrom(configurations.annotationProcessor.get()) } }
 
@@ -137,9 +131,9 @@ dependencies {
     implementation("io.github.realyusufismail:realyusufismailcore:" + properties["coreVersion"])
 
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
-    compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
+    //compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
+    //compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
+    //runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
 
     // lombok
     compileOnly("org.projectlombok:lombok:" + properties["lombokVersion"])
@@ -150,13 +144,12 @@ tasks.jar {
     manifest {
         attributes(
             mapOf(
-                "Specification-Title" to "realyusufismailcore",
+                "Specification-Title" to "temporalsmith",
                 "Specification-Vendor" to "Yusuf.I",
                 "Specification-Version" to "1",
                 "Implementation-Title" to project.name,
                 "Implementation-Version" to version,
                 "Implementation-Vendor" to "Yusuf.I",
-                "Implementation-Timestamp" to Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
             )
         )
     }
