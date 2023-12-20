@@ -20,13 +20,13 @@ package io.github.realyusufismail.temporalsmith.datagen.lang
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
+import io.github.realyusufismail.temporalsmith.core.util.ObjectHolderDelegate
 import net.minecraft.block.Block
 import net.minecraft.data.DataGenerator
 import net.minecraft.item.Item
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TranslationTextComponent
 import net.minecraftforge.common.data.LanguageProvider
-import net.minecraftforge.fml.RegistryObject
 
 class ModEnLangProvider(gen: DataGenerator) : LanguageProvider(gen, MOD_ID, "en_us") {
 
@@ -281,11 +281,11 @@ class ModEnLangProvider(gen: DataGenerator) : LanguageProvider(gen, MOD_ID, "en_
             "enderite_tools", "That ender tools", "Way to go! You are now increasing your attack!")
     }
 
-    private fun <T : Item?> item(entry: RegistryObject<T>, name: String) {
+    private fun addItem(entry: ObjectHolderDelegate<Item>, name: String) {
         add(entry.get(), name)
     }
 
-    private fun <T : Block?> block(entry: RegistryObject<T>, name: String) {
+    private fun block(entry: ObjectHolderDelegate<Block>, name: String) {
         add(entry.get(), name)
     }
 

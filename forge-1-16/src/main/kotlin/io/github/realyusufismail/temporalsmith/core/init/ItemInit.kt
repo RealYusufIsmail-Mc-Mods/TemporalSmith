@@ -24,16 +24,13 @@ import io.github.realyusufismail.temporalsmith.core.armour.*
 import io.github.realyusufismail.temporalsmith.core.items.CustomSwordItem
 import io.github.realyusufismail.temporalsmith.core.material.ArmourMaterialInit
 import io.github.realyusufismail.temporalsmith.core.material.CustomToolMaterial
-import java.util.function.Supplier
-import kotlin.properties.ReadOnlyProperty
-import kotlin.reflect.KProperty
+import io.github.realyusufismail.temporalsmith.core.util.ObjectHolderDelegate
+import io.github.realyusufismail.temporalsmith.core.util.registerObject
 import net.minecraft.inventory.EquipmentSlotType
 import net.minecraft.item.*
 import net.minecraftforge.fml.RegistryObject
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
-import net.minecraftforge.registries.IForgeRegistryEntry
-import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
 
 object ItemInit {
     val ITEMS: DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)
@@ -451,23 +448,5 @@ object ItemInit {
         SMELT_ABLE_ITEM[o] = associatedOreIngot
         // note that this anonymous class inherits three types
         return o
-    }
-
-    class ObjectHolderDelegate<V : IForgeRegistryEntry<in V>>(
-        val registryObject: RegistryObject<V>
-    ) : ReadOnlyProperty<Any?, V>, Supplier<V>, () -> V {
-        override fun getValue(thisRef: Any?, property: KProperty<*>): V = registryObject.get()
-        override fun invoke(): V = registryObject.get()
-        override fun get(): V = registryObject.get()
-    }
-
-    private fun <V : IForgeRegistryEntry<V>, T : V> DeferredRegister<V>.registerObject(
-        name: String,
-        supplier: () -> T,
-    ): ObjectHolderDelegate<T> {
-        val registryObject = this.register(name, supplier)
-
-        // note that this anonymous class inherits three types
-        return ObjectHolderDelegate(registryObject)
     }
 }
