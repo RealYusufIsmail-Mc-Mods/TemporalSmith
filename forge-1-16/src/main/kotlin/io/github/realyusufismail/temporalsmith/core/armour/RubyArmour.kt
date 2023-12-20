@@ -20,7 +20,6 @@ package io.github.realyusufismail.temporalsmith.core.armour
 
 import net.minecraft.inventory.EquipmentSlotType
 import net.minecraft.item.ArmorItem
-import net.minecraft.item.ArmorMaterial
 import net.minecraft.item.IArmorMaterial
 import net.minecraft.item.ItemStack
 

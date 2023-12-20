@@ -21,16 +21,17 @@ package io.github.realyusufismail.temporalsmith.core.armour
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.EquipmentSlotType
 import net.minecraft.item.ArmorItem
-import net.minecraft.item.ArmorMaterial
 import net.minecraft.item.IArmorMaterial
 import net.minecraft.item.ItemStack
 import net.minecraft.potion.EffectInstance
 import net.minecraft.potion.Effects
 import net.minecraft.world.World
 
-
-class AqumarineArmour(materialIn: IArmorMaterial, armourType: EquipmentSlotType, builder: Properties) :
-    ArmorItem(materialIn, armourType, builder) {
+class AqumarineArmour(
+    materialIn: IArmorMaterial,
+    armourType: EquipmentSlotType,
+    builder: Properties
+) : ArmorItem(materialIn, armourType, builder) {
 
     override fun isFoil(stack: ItemStack): Boolean {
         return false

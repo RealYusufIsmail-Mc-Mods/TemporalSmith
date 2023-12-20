@@ -20,8 +20,8 @@ package io.github.realyusufismail.temporalsmith
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
-import io.github.realyusufismail.temporalsmith.core.init.MainItemGroup
 import io.github.realyusufismail.temporalsmith.datagen.DataGenerators
+import java.util.*
 import net.minecraft.item.ItemGroup
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.common.Mod
@@ -29,13 +29,9 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
-import java.util.*
-
 
 @Mod(MOD_ID)
 class TemporalSmith {
-    val itemGroup: ItemGroup = MainItemGroup("temporalsmith")
-
     init {
         val bus = KotlinModLoadingContext.get().getKEventBus()
         ItemInit.ITEMS.register(bus)
@@ -56,5 +52,10 @@ class TemporalSmith {
         }
 
         const val MOD_ID = "temporalsmith"
+
+        val temporalSmithItemGroup: ItemGroup =
+            object : ItemGroup(TABS.size, "temporalsmith") {
+                override fun makeIcon() = ItemInit.SAPPHIRE.get().defaultInstance
+            }
     }
 }

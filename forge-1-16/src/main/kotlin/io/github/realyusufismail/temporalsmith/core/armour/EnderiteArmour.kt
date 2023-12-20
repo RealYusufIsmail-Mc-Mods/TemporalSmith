@@ -20,12 +20,14 @@ package io.github.realyusufismail.temporalsmith.core.armour
 
 import net.minecraft.inventory.EquipmentSlotType
 import net.minecraft.item.ArmorItem
-import net.minecraft.item.ArmorMaterial
 import net.minecraft.item.IArmorMaterial
 import net.minecraft.item.ItemStack
 
-class EnderiteArmour(materialIn: IArmorMaterial, armourType: EquipmentSlotType, builder: Properties) :
-    ArmorItem(materialIn, armourType, builder) {
+class EnderiteArmour(
+    materialIn: IArmorMaterial,
+    armourType: EquipmentSlotType,
+    builder: Properties
+) : ArmorItem(materialIn, armourType, builder) {
 
     override fun isFoil(stack: ItemStack): Boolean {
         return true

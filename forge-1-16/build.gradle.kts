@@ -1,5 +1,4 @@
 import net.minecraftforge.gradle.userdev.UserDevExtension
-import java.util.Date
 
 plugins {
     kotlin("jvm")
@@ -8,24 +7,22 @@ plugins {
 }
 
 base.archivesName.set("temporalsmith-forge")
+
 project.version = properties["modVersion"] as String
+
 val mcVersion = properties["mcVersion"] as String
 var projectId = properties["projectId"] as String
 val modId = properties["modId"] as String
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }
-}
+java { toolchain { languageVersion.set(JavaLanguageVersion.of(8)) } }
 
-
-println("Java: ${System.getProperty("java.version")} JVM: ${System.getProperty("java.vm.version")}(${System.getProperty("java.vendor")}) Arch: ${System.getProperty("os.arch")}")
+println(
+    "Java: ${System.getProperty("java.version")} JVM: ${System.getProperty("java.vm.version")}(${System.getProperty("java.vendor")}) Arch: ${System.getProperty("os.arch")}")
 
 configure<UserDevExtension> {
     mappings("parchment", "2022.03.06-$mcVersion")
 
-    //accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
+    // accessTransformer("src/main/resources/META-INF/accesstransformer.cfg")
 
     runs {
         create("client") {
@@ -34,8 +31,7 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            )
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -52,8 +48,7 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            )
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -70,8 +65,7 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            )
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -87,8 +81,7 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            )
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -105,8 +98,7 @@ configure<UserDevExtension> {
                 "--output",
                 file("src/generated/resources/"),
                 "--existing",
-                file("src/main/resources/")
-            )
+                file("src/main/resources/"))
 
             mods { create(modId) { source(sourceSets["main"]) } }
 
@@ -116,9 +108,7 @@ configure<UserDevExtension> {
     }
 }
 
-
 sourceSets.main { resources.srcDir("src/generated/resources") }
-
 
 configurations { compileOnly { extendsFrom(configurations.annotationProcessor.get()) } }
 
@@ -136,9 +126,9 @@ dependencies {
     implementation("io.github.realyusufismail:realyusufismailcore:" + properties["coreVersion"])
 
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    //compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
-    //compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
-    //runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
+    // compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"]))
+    // compileOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"]))
+    // runtimeOnly(fg.deobf("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"]))
 
     // lombok
     compileOnly("org.projectlombok:lombok:" + properties["lombokVersion"])
@@ -155,8 +145,7 @@ tasks.jar {
                 "Implementation-Title" to project.name,
                 "Implementation-Version" to version,
                 "Implementation-Vendor" to "Yusuf.I",
-            )
-        )
+            ))
     }
 }
 
