@@ -169,7 +169,7 @@ tasks.create("cfPublish", net.darkhax.curseforgegradle.TaskPublishCurseForge::cl
     mainFile.releaseType = "release"
     mainFile.addEmbedded("kotlin-for-forge")
     mainFile.addEmbedded("realyusufismail-core")
-    mainFile.addJavaVersion("Java 17")
+    mainFile.addJavaVersion("Java 8")
     mainFile.addModLoader("forge")
     mainFile.addGameVersion(mcVersion)
 }
