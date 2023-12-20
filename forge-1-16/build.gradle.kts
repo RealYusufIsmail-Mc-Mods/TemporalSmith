@@ -34,7 +34,8 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+            )
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -51,7 +52,8 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+            )
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -68,7 +70,8 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+            )
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -84,7 +87,8 @@ configure<UserDevExtension> {
             // add mixin
             property("mixin.env.remapRefMap", "true")
             property(
-                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
+                "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+            )
 
             // Recommended logging data for a userdev environment
             property("forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP")
@@ -101,7 +105,8 @@ configure<UserDevExtension> {
                 "--output",
                 file("src/generated/resources/"),
                 "--existing",
-                file("src/main/resources/"))
+                file("src/main/resources/")
+            )
 
             mods { create(modId) { source(sourceSets["main"]) } }
 
