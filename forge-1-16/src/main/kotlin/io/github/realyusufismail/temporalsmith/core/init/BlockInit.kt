@@ -18,12 +18,12 @@
  */ 
 package io.github.realyusufismail.temporalsmith.core.init
 
-import blocks.lit.RainbowLitBlock
-import blocks.lit.RubyLitBlock
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.temporalSmithItemGroup
 import io.github.realyusufismail.temporalsmith.core.util.ObjectHolderDelegate
 import io.github.realyusufismail.temporalsmith.core.util.registerObject
+import io.github.realyusufismail.temporalsmith.lit.RainbowLitBlock
+import io.github.realyusufismail.temporalsmith.lit.RubyLitBlock
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks

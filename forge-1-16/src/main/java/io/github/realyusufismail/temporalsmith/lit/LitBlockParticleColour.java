@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package blocks.lit;
+package io.github.realyusufismail.temporalsmith.lit;
 
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.RedstoneParticleData;

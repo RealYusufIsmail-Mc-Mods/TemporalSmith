@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package blocks.lit;
+package io.github.realyusufismail.temporalsmith.lit;
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith;
 import java.util.HashMap;
@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.ToIntFunction;
+import lombok.val;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneTorchBlock;
@@ -95,9 +96,9 @@ public class LITBlock extends Block {
                 ? 0.5D + 0.5625D * (double) direction.getStepZ()
                 : (double) randomsource.nextFloat();
 
-        var block = pLevel.getBlockState(pPos).getBlock();
-        var particleColours = LITBlock.particleColours.get(block.getClass());
-        var colour = particleColours.get(randomsource.nextInt(particleColours.size()));
+        val block = pLevel.getBlockState(pPos).getBlock();
+        val particleColours = LITBlock.particleColours.get(block.getClass());
+        val colour = particleColours.get(randomsource.nextInt(particleColours.size()));
         TemporalSmith.TemporalSmith.getLogger()
             .debug(
                 "Colour: "

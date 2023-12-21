@@ -16,21 +16,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package blocks.lit;
+package io.github.realyusufismail.temporalsmith.lit;
 
-import java.util.Arrays;
 import java.util.Collections;
 
-public class RainbowLitBlock extends LITBlock {
-  public RainbowLitBlock() {
+public class RubyLitBlock extends LITBlock {
+  public RubyLitBlock() {
     super(
-        Collections.unmodifiableList(
-            Arrays.asList(
-                LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_RED,
-                LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_GREEN,
-                LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_BLUE,
-                LitBlockParticleColour.RAINBOW_PARTICLE_COLOR_PURPLE)),
+        Collections.singletonList(LitBlockParticleColour.RUBY_PARTICLE_COLOR),
         11,
-        RainbowLitBlock.class);
+        RubyLitBlock.class);
   }
 }
