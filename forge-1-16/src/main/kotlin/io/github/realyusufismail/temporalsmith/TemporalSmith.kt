@@ -19,6 +19,7 @@
 package io.github.realyusufismail.temporalsmith
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
+import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.datagen.DataGenerators
 import java.util.*
@@ -35,6 +36,7 @@ class TemporalSmith {
     init {
         val bus = KotlinModLoadingContext.get().getKEventBus()
         ItemInit.ITEMS.register(bus)
+        BlockInit.BLOCKS.register(bus)
 
         // Listeners
         bus.addListener(DataGenerators::gatherData)

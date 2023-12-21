@@ -19,6 +19,7 @@
 package io.github.realyusufismail.temporalsmith.datagen.lang
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
+import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.core.util.ObjectHolderDelegate
 import net.minecraft.block.Block
@@ -31,38 +32,22 @@ import net.minecraftforge.common.data.LanguageProvider
 class ModEnLangProvider(gen: DataGenerator) : LanguageProvider(gen, MOD_ID, "en_us") {
 
     override fun addTranslations() {
-        //        // ores
-        //        addBlock(BlockInit.RUBY_ORE, "Ruby Ore")
-        //        addBlock(BlockInit.SAPPHIRE_ORE, "Sapphire Ore")
-        //        addBlock(BlockInit.GRAPHITE_ORE, "Graphite Ore")
-        //        addBlock(BlockInit.RAINBOW_ORE, "Rainbow Ore")
-        //        addBlock(BlockInit.AQUMARINE_ORE, "Aqumarine Ore")
-        //        addBlock(BlockInit.ENDERITE_ORE, "Enderite Ore")
-        //        addBlock(BlockInit.IMPERIUM_ORE, "Imperium Ore")
-        //
-        //        // blocks
-        //        addBlock(BlockInit.RUBY_BLOCK, "Ruby Block")
-        //        addBlock(BlockInit.SAPPHIRE_BLOCK, "Sapphire Block")
-        //        addBlock(BlockInit.GRAPHITE_BLOCK, "Graphite Block")
-        //        addBlock(BlockInit.RAINBOW_BLOCK, "Rainbow Block")
-        //        addBlock(BlockInit.AQUMARINE_BLOCK, "Aqumarine Block")
-        //        addBlock(BlockInit.ENDERITE_BLOCK, "Enderite Block")
-        //
-        //        // deepslate ores
-        //        addBlock(BlockInit.DEEPSLATE_RUBY_ORE, "Deepslate Ruby Ore")
-        //        addBlock(BlockInit.DEEPSLATE_SAPPHIRE_ORE, "Deepslate Sapphire Ore")
-        //        addBlock(BlockInit.DEEPSLATE_GRAPHITE_ORE, "Deepslate Graphite Ore")
-        //        addBlock(BlockInit.DEEPSLATE_RAINBOW_ORE, "Deepslate Rainbow Ore")
-        //        addBlock(BlockInit.DEEPSLATE_AQUMARINE_ORE, "Deepslate Aqumarine Ore")
-        //        addBlock(BlockInit.DEEPSLATE_IMPERIUM_ORE, "Deepslate Imperium Ore")
-        //
-        //        // custom crafting tables
-        //        addBlock(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE, "Custom Armour Crafting Table")
-        //        addBlock(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE, "Custom Tool Crafting Table")
-        //        addBlock(BlockInit.INGOT_FUSION_TOLL_ENHANCER, "Ingot Fusion Toll Enhancer")
-        //
-        //        // portal frame
-        //        addBlock(BlockInit.ENDERITE_PORTAL_FRAME, "Enderite Portal Frame")
+        // ores
+        addBlock(BlockInit.RUBY_ORE, "Ruby Ore")
+        addBlock(BlockInit.SAPPHIRE_ORE, "Sapphire Ore")
+        addBlock(BlockInit.GRAPHITE_ORE, "Graphite Ore")
+        addBlock(BlockInit.RAINBOW_ORE, "Rainbow Ore")
+        addBlock(BlockInit.AQUMARINE_ORE, "Aqumarine Ore")
+        addBlock(BlockInit.ENDERITE_ORE, "Enderite Ore")
+        addBlock(BlockInit.IMPERIUM_ORE, "Imperium Ore")
+
+        // blocks
+        addBlock(BlockInit.RUBY_BLOCK, "Ruby Block")
+        addBlock(BlockInit.SAPPHIRE_BLOCK, "Sapphire Block")
+        addBlock(BlockInit.GRAPHITE_BLOCK, "Graphite Block")
+        addBlock(BlockInit.RAINBOW_BLOCK, "Rainbow Block")
+        addBlock(BlockInit.AQUMARINE_BLOCK, "Aqumarine Block")
+        addBlock(BlockInit.ENDERITE_BLOCK, "Enderite Block")
 
         // ore ingot
         addItem(ItemInit.RUBY, "Ruby")
@@ -285,7 +270,7 @@ class ModEnLangProvider(gen: DataGenerator) : LanguageProvider(gen, MOD_ID, "en_
         add(entry.get(), name)
     }
 
-    private fun block(entry: ObjectHolderDelegate<Block>, name: String) {
+    private fun addBlock(entry: ObjectHolderDelegate<Block>, name: String) {
         add(entry.get(), name)
     }
 

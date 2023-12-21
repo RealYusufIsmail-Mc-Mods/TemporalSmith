@@ -18,7 +18,9 @@
  */ 
 package io.github.realyusufismail.temporalsmith.datagen
 
+import io.github.realyusufismail.temporalsmith.TemporalSmith
 import io.github.realyusufismail.temporalsmith.datagen.lang.ModEnLangProvider
+import io.github.realyusufismail.temporalsmith.datagen.texture.ModBlockStateProvider
 import io.github.realyusufismail.temporalsmith.datagen.texture.ModItemStateProvider
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent
 
@@ -28,7 +30,12 @@ object DataGenerators {
         val gen = event.generator
         val existingFileHelper = event.existingFileHelper
 
-        gen.addProvider(ModItemStateProvider(gen, existingFileHelper))
-        gen.addProvider(ModEnLangProvider(gen))
+        try {
+            gen.addProvider(ModItemStateProvider(gen, existingFileHelper))
+            gen.addProvider(ModBlockStateProvider(gen, existingFileHelper))
+            gen.addProvider(ModEnLangProvider(gen))
+        } catch (e: Exception) {
+            TemporalSmith.logger.error("Error generating data", e)
+        }
     }
 }
