@@ -18,4 +18,6 @@ pluginManagement {
 
 include("forge")
 
+include("forge-1-16")
+
 include("neoforge")

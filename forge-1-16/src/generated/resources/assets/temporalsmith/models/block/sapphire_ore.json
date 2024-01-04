@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "temporalsmith:block/sapphire_ore"
+  }
+}
