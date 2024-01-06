@@ -22,7 +22,7 @@ import io.github.realyusufismail.temporalsmith.blocks.tool.book.CustomToolsCraft
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.core.init.TagsInit
 import io.github.realyusufismail.temporalsmith.datagen.recipe.MainModRecipeProvider
-import io.github.realyusufismail.temporalsmith.datagen.recipe.builder.CustomToolCraftingTableRecipeBuilder
+import io.github.realyusufismail.temporalsmith.recipe.tool.builder.CustomToolCraftingTableRecipeBuilder
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.world.item.Items

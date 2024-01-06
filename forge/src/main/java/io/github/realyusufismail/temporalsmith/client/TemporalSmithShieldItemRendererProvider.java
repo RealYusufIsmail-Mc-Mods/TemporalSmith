@@ -22,7 +22,7 @@ import io.github.realyusufismail.temporalsmith.client.renderer.shield.ModShieldI
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
-public class ModShieldItemRendererProvider {
+public class TemporalSmithShieldItemRendererProvider {
   private static ModShieldItemRenderer shieldItemRenderer;
 
   public static void init(final RegisterClientReloadListenersEvent event) {

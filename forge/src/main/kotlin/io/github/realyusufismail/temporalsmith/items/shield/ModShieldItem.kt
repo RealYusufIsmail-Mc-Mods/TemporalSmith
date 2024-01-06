@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.items.shield
 
-import io.github.realyusufismail.temporalsmith.client.ModShieldItemRendererProvider
+import io.github.realyusufismail.temporalsmith.client.TemporalSmithShieldItemRendererProvider
 import java.util.function.Consumer
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.ShieldItem
@@ -28,7 +28,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions
 class ModShieldItem(durability: Int, private val tier: Tier) :
     ShieldItem(Properties().stacksTo(1).durability(durability)) {
     override fun initializeClient(consumer: Consumer<IClientItemExtensions>) {
-        consumer.accept(ModShieldItemRendererProvider.shield())
+        consumer.accept(TemporalSmithShieldItemRendererProvider.shield())
     }
 
     override fun isValidRepairItem(toRepair: ItemStack, repair: ItemStack): Boolean {

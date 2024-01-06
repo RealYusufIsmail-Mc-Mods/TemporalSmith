@@ -53,6 +53,7 @@ object ItemInit {
         ITEMS.registerObject("aqumarine") { Item(Item.Properties()) }
     val RAINBOW: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("rainbow") { Item(Item.Properties()) }
+    @JvmField
     val ENDERITE: ObjectHolderDelegate<Item> =
         ITEMS.registerObject("enderite") { Item(Item.Properties()) }
     val IMPERIUM: ObjectHolderDelegate<Item> =

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.1-1.0.7.beta8] - 2023-12-05
+
+### Fixed issue with Thor's hammer. It should now work as intended with no issues.
+
 # [1.20.1-1.0.7.beta7] - 2023-11-26
 
 ### Fixed issue with ore generation. Now all ores will generate in the overworld.

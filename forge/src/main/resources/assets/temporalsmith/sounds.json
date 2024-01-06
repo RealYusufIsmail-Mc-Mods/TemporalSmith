@@ -1,0 +1,10 @@
+{
+  "enderite_ambient": {
+    "sounds" : [
+      {
+        "name" : "temporalsmith:enderite_ambient",
+        "stream" : true
+      }
+    ]
+  }
+}

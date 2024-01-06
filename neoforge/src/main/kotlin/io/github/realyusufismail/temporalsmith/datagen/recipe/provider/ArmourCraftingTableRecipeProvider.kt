@@ -22,7 +22,7 @@ import io.github.realyusufismail.temporalsmith.blocks.armour.book.CustomArmourCr
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.core.init.TagsInit
 import io.github.realyusufismail.temporalsmith.datagen.recipe.MainModRecipeProvider
-import io.github.realyusufismail.temporalsmith.datagen.recipe.builder.CustomArmourCraftingTableRecipeBuilder
+import io.github.realyusufismail.temporalsmith.recipe.armour.builder.CustomArmourCraftingTableRecipeBuilder
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.world.item.Items

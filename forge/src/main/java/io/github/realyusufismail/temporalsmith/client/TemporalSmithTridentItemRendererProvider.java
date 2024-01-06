@@ -23,7 +23,7 @@ import io.github.realyusufismail.temporalsmith.client.renderer.trident.aq.Aqumar
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
-public class TridentItemRendererProvider {
+public class TemporalSmithTridentItemRendererProvider {
   private static AqumarineTridentItemRendererISTER aqumarineTridentItemRendererISTER;
   private static MjolnirItemRendererISTER mjolnirItemRendererISTER;
 

@@ -25,15 +25,16 @@ import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTab
 import io.github.realyusufismail.temporalsmith.client.renderer.mjolnir.MjolnirItemRenderer
 import io.github.realyusufismail.temporalsmith.client.renderer.trident.aq.AqumarineTridentItemRenderer
 import io.github.realyusufismail.temporalsmith.core.init.*
+import io.github.realyusufismail.temporalsmith.core.util.name
 import io.github.realyusufismail.temporalsmith.models.MjolnirModel
 import io.github.realyusufismail.temporalsmith.util.KeyBinding
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraft.client.model.geom.ModelLayerLocation
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.renderer.ItemBlockRenderTypes
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.item.ItemProperties
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
@@ -41,16 +42,24 @@ import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.phys.Vec3
 import net.minecraftforge.client.event.EntityRenderersEvent
 import net.minecraftforge.client.event.InputEvent
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent
+import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.entity.living.LivingDeathEvent
+import net.minecraftforge.event.entity.living.LivingFallEvent
+import net.minecraftforge.event.entity.living.LivingHurtEvent
+import net.minecraftforge.event.entity.player.PlayerEvent
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 
 object ClientEvents {
     val MjolnirLayer = ModelLayerLocation(TemporalSmith.getModIdAndName("mjolnir"), "mjolnir")
+    val EnderiteGolemLayer =
+        ModelLayerLocation(TemporalSmith.getModIdAndName("enderite_golem"), "enderite_golem")
+    private var giveMjolnirToPlayer = false
 
     fun clientSetup(event: FMLClientSetupEvent) {
         event.enqueueWork { registerScreens() }
@@ -154,19 +163,7 @@ object ClientEvents {
 
     fun onKeyInput(event: InputEvent.Key) {
         if (KeyBinding.GET_MJOLNIR.consumeClick()) {
-            val player = Minecraft.getInstance().player
-            if (player != null) {
-                val effects = player.activeEffectsMap
-
-                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
-                    // if they alread have mjolnir, ignore
-                    if (player.inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
-                        return
-                    } else {
-                        player.inventory.add(ItemInit.MJOLNIR.get().defaultInstance)
-                    }
-                }
-            }
+            giveMjolnirToPlayer = true
         }
     }
 
@@ -191,5 +188,79 @@ object ClientEvents {
                 }
             }
         }
+    }
+
+    fun onPlayerTickEvent(event: TickEvent.PlayerTickEvent) {
+        if (event.player is Player) {
+
+            val player = event.player as Player
+
+            val inventory = player.inventory
+            val effects = player.activeEffectsMap
+
+            // if player does not have the hammer make sure they can't fly
+
+            if (!inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
+                // check if they are not in creative mode
+                if (!player.abilities.instabuild) {
+                    player.abilities.mayfly = false
+                    player.abilities.flyingSpeed = 0.05f
+                    player.abilities.invulnerable = false
+                }
+            } else {
+                player.abilities.mayfly = true
+                player.abilities.flyingSpeed = 0.07f
+                player.abilities.invulnerable = true
+            }
+
+            if (giveMjolnirToPlayer) {
+
+                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get()) &&
+                    !inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
+                    inventory.add(ItemInit.MJOLNIR.get().defaultInstance)
+                } else if (!effects.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                    player.sendSystemMessage(
+                        Component.literal("You are not worthy to wield thors hammer"))
+                }
+
+                giveMjolnirToPlayer = false
+            }
+        }
+    }
+
+    fun onLivingFallEvent(event: LivingFallEvent) {
+        if (event.entity is Player) {
+            val player = event.entity as Player
+
+            if (player.activeEffectsMap.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                event.distance = 0.0f
+            }
+        }
+    }
+
+    fun onLivingHurtEvent(event: LivingHurtEvent) {
+        if (event.entity is Player) {
+            val player = event.entity as Player
+
+            if (player.activeEffectsMap.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                event.amount = 0.0f
+            }
+        }
+    }
+
+    fun onLivingDamageEvent(event: LivingHurtEvent) {
+        if (event.entity is Player) {
+            val player = event.entity as Player
+
+            if (player.activeEffectsMap.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                event.amount = 0.0f
+            }
+        }
+    }
+
+    fun onPlayerPickupEvent(event: PlayerEvent.ItemPickupEvent) {
+        val item = event.stack.item
+
+        TemporalSmith.logger.info("Player picked up item: ${item.name} (${item})")
     }
 }

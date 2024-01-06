@@ -35,7 +35,7 @@ import net.minecraft.util.Mth
 class MjolnirItemRenderer(context: EntityRendererProvider.Context) :
     EntityRenderer<ModTridentEntity>(context) {
     private val location: ResourceLocation =
-        TemporalSmith.getModIdAndName("textures/entity/item/mjolnir/all.png")
+        TemporalSmith.getModIdAndName("textures/item/mjolnir/all.png")
     private var mjolnirModel: MjolnirModel? = null
 
     init {

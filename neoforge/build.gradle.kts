@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("net.neoforged.gradle.userdev") version "7.0.57"
+    id("net.neoforged.gradle.userdev") version "7.0.80"
 }
 
 project.version = properties["modVersion"] as String
@@ -110,10 +110,10 @@ tasks.withType(ProcessResources::class.java) {
     val replaceProperties =
         mapOf(
             "minecraft_version" to mcVersion,
-            "minecraft_version_range" to "[1.20.2,1.21)",
+            "minecraft_version_range" to "[1.20.4,1.21)",
             "neo_version" to properties["neoForgeVersion"],
-            "neo_version_range" to "[20.2)",
-            "loader_version_range" to "[1,)",
+            "neo_version_range" to "[20.4)",
+            "loader_version_range" to "[2,)",
             "mod_id" to modId,
             "mod_license" to "Apache-2.0",
             "mod_version" to project.version,
@@ -122,10 +122,9 @@ tasks.withType(ProcessResources::class.java) {
                 """
                 Descend into the boundless realms of TemporalSmith, where time intertwines with the craft of the Aetheric Arsenal. Unleash the power of enchanted swords and tools forged beyond the constraints of time. Explore mystical dimensions, each brimming with unique challenges and treasures. Elevate your Minecraft experience with a fusion of temporal mastery, otherworldly landscapes, and an expansive array of armaments. The journey awaits; delve into the time-woven secrets of TemporalSmith. (A lot of stuff to be added)
             """
-                    .trimIndent(),
-            "pack_format_number" to "18")
+                    .trimIndent())
 
     inputs.properties(replaceProperties)
 
-    filesMatching(listOf("META-INF/mods.toml", "pack.mcmeta")) { expand(replaceProperties) }
+    filesMatching(listOf("META-INF/mods.toml")) { expand(replaceProperties) }
 }

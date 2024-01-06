@@ -22,12 +22,17 @@ import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_I
 import io.github.realyusufismail.temporalsmith.blocks.*
 import io.github.realyusufismail.temporalsmith.blocks.lit.RainbowLitBlock
 import io.github.realyusufismail.temporalsmith.blocks.lit.RubyLitBlock
+import io.github.realyusufismail.temporalsmith.worldgen.ModConfiguredFeatures
+import java.util.*
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SaplingBlock
+import net.minecraft.world.level.block.grower.TreeGrower
 import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import net.neoforged.neoforge.registries.DeferredBlock
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
@@ -64,35 +69,35 @@ object BlockInit {
         registerSmeltAbleBlock(
             "sapphire_ore",
             ItemInit.SAPPHIRE,
-            BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_ORE).requiresCorrectToolForDrops(),
             MinableBlockType.GOLD_PICKAXE)
 
     val GRAPHITE_ORE =
         registerSmeltAbleBlock(
             "graphite_ore",
             ItemInit.GRAPHITE,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
     val AQUMARINE_ORE =
         registerSmeltAbleBlock(
             "aqumarine_ore",
             ItemInit.AQUMARINE,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
     val ENDERITE_ORE =
         registerSmeltAbleBlock(
             "enderite_ore",
             ItemInit.ENDERITE,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
     val IMPERIUM_ORE =
         registerSmeltAbleBlock(
             "imperium_ore",
             ItemInit.IMPERIUM,
-            BlockBehaviour.Properties.copy(Blocks.IRON_ORE).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).requiresCorrectToolForDrops(),
             MinableBlockType.IRON_PICKAXE)
 
     // deepslate ores
@@ -111,14 +116,15 @@ object BlockInit {
         registerSmeltAbleBlock(
             "deepslate_sapphire_ore",
             ItemInit.SAPPHIRE,
-            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_GOLD_ORE).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)
+                .requiresCorrectToolForDrops(),
             MinableBlockType.GOLD_PICKAXE)
 
     val DEEPSLATE_GRAPHITE_ORE =
         registerSmeltAbleBlock(
             "deepslate_graphite_ore",
             ItemInit.GRAPHITE,
-            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)
                 .requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
@@ -126,7 +132,7 @@ object BlockInit {
         registerSmeltAbleBlock(
             "deepslate_aqumarine_ore",
             ItemInit.AQUMARINE,
-            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)
                 .requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
@@ -134,7 +140,8 @@ object BlockInit {
         registerSmeltAbleBlock(
             "deepslate_imperium_ore",
             ItemInit.IMPERIUM,
-            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE)
+                .requiresCorrectToolForDrops(),
             MinableBlockType.IRON_PICKAXE)
 
     // blocks
@@ -142,35 +149,38 @@ object BlockInit {
         registerOreBlock(
             "ruby_block",
             ItemInit.RUBY,
-            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.IRON_PICKAXE)
 
     val RAINBOW_BLOCK =
         registerOreBlock(
             "rainbow_block",
             ItemInit.RAINBOW,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)
+                .requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
     val SAPPHIRE_BLOCK =
         registerOreBlock(
             "sapphire_block",
             ItemInit.SAPPHIRE,
-            BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops(),
             MinableBlockType.GOLD_PICKAXE)
 
     val GRAPHITE_BLOCK =
         registerOreBlock(
             "graphite_block",
             ItemInit.GRAPHITE,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)
+                .requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
     val AQUMARINE_BLOCK =
         registerOreBlock(
             "aqumarine_block",
             ItemInit.AQUMARINE,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)
+                .requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
     @JvmField
@@ -178,7 +188,8 @@ object BlockInit {
         registerOreBlock(
             "enderite_block",
             ItemInit.ENDERITE,
-            BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops(),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)
+                .requiresCorrectToolForDrops(),
             MinableBlockType.DIAMOND_PICKAXE)
 
     // logs
@@ -194,7 +205,16 @@ object BlockInit {
             "enderite_sapling",
             {
                 SaplingBlock(
-                    EnderiteSapling(), BlockBehaviour.Properties.copy(Blocks.JUNGLE_SAPLING))
+                    TreeGrower(
+                        "enderite_sapling",
+                        0.1f,
+                        Optional.empty<ResourceKey<ConfiguredFeature<*, *>>>(),
+                        Optional.empty<ResourceKey<ConfiguredFeature<*, *>>>(),
+                        Optional.of(ModConfiguredFeatures.ENDERITE_SAPLING),
+                        Optional.empty<ResourceKey<ConfiguredFeature<*, *>>>(),
+                        Optional.empty<ResourceKey<ConfiguredFeature<*, *>>>(),
+                        Optional.empty<ResourceKey<ConfiguredFeature<*, *>>>()),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING))
             },
             MinableBlockType.WOODEN_AXE)
 

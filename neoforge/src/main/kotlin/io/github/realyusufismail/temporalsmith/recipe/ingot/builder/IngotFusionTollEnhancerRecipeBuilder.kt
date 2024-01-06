@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.temporalsmith.datagen.recipe.builder
+package io.github.realyusufismail.temporalsmith.recipe.ingot.builder
 
 import com.google.common.collect.Maps
 import com.google.gson.JsonObject

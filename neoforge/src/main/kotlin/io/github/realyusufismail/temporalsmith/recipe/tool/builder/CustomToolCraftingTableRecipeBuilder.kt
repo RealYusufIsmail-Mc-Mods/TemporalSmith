@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.temporalsmith.datagen.recipe.builder
+package io.github.realyusufismail.temporalsmith.recipe.tool.builder
 
 import com.google.common.collect.Lists
 import com.google.common.collect.Maps
@@ -72,19 +72,19 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         itemLike: ItemLike,
         count: Int,
     ): CustomToolCraftingTableRecipeBuilder {
-        this.recipeCategory = recipeCategory
-        this.result = itemLike.asItem()
-        this.count = count
-        this.bookCategory = bookCategory
+        CustomToolCraftingTableRecipeBuilder.recipeCategory = recipeCategory
+        result = itemLike.asItem()
+        CustomToolCraftingTableRecipeBuilder.count = count
+        CustomToolCraftingTableRecipeBuilder.bookCategory = bookCategory
         return this
     }
 
     fun define(character: Char, itemTag: TagKey<Item>): CustomToolCraftingTableRecipeBuilder {
-        return this.define(character, Ingredient.of(itemTag))
+        return define(character, Ingredient.of(itemTag))
     }
 
     fun define(character: Char, itemLike: ItemLike): CustomToolCraftingTableRecipeBuilder {
-        return this.define(character, Ingredient.of(itemLike))
+        return define(character, Ingredient.of(itemLike))
     }
 
     private fun define(
@@ -115,12 +115,12 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         creterionId: String,
         criterion: Criterion<*>,
     ): CustomToolCraftingTableRecipeBuilder {
-        this.criteria[creterionId] = criterion
+        criteria[creterionId] = criterion
         return this
     }
 
     override fun group(pGroupName: String?): RecipeBuilder {
-        this.group = pGroupName
+        group = pGroupName
         return this
     }
 
@@ -130,12 +130,12 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
     }
 
     fun hideFlags(hideFlags: Int): CustomToolCraftingTableRecipeBuilder {
-        this.hideFlags = hideFlags
+        CustomToolCraftingTableRecipeBuilder.hideFlags = hideFlags
         return this
     }
 
     fun showNotification(p_273326_: Boolean): CustomToolCraftingTableRecipeBuilder {
-        this.showNotification = p_273326_
+        showNotification = p_273326_
         return this
     }
 
@@ -166,8 +166,7 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
                 rows,
                 key,
                 advancementBuilder.build(
-                    resourceLocation.withPrefix(
-                        "recipes/" + this.recipeCategory!!.folderName + "/")),
+                    resourceLocation.withPrefix("recipes/" + recipeCategory!!.folderName + "/")),
                 showNotification,
                 enchantmentsAndLevels,
                 hideFlags))

@@ -22,6 +22,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientGamePacketListener
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
@@ -37,11 +38,11 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.projectile.AbstractArrow
 import net.minecraft.world.entity.projectile.ThrownTrident
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.EntityHitResult
 import net.minecraft.world.phys.Vec3
-import net.neoforged.neoforge.network.NetworkHooks
 
 /** @see ThrownTrident */
 abstract class ModTridentEntity : AbstractArrow {
@@ -50,14 +51,17 @@ abstract class ModTridentEntity : AbstractArrow {
     var returningTicks = 0
     var allowToTriggerThunderWithoutEnchantment = false
 
-    constructor(type: EntityType<ModTridentEntity>, world: Level) : super(type, world)
+    constructor(
+        type: EntityType<ModTridentEntity>,
+        world: Level
+    ) : super(type, world, DEFAULT_ARROW_STACK)
 
     constructor(
         type: EntityType<ModTridentEntity>,
         level: Level,
         thrower: LivingEntity,
         stack: ItemStack
-    ) : super(type, thrower, level) {
+    ) : super(type, thrower, level, stack) {
         tridentItem = stack.copy()
         entityData.set(ID_LOYALTY, EnchantmentHelper.getLoyalty(stack).toByte())
         entityData.set(ID_FOIL, stack.hasFoil())
@@ -231,7 +235,8 @@ abstract class ModTridentEntity : AbstractArrow {
     }
 
     override fun getAddEntityPacket(): Packet<ClientGamePacketListener> {
-        return NetworkHooks.getEntitySpawningPacket(this)
+        val entity = this.owner
+        return ClientboundAddEntityPacket(this, entity?.id ?: this.id)
     }
 
     fun hasGlint(): Boolean {
@@ -244,5 +249,6 @@ abstract class ModTridentEntity : AbstractArrow {
             SynchedEntityData.defineId(ModTridentEntity::class.java, EntityDataSerializers.BYTE)
         protected val ID_FOIL: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(ModTridentEntity::class.java, EntityDataSerializers.BOOLEAN)
+        private val DEFAULT_ARROW_STACK = ItemStack(Items.TRIDENT)
     }
 }

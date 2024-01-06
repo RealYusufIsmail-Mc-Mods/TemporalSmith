@@ -21,7 +21,7 @@ package io.github.realyusufismail.temporalsmith.datagen.recipe.provider
 import io.github.realyusufismail.temporalsmith.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.datagen.recipe.MainModRecipeProvider
-import io.github.realyusufismail.temporalsmith.datagen.recipe.builder.IngotFusionTollEnhancerRecipeBuilder
+import io.github.realyusufismail.temporalsmith.recipe.ingot.builder.IngotFusionTollEnhancerRecipeBuilder
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.world.item.ItemStack
 

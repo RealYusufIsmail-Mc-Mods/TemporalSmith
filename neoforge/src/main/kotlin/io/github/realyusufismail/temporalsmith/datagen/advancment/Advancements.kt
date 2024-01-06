@@ -80,7 +80,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("root"),
                     description("root"),
                     ResourceLocation("minecraft:textures/block/light_blue_wool.png"),
-                    FrameType.TASK,
+                    AdvancementType.TASK,
                     true,
                     false,
                     false)
@@ -97,7 +97,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("ruby_ore"),
                     description("ruby_ore"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -112,7 +112,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("ruby_ingot"),
                     description("ruby_ingot"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -126,7 +126,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("ruby_block"),
                 description("ruby_block"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -140,7 +140,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("ruby_armour"),
                 description("ruby_armour"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -158,7 +158,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("ruby_tools"),
                 description("ruby_tools"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -180,7 +180,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("sapphire_ore"),
                     description("sapphire_ore"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -195,7 +195,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("sapphire_ingot"),
                     description("sapphire_ingot"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -209,7 +209,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("sapphire_block"),
                 description("sapphire_block"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -223,7 +223,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("sapphire_armour"),
                 description("sapphire_armour"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -241,7 +241,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("sapphire_tools"),
                 description("sapphire_tools"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -263,7 +263,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("graphite_ore"),
                     description("graphite_ore"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -278,7 +278,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("graphite_ingot"),
                     description("graphite_ingot"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -292,7 +292,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("graphite_block"),
                 description("graphite_block"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -306,7 +306,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("graphite_armour"),
                 description("graphite_armour"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -327,7 +327,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("aqumarine_ore"),
                     description("aqumarine_ore"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -342,7 +342,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("aqumarine_ingot"),
                     description("aqumarine_ingot"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -356,7 +356,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("aqumarine_block"),
                 description("aqumarine_block"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -370,7 +370,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("aqumarine_armour"),
                 description("aqumarine_armour"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -391,7 +391,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("rainbow_ore"),
                     description("rainbow_ore"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -406,7 +406,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("rainbow_ingot"),
                     description("rainbow_ingot"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -420,7 +420,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("rainbow_block"),
                 description("rainbow_block"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -434,7 +434,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("rainbow_armour"),
                 description("rainbow_armour"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -455,7 +455,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("enderite_ore"),
                     description("enderite_ore"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -470,7 +470,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("enderite_ingot"),
                     description("enderite_ingot"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -484,7 +484,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("enderite_block"),
                 description("enderite_block"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -498,7 +498,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("enderite_armour"),
                 description("enderite_armour"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -516,7 +516,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("enderite_tools"),
                 description("enderite_tools"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)
@@ -538,7 +538,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("imperium_ore"),
                     description("imperium_ore"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -553,7 +553,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                     title("imperium_ingot"),
                     description("imperium_ingot"),
                     null,
-                    FrameType.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false)
@@ -567,7 +567,7 @@ class Advancements : AdvancementProvider.AdvancementGenerator {
                 title("imperium_tools"),
                 description("imperium_tools"),
                 null,
-                FrameType.GOAL,
+                AdvancementType.GOAL,
                 true,
                 true,
                 false)

@@ -19,79 +19,37 @@
 package io.github.realyusufismail.temporalsmith.recipe.armour
 
 import com.google.common.annotations.VisibleForTesting
-import com.google.common.collect.Sets
 import com.mojang.serialization.Codec
-import com.mojang.serialization.DataResult
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import io.github.realyusufismail.temporalsmith.blocks.armour.CustomArmourCraftingTableContainer
 import io.github.realyusufismail.temporalsmith.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
-import io.github.realyusufismail.temporalsmith.recipe.codec.CustomArmourCraftingTableRawShapedRecipe
+import io.github.realyusufismail.temporalsmith.recipe.pattern.CustomCraftingTableRecipePattern
 import kotlin.math.max
 import kotlin.math.min
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
+import net.minecraft.util.ExtraCodecs
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.crafting.RecipeSerializer
+import net.minecraft.world.item.crafting.*
 import net.minecraft.world.level.Level
 import net.neoforged.neoforge.common.CommonHooks
 import net.neoforged.neoforge.common.crafting.IShapedRecipe
-import org.apache.commons.lang3.NotImplementedException
 
 class CustomArmourCraftingTableShapedRecipe(
     val gr: String,
     val recipeCategory: CustomArmourCraftingBookCategory,
-    val width: Int,
-    val height: Int,
-    val recipeItems: NonNullList<Ingredient>,
+    val recipePattern: CustomCraftingTableRecipePattern,
     override val result: ItemStack,
-    val showNotification: Boolean,
+    val showN: Boolean,
 ) : CustomArmourCraftingTableRecipe, IShapedRecipe<CustomArmourCraftingTableContainer> {
+    val width: Int = recipePattern.width
+    val height: Int = recipePattern.height
 
-    /** Used to check if a recipe matches current crafting inventory */
-    override fun matches(pInv: CustomArmourCraftingTableContainer, pLevel: Level): Boolean {
-        for (i in 0..(pInv.getWidth() - this.width)) {
-            for (j in 0..(pInv.getHeight() - this.height)) {
-                if (this.matches(pInv, i, j, true)) {
-                    return true
-                }
-                if (this.matches(pInv, i, j, false)) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
-    /** Checks if the region of a crafting inventory is match for the recipe. */
-    private fun matches(
-        pCraftingInventory: CustomArmourCraftingTableContainer,
-        pWidth: Int,
-        pHeight: Int,
-        pMirrored: Boolean,
-    ): Boolean {
-        for (i in 0 until pCraftingInventory.getWidth()) {
-            for (j in 0 until pCraftingInventory.getHeight()) {
-                val k = i - pWidth
-                val l = j - pHeight
-                var ingredient = Ingredient.EMPTY
-                if ((k >= 0) && (l >= 0) && (k < this.width) && (l < this.height)) {
-                    ingredient =
-                        if (pMirrored) {
-                            this.recipeItems[this.width - k - 1 + l * this.width]
-                        } else {
-                            this.recipeItems[k + l * this.width]
-                        }
-                }
-                if (!ingredient.test(
-                    pCraftingInventory.getItem(i + j * pCraftingInventory.getWidth()))) {
-                    return false
-                }
-            }
-        }
-        return true
+    override fun matches(p_44176_: CustomArmourCraftingTableContainer, p_44177_: Level): Boolean {
+        return this.recipePattern.matchesArmour(p_44176_)
     }
 
     override fun assemble(
@@ -120,7 +78,7 @@ class CustomArmourCraftingTableShapedRecipe(
     }
 
     override fun getIngredients(): NonNullList<Ingredient> {
-        return this.recipeItems
+        return this.recipePattern.ingredients
     }
 
     override fun getToastSymbol(): ItemStack {
@@ -132,7 +90,7 @@ class CustomArmourCraftingTableShapedRecipe(
     }
 
     override fun showNotification(): Boolean {
-        return showNotification
+        return showN
     }
 
     override fun getRecipeWidth(): Int {
@@ -211,49 +169,29 @@ class CustomArmourCraftingTableShapedRecipe(
     }
 
     class Serializer : RecipeSerializer<CustomArmourCraftingTableShapedRecipe> {
-
-        private val CODEC =
-            CustomArmourCraftingTableRawShapedRecipe.CODEC.flatXmap({
-                p_301248_: CustomArmourCraftingTableRawShapedRecipe ->
-                val astring = shrink(p_301248_.pattern)
-                val i = astring[0]!!.length
-                val j = astring.size
-                val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
-                val set: MutableSet<String> = Sets.newHashSet(p_301248_.key.keys)
-                for (k in astring.indices) {
-                    val s = astring[k]
-                    for (l in 0 until s!!.length) {
-                        val s1 = s.substring(l, l + 1)
-                        val ingredient =
-                            (if (s1 == " ") Ingredient.EMPTY else p_301248_.key[s1])
-                                ?: return@flatXmap DataResult.error<
-                                    CustomArmourCraftingTableShapedRecipe> {
-                                    "Pattern references symbol '$s1' but it's not defined in the key"
-                                }
-                        set.remove(s1)
-                        nonnulllist[l + i * k] = ingredient
+        companion object {
+            val CODEC: Codec<CustomArmourCraftingTableShapedRecipe> =
+                RecordCodecBuilder.create { instance ->
+                        instance
+                            .group(
+                                ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
+                                    .forGetter(CustomArmourCraftingTableShapedRecipe::getGroup),
+                                CustomArmourCraftingBookCategory.CODEC.fieldOf("category")
+                                    .orElse(CustomArmourCraftingBookCategory.MISC)
+                                    .forGetter(CustomArmourCraftingTableShapedRecipe::category),
+                                CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
+                                    CustomArmourCraftingTableShapedRecipe::recipePattern),
+                                ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
+                                    .forGetter(CustomArmourCraftingTableShapedRecipe::result),
+                                ExtraCodecs.strictOptionalField(
+                                        Codec.BOOL, "show_notification", true)
+                                    .forGetter(
+                                        CustomArmourCraftingTableShapedRecipe::showNotification),
+                            )
+                            .apply(instance, ::CustomArmourCraftingTableShapedRecipe)
                     }
-                }
-                if (set.isNotEmpty()) {
-                    return@flatXmap DataResult.error<CustomArmourCraftingTableShapedRecipe> {
-                        "Key defines symbols that aren't used in pattern: $set"
-                    }
-                } else {
-                    val shapedrecipe =
-                        CustomArmourCraftingTableShapedRecipe(
-                            p_301248_.group,
-                            p_301248_.category,
-                            i,
-                            j,
-                            nonnulllist,
-                            p_301248_.result,
-                            p_301248_.showNotification)
-                    return@flatXmap DataResult.success<CustomArmourCraftingTableShapedRecipe>(
-                        shapedrecipe)
-                }
-            }) { _: CustomArmourCraftingTableShapedRecipe ->
-                throw NotImplementedException("Serializing ShapedRecipe is not implemented yet.")
-            }
+                    .apply { stable() }
+        }
 
         override fun codec(): Codec<CustomArmourCraftingTableShapedRecipe> {
             return CODEC
@@ -266,28 +204,21 @@ class CustomArmourCraftingTableShapedRecipe(
             pBuffer.writeVarInt(pRecipe.width)
             pBuffer.writeVarInt(pRecipe.height)
             pBuffer.writeUtf(pRecipe.gr)
-            for (ingredient: Ingredient in pRecipe.recipeItems) {
-                ingredient.toNetwork(pBuffer)
-            }
+            pRecipe.recipePattern.toNetwork(pBuffer)
+
             pBuffer.writeItem(pRecipe.result)
-            pBuffer.writeBoolean(pRecipe.showNotification)
+            pBuffer.writeBoolean(pRecipe.showN)
         }
 
-        override fun fromNetwork(
-            p_44106_: FriendlyByteBuf
-        ): CustomArmourCraftingTableShapedRecipe? {
-            val i = p_44106_.readVarInt()
-            val j = p_44106_.readVarInt()
-            val s = p_44106_.readUtf()
-            val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
-            nonnulllist.replaceAll { Ingredient.fromNetwork(p_44106_) }
-            val itemstack = p_44106_.readItem()
+        override fun fromNetwork(p_44240_: FriendlyByteBuf): CustomArmourCraftingTableShapedRecipe {
+            val s = p_44240_.readUtf()
             val craftingbookcategory =
-                p_44106_.readEnum(CustomArmourCraftingBookCategory::class.java)
-            val flag = p_44106_.readBoolean()
-
+                p_44240_.readEnum(CustomArmourCraftingBookCategory::class.java)
+            val shapedrecipepattern = CustomCraftingTableRecipePattern.fromNetwork(p_44240_)
+            val itemstack = p_44240_.readItem()
+            val flag = p_44240_.readBoolean()
             return CustomArmourCraftingTableShapedRecipe(
-                s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
+                s, craftingbookcategory, shapedrecipepattern, itemstack, flag)
         }
     }
 }
