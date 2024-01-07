@@ -19,79 +19,40 @@
 package io.github.realyusufismail.temporalsmith.recipe.tool
 
 import com.google.common.annotations.VisibleForTesting
-import com.google.common.collect.Sets
 import com.mojang.serialization.Codec
-import com.mojang.serialization.DataResult
+import com.mojang.serialization.codecs.RecordCodecBuilder
+import io.github.realyusufismail.realyusufismailcore.recipe.util.EnchantmentsAndLevels
 import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTableContainer
 import io.github.realyusufismail.temporalsmith.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
-import io.github.realyusufismail.temporalsmith.recipe.codec.CustomToolCraftingTableRawShapedRecipe
+import io.github.realyusufismail.temporalsmith.recipe.pattern.CustomCraftingTableRecipePattern
+import io.github.realyusufismail.temporalsmith.recipe.tool.builder.CustomToolCraftingTableRecipeBuilder
 import kotlin.math.max
 import kotlin.math.min
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
+import net.minecraft.util.ExtraCodecs
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.level.Level
 import net.neoforged.neoforge.common.CommonHooks
 import net.neoforged.neoforge.common.crafting.IShapedRecipe
-import org.apache.commons.lang3.NotImplementedException
 
 class CustomToolCraftingTableShapedRecipe(
-    private val group: String,
-    private val recipeCategory: CustomToolsCraftingBookCategory,
-    private val width: Int,
-    private val height: Int,
-    private val recipeItems: NonNullList<Ingredient>,
+    val gr: String,
+    val recipeCategory: CustomToolsCraftingBookCategory,
+    val recipePattern: CustomCraftingTableRecipePattern,
     override val result: ItemStack,
-    private val showNotification: Boolean,
+    val showN: Boolean,
+    enchantmentsAndLevels: EnchantmentsAndLevels,
+    hideFlags: Int,
 ) : CustomToolCraftingTableRecipe, IShapedRecipe<CustomToolCraftingTableContainer> {
 
-    /** Used to check if a recipe matches current crafting inventory */
-    override fun matches(pInv: CustomToolCraftingTableContainer, pLevel: Level): Boolean {
-        for (i in 0..(pInv.getWidth() - this.width)) {
-            for (j in 0..(pInv.getHeight() - this.height)) {
-                if (this.matches(pInv, i, j, true)) {
-                    return true
-                }
-                if (this.matches(pInv, i, j, false)) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
-    /** Checks if the region of a crafting inventory is match for the recipe. */
-    private fun matches(
-        pCraftingInventory: CustomToolCraftingTableContainer,
-        pWidth: Int,
-        pHeight: Int,
-        pMirrored: Boolean,
-    ): Boolean {
-        for (i in 0 until pCraftingInventory.getWidth()) {
-            for (j in 0 until pCraftingInventory.getHeight()) {
-                val k = i - pWidth
-                val l = j - pHeight
-                var ingredient = Ingredient.EMPTY
-                if ((k >= 0) && (l >= 0) && (k < this.width) && (l < this.height)) {
-                    ingredient =
-                        if (pMirrored) {
-                            this.recipeItems[this.width - k - 1 + l * this.width]
-                        } else {
-                            this.recipeItems[k + l * this.width]
-                        }
-                }
-                if (!ingredient.test(
-                    pCraftingInventory.getItem(i + j * pCraftingInventory.getWidth()))) {
-                    return false
-                }
-            }
-        }
-        return true
+    override fun matches(p_44176_: CustomToolCraftingTableContainer, p_44177_: Level): Boolean {
+        return this.recipePattern.matchesTool(p_44176_)
     }
 
     override fun assemble(
@@ -120,7 +81,7 @@ class CustomToolCraftingTableShapedRecipe(
     }
 
     override fun getIngredients(): NonNullList<Ingredient> {
-        return this.recipeItems
+        return this.recipePattern.ingredients
     }
 
     override fun category(): CustomToolsCraftingBookCategory {
@@ -136,7 +97,7 @@ class CustomToolCraftingTableShapedRecipe(
     }
 
     override fun showNotification(): Boolean {
-        return showNotification
+        return showN
     }
 
     override fun isIncomplete(): Boolean {
@@ -149,15 +110,14 @@ class CustomToolCraftingTableShapedRecipe(
     }
 
     override fun getRecipeWidth(): Int {
-        return this.width
+        return this.recipePattern.width
     }
 
     override fun getRecipeHeight(): Int {
-        return this.height
+        return this.recipePattern.height
     }
 
     companion object {
-
         @JvmField var MAX_WIDTH = 3
 
         @JvmField var MAX_HEIGHT = 3
@@ -212,82 +172,64 @@ class CustomToolCraftingTableShapedRecipe(
     }
 
     class Serializer : RecipeSerializer<CustomToolCraftingTableShapedRecipe> {
-        private val CODEC =
-            CustomToolCraftingTableRawShapedRecipe.CODEC.flatXmap({
-                p_301248_: CustomToolCraftingTableRawShapedRecipe ->
-                val astring = shrink(p_301248_.pattern)
-                val i = astring[0]!!.length
-                val j = astring.size
-                val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
-                val set: MutableSet<String> = Sets.newHashSet(p_301248_.key.keys)
-                for (k in astring.indices) {
-                    val s = astring[k]
-                    for (l in 0 until s!!.length) {
-                        val s1 = s.substring(l, l + 1)
-                        val ingredient =
-                            (if (s1 == " ") Ingredient.EMPTY else p_301248_.key[s1])
-                                ?: return@flatXmap DataResult.error<
-                                    CustomToolCraftingTableShapedRecipe> {
-                                    "Pattern references symbol '$s1' but it's not defined in the key"
-                                }
-                        set.remove(s1)
-                        nonnulllist[l + i * k] = ingredient
-                    }
+        companion object {
+            val CODEC: Codec<CustomToolCraftingTableShapedRecipe> =
+                RecordCodecBuilder.create { instance ->
+                    instance
+                        .group(
+                            ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
+                                .forGetter(CustomToolCraftingTableShapedRecipe::getGroup),
+                            CustomToolsCraftingBookCategory.CODEC.fieldOf("category")
+                                .orElse(CustomToolsCraftingBookCategory.MISC)
+                                .forGetter(CustomToolCraftingTableShapedRecipe::category),
+                            CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
+                                CustomToolCraftingTableShapedRecipe::recipePattern),
+                            ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
+                                .forGetter(CustomToolCraftingTableShapedRecipe::result),
+                            ExtraCodecs.strictOptionalField(
+                                Codec.BOOL, "show_notification", true)
+                                .forGetter(
+                                    CustomToolCraftingTableShapedRecipe::showNotification),
+                        )
+                        .apply(instance, ::CustomToolCraftingTableShapedRecipe
+                        )
                 }
-                if (set.isNotEmpty()) {
-                    return@flatXmap DataResult.error<CustomToolCraftingTableShapedRecipe> {
-                        "Key defines symbols that aren't used in pattern: $set"
-                    }
-                } else {
-                    val shapedrecipe =
-                        CustomToolCraftingTableShapedRecipe(
-                            p_301248_.group,
-                            p_301248_.category,
-                            i,
-                            j,
-                            nonnulllist,
-                            p_301248_.result,
-                            p_301248_.showNotification)
-                    return@flatXmap DataResult.success<CustomToolCraftingTableShapedRecipe>(
-                        shapedrecipe)
-                }
-            }) { _: CustomToolCraftingTableShapedRecipe ->
-                throw NotImplementedException("Serializing ShapedRecipe is not implemented yet.")
-            }
-
-        override fun toNetwork(
-            pBuffer: FriendlyByteBuf,
-            pRecipe: CustomToolCraftingTableShapedRecipe,
-        ) {
-            pBuffer.writeVarInt(pRecipe.width)
-            pBuffer.writeVarInt(pRecipe.height)
-            pBuffer.writeUtf(pRecipe.group)
-
-            for (ingredient: Ingredient in pRecipe.recipeItems) {
-                ingredient.toNetwork(pBuffer)
-            }
-
-            pBuffer.writeItem(pRecipe.result)
-            pBuffer.writeBoolean(pRecipe.showNotification)
+                    .apply { stable() }
         }
 
         override fun codec(): Codec<CustomToolCraftingTableShapedRecipe> {
             return CODEC
         }
 
-        override fun fromNetwork(p_44106_: FriendlyByteBuf): CustomToolCraftingTableShapedRecipe? {
-            val i = p_44106_.readVarInt()
-            val j = p_44106_.readVarInt()
-            val s = p_44106_.readUtf()
-            val nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY)
-            nonnulllist.replaceAll { Ingredient.fromNetwork(p_44106_) }
-            val itemstack = p_44106_.readItem()
-            val craftingbookcategory =
-                p_44106_.readEnum(CustomToolsCraftingBookCategory::class.java)
-            val flag = p_44106_.readBoolean()
+        override fun toNetwork(
+            pBuffer: FriendlyByteBuf,
+            pRecipe: CustomToolCraftingTableShapedRecipe,
+        ) {
+            pBuffer.writeVarInt(pRecipe.recipeWidth)
+            pBuffer.writeVarInt(pRecipe.recipeHeight)
+            pBuffer.writeUtf(pRecipe.gr)
+            pRecipe.recipePattern.toNetwork(pBuffer)
 
+            pBuffer.writeItem(pRecipe.result)
+            pBuffer.writeBoolean(pRecipe.showN)
+        }
+
+        override fun fromNetwork(p_44240_: FriendlyByteBuf): CustomToolCraftingTableShapedRecipe {
+            val s = p_44240_.readUtf()
+            val craftingbookcategory =
+                p_44240_.readEnum(CustomToolsCraftingBookCategory::class.java)
+            val shapedrecipepattern = CustomCraftingTableRecipePattern.fromNetwork(p_44240_)
+            val itemstack = p_44240_.readItem()
+            val flag = p_44240_.readBoolean()
             return CustomToolCraftingTableShapedRecipe(
-                s, craftingbookcategory, i, j, nonnulllist, itemstack, flag)
+                s,
+                craftingbookcategory,
+                shapedrecipepattern,
+                itemstack,
+                flag,
+                CustomToolCraftingTableRecipeBuilder.enchantmentsAndLevels,
+                CustomToolCraftingTableRecipeBuilder.hideFlags
+            )
         }
     }
 }

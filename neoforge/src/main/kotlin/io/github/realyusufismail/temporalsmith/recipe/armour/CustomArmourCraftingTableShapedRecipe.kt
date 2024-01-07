@@ -21,11 +21,14 @@ package io.github.realyusufismail.temporalsmith.recipe.armour
 import com.google.common.annotations.VisibleForTesting
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import io.github.realyusufismail.realyusufismailcore.recipe.util.EnchantmentsAndLevels
 import io.github.realyusufismail.temporalsmith.blocks.armour.CustomArmourCraftingTableContainer
 import io.github.realyusufismail.temporalsmith.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
+import io.github.realyusufismail.temporalsmith.recipe.armour.builder.CustomArmourCraftingTableRecipeBuilder
 import io.github.realyusufismail.temporalsmith.recipe.pattern.CustomCraftingTableRecipePattern
+import io.github.realyusufismail.temporalsmith.recipe.tool.builder.CustomToolCraftingTableRecipeBuilder.hideFlags
 import kotlin.math.max
 import kotlin.math.min
 import net.minecraft.core.NonNullList
@@ -44,6 +47,8 @@ class CustomArmourCraftingTableShapedRecipe(
     val recipePattern: CustomCraftingTableRecipePattern,
     override val result: ItemStack,
     val showN: Boolean,
+    val enchantmentsAndLevels: EnchantmentsAndLevels,
+    val hideFlags: Int,
 ) : CustomArmourCraftingTableRecipe, IShapedRecipe<CustomArmourCraftingTableContainer> {
     val width: Int = recipePattern.width
     val height: Int = recipePattern.height
@@ -187,6 +192,12 @@ class CustomArmourCraftingTableShapedRecipe(
                                         Codec.BOOL, "show_notification", true)
                                     .forGetter(
                                         CustomArmourCraftingTableShapedRecipe::showNotification),
+                                EnchantmentsAndLevels.CODEC.fieldOf("enchantments_and_levels")
+                                    .orElse(EnchantmentsAndLevels.EMPTY)
+                                    .forGetter(CustomArmourCraftingTableShapedRecipe::enchantmentsAndLevels),
+                                Codec.INT.fieldOf("hide_flags")
+                                    .orElse(0)
+                                    .forGetter(CustomArmourCraftingTableShapedRecipe::hideFlags)
                             )
                             .apply(instance, ::CustomArmourCraftingTableShapedRecipe)
                     }
@@ -217,8 +228,17 @@ class CustomArmourCraftingTableShapedRecipe(
             val shapedrecipepattern = CustomCraftingTableRecipePattern.fromNetwork(p_44240_)
             val itemstack = p_44240_.readItem()
             val flag = p_44240_.readBoolean()
+            val enchantmentsAndLevels = EnchantmentsAndLevels.fromNetwork(p_44240_)
+            val hideFlags = p_44240_.readInt()
             return CustomArmourCraftingTableShapedRecipe(
-                s, craftingbookcategory, shapedrecipepattern, itemstack, flag)
+                s,
+                craftingbookcategory,
+                shapedrecipepattern,
+                itemstack,
+                flag,
+                enchantmentsAndLevels,
+                hideFlags
+            )
         }
     }
 }

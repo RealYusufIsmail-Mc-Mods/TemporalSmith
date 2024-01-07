@@ -24,9 +24,11 @@ import io.github.realyusufismail.realyusufismailcore.recipe.util.EnchantmentsAnd
 import io.github.realyusufismail.temporalsmith.blocks.armour.book.CustomArmourCraftingBookCategory
 import io.github.realyusufismail.temporalsmith.recipe.armour.CustomArmourCraftingTableShapedRecipe
 import io.github.realyusufismail.temporalsmith.recipe.pattern.CustomCraftingTableRecipePattern
-import net.minecraft.advancements.*
+import net.minecraft.advancements.Advancement
+import net.minecraft.advancements.AdvancementRequirements
+import net.minecraft.advancements.AdvancementRewards
+import net.minecraft.advancements.Criterion
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
-import net.minecraft.data.recipes.RecipeBuilder
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.resources.ResourceLocation
@@ -50,7 +52,7 @@ object CustomArmourCraftingTableRecipeBuilder {
     private var result: Item? = null
     private var showNotification: Boolean = false
     private var enchantmentsAndLevels: EnchantmentsAndLevels = EnchantmentsAndLevels()
-    private var hideFlags: Boolean = false
+    private var hideFlags: Int = 0
 
     fun shaped(
         bookCategory: CustomArmourCraftingBookCategory,
@@ -126,8 +128,8 @@ object CustomArmourCraftingTableRecipeBuilder {
         return this
     }
 
-    fun setHideFlags(hideFlags: Boolean): CustomArmourCraftingTableRecipeBuilder {
-        CustomArmourCraftingTableRecipeBuilder.hideFlags = hideFlags
+    fun setHideFlags(hideFlags: Int): CustomArmourCraftingTableRecipeBuilder {
+        this.hideFlags = hideFlags
         return this
     }
 
@@ -158,15 +160,31 @@ object CustomArmourCraftingTableRecipeBuilder {
         val customArmourCraftingTableShapedRecipe =
             CustomArmourCraftingTableShapedRecipe(
                 group ?: "",
-                RecipeBuilder.determineBookCategory(
-                    recipeCategory ?: throw IllegalStateException("Recipe category is not set")),
+                bookCategory ?: throw IllegalStateException("Recipe category is not set"),
                 recipePattern,
                 ItemStack(result ?: throw IllegalStateException("Result is not set"), count ?: 1),
-                showNotification)
+                showNotification,
+                enchantmentsAndLevels,
+                hideFlags
+            )
+
+        recipeOutput.accept(resourceLocation, customArmourCraftingTableShapedRecipe, advancementBuilder.build(resourceLocation.withPrefix("recipes/" + this.recipeCategory!!.folderName + "/")));
+
+        clear()
     }
 
     private fun ensureValid(p_126144_: ResourceLocation): CustomCraftingTableRecipePattern {
         check(criteria.isNotEmpty()) { "No way of obtaining recipe $p_126144_" }
         return CustomCraftingTableRecipePattern.of(key, rows)
+    }
+
+    private fun clear() {
+        rows.clear()
+        key.clear()
+        group = null
+        bookCategory = null
+        recipeCategory = null
+        count = null
+        result = null
     }
 }
