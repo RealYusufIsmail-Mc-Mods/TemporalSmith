@@ -1,19 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    repositories { mavenCentral() }
-
-    dependencies {
-        classpath("org.jetbrains.dokka:dokka-base:1.9.10")
-        classpath("io.github.realyusufismail:jconfig:1.1.1")
-    }
-}
-
 plugins {
-    kotlin("jvm") version "1.9.21"
-    kotlin("plugin.allopen") version "1.9.21"
+    kotlin("jvm") version "1.9.22"
+    kotlin("plugin.allopen") version "1.9.22"
     id("com.diffplug.spotless") version "6.22.0"
-    id("org.jetbrains.dokka") version "1.9.10"
     id("net.darkhax.curseforgegradle") version "1.1.17"
     jacoco // code coverage reports
 }

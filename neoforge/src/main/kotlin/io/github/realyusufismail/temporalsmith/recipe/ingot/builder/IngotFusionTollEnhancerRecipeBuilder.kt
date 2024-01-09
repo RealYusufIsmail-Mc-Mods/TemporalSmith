@@ -21,7 +21,6 @@ package io.github.realyusufismail.temporalsmith.recipe.ingot.builder
 import com.google.common.collect.Maps
 import io.github.realyusufismail.temporalsmith.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory
 import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
-import java.util.*
 import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
 import net.minecraft.data.recipes.RecipeOutput
