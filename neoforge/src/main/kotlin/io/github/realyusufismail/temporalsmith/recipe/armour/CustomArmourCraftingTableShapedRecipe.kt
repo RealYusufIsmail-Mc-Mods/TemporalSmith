@@ -45,6 +45,10 @@ class CustomArmourCraftingTableShapedRecipe(
         gr, category, recipePattern, result, showN, enchantmentsAndLevels, hideFlags),
     CustomArmourCraftingTableRecipe {
 
+    override fun getCategory(): CustomArmourCraftingBookCategory {
+        return category
+    }
+
     override fun getToastSymbol(): ItemStack {
         return ItemStack(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
     }

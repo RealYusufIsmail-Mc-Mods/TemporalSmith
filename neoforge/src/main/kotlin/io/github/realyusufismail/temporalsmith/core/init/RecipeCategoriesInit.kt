@@ -173,7 +173,7 @@ object RecipeCategoriesInit {
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.ARMOUR_CRAFTING.get()) {
             if (it.value() is CustomArmourCraftingTableRecipe) {
-                when ((it.value() as CustomArmourCraftingTableRecipe).category()) {
+                when ((it.value() as CustomArmourCraftingTableRecipe).getCategory()) {
                     CustomArmourCraftingBookCategory.ARMOUR_HEAD -> ARMOUR_CRAFTING_HELMET.get()
                     CustomArmourCraftingBookCategory.ARMOUR_CHEST ->
                         ARMOUR_CRAFTING_CHESTPLATE.get()
@@ -236,7 +236,7 @@ object RecipeCategoriesInit {
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.TOOL_CRAFTING.get()) {
             if (it.value() is CustomToolCraftingTableRecipe) {
-                when ((it.value() as CustomToolCraftingTableRecipe).category()) {
+                when ((it.value() as CustomToolCraftingTableRecipe).getCategory()) {
                     CustomToolsCraftingBookCategory.SWORD -> TOOL_CRAFTING_SWORD.get()
                     CustomToolsCraftingBookCategory.PICKAXE -> TOOL_CRAFTING_PICKAXE.get()
                     CustomToolsCraftingBookCategory.AXE -> TOOL_CRAFTING_AXE.get()

@@ -113,7 +113,7 @@ tasks.withType(ProcessResources::class.java) {
             "minecraft_version_range" to "[1.20.4,1.21)",
             "neo_version" to properties["neoForgeVersion"],
             "neo_version_range" to "[20.4)",
-            "loader_version_range" to "[2,)",
+            "loader_version_range" to "[4.7,)",
             "mod_id" to modId,
             "mod_license" to "Apache-2.0",
             "mod_version" to project.version,

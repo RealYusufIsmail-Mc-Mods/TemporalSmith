@@ -45,10 +45,6 @@ data class CustomCraftingTableRecipePattern(
     val ingredients: NonNullList<Ingredient>,
     val data: Optional<Data>
 ) {
-    fun setCraftingSize(width: Int, height: Int) {
-        if (maxWidth < width) maxWidth = width
-        if (maxHeight < height) maxHeight = height
-    }
 
     fun matches(container: CustomCraftingTableContainer): Boolean {
         for (i in 0 until container.width - width + 1) {

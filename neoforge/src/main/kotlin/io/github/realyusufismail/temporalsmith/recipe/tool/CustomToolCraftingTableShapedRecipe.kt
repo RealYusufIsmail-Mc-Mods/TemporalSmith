@@ -45,6 +45,10 @@ class CustomToolCraftingTableShapedRecipe(
         gr, category, recipePattern, result, showN, enchantmentsAndLevels, hideFlags),
     CustomToolCraftingTableRecipe {
 
+    override fun getCategory(): CustomToolsCraftingBookCategory {
+        return category
+    }
+
     override fun getToastSymbol(): ItemStack {
         return ItemStack(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
     }

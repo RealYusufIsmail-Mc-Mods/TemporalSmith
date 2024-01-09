@@ -33,3 +33,4 @@
         <appender-ref ref="LOGFILE"/>
         <appender-ref ref="METRICS"/>
     </root>
+</configuration>

@@ -19,6 +19,7 @@
 package io.github.realyusufismail.temporalsmith.recipe.tool
 
 import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTableContainer
+import io.github.realyusufismail.temporalsmith.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.temporalsmith.core.init.RecipeTypeInit
 import net.minecraft.core.NonNullList
 import net.minecraft.world.item.ItemStack
@@ -30,6 +31,8 @@ interface CustomToolCraftingTableRecipe : Recipe<CustomToolCraftingTableContaine
     override fun getType(): RecipeType<*> {
         return RecipeTypeInit.TOOL_CRAFTING.get()
     }
+
+    fun getCategory(): CustomToolsCraftingBookCategory
 
     override fun getIngredients(): NonNullList<Ingredient>
 

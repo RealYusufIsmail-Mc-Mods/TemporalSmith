@@ -19,20 +19,16 @@
 package io.github.realyusufismail.temporalsmith.recipe.ingot.builder
 
 import com.google.common.collect.Maps
-import com.google.gson.JsonObject
 import io.github.realyusufismail.temporalsmith.blocks.infusion.book.IngotFusionTollEnhancerRecipeBookCategory
-import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
+import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
 import java.util.*
 import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger
-import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.crafting.RecipeSerializer
 
 class IngotFusionTollEnhancerRecipeBuilder(
     private val recipeCategory: IngotFusionTollEnhancerRecipeBookCategory,
@@ -63,15 +59,15 @@ class IngotFusionTollEnhancerRecipeBuilder(
                         .rewards(AdvancementRewards.Builder.recipe(rl))
                         .requirements(AdvancementRequirements.Strategy.OR)
 
+                val recipe =
+                    IngotFusionTollEnhancerRecipe(
+                        recipeCategory, ingredient1, ingredient2, ingredient3, result)
+
                 recipeOutput.accept(
-                    Result(
-                        recipeCategory,
-                        ingredient1,
-                        ingredient2,
-                        ingredient3,
-                        result,
-                        advancementBuilder.build(
-                            rl.withPrefix("recipes/" + this.recipeCategory.serializedName + "/"))))
+                    rl,
+                    recipe,
+                    advancementBuilder.build(
+                        rl.withPrefix("recipes/" + this.recipeCategory.serializedName + "/")))
             }
         } catch (e: IllegalStateException) {
             throw IllegalStateException("Could not create recipe: $rl", e)
@@ -80,57 +76,6 @@ class IngotFusionTollEnhancerRecipeBuilder(
 
     private fun ensureValid(rl: ResourceLocation) {
         check(criteria.isNotEmpty()) { "Can not obtain recipe: $rl" }
-    }
-
-    /**
-     * Protip: The error has a string, seaching for that string will give more context
-     *
-     * @param input1 The first input item
-     * @param input2 The second input item
-     * @param input3 The third input item
-     * @param output The output item
-     * @param category The recipe category
-     * @param advancementId The advancement id
-     * @param id The recipe id
-     */
-    @JvmRecord
-    private data class Result(
-        val recipeCategory: IngotFusionTollEnhancerRecipeBookCategory,
-        val ingredient1: Ingredient,
-        val ingredient2: Ingredient,
-        val ingredient3: Ingredient,
-        val result: ItemStack,
-        val advancementHolder: AdvancementHolder
-    ) : FinishedRecipe {
-        override fun serializeRecipeData(json: JsonObject) {
-            json.addProperty("category", recipeCategory.serializedName)
-            json.add("result", serializeResult(result))
-            json.add("ingredient1", ingredient1.toJson(false))
-            json.add("ingredient2", ingredient2.toJson(false))
-            json.add("ingredient3", ingredient3.toJson(false))
-        }
-
-        override fun id(): ResourceLocation {
-            return advancementHolder.id
-        }
-
-        private fun serializeResult(stack: ItemStack): JsonObject {
-            val json = JsonObject()
-            json.addProperty("item", BuiltInRegistries.ITEM.getKey(stack.item).toString())
-            json.addProperty("count", stack.count)
-            if (stack.hasTag()) {
-                json.addProperty("nbt", stack.tag.toString())
-            }
-            return json
-        }
-
-        override fun type(): RecipeSerializer<*> {
-            return RecipeSerializerInit.INGOT_FUSION_TOLL_ENHANCER_RECIPE.get()
-        }
-
-        override fun advancement(): AdvancementHolder {
-            return advancementHolder
-        }
     }
 
     companion object {
