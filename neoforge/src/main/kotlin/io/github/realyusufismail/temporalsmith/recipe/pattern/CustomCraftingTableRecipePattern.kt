@@ -52,10 +52,10 @@ data class CustomCraftingTableRecipePattern(
         if (maxHeight < height) maxHeight = height
     }
 
-    fun matchesArmour(container: CustomArmourCraftingTableContainer): Boolean {
+    fun matches(container: CustomCraftingTableContainer): Boolean {
         for (i in 0 until container.width - width + 1) {
             for (j in 0 until container.height - height + 1) {
-                if (matchesArmour(container, i, j, true) || matchesArmour(container, i, j, false)) {
+                if (matches(container, i, j, true) || matches(container, i, j, false)) {
                     return true
                 }
             }
@@ -63,18 +63,7 @@ data class CustomCraftingTableRecipePattern(
         return false
     }
 
-    fun matchesTool(container: CustomToolCraftingTableContainer): Boolean {
-        for (i in 0 until container.width - width + 1) {
-            for (j in 0 until container.height - height + 1) {
-                if (matchesTool(container, i, j, true) || matchesTool(container, i, j, false)) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
-    fun <T : CustomCraftingTableContainer> matches(
+    private fun <T : CustomCraftingTableContainer> matches(
         container: T,
         offsetX: Int,
         offsetY: Int,
@@ -101,24 +90,6 @@ data class CustomCraftingTableRecipePattern(
             }
         }
         return true
-    }
-
-    private fun matchesArmour(
-        container: CustomArmourCraftingTableContainer,
-        offsetX: Int,
-        offsetY: Int,
-        reverse: Boolean
-    ): Boolean {
-        return matches(container, offsetX, offsetY, reverse)
-    }
-
-    private fun matchesTool(
-        container: CustomToolCraftingTableContainer,
-        offsetX: Int,
-        offsetY: Int,
-        reverse: Boolean
-    ): Boolean {
-        return matches(container, offsetX, offsetY, reverse)
     }
 
     fun toNetwork(buffer: FriendlyByteBuf) {

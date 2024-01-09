@@ -165,10 +165,13 @@ object CustomArmourCraftingTableRecipeBuilder {
                 ItemStack(result ?: throw IllegalStateException("Result is not set"), count ?: 1),
                 showNotification,
                 enchantmentsAndLevels,
-                hideFlags
-            )
+                hideFlags)
 
-        recipeOutput.accept(resourceLocation, customArmourCraftingTableShapedRecipe, advancementBuilder.build(resourceLocation.withPrefix("recipes/" + this.recipeCategory!!.folderName + "/")));
+        recipeOutput.accept(
+            resourceLocation,
+            customArmourCraftingTableShapedRecipe,
+            advancementBuilder.build(
+                resourceLocation.withPrefix("recipes/" + this.recipeCategory!!.folderName + "/")))
 
         clear()
     }

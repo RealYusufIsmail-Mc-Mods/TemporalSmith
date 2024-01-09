@@ -41,24 +41,24 @@ class FurnaceRecipeProvider(
     private fun addRawOreRecipes() {
         ItemInit.SMELT_ABLE_ITEM.forEach { (i, io) ->
             SimpleCookingRecipeBuilder.smelting(
-                   Ingredient.of(i.get()),  RecipeCategory.MISC, io.get(), 0.6f, 300)
+                    Ingredient.of(i.get()), RecipeCategory.MISC, io.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(i.get()))
                 .save(consumer, modId("smelting_" + i.get().name))
 
             SimpleCookingRecipeBuilder.blasting(
-                Ingredient.of(i.get()), RecipeCategory.MISC, io.get(), 0.6f, 300)
+                    Ingredient.of(i.get()), RecipeCategory.MISC, io.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(i.get()))
                 .save(consumer, modId("blasting_" + i.get().name))
         }
 
         BlockInit.SMELT_ABLE_BLOCKS.forEach { (b, i) ->
             SimpleCookingRecipeBuilder.smelting(
-                    Ingredient.of(b.get()),  RecipeCategory.MISC, i.get(), 0.6f, 300)
+                    Ingredient.of(b.get()), RecipeCategory.MISC, i.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(b.get()))
                 .save(consumer, modId("smelting_" + b.get().bName))
 
             SimpleCookingRecipeBuilder.blasting(
-                     Ingredient.of(b.get()), RecipeCategory.MISC, i.get(), 0.6f, 300)
+                    Ingredient.of(b.get()), RecipeCategory.MISC, i.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(b.get()))
                 .save(consumer, modId("blasting_" + b.get().bName))
         }

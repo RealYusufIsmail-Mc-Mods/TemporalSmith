@@ -52,7 +52,6 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
     private var enchantmentsAndLevels: EnchantmentsAndLevels = EnchantmentsAndLevels()
     private var hideFlags: Int = 0
 
-
     fun shaped(
         bookCategory: CustomToolsCraftingBookCategory,
         recipeCategory: RecipeCategory,
@@ -158,25 +157,23 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
                 group ?: "",
                 bookCategory ?: throw IllegalStateException("Recipe category is not set"),
                 recipePattern,
-                ItemStack(
-                    result ?: throw IllegalStateException("Result is not set"), count
-                        ?: 1),
+                ItemStack(result ?: throw IllegalStateException("Result is not set"), count ?: 1),
                 showNotification,
                 enchantmentsAndLevels,
-                hideFlags
-            )
+                hideFlags)
 
-        recipeOutput.accept(resourceLocation, customToolCraftingTableShapedRecipe, advancementBuilder.build(resourceLocation.withPrefix("recipes/" + this.recipeCategory!!.folderName + "/")));
+        recipeOutput.accept(
+            resourceLocation,
+            customToolCraftingTableShapedRecipe,
+            advancementBuilder.build(
+                resourceLocation.withPrefix("recipes/" + this.recipeCategory!!.folderName + "/")))
 
         clear()
     }
 
     private fun ensureValid(p_126144_: ResourceLocation): CustomCraftingTableRecipePattern {
         check(criteria.isNotEmpty()) { "No way of obtaining recipe $p_126144_" }
-        return CustomCraftingTableRecipePattern.of(
-            key,
-            rows
-        )
+        return CustomCraftingTableRecipePattern.of(key, rows)
     }
 
     private fun clear() {
@@ -188,5 +185,4 @@ object CustomToolCraftingTableRecipeBuilder : RecipeBuilder {
         count = null
         result = null
     }
-
 }

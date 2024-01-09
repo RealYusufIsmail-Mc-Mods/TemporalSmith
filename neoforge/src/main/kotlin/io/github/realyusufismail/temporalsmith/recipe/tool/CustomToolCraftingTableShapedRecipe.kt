@@ -18,7 +18,6 @@
  */ 
 package io.github.realyusufismail.temporalsmith.recipe.tool
 
-import com.google.common.annotations.VisibleForTesting
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import io.github.realyusufismail.realyusufismailcore.recipe.util.EnchantmentsAndLevels
@@ -26,64 +25,25 @@ import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTab
 import io.github.realyusufismail.temporalsmith.blocks.tool.book.CustomToolsCraftingBookCategory
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
+import io.github.realyusufismail.temporalsmith.recipe.common.CustomCraftingTableShapedRecipe
 import io.github.realyusufismail.temporalsmith.recipe.pattern.CustomCraftingTableRecipePattern
-import net.minecraft.core.NonNullList
-import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.util.ExtraCodecs
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.RecipeSerializer
-import net.minecraft.world.level.Level
-import net.neoforged.neoforge.common.CommonHooks
-import net.neoforged.neoforge.common.crafting.IShapedRecipe
 
 class CustomToolCraftingTableShapedRecipe(
-    val gr: String,
-    val recipeCategory: CustomToolsCraftingBookCategory,
-    val recipePattern: CustomCraftingTableRecipePattern,
-    override val result: ItemStack,
-    val showN: Boolean,
-    val enchantmentsAndLevels: EnchantmentsAndLevels,
-    val hideFlags: Int,
-) : CustomToolCraftingTableRecipe, IShapedRecipe<CustomToolCraftingTableContainer> {
-
-    override fun matches(p_44176_: CustomToolCraftingTableContainer, p_44177_: Level): Boolean {
-        return this.recipePattern.matchesTool(p_44176_)
-    }
-
-    override fun assemble(
-        p_44001_: CustomToolCraftingTableContainer,
-        p_267165_: RegistryAccess
-    ): ItemStack {
-        return this.result.copy()
-    }
-
-    override fun canCraftInDimensions(pWidth: Int, pHeight: Int): Boolean {
-        return true
-    }
-
-    /**
-     * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your
-     * recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then
-     * return an empty stack.
-     */
-    override fun getResultItem(p_267052_: RegistryAccess): ItemStack {
-        return this.result
-    }
-
-    /** Recipes with equal group are combined into one button in the recipe book */
-    override fun getGroup(): String {
-        return this.group
-    }
-
-    override fun getIngredients(): NonNullList<Ingredient> {
-        return this.recipePattern.ingredients
-    }
-
-    override fun category(): CustomToolsCraftingBookCategory {
-        return recipeCategory
-    }
+    gr: String,
+    override val category: CustomToolsCraftingBookCategory,
+    recipePattern: CustomCraftingTableRecipePattern,
+    result: ItemStack,
+    showN: Boolean,
+    enchantmentsAndLevels: EnchantmentsAndLevels,
+    hideFlags: Int,
+) :
+    CustomCraftingTableShapedRecipe<CustomToolCraftingTableContainer>(
+        gr, category, recipePattern, result, showN, enchantmentsAndLevels, hideFlags),
+    CustomToolCraftingTableRecipe {
 
     override fun getToastSymbol(): ItemStack {
         return ItemStack(BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
@@ -93,60 +53,35 @@ class CustomToolCraftingTableShapedRecipe(
         return RecipeSerializerInit.CUSTOM_TOOL_CRAFTER.get()
     }
 
-    override fun showNotification(): Boolean {
-        return showN
-    }
-
-    override fun isIncomplete(): Boolean {
-        val nonnulllist: NonNullList<Ingredient> = this.ingredients
-        return nonnulllist.isEmpty() ||
-            nonnulllist
-                .stream()
-                .filter { ingredient: Ingredient -> !ingredient.isEmpty }
-                .anyMatch { ingredient: Ingredient? -> CommonHooks.hasNoElements(ingredient) }
-    }
-
-    override fun getRecipeWidth(): Int {
-        return this.recipePattern.width
-    }
-
-    override fun getRecipeHeight(): Int {
-        return this.recipePattern.height
-    }
-
-    companion object {
-        @JvmField var MAX_WIDTH = 3
-
-        @JvmField var MAX_HEIGHT = 3
-    }
-
-    class Serializer : RecipeSerializer<CustomToolCraftingTableShapedRecipe> {
+    class Serializer :
+        CustomCraftingTableShapedRecipeSerializer<CustomToolCraftingTableShapedRecipe>() {
         companion object {
             val CODEC: Codec<CustomToolCraftingTableShapedRecipe> =
                 RecordCodecBuilder.create { instance ->
-                    instance
-                        .group(
-                            ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
-                                .forGetter(CustomToolCraftingTableShapedRecipe::getGroup),
-                            CustomToolsCraftingBookCategory.CODEC.fieldOf("category")
-                                .orElse(CustomToolsCraftingBookCategory.MISC)
-                                .forGetter(CustomToolCraftingTableShapedRecipe::category),
-                            CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
-                                CustomToolCraftingTableShapedRecipe::recipePattern),
-                            ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
-                                .forGetter(CustomToolCraftingTableShapedRecipe::result),
-                            ExtraCodecs.strictOptionalField(
-                                Codec.BOOL, "show_notification", true)
-                                .forGetter(
-                                    CustomToolCraftingTableShapedRecipe::showNotification),
-                            EnchantmentsAndLevels.getCodec().fieldOf("enchantments")
-                                .forGetter(CustomToolCraftingTableShapedRecipe::enchantmentsAndLevels),
-                            Codec.INT.fieldOf("hide_flags").orElse(0)
-                                .forGetter(CustomToolCraftingTableShapedRecipe::hideFlags)
-                        )
-                        .apply(instance, ::CustomToolCraftingTableShapedRecipe
-                        )
-                }
+                        instance
+                            .group(
+                                ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
+                                    .forGetter(CustomToolCraftingTableShapedRecipe::getGroup),
+                                CustomToolsCraftingBookCategory.CODEC.fieldOf("category")
+                                    .orElse(CustomToolsCraftingBookCategory.MISC)
+                                    .forGetter(CustomToolCraftingTableShapedRecipe::category),
+                                CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
+                                    CustomToolCraftingTableShapedRecipe::recipePattern),
+                                ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
+                                    .forGetter(CustomToolCraftingTableShapedRecipe::result),
+                                ExtraCodecs.strictOptionalField(
+                                        Codec.BOOL, "show_notification", true)
+                                    .forGetter(
+                                        CustomToolCraftingTableShapedRecipe::showNotification),
+                                EnchantmentsAndLevels.getCodec()
+                                    .fieldOf("enchantments")
+                                    .forGetter(
+                                        CustomToolCraftingTableShapedRecipe::enchantmentsAndLevels),
+                                Codec.INT.fieldOf("hide_flags")
+                                    .orElse(0)
+                                    .forGetter(CustomToolCraftingTableShapedRecipe::hideFlags))
+                            .apply(instance, ::CustomToolCraftingTableShapedRecipe)
+                    }
                     .apply { stable() }
         }
 
@@ -154,38 +89,24 @@ class CustomToolCraftingTableShapedRecipe(
             return CODEC
         }
 
-        override fun toNetwork(
-            pBuffer: FriendlyByteBuf,
-            pRecipe: CustomToolCraftingTableShapedRecipe,
-        ) {
-            pBuffer.writeVarInt(pRecipe.recipeWidth)
-            pBuffer.writeVarInt(pRecipe.recipeHeight)
-            pBuffer.writeUtf(pRecipe.gr)
-            pRecipe.recipePattern.toNetwork(pBuffer)
-            pRecipe.enchantmentsAndLevels.toNetwork(pBuffer)
-            pBuffer.writeItem(pRecipe.result)
-            pBuffer.writeBoolean(pRecipe.showN)
-        }
-
-        override fun fromNetwork(buffer: FriendlyByteBuf): CustomToolCraftingTableShapedRecipe {
-            val s = buffer.readUtf()
-            val craftingbookcategory =
-                buffer.readEnum(CustomToolsCraftingBookCategory::class.java)
-            val shapedrecipepattern = CustomCraftingTableRecipePattern.fromNetwork(buffer)
-            val itemstack = buffer.readItem()
-            val flag = buffer.readBoolean()
-            val enchantmentsAndLevels = buffer.readJsonWithCodec(EnchantmentsAndLevels.getCodec())
-            val hideFlags = buffer.readInt()
-
+        override fun createRecipe(
+            gr: String,
+            recipePattern: CustomCraftingTableRecipePattern,
+            result: ItemStack,
+            showN: Boolean,
+            enchantmentsAndLevels: EnchantmentsAndLevels,
+            hideFlags: Int,
+            buffer: FriendlyByteBuf
+        ): CustomToolCraftingTableShapedRecipe {
+            val craftingBookCategory = buffer.readEnum(CustomToolsCraftingBookCategory::class.java)
             return CustomToolCraftingTableShapedRecipe(
-                s,
-                craftingbookcategory,
-                shapedrecipepattern,
-                itemstack,
-                flag,
+                gr,
+                craftingBookCategory,
+                recipePattern,
+                result,
+                showN,
                 enchantmentsAndLevels,
-                hideFlags
-            )
+                hideFlags)
         }
     }
 }
