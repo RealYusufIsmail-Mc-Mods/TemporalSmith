@@ -90,9 +90,9 @@ abstract class CustomCraftingTableShapedRecipe<T : CustomCraftingTableContainer>
     }
 
     override fun isIncomplete(): Boolean {
-        val nonnulllist: NonNullList<Ingredient> = this.ingredients
-        return nonnulllist.isEmpty() ||
-            nonnulllist
+        val nonNullList: NonNullList<Ingredient> = this.ingredients
+        return nonNullList.isEmpty() ||
+            nonNullList
                 .stream()
                 .filter { ingredient: Ingredient -> !ingredient.isEmpty }
                 .anyMatch { ingredient: Ingredient? -> CommonHooks.hasNoElements(ingredient) }
@@ -105,12 +105,6 @@ abstract class CustomCraftingTableShapedRecipe<T : CustomCraftingTableContainer>
     abstract override fun getSerializer(): RecipeSerializer<*>
 
     abstract override fun getToastSymbol(): ItemStack
-
-    companion object {
-        @JvmField var MAX_WIDTH = 3
-
-        @JvmField var MAX_HEIGHT = 3
-    }
 
     abstract class CustomCraftingTableShapedRecipeSerializer<
         T : CustomCraftingTableShapedRecipe<*>> : RecipeSerializer<T> {

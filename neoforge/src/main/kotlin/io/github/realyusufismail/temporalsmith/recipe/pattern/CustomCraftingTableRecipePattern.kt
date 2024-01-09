@@ -23,9 +23,7 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.DataResult
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import io.github.realyusufismail.temporalsmith.blocks.armour.CustomArmourCraftingTableContainer
 import io.github.realyusufismail.temporalsmith.blocks.common.CustomCraftingTableContainer
-import io.github.realyusufismail.temporalsmith.blocks.tool.CustomToolCraftingTableContainer
 import it.unimi.dsi.fastutil.chars.CharArraySet
 import it.unimi.dsi.fastutil.chars.CharSet
 import java.util.*
