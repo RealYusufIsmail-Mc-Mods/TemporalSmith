@@ -27,9 +27,6 @@ import io.github.realyusufismail.temporalsmith.blocks.tool.book.CustomToolsCraft
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit
 import io.github.realyusufismail.temporalsmith.recipe.pattern.CustomCraftingTableRecipePattern
-import io.github.realyusufismail.temporalsmith.recipe.tool.builder.CustomToolCraftingTableRecipeBuilder
-import kotlin.math.max
-import kotlin.math.min
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.network.FriendlyByteBuf
@@ -47,8 +44,8 @@ class CustomToolCraftingTableShapedRecipe(
     val recipePattern: CustomCraftingTableRecipePattern,
     override val result: ItemStack,
     val showN: Boolean,
-    enchantmentsAndLevels: EnchantmentsAndLevels,
-    hideFlags: Int,
+    val enchantmentsAndLevels: EnchantmentsAndLevels,
+    val hideFlags: Int,
 ) : CustomToolCraftingTableRecipe, IShapedRecipe<CustomToolCraftingTableContainer> {
 
     override fun matches(p_44176_: CustomToolCraftingTableContainer, p_44177_: Level): Boolean {
@@ -121,54 +118,6 @@ class CustomToolCraftingTableShapedRecipe(
         @JvmField var MAX_WIDTH = 3
 
         @JvmField var MAX_HEIGHT = 3
-
-        @VisibleForTesting
-        @JvmStatic
-        fun shrink(p_301102_: List<String>): Array<String?> {
-            var i = Int.MAX_VALUE
-            var j = 0
-            var k = 0
-            var l = 0
-            for (i1 in p_301102_.indices) {
-                val s = p_301102_[i1]
-                i = min(i.toDouble(), firstNonSpace(s).toDouble()).toInt()
-                val j1 = lastNonSpace(s)
-                j = max(j.toDouble(), j1.toDouble()).toInt()
-                if (j1 < 0) {
-                    if (k == i1) {
-                        ++k
-                    }
-                    ++l
-                } else {
-                    l = 0
-                }
-            }
-            return if (p_301102_.size == l) {
-                arrayOfNulls(0)
-            } else {
-                val astring = arrayOfNulls<String>(p_301102_.size - l - k)
-                for (k1 in astring.indices) {
-                    astring[k1] = p_301102_[k1 + k].substring(i, j + 1)
-                }
-                astring
-            }
-        }
-
-        private fun firstNonSpace(pEntry: String): Int {
-            var i = 0
-            while (i < pEntry.length && pEntry[i] == ' ') {
-                ++i
-            }
-            return i
-        }
-
-        private fun lastNonSpace(pEntry: String): Int {
-            var i: Int = pEntry.length - 1
-            while (i >= 0 && pEntry[i] == ' ') {
-                --i
-            }
-            return i
-        }
     }
 
     class Serializer : RecipeSerializer<CustomToolCraftingTableShapedRecipe> {
@@ -190,6 +139,10 @@ class CustomToolCraftingTableShapedRecipe(
                                 Codec.BOOL, "show_notification", true)
                                 .forGetter(
                                     CustomToolCraftingTableShapedRecipe::showNotification),
+                            EnchantmentsAndLevels.getCodec().fieldOf("enchantments")
+                                .forGetter(CustomToolCraftingTableShapedRecipe::enchantmentsAndLevels),
+                            Codec.INT.fieldOf("hide_flags").orElse(0)
+                                .forGetter(CustomToolCraftingTableShapedRecipe::hideFlags)
                         )
                         .apply(instance, ::CustomToolCraftingTableShapedRecipe
                         )
@@ -209,26 +162,29 @@ class CustomToolCraftingTableShapedRecipe(
             pBuffer.writeVarInt(pRecipe.recipeHeight)
             pBuffer.writeUtf(pRecipe.gr)
             pRecipe.recipePattern.toNetwork(pBuffer)
-
+            pRecipe.enchantmentsAndLevels.toNetwork(pBuffer)
             pBuffer.writeItem(pRecipe.result)
             pBuffer.writeBoolean(pRecipe.showN)
         }
 
-        override fun fromNetwork(p_44240_: FriendlyByteBuf): CustomToolCraftingTableShapedRecipe {
-            val s = p_44240_.readUtf()
+        override fun fromNetwork(buffer: FriendlyByteBuf): CustomToolCraftingTableShapedRecipe {
+            val s = buffer.readUtf()
             val craftingbookcategory =
-                p_44240_.readEnum(CustomToolsCraftingBookCategory::class.java)
-            val shapedrecipepattern = CustomCraftingTableRecipePattern.fromNetwork(p_44240_)
-            val itemstack = p_44240_.readItem()
-            val flag = p_44240_.readBoolean()
+                buffer.readEnum(CustomToolsCraftingBookCategory::class.java)
+            val shapedrecipepattern = CustomCraftingTableRecipePattern.fromNetwork(buffer)
+            val itemstack = buffer.readItem()
+            val flag = buffer.readBoolean()
+            val enchantmentsAndLevels = buffer.readJsonWithCodec(EnchantmentsAndLevels.getCodec())
+            val hideFlags = buffer.readInt()
+
             return CustomToolCraftingTableShapedRecipe(
                 s,
                 craftingbookcategory,
                 shapedrecipepattern,
                 itemstack,
                 flag,
-                CustomToolCraftingTableRecipeBuilder.enchantmentsAndLevels,
-                CustomToolCraftingTableRecipeBuilder.hideFlags
+                enchantmentsAndLevels,
+                hideFlags
             )
         }
     }

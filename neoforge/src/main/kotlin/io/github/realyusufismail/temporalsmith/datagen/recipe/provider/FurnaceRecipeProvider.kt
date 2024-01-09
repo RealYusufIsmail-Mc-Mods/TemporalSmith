@@ -18,7 +18,6 @@
  */ 
 package io.github.realyusufismail.temporalsmith.datagen.recipe.provider
 
-import io.github.realyusufismail.realyusufismailcore.recipe.YusufSimpleCookingRecipeBuilder
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.ItemInit
 import io.github.realyusufismail.temporalsmith.core.util.bName
@@ -26,6 +25,7 @@ import io.github.realyusufismail.temporalsmith.core.util.name
 import io.github.realyusufismail.temporalsmith.datagen.recipe.MainModRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder
 import net.minecraft.world.item.crafting.Ingredient
 
 class FurnaceRecipeProvider(
@@ -40,25 +40,25 @@ class FurnaceRecipeProvider(
 
     private fun addRawOreRecipes() {
         ItemInit.SMELT_ABLE_ITEM.forEach { (i, io) ->
-            YusufSimpleCookingRecipeBuilder.smelting(
-                    RecipeCategory.MISC, Ingredient.of(i.get()), io.get(), 0.6f, 300)
+            SimpleCookingRecipeBuilder.smelting(
+                   Ingredient.of(i.get()),  RecipeCategory.MISC, io.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(i.get()))
                 .save(consumer, modId("smelting_" + i.get().name))
 
-            YusufSimpleCookingRecipeBuilder.blasting(
-                    RecipeCategory.MISC, Ingredient.of(i.get()), io.get(), 0.6f, 300)
+            SimpleCookingRecipeBuilder.blasting(
+                Ingredient.of(i.get()), RecipeCategory.MISC, io.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(i.get()))
                 .save(consumer, modId("blasting_" + i.get().name))
         }
 
         BlockInit.SMELT_ABLE_BLOCKS.forEach { (b, i) ->
-            YusufSimpleCookingRecipeBuilder.smelting(
-                    RecipeCategory.MISC, Ingredient.of(b.get()), i.get(), 0.6f, 300)
+            SimpleCookingRecipeBuilder.smelting(
+                    Ingredient.of(b.get()),  RecipeCategory.MISC, i.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(b.get()))
                 .save(consumer, modId("smelting_" + b.get().bName))
 
-            YusufSimpleCookingRecipeBuilder.blasting(
-                    RecipeCategory.MISC, Ingredient.of(b.get()), i.get(), 0.6f, 300)
+            SimpleCookingRecipeBuilder.blasting(
+                     Ingredient.of(b.get()), RecipeCategory.MISC, i.get(), 0.6f, 300)
                 .unlockedBy(hasItem, has(b.get()))
                 .save(consumer, modId("blasting_" + b.get().bName))
         }
