@@ -37,7 +37,6 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -72,6 +71,7 @@ public class IngotFusionTollEnhancerMenu extends RecipeBookMenu<Container> {
     addPlayerHotbar(pInventory);
 
     blockEntity
+            //TODO: port 
         .getCapability(Capabilities.ITEM_HANDLER)
         .ifPresent(
             it -> {
