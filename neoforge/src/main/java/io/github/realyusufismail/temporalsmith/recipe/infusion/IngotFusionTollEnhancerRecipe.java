@@ -35,20 +35,16 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
-public record IngotFusionTollEnhancerRecipe(
-    @NotNull IngotFusionTollEnhancerRecipeBookCategory category,
-    Ingredient ingredient1,
-    Ingredient ingredient2,
-    Ingredient ingredient3,
-    @NotNull ItemStack result)
-    implements Recipe<Container> {
+public record IngotFusionTollEnhancerRecipe(@NotNull IngotFusionTollEnhancerRecipeBookCategory category,
+                                            Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3,
+                                            @NotNull ItemStack result) implements Recipe<Container> {
 
   public IngotFusionTollEnhancerRecipe(
-      IngotFusionTollEnhancerRecipeBookCategory category,
-      Ingredient ingredient1,
-      Ingredient ingredient2,
-      Ingredient ingredient3,
-      ItemStack result) {
+          IngotFusionTollEnhancerRecipeBookCategory category,
+          Ingredient ingredient1,
+          Ingredient ingredient2,
+          Ingredient ingredient3,
+          ItemStack result) {
     this.ingredient1 = ingredient1;
     this.ingredient2 = ingredient2;
     this.ingredient3 = ingredient3;
@@ -59,8 +55,8 @@ public record IngotFusionTollEnhancerRecipe(
   @Override
   public boolean matches(Container pContainer, Level pLevel) {
     return this.ingredient1.test(pContainer.getItem(0))
-        && this.ingredient2.test(pContainer.getItem(1))
-        && this.ingredient3.test(pContainer.getItem(2));
+            && this.ingredient2.test(pContainer.getItem(1))
+            && this.ingredient3.test(pContainer.getItem(2));
   }
 
   @Override
@@ -91,51 +87,51 @@ public record IngotFusionTollEnhancerRecipe(
   public boolean isIngredient(ItemStack ingredient) {
     return Arrays.stream(this.ingredient1.getItems())
             .anyMatch(
-                itemStack -> {
-                  return ItemStack.isSameItem(ingredient, itemStack);
-                })
-        || Arrays.stream(this.ingredient2.getItems())
+                    itemStack -> {
+                      return ItemStack.isSameItem(ingredient, itemStack);
+                    })
+            || Arrays.stream(this.ingredient2.getItems())
             .anyMatch(
-                itemStack -> {
-                  return ItemStack.isSameItem(ingredient, itemStack);
-                })
-        || Arrays.stream(this.ingredient3.getItems())
+                    itemStack -> {
+                      return ItemStack.isSameItem(ingredient, itemStack);
+                    })
+            || Arrays.stream(this.ingredient3.getItems())
             .anyMatch(
-                itemStack -> {
-                  return ItemStack.isSameItem(ingredient, itemStack);
-                });
+                    itemStack -> {
+                      return ItemStack.isSameItem(ingredient, itemStack);
+                    });
   }
 
   public ItemStack getResult(ItemStack ingredient1, ItemStack ingredient2, ItemStack ingredient3) {
     return isIngredient(ingredient1) && isIngredient(ingredient2) && isIngredient(ingredient3)
-        ? this.result
-        : ItemStack.EMPTY;
+            ? this.result
+            : ItemStack.EMPTY;
   }
 
   public static class Serializer implements RecipeSerializer<IngotFusionTollEnhancerRecipe> {
 
     private static final Codec<IngotFusionTollEnhancerRecipe> CODEC =
-        RecordCodecBuilder.create(
-            (p_44108_) ->
-                p_44108_
-                    .group(
-                        IngotFusionTollEnhancerRecipeBookCategory.CODEC
-                            .fieldOf("category")
-                            .orElse(IngotFusionTollEnhancerRecipeBookCategory.MISC)
-                            .forGetter(p_301108_ -> p_301108_.category),
-                        Ingredient.CODEC
-                            .fieldOf("ingredient1")
-                            .forGetter((p_44105_) -> p_44105_.ingredient1),
-                        Ingredient.CODEC
-                            .fieldOf("ingredient2")
-                            .forGetter((p_44104_) -> p_44104_.ingredient2),
-                        Ingredient.CODEC
-                            .fieldOf("ingredient3")
-                            .forGetter((p_44106_) -> p_44106_.ingredient3),
-                        ItemStack.ITEM_WITH_COUNT_CODEC
-                            .fieldOf("result")
-                            .forGetter((p_44103_) -> p_44103_.result))
-                    .apply(p_44108_, IngotFusionTollEnhancerRecipe::new));
+            RecordCodecBuilder.create(
+                    (p_44108_) ->
+                            p_44108_
+                                    .group(
+                                            IngotFusionTollEnhancerRecipeBookCategory.CODEC
+                                                    .fieldOf("category")
+                                                    .orElse(IngotFusionTollEnhancerRecipeBookCategory.MISC)
+                                                    .forGetter(p_301108_ -> p_301108_.category),
+                                            Ingredient.CODEC
+                                                    .fieldOf("ingredient1")
+                                                    .forGetter((p_44105_) -> p_44105_.ingredient1),
+                                            Ingredient.CODEC
+                                                    .fieldOf("ingredient2")
+                                                    .forGetter((p_44104_) -> p_44104_.ingredient2),
+                                            Ingredient.CODEC
+                                                    .fieldOf("ingredient3")
+                                                    .forGetter((p_44106_) -> p_44106_.ingredient3),
+                                            ItemStack.ITEM_WITH_COUNT_CODEC
+                                                    .fieldOf("result")
+                                                    .forGetter((p_44103_) -> p_44103_.result))
+                                    .apply(p_44108_, IngotFusionTollEnhancerRecipe::new));
 
     @Override
     public @NotNull Codec<IngotFusionTollEnhancerRecipe> codec() {
@@ -144,14 +140,14 @@ public record IngotFusionTollEnhancerRecipe(
 
     @Override
     public @NotNull IngotFusionTollEnhancerRecipe fromNetwork(
-        @NotNull FriendlyByteBuf friendlyByteBuf) {
+            @NotNull FriendlyByteBuf friendlyByteBuf) {
       val category = friendlyByteBuf.readEnum(IngotFusionTollEnhancerRecipeBookCategory.class);
       val ingredient1 = Ingredient.fromNetwork(friendlyByteBuf);
       val ingredient2 = Ingredient.fromNetwork(friendlyByteBuf);
       val ingredient3 = Ingredient.fromNetwork(friendlyByteBuf);
       val result = friendlyByteBuf.readItem();
       return new IngotFusionTollEnhancerRecipe(
-          category, ingredient1, ingredient2, ingredient3, result);
+              category, ingredient1, ingredient2, ingredient3, result);
     }
 
     @Override
