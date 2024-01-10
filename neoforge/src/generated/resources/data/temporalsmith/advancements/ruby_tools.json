@@ -63,17 +63,14 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.temporalsmith.ruby_tools.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "temporalsmith:ruby_sword",
       "nbt": "{Damage:0}"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.temporalsmith.ruby_tools.title"
     }

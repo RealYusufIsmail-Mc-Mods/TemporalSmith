@@ -63,17 +63,14 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.temporalsmith.sapphire_tools.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "temporalsmith:sapphire_sword",
       "nbt": "{Damage:0}"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.temporalsmith.sapphire_tools.title"
     }

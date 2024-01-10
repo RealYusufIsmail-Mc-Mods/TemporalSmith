@@ -1,0 +1,23 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "sword",
+  "enchantments": {},
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/ruby"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " A ",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:ruby_sword"
+  },
+  "show_notification": false
+}

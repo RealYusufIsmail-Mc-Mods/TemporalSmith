@@ -34,7 +34,6 @@ import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent
 
 object RecipeCategoriesInit {
 
-
     private val ARMOUR_CRAFTING_SEARCH: Supplier<RecipeBookCategories> =
         Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("ARMOUR_CRAFTING", ItemStack(Items.COMPASS))
@@ -175,7 +174,8 @@ object RecipeCategoriesInit {
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.ARMOUR_CRAFTING.get()) {
             if (it.value() is CustomArmourCraftingTableRecipe) {
-                when ((it.value() as CustomArmourCraftingTableRecipe).getCategory()) {
+                when ((it.value() as CustomArmourCraftingTableRecipe)
+                    .getCustomArmourCraftingBookCategory()) {
                     CustomArmourCraftingBookCategory.ARMOUR_HEAD -> ARMOUR_CRAFTING_HELMET.get()
                     CustomArmourCraftingBookCategory.ARMOUR_CHEST ->
                         ARMOUR_CRAFTING_CHESTPLATE.get()
@@ -238,7 +238,8 @@ object RecipeCategoriesInit {
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.TOOL_CRAFTING.get()) {
             if (it.value() is CustomToolCraftingTableRecipe) {
-                when ((it.value() as CustomToolCraftingTableRecipe).getCategory()) {
+                when ((it.value() as CustomToolCraftingTableRecipe)
+                    .getCustomToolsCraftingBookCategory()) {
                     CustomToolsCraftingBookCategory.SWORD -> TOOL_CRAFTING_SWORD.get()
                     CustomToolsCraftingBookCategory.PICKAXE -> TOOL_CRAFTING_PICKAXE.get()
                     CustomToolsCraftingBookCategory.AXE -> TOOL_CRAFTING_AXE.get()

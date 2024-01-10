@@ -1,0 +1,25 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "pickaxe",
+  "enchantments": {
+    "minecraft:fire_aspect": 2
+  },
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/imperium"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AAA",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:imperium_pickaxe"
+  },
+  "show_notification": false
+}

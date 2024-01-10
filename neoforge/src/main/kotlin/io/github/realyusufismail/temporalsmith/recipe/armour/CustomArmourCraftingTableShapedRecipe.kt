@@ -45,7 +45,7 @@ class CustomArmourCraftingTableShapedRecipe(
         gr, category, recipePattern, result, showN, enchantmentsAndLevels, hideFlags),
     CustomArmourCraftingTableRecipe {
 
-    override fun getCategory(): CustomArmourCraftingBookCategory {
+    override fun getCustomArmourCraftingBookCategory(): CustomArmourCraftingBookCategory {
         return category
     }
 
@@ -62,32 +62,29 @@ class CustomArmourCraftingTableShapedRecipe(
         companion object {
             val CODEC: Codec<CustomArmourCraftingTableShapedRecipe> =
                 RecordCodecBuilder.create { instance ->
-                        instance
-                            .group(
-                                ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
-                                    .forGetter(CustomArmourCraftingTableShapedRecipe::getGroup),
-                                CustomArmourCraftingBookCategory.CODEC.fieldOf("category")
-                                    .orElse(CustomArmourCraftingBookCategory.MISC)
-                                    .forGetter(CustomArmourCraftingTableShapedRecipe::category),
-                                CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
-                                    CustomArmourCraftingTableShapedRecipe::recipePattern),
-                                ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
-                                    .forGetter(CustomArmourCraftingTableShapedRecipe::result),
-                                ExtraCodecs.strictOptionalField(
-                                        Codec.BOOL, "show_notification", true)
-                                    .forGetter(
-                                        CustomArmourCraftingTableShapedRecipe::showNotification),
-                                EnchantmentsAndLevels.getCodec()
-                                    .fieldOf("enchantments")
-                                    .forGetter(
-                                        CustomArmourCraftingTableShapedRecipe::
-                                            enchantmentsAndLevels),
-                                Codec.INT.fieldOf("hide_flags")
-                                    .orElse(0)
-                                    .forGetter(CustomArmourCraftingTableShapedRecipe::hideFlags))
-                            .apply(instance, ::CustomArmourCraftingTableShapedRecipe)
-                    }
-                    .apply { stable() }
+                    instance
+                        .group(
+                            ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
+                                .forGetter(CustomArmourCraftingTableShapedRecipe::getGroup),
+                            CustomArmourCraftingBookCategory.CODEC.fieldOf("category")
+                                .orElse(CustomArmourCraftingBookCategory.MISC)
+                                .forGetter(CustomArmourCraftingTableShapedRecipe::category),
+                            CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
+                                CustomArmourCraftingTableShapedRecipe::recipePattern),
+                            ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
+                                .forGetter(CustomArmourCraftingTableShapedRecipe::result),
+                            ExtraCodecs.strictOptionalField(Codec.BOOL, "show_notification", true)
+                                .forGetter(CustomArmourCraftingTableShapedRecipe::showNotification),
+                            EnchantmentsAndLevels.getCodec()
+                                .fieldOf("enchantments")
+                                .forGetter(
+                                    CustomArmourCraftingTableShapedRecipe::enchantmentsAndLevels),
+                            Codec.INT.fieldOf("hide_flags")
+                                .orElse(0)
+                                .forGetter(CustomArmourCraftingTableShapedRecipe::hideFlags))
+                        .apply(instance, ::CustomArmourCraftingTableShapedRecipe)
+                }
+            //  .apply { stable() } DON'T USE THIS IT WILL CAUSE THE COMPILER TO CRASH
         }
 
         override fun codec(): Codec<CustomArmourCraftingTableShapedRecipe> {

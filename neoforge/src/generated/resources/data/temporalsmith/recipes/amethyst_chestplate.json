@@ -1,0 +1,20 @@
+{
+  "type": "temporalsmith:custom_armour_crafter",
+  "category": "armour_chest",
+  "enchantments": {},
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "pattern": [
+    "A A",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "item": "temporalsmith:amethyst_chestplate"
+  },
+  "show_notification": false
+}

@@ -47,8 +47,8 @@ data class CustomCraftingTableRecipePattern(
 ) {
 
     fun matches(container: CustomCraftingTableContainer): Boolean {
-        for (i in 0 until container.width - width + 1) {
-            for (j in 0 until container.height - height + 1) {
+        for (i in 0 until container.w - width + 1) {
+            for (j in 0 until container.h - height + 1) {
                 if (matches(container, i, j, true) || matches(container, i, j, false)) {
                     return true
                 }
@@ -63,8 +63,8 @@ data class CustomCraftingTableRecipePattern(
         offsetY: Int,
         reverse: Boolean
     ): Boolean {
-        for (i in 0 until container.width) {
-            for (j in 0 until container.height) {
+        for (i in 0 until container.w) {
+            for (j in 0 until container.h) {
                 val k = i - offsetX
                 val l = j - offsetY
                 val ingredient: Ingredient =
@@ -78,7 +78,7 @@ data class CustomCraftingTableRecipePattern(
                         Ingredient.EMPTY
                     }
 
-                if (!ingredient.test(container.getItem(i + j * container.width))) {
+                if (!ingredient.test(container.getItem(i + j * container.w))) {
                     return false
                 }
             }

@@ -32,7 +32,7 @@ interface CustomToolCraftingTableRecipe : Recipe<CustomToolCraftingTableContaine
         return RecipeTypeInit.TOOL_CRAFTING.get()
     }
 
-    fun getCategory(): CustomToolsCraftingBookCategory
+    fun getCustomToolsCraftingBookCategory(): CustomToolsCraftingBookCategory
 
     override fun getIngredients(): NonNullList<Ingredient>
 

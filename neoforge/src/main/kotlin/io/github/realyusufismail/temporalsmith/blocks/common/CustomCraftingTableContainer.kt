@@ -29,11 +29,10 @@ import net.minecraft.world.item.ItemStack
 
 abstract class CustomCraftingTableContainer(
     protected var menu: AbstractContainerMenu,
-    var width: Int,
-    var height: Int
+    var w: Int,
+    var h: Int
 ) : Container, StackedContentsCompatible {
-    private var items: NonNullList<ItemStack> =
-        NonNullList.withSize(width * height, ItemStack.EMPTY)
+    private var items: NonNullList<ItemStack> = NonNullList.withSize(w * h, ItemStack.EMPTY)
 
     /** Returns the number of slots in the inventory. */
     override fun getContainerSize(): Int {
@@ -95,12 +94,12 @@ abstract class CustomCraftingTableContainer(
 
     /** Returns the height of the crafting inventory. */
     fun getHeight(): Int {
-        return height
+        return h
     }
 
     /** Returns the width of the crafting inventory. */
     fun getWidth(): Int {
-        return width
+        return w
     }
 
     override fun fillStackedContents(pHelper: StackedContents) {

@@ -30,6 +30,5 @@
     "recipes": [
       "temporalsmith:ruby_helmet_smithing_trim"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

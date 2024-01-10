@@ -13,16 +13,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.temporalsmith.graphite_block.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "temporalsmith:graphite_block"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.temporalsmith.graphite_block.title"
     }

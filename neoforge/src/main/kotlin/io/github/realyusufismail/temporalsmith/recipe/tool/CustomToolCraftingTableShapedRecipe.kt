@@ -45,7 +45,7 @@ class CustomToolCraftingTableShapedRecipe(
         gr, category, recipePattern, result, showN, enchantmentsAndLevels, hideFlags),
     CustomToolCraftingTableRecipe {
 
-    override fun getCategory(): CustomToolsCraftingBookCategory {
+    override fun getCustomToolsCraftingBookCategory(): CustomToolsCraftingBookCategory {
         return category
     }
 
@@ -62,31 +62,28 @@ class CustomToolCraftingTableShapedRecipe(
         companion object {
             val CODEC: Codec<CustomToolCraftingTableShapedRecipe> =
                 RecordCodecBuilder.create { instance ->
-                        instance
-                            .group(
-                                ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
-                                    .forGetter(CustomToolCraftingTableShapedRecipe::getGroup),
-                                CustomToolsCraftingBookCategory.CODEC.fieldOf("category")
-                                    .orElse(CustomToolsCraftingBookCategory.MISC)
-                                    .forGetter(CustomToolCraftingTableShapedRecipe::category),
-                                CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
-                                    CustomToolCraftingTableShapedRecipe::recipePattern),
-                                ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
-                                    .forGetter(CustomToolCraftingTableShapedRecipe::result),
-                                ExtraCodecs.strictOptionalField(
-                                        Codec.BOOL, "show_notification", true)
-                                    .forGetter(
-                                        CustomToolCraftingTableShapedRecipe::showNotification),
-                                EnchantmentsAndLevels.getCodec()
-                                    .fieldOf("enchantments")
-                                    .forGetter(
-                                        CustomToolCraftingTableShapedRecipe::enchantmentsAndLevels),
-                                Codec.INT.fieldOf("hide_flags")
-                                    .orElse(0)
-                                    .forGetter(CustomToolCraftingTableShapedRecipe::hideFlags))
-                            .apply(instance, ::CustomToolCraftingTableShapedRecipe)
-                    }
-                    .apply { stable() }
+                    instance
+                        .group(
+                            ExtraCodecs.strictOptionalField(Codec.STRING, "group", "")
+                                .forGetter(CustomToolCraftingTableShapedRecipe::getGroup),
+                            CustomToolsCraftingBookCategory.CODEC.fieldOf("category")
+                                .orElse(CustomToolsCraftingBookCategory.MISC)
+                                .forGetter(CustomToolCraftingTableShapedRecipe::category),
+                            CustomCraftingTableRecipePattern.MAP_CODEC.forGetter(
+                                CustomToolCraftingTableShapedRecipe::recipePattern),
+                            ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result")
+                                .forGetter(CustomToolCraftingTableShapedRecipe::result),
+                            ExtraCodecs.strictOptionalField(Codec.BOOL, "show_notification", true)
+                                .forGetter(CustomToolCraftingTableShapedRecipe::showNotification),
+                            EnchantmentsAndLevels.getCodec()
+                                .fieldOf("enchantments")
+                                .forGetter(
+                                    CustomToolCraftingTableShapedRecipe::enchantmentsAndLevels),
+                            Codec.INT.fieldOf("hide_flags")
+                                .orElse(0)
+                                .forGetter(CustomToolCraftingTableShapedRecipe::hideFlags))
+                        .apply(instance, ::CustomToolCraftingTableShapedRecipe)
+                }
         }
 
         override fun codec(): Codec<CustomToolCraftingTableShapedRecipe> {

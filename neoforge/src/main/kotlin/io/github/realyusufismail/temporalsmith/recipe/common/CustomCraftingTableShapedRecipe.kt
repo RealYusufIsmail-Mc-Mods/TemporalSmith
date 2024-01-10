@@ -145,9 +145,7 @@ abstract class CustomCraftingTableShapedRecipe<T : CustomCraftingTableContainer>
     }
 
     companion object {
-        @JvmField
-        var MAX_WIDTH = 3
-        @JvmField
-        var MAX_HEIGHT = 3
+        @JvmField var MAX_WIDTH = 3
+        @JvmField var MAX_HEIGHT = 3
     }
 }

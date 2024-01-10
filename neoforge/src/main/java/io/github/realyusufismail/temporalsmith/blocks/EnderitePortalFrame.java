@@ -201,7 +201,8 @@ public class EnderitePortalFrame extends Block {
   }
 
   @Override
-  public @NotNull ItemStack getCloneItemStack(LevelReader p_304395_, BlockPos p_49824_, BlockState p_49825_) {
+  public @NotNull ItemStack getCloneItemStack(
+      LevelReader p_304395_, BlockPos p_49824_, BlockState p_49825_) {
     return ItemStack.EMPTY;
   }
 

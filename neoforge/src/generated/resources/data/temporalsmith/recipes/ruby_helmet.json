@@ -1,0 +1,19 @@
+{
+  "type": "temporalsmith:custom_armour_crafter",
+  "category": "armour_head",
+  "enchantments": {},
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/ruby"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A A"
+  ],
+  "result": {
+    "item": "temporalsmith:ruby_helmet"
+  },
+  "show_notification": false
+}

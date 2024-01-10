@@ -1,0 +1,23 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "shovel",
+  "enchantments": {},
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/sapphire"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:sapphire_shovel"
+  },
+  "show_notification": false
+}

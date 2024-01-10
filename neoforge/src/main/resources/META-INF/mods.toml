@@ -22,7 +22,7 @@ The journey awaits; delve into the time-woven secrets of TemporalSmith. (A lot o
 [[dependencies.temporalsmith]]
 modId = "neoforge"
 type="required"
-versionRange = "[20.4, 20.3)"
+versionRange = "[20.4, 20.5)"
 ordering = "NONE"
 side = "BOTH"
 
