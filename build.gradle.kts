@@ -21,6 +21,19 @@ allprojects {
     }
 
     configurations { all { exclude(group = "org.slf4j", module = "slf4j-log4j12") } }
+
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        options.compilerArgs.addAll(listOf("-Xlint:all", "-Xdiags:verbose"))
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.verbose = true
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xkotlin-debug")
+        }
+    }
 }
 
 subprojects {
@@ -40,6 +53,23 @@ subprojects {
     tasks.test {
         useJUnitPlatform()
         finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+    }
+
+    java {
+        toolchain {
+            withJavadocJar()
+            withSourcesJar()
+
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.verbose = true
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xkotlin-debug")
+        }
     }
 
     tasks.jacocoTestReport {
@@ -185,11 +215,6 @@ tasks.javadoc {
     }
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    dependsOn(tasks["spotlessApply"])
-}
-
 java {
     toolchain {
         withJavadocJar()
@@ -199,4 +224,8 @@ java {
     }
 }
 
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+    dependsOn(tasks["spotlessApply"])
+    options.compilerArgs.addAll(listOf("-Xlint:all", "-Xdiags:verbose"))
+}

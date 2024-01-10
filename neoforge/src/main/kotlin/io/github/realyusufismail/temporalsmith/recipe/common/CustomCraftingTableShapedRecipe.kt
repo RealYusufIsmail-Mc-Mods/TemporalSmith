@@ -143,4 +143,11 @@ abstract class CustomCraftingTableShapedRecipe<T : CustomCraftingTableContainer>
             buffer: FriendlyByteBuf
         ): T
     }
+
+    companion object {
+        @JvmField
+        var MAX_WIDTH = 3
+        @JvmField
+        var MAX_HEIGHT = 3
+    }
 }

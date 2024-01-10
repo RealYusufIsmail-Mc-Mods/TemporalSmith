@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipeCodecs;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public record CustomToolCraftingTableRawShapedRecipe(
@@ -104,7 +103,7 @@ public record CustomToolCraftingTableRawShapedRecipe(
                           .fieldOf("key")
                           .forGetter(p_301234_ -> p_301234_.key),
                       PATTERN_CODEC.fieldOf("pattern").forGetter(p_301164_ -> p_301164_.pattern),
-                      CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC
+                          ItemStack.ITEM_WITH_COUNT_CODEC
                           .fieldOf("result")
                           .forGetter(p_301076_ -> p_301076_.result),
                       ExtraCodecs.strictOptionalField(Codec.BOOL, "show_notification", true)

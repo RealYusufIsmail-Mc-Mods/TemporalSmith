@@ -46,10 +46,6 @@ public class EntityTypeInit {
                       .fireImmune()
                       .clientTrackingRange(4)
                       .updateInterval(20)
-                      .setCustomClientFactory(
-                          (spawnEntity, world) ->
-                              new AqumarineTridentEntity(
-                                  EntityTypeInit.AQUMARINE_THROWN_TRIDENT.get(), world))
                       .build(MOD_ID + ":aqumarine_thrown_trident"));
 
   public static final DeferredHolder<EntityType<?>, EntityType<ModTridentEntity>> MJOLNIR =
@@ -61,9 +57,6 @@ public class EntityTypeInit {
                   .fireImmune()
                   .clientTrackingRange(4)
                   .updateInterval(20)
-                  .setCustomClientFactory(
-                      (spawnEntity, world) ->
-                          new MjolnirEntity(EntityTypeInit.MJOLNIR.get(), world))
                   .build(MOD_ID + ":mjolnir_thrown"));
 
   public static final DeferredHolder<EntityType<?>, EntityType<EnderiteGolem>> ENDERITE_GOLEM =
