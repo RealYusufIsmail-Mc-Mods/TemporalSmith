@@ -18,7 +18,6 @@
  */ 
 package io.github.realyusufismail.temporalsmith
 
-import io.github.realyusufismail.realyusufismailcore.RealYusufIsmailCore.logger
 import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
 import io.github.realyusufismail.temporalsmith.client.TemporalSmithShieldItemRendererProvider

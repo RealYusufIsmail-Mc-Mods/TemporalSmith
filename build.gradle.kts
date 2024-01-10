@@ -28,9 +28,6 @@ allprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
         kotlinOptions.verbose = true
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xkotlin-debug")
-        }
     }
 }
 
