@@ -13,16 +13,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.temporalsmith.graphite_ore.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "temporalsmith:graphite_ore"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.temporalsmith.graphite_ore.title"
     }

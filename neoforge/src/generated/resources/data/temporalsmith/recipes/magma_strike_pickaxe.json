@@ -1,0 +1,16 @@
+{
+  "type": "temporalsmith:ingot_fusion_toll_enhancer",
+  "category": "tool",
+  "ingredient1": {
+    "item": "temporalsmith:imperium"
+  },
+  "ingredient2": {
+    "item": "temporalsmith:imperium_pickaxe"
+  },
+  "ingredient3": {
+    "item": "temporalsmith:imperium"
+  },
+  "result": {
+    "item": "temporalsmith:magma_strike_pickaxe"
+  }
+}

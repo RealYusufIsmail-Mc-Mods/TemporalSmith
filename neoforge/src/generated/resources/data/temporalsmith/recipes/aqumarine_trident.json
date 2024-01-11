@@ -1,0 +1,25 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "trident",
+  "enchantments": {
+    "minecraft:fire_aspect": 2
+  },
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aqumarine"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " AA",
+    " SA",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:aqumarine_trident"
+  },
+  "show_notification": false
+}

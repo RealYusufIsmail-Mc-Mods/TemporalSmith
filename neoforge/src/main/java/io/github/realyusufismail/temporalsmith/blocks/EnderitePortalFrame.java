@@ -39,6 +39,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherPortalBlock;
@@ -52,6 +53,7 @@ import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class EnderitePortalFrame extends Block {
 
@@ -61,7 +63,7 @@ public class EnderitePortalFrame extends Block {
 
   public EnderitePortalFrame() {
     super(
-        Properties.copy(Blocks.NETHER_PORTAL)
+        Properties.ofFullCopy(Blocks.NETHER_PORTAL)
             .strength(5.0F, 6.0F)
             .lightLevel(
                 (state) -> {
@@ -199,7 +201,8 @@ public class EnderitePortalFrame extends Block {
   }
 
   @Override
-  public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+  public @NotNull ItemStack getCloneItemStack(
+      LevelReader p_304395_, BlockPos p_49824_, BlockState p_49825_) {
     return ItemStack.EMPTY;
   }
 

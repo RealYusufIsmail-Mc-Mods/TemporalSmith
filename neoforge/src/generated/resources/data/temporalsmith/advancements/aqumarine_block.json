@@ -13,16 +13,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.temporalsmith.aqumarine_block.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "temporalsmith:aqumarine_block"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.temporalsmith.aqumarine_block.title"
     }

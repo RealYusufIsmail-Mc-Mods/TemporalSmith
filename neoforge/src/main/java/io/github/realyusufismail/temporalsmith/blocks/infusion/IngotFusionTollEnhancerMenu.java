@@ -37,7 +37,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -71,22 +71,15 @@ public class IngotFusionTollEnhancerMenu extends RecipeBookMenu<Container> {
     addPlayerInventory(pInventory);
     addPlayerHotbar(pInventory);
 
-    blockEntity
-        .getCapability(Capabilities.ITEM_HANDLER)
-        .ifPresent(
-            it -> {
-              // slots to place ingredients
-              addSlot(new SlotItemHandler(it, 0, 16, 40));
-              addSlot(new SlotItemHandler(it, 1, 43, 40));
-              addSlot(new SlotItemHandler(it, 2, 70, 40));
+    addSlot(new SlotItemHandler((IItemHandler) blockEntity, 0, 16, 40));
+    addSlot(new SlotItemHandler((IItemHandler) blockEntity, 1, 43, 40));
+    addSlot(new SlotItemHandler((IItemHandler) blockEntity, 2, 70, 40));
 
-              // slot to place fuel
-              addSlot(new InfusionFuelSlot(it, this));
+    // slot to place fuel
+    addSlot(new InfusionFuelSlot((IItemHandler) blockEntity, this));
 
-              // slot to place result
-              addSlot(new OutputSlotItemHandler(it, pInventory.player));
-            });
-
+    // slot to place result
+    addSlot(new OutputSlotItemHandler((IItemHandler) blockEntity, pInventory.player));
     addDataSlots(data);
   }
 

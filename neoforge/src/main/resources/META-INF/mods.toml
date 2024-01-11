@@ -4,7 +4,7 @@ license = "Apache 2.0" #mandatory
 issueTrackerURL = "https://github.com/RealYusufIsmail-Mc-Mods/TemporalSmith/issues"
 [[mods]]
 modId = "temporalsmith"
-version = "1.20.2-1.0.0.beta10"
+version = "1.20.4-1.0.0.beta11"
 displayName = "TemporalSmith: Aetheric Arsenal Expansion"
 logoFile = "logo.png"
 updateJSONURL = "https://forge.curseupdate.com/480779/temporalsmith"
@@ -21,21 +21,21 @@ The journey awaits; delve into the time-woven secrets of TemporalSmith. (A lot o
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.temporalsmith]]
 modId = "neoforge"
-mandatory = true
-versionRange = "[20.2, 20.3)"
+type="required"
+versionRange = "[20.4, 20.5)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.temporalsmith]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.20.2, 1.21)"
+type="required"
+versionRange = "[1.20.4, 1.21)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.temporalsmith]]
 modId = "realyusufismailcore"
-mandatory = true
-versionRange = "[1.20.2-1.1.1,)"
+type="required"
+versionRange = "[1.20.4-1.2.0,)"
 ordering = "NONE"
 side = "BOTH"

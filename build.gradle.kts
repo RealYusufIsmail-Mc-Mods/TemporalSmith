@@ -1,24 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    repositories { mavenCentral() }
-
-    dependencies {
-        classpath("org.jetbrains.dokka:dokka-base:1.9.10")
-        classpath("io.github.realyusufismail:jconfig:1.1.1")
-    }
-}
-
 plugins {
-    kotlin("jvm") version "1.9.21"
-    kotlin("plugin.allopen") version "1.9.21"
+    kotlin("jvm") version "1.9.22"
+    kotlin("plugin.allopen") version "1.9.22"
     id("com.diffplug.spotless") version "6.22.0"
-    id("org.jetbrains.dokka") version "1.9.10"
     id("net.darkhax.curseforgegradle") version "1.1.17"
     jacoco // code coverage reports
 }
-
-project.group = "io.github.realyusufismail"
 
 allprojects {
     repositories {
@@ -40,8 +28,7 @@ subprojects {
 
     dependencies {
         // Json
-        implementation(
-            "com.fasterxml.jackson.module:jackson-module-kotlin:" + properties["jacksonVersion"])
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:" + properties["jacksonVersion"])
 
         // test
         testImplementation("org.junit.jupiter:junit-jupiter:" + properties["junitVersion"])
@@ -86,7 +73,8 @@ subprojects {
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ """)
+ */ """
+            )
         }
 
         kotlinGradle {
@@ -121,71 +109,24 @@ subprojects {
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ """)
+ */ """
+            )
         }
-    }
-}
-
-spotless {
-    kotlin {
-        // Excludes build folder since it contains generated java classes.
-        targetExclude("build/**")
-        ktfmt("0.42").dropboxStyle()
-
-        licenseHeader(
-            """/*
- * Copyright 2023 RealYusufIsmail.
- *
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *
- * you may not use this file except in compliance with the License.
- *
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */ """)
-    }
-
-    kotlinGradle {
-        target("**/*.gradle.kts")
-        ktfmt("0.42").dropboxStyle()
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
     }
 
     java {
-        target("**/*.java")
-        googleJavaFormat()
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        licenseHeader(
-            """/*
- * Copyright 2023 RealYusufIsmail.
- *
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *
- * you may not use this file except in compliance with the License.
- *
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */ """)
+        toolchain {
+            withJavadocJar()
+            withSourcesJar()
+
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
+
+
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        options.compilerArgs.addAll(listOf("-Xlint:all", "-Xdiags:verbose"))
     }
 }
 
@@ -195,18 +136,6 @@ tasks.javadoc {
     }
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    dependsOn(tasks["spotlessApply"])
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "17"
 }
-
-java {
-    toolchain {
-        withJavadocJar()
-        withSourcesJar()
-
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
-
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }

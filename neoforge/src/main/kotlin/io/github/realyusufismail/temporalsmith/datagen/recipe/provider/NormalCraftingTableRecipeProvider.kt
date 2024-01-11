@@ -18,15 +18,14 @@
  */ 
 package io.github.realyusufismail.temporalsmith.datagen.recipe.provider
 
-import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapedRecipeBuilder
-import io.github.realyusufismail.realyusufismailcore.recipe.YusufShapelessRecipeBuilder
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.util.name
 import io.github.realyusufismail.temporalsmith.datagen.recipe.MainModRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
+import net.minecraft.data.recipes.ShapedRecipeBuilder
+import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.tags.BlockTags
-import net.minecraft.tags.BlockTags.BASE_STONE_OVERWORLD
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
@@ -37,7 +36,7 @@ class NormalCraftingTableRecipeProvider(
 ) : MainModRecipeProvider(mainModRecipeProvider) {
 
     fun build() {
-        YusufShapedRecipeBuilder.shaped(
+        ShapedRecipeBuilder.shaped(
                 RecipeCategory.BUILDING_BLOCKS, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
             .define('A', Blocks.IRON_BLOCK)
             .define('B', Blocks.CRAFTING_TABLE)
@@ -47,7 +46,7 @@ class NormalCraftingTableRecipeProvider(
             .unlockedBy("has_item", has(Items.IRON_CHESTPLATE))
             .save(pWriter, modId("custom_armour_crafting_table_recipe"))
 
-        YusufShapedRecipeBuilder.shaped(
+        ShapedRecipeBuilder.shaped(
                 RecipeCategory.BUILDING_BLOCKS, BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get())
             .define('A', Blocks.IRON_BLOCK)
             .define('B', Blocks.CRAFTING_TABLE)
@@ -57,7 +56,7 @@ class NormalCraftingTableRecipeProvider(
             .unlockedBy("has_item", has(Items.IRON_PICKAXE))
             .save(pWriter, modId("custom_tool_crafting_table_recipe"))
 
-        YusufShapedRecipeBuilder.shaped(
+        ShapedRecipeBuilder.shaped(
                 RecipeCategory.BUILDING_BLOCKS, BlockInit.INGOT_FUSION_TOLL_ENHANCER.get())
             .define('A', Blocks.IRON_BLOCK)
             .define('B', Items.IRON_INGOT)
@@ -75,7 +74,7 @@ class NormalCraftingTableRecipeProvider(
         // scan BlockInit for Blocks that return OreBlockObjectHolderDelegate
         BlockInit.ORE_BLOCKS.forEach { oreBlock ->
             // create a shapeless recipe for the ore block
-            YusufShapelessRecipeBuilder.shapeless(
+            ShapelessRecipeBuilder.shapeless(
                     RecipeCategory.BUILDING_BLOCKS, oreBlock.value.get(), 9)
                 .requires(oreBlock.key.get())
                 .unlockedBy("has_item", has(oreBlock.value.get()))

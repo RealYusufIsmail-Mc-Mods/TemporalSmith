@@ -13,16 +13,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.temporalsmith.imperium_ingot.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "temporalsmith:imperium"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.temporalsmith.imperium_ingot.title"
     }

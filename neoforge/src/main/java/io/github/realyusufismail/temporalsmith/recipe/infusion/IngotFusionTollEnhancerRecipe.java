@@ -24,7 +24,6 @@ import io.github.realyusufismail.temporalsmith.blocks.infusion.book.IngotFusionT
 import io.github.realyusufismail.temporalsmith.core.init.RecipeSerializerInit;
 import io.github.realyusufismail.temporalsmith.core.init.RecipeTypeInit;
 import java.util.Arrays;
-import lombok.Getter;
 import lombok.val;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -33,15 +32,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
-
-  @Getter public final Ingredient ingredient1;
-  @Getter public final Ingredient ingredient2;
-  @Getter public final Ingredient ingredient3;
-  @Getter @NotNull public final ItemStack result;
-  @Getter @NotNull public final IngotFusionTollEnhancerRecipeBookCategory category;
+public record IngotFusionTollEnhancerRecipe(
+    @NotNull IngotFusionTollEnhancerRecipeBookCategory category,
+    Ingredient ingredient1,
+    Ingredient ingredient2,
+    Ingredient ingredient3,
+    @NotNull ItemStack result)
+    implements Recipe<Container> {
 
   public IngotFusionTollEnhancerRecipe(
       IngotFusionTollEnhancerRecipeBookCategory category,
@@ -132,7 +130,7 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
                         Ingredient.CODEC
                             .fieldOf("ingredient3")
                             .forGetter((p_44106_) -> p_44106_.ingredient3),
-                        CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC
+                        ItemStack.ITEM_WITH_COUNT_CODEC
                             .fieldOf("result")
                             .forGetter((p_44103_) -> p_44103_.result))
                     .apply(p_44108_, IngotFusionTollEnhancerRecipe::new));
@@ -143,7 +141,8 @@ public class IngotFusionTollEnhancerRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @Nullable IngotFusionTollEnhancerRecipe fromNetwork(FriendlyByteBuf friendlyByteBuf) {
+    public @NotNull IngotFusionTollEnhancerRecipe fromNetwork(
+        @NotNull FriendlyByteBuf friendlyByteBuf) {
       val category = friendlyByteBuf.readEnum(IngotFusionTollEnhancerRecipeBookCategory.class);
       val ingredient1 = Ingredient.fromNetwork(friendlyByteBuf);
       val ingredient2 = Ingredient.fromNetwork(friendlyByteBuf);

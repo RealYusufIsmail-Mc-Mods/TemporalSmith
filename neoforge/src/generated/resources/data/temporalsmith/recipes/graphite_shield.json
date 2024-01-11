@@ -1,0 +1,28 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "shield",
+  "enchantments": {
+    "minecraft:fire_aspect": 2
+  },
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/graphite"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "minecraft:shield"
+    }
+  },
+  "pattern": [
+    " A ",
+    "SIS",
+    "SSS"
+  ],
+  "result": {
+    "item": "temporalsmith:graphite_shield"
+  },
+  "show_notification": false
+}

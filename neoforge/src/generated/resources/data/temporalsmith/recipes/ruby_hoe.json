@@ -1,0 +1,23 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "hoe",
+  "enchantments": {},
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/ruby"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AA ",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:ruby_hoe"
+  },
+  "show_notification": false
+}

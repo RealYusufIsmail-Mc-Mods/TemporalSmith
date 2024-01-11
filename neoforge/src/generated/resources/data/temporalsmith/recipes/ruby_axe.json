@@ -1,0 +1,23 @@
+{
+  "type": "temporalsmith:custom_tool_crafter",
+  "category": "axe",
+  "enchantments": {},
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/ruby"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " AA",
+    " SA",
+    " S "
+  ],
+  "result": {
+    "item": "temporalsmith:ruby_axe"
+  },
+  "show_notification": false
+}

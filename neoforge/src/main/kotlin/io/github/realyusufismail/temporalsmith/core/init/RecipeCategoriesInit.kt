@@ -35,106 +35,107 @@ import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent
 object RecipeCategoriesInit {
 
     private val ARMOUR_CRAFTING_SEARCH: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("ARMOUR_CRAFTING", ItemStack(Items.COMPASS))
         }
 
     private val ARMOUR_CRAFTING_HELMET: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "ARMOUR_CRAFTING_HELMET", ItemStack(ItemInit.AQUMARINE_HELMET.get()))
         }
 
     private val ARMOUR_CRAFTING_CHESTPLATE: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "ARMOUR_CRAFTING_CHESTPLATE", ItemStack(ItemInit.AQUMARINE_CHESTPLATE.get()))
         }
 
     private val ARMOUR_CRAFTING_LEGGINGS: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "ARMOUR_CRAFTING_LEGGINGS", ItemStack(ItemInit.AQUMARINE_LEGGINGS.get()))
         }
 
     private val ARMOUR_CRAFTING_BOOTS: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "ARMOUR_CRAFTING_BOOTS", ItemStack(ItemInit.AQUMARINE_BOOTS.get()))
         }
 
     private val ARMOUR_CRAFTING_MISC: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "ARMOUR_CRAFTING_MISC", ItemStack(ItemInit.AQUMARINE_HELMET.get()))
         }
 
     // Tool
+
     private val TOOL_CRAFTING_SEARCH: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_SEARCH", ItemStack(Items.COMPASS))
         }
 
     private val TOOL_CRAFTING_SWORD: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_SWORD", ItemStack(Items.DIAMOND_SWORD))
         }
 
     private val TOOL_CRAFTING_PICKAXE: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_PICKAXE", ItemStack(Items.DIAMOND_PICKAXE))
         }
 
     private val TOOL_CRAFTING_AXE: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_AXE", ItemStack(Items.DIAMOND_AXE))
         }
 
     private val TOOL_CRAFTING_SHOVEL: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_SHOVEL", ItemStack(Items.DIAMOND_SHOVEL))
         }
 
     private val TOOL_CRAFTING_HOE: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_HOE", ItemStack(Items.DIAMOND_HOE))
         }
 
     private val TOOL_CRAFTING_SHIELD: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_SHIELD", ItemStack(Items.SHIELD))
         }
 
     private val TOOL_CRAFTING_TRIDENT: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_TRIDENT", ItemStack(Items.TRIDENT))
         }
 
     private val TOOL_CRAFTING_MISC: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create("TOOL_CRAFTING_MISC", ItemStack(Items.DIAMOND_SHOVEL))
         }
 
     private val INGOT_FUSION_TOLL_ENHANCER_SEARCH: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "INGOT_FUSION_TOLL_ENHANCER_SEARCH", ItemStack(Items.COMPASS))
         }
 
     private val INGOT_FUSION_TOLL_ENHANCER_TOOL: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "INGOT_FUSION_TOLL_ENHANCER_TOOL", ItemStack(ItemInit.MAGMA_STRIKE_PICKAXE.get()))
         }
 
     private val INGOT_FUSION_TOLL_ENHANCER_ARMOUR: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "INGOT_FUSION_TOLL_ENHANCER_ARMOUR", ItemStack(ItemInit.RAINBOW_CHESTPLATE.get()))
         }
 
     private val INGOT_FUSION_TOLL_ENHANCER_MISC: Supplier<RecipeBookCategories> =
-        Suppliers.memoize {
+        Suppliers.memoize<RecipeBookCategories> {
             RecipeBookCategories.create(
                 "INGOT_FUSION_TOLL_ENHANCER_MISC", ItemStack(Items.DIAMOND_SHOVEL))
         }
@@ -173,7 +174,8 @@ object RecipeCategoriesInit {
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.ARMOUR_CRAFTING.get()) {
             if (it.value() is CustomArmourCraftingTableRecipe) {
-                when ((it.value() as CustomArmourCraftingTableRecipe).category()) {
+                when ((it.value() as CustomArmourCraftingTableRecipe)
+                    .getCustomArmourCraftingBookCategory()) {
                     CustomArmourCraftingBookCategory.ARMOUR_HEAD -> ARMOUR_CRAFTING_HELMET.get()
                     CustomArmourCraftingBookCategory.ARMOUR_CHEST ->
                         ARMOUR_CRAFTING_CHESTPLATE.get()
@@ -236,7 +238,8 @@ object RecipeCategoriesInit {
 
         event.registerRecipeCategoryFinder(RecipeTypeInit.TOOL_CRAFTING.get()) {
             if (it.value() is CustomToolCraftingTableRecipe) {
-                when ((it.value() as CustomToolCraftingTableRecipe).category()) {
+                when ((it.value() as CustomToolCraftingTableRecipe)
+                    .getCustomToolsCraftingBookCategory()) {
                     CustomToolsCraftingBookCategory.SWORD -> TOOL_CRAFTING_SWORD.get()
                     CustomToolsCraftingBookCategory.PICKAXE -> TOOL_CRAFTING_PICKAXE.get()
                     CustomToolsCraftingBookCategory.AXE -> TOOL_CRAFTING_AXE.get()

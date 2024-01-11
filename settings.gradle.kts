@@ -16,8 +16,4 @@ pluginManagement {
     }
 }
 
-include("forge")
-
-include("forge-1-16")
-
-include("neoforge")
+include(listOf("forge", "neoforge", "forge-1-16"))

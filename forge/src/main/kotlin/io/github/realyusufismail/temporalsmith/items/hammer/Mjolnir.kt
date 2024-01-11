@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.items.hammer
 
-import io.github.realyusufismail.temporalsmith.client.TridentItemRendererProvider
+import io.github.realyusufismail.temporalsmith.client.TemporalSmithTridentItemRendererProvider
 import io.github.realyusufismail.temporalsmith.common.entity.MjolnirEntity
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity
 import io.github.realyusufismail.temporalsmith.core.init.MobEffectsInit
@@ -26,20 +26,19 @@ import io.github.realyusufismail.temporalsmith.core.material.CustomToolMaterial
 import io.github.realyusufismail.temporalsmith.items.trident.ModTridentItem
 import java.util.function.Consumer
 import net.minecraft.world.Containers
-import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Tier
 import net.minecraft.world.level.Level
 import net.minecraftforge.client.extensions.common.IClientItemExtensions
 
 open class Mjolnir(
-    val tier: Tier = CustomToolMaterial.MJOLNIR,
+    tier: Tier = CustomToolMaterial.MJOLNIR,
     val properties: Properties = Properties().stacksTo(1),
     pAttackSpeedModifier: Float = 15.0f,
     pAttackDamageModifier: Float = -3f
 ) : ModTridentItem(tier, properties, pAttackSpeedModifier, pAttackDamageModifier) {
+
     override fun onUseTick(
         pLevel: Level,
         pLivingEntity: LivingEntity,
@@ -56,20 +55,6 @@ open class Mjolnir(
         }
     }
 
-    override fun inventoryTick(
-        pStack: ItemStack,
-        pLevel: Level,
-        pEntity: Entity,
-        pSlotId: Int,
-        pIsSelected: Boolean
-    ) {
-        if (pEntity is Player) {
-            pEntity.abilities.mayfly = true
-            pEntity.abilities.flyingSpeed = 0.06f
-            pEntity.abilities.invulnerable = true
-        }
-    }
-
     override fun getThrownEntity(
         world: Level,
         thrower: LivingEntity,
@@ -79,6 +64,6 @@ open class Mjolnir(
     }
 
     override fun initializeClient(consumer: Consumer<IClientItemExtensions>) {
-        consumer.accept(TridentItemRendererProvider.mjolnir())
+        consumer.accept(TemporalSmithTridentItemRendererProvider.mjolnir())
     }
 }

@@ -35,7 +35,7 @@ import net.minecraft.world.item.ItemStack
 
 class MjolnirItemRendererISTER : ModBlockEntityWithoutLevelRenderer() {
     private val location: ResourceLocation =
-        TemporalSmith.getModIdAndName("textures/entity/item/mjolnir/all.png")
+        TemporalSmith.getModIdAndName("textures/item/mjolnir/all.png")
     private var mjolnirModel: MjolnirModel? = null
 
     override fun onResourceManagerReload(manager: ResourceManager) {

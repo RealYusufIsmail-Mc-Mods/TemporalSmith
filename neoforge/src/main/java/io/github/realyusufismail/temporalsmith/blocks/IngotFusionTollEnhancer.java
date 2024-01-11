@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.blocks;
 
+import com.mojang.serialization.MapCodec;
 import io.github.realyusufismail.temporalsmith.blocks.infusion.IngotFusionTollEnhancerBlockEntity;
 import io.github.realyusufismail.temporalsmith.core.init.BlockEntityTypeInit;
 import java.util.List;
@@ -26,7 +27,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -48,7 +48,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,10 +58,14 @@ public class IngotFusionTollEnhancer extends BaseEntityBlock {
   public static final BooleanProperty LIT = BlockStateProperties.LIT;
   private static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-  public IngotFusionTollEnhancer() {
-    super(Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.DIAMOND));
+  public IngotFusionTollEnhancer(Properties properties) {
+    super(properties);
     this.registerDefaultState(
         defaultBlockState().setValue(FACING, Direction.NORTH).setValue(LIT, false));
+  }
+
+  public IngotFusionTollEnhancer() {
+    this(Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.DIAMOND));
   }
 
   public static @NotNull Component getContainerTitle() {
@@ -88,8 +91,7 @@ public class IngotFusionTollEnhancer extends BaseEntityBlock {
           Objects.requireNonNull(player, "Player is null");
           Objects.requireNonNull(blockEntity, "BlockEntity is null");
 
-          NetworkHooks.openScreen(
-              (ServerPlayer) player, (IngotFusionTollEnhancerBlockEntity) blockEntity, blockPos);
+          player.openMenu((IngotFusionTollEnhancerBlockEntity) blockEntity, blockPos);
         } catch (Exception e) {
           throw new RuntimeException("Failed to open screen." + e);
         }
@@ -147,6 +149,11 @@ public class IngotFusionTollEnhancer extends BaseEntityBlock {
   @Override
   public boolean hasAnalogOutputSignal(BlockState pState) {
     return true;
+  }
+
+  @Override
+  protected MapCodec<? extends BaseEntityBlock> codec() {
+    return simpleCodec(IngotFusionTollEnhancer::new);
   }
 
   /**

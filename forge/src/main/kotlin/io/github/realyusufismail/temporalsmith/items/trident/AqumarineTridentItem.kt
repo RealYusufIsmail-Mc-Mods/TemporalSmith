@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.items.trident
 
-import io.github.realyusufismail.temporalsmith.client.TridentItemRendererProvider
+import io.github.realyusufismail.temporalsmith.client.TemporalSmithTridentItemRendererProvider
 import io.github.realyusufismail.temporalsmith.common.entity.AqumarineTridentEntity
 import io.github.realyusufismail.temporalsmith.common.entity.ModTridentEntity
 import io.github.realyusufismail.temporalsmith.core.material.CustomToolMaterial
@@ -40,6 +40,6 @@ open class AqumarineTridentItem :
     }
 
     override fun initializeClient(consumer: Consumer<IClientItemExtensions>) {
-        consumer.accept(TridentItemRendererProvider.aqumarineTrident())
+        consumer.accept(TemporalSmithTridentItemRendererProvider.aqumarineTrident())
     }
 }

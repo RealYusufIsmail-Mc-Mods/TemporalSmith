@@ -20,8 +20,8 @@ package io.github.realyusufismail.temporalsmith
 
 import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
-import io.github.realyusufismail.temporalsmith.client.ModShieldItemRendererProvider
-import io.github.realyusufismail.temporalsmith.client.TridentItemRendererProvider
+import io.github.realyusufismail.temporalsmith.client.TemporalSmithShieldItemRendererProvider
+import io.github.realyusufismail.temporalsmith.client.TemporalSmithTridentItemRendererProvider
 import io.github.realyusufismail.temporalsmith.core.init.*
 import io.github.realyusufismail.temporalsmith.datagen.DataGenerators
 import java.util.*
@@ -59,9 +59,9 @@ class TemporalSmith {
         // client setup listener
         bus.addListener(ClientEvents::clientSetup)
         // register shield renderer provider
-        bus.addListener(ModShieldItemRendererProvider::init)
+        bus.addListener(TemporalSmithShieldItemRendererProvider::init)
         // register trident renderer provider
-        bus.addListener(TridentItemRendererProvider::init)
+        bus.addListener(TemporalSmithTridentItemRendererProvider::init)
         // register entity renderers
         bus.addListener(ClientEvents::registerEntityRenders)
         // register key input event
@@ -71,6 +71,17 @@ class TemporalSmith {
         bus.addListener(ClientEvents::registerLayerDefinition)
         // entity death event
         FORGE_BUS.addListener(ClientEvents::onEntityDeath)
+        // entity attribute creation event
+        //  bus.addListener(ClientEvents::onRegisterEntities)
+        // player tick event
+        FORGE_BUS.addListener(ClientEvents::onPlayerTickEvent)
+        // falling living entity event
+        FORGE_BUS.addListener(ClientEvents::onLivingFallEvent)
+        // living hurt event
+        FORGE_BUS.addListener(ClientEvents::onLivingHurtEvent)
+        FORGE_BUS.addListener(ClientEvents::onLivingDamageEvent)
+        // player pickup event
+        FORGE_BUS.addListener(ClientEvents::onPlayerPickupEvent)
 
         FORGE_BUS.register(this)
 
@@ -81,8 +92,9 @@ class TemporalSmith {
     }
 
     companion object ArmorAndToolsMod {
-        val logger: Logger = LoggerFactory.getLogger(TemporalSmith::class.java)
+        @JvmStatic val logger: Logger = LoggerFactory.getLogger(TemporalSmith::class.java)
 
+        @JvmStatic
         fun getModIdAndName(name: String): ResourceLocation {
             return ResourceLocation(MOD_ID, name.lowercase(Locale.getDefault()))
         }

@@ -13,16 +13,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.temporalsmith.enderite_ore.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "temporalsmith:enderite_ore"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.temporalsmith.enderite_ore.title"
     }

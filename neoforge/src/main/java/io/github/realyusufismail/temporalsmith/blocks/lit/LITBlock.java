@@ -52,7 +52,7 @@ import net.minecraft.world.phys.BlockHitResult;
 @SuppressWarnings("deprecation")
 public class LITBlock extends Block {
   public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
-  public static Map<Class, List<LitBlockParticleColour>> particleColours = new HashMap<>();
+  public static Map<Class<?>, List<LitBlockParticleColour>> particleColours = new HashMap<>();
 
   protected LITBlock(
       List<LitBlockParticleColour> particleColour, int lightLevel, Class blockClass) {

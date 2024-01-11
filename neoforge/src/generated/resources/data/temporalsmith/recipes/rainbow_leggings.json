@@ -1,0 +1,20 @@
+{
+  "type": "temporalsmith:custom_armour_crafter",
+  "category": "armour_legs",
+  "enchantments": {},
+  "hide_flags": 0,
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aqumarine"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A A",
+    "A A"
+  ],
+  "result": {
+    "item": "temporalsmith:rainbow_leggings"
+  },
+  "show_notification": false
+}

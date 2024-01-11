@@ -32,7 +32,7 @@ interface CustomArmourCraftingTableRecipe : Recipe<CustomArmourCraftingTableCont
         return RecipeTypeInit.ARMOUR_CRAFTING.get()
     }
 
-    fun category(): CustomArmourCraftingBookCategory
+    fun getCustomArmourCraftingBookCategory(): CustomArmourCraftingBookCategory
 
     override fun getIngredients(): NonNullList<Ingredient>
 

@@ -30,13 +30,6 @@ import io.github.realyusufismail.temporalsmith.datagen.texture.ModBlockStateProv
 import io.github.realyusufismail.temporalsmith.datagen.texture.ModItemStateProvider
 import io.github.realyusufismail.temporalsmith.datagen.world.ModWorldGenProvider
 import java.util.*
-import java.util.function.Function
-import java.util.stream.Collectors
-import net.minecraft.DetectedVersion
-import net.minecraft.data.metadata.PackMetadataGenerator
-import net.minecraft.network.chat.Component
-import net.minecraft.server.packs.PackType
-import net.minecraft.server.packs.metadata.pack.PackMetadataSection
 import net.neoforged.neoforge.data.event.GatherDataEvent
 
 object DataGenerators {
@@ -68,21 +61,6 @@ object DataGenerators {
                 ArmourAndTollsModSpriteSourceProvider(gen.packOutput, existingFileHelper, lookup))
             gen.addProvider(
                 true, ModAdvancementProvider(gen.packOutput, lookup, existingFileHelper))
-            gen.addProvider(true, PackMetadataGenerator(gen.packOutput))
-                .add(
-                    PackMetadataSection.TYPE,
-                    PackMetadataSection<Any>(
-                        Component.literal(
-                            """
-                        Descend into the boundless realms of TemporalSmith, where time intertwines with the craft of the Aetheric Arsenal. Unleash the power of enchanted swords and tools forged beyond the constraints of time. Explore mystical dimensions, each brimming with unique challenges and treasures. Elevate your Minecraft experience with a fusion of temporal mastery, otherworldly landscapes, and an expansive array of armaments. The journey awaits; delve into the time-woven secrets of TemporalSmith. (A lot of stuff to be added)
-                        """
-                                .trimIndent()),
-                        DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
-                        Arrays.stream(PackType.entries.toTypedArray())
-                            .collect(
-                                Collectors.toMap(
-                                    Function.identity(),
-                                    DetectedVersion.BUILT_IN::getPackVersion))))
         } catch (e: RuntimeException) {
             logger.error("Failed to gather data!", e)
         }
