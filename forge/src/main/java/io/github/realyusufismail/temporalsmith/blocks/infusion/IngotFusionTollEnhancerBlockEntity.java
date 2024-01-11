@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -173,7 +173,7 @@ public class IngotFusionTollEnhancerBlockEntity extends BaseContainerBlockEntity
 
   @Override
   protected AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
-    TemporalSmith.ArmorAndToolsMod.getLogger().info("Creating menu");
+    TemporalSmith.TemporalSmith.getLogger().info("Creating menu");
     return new IngotFusionTollEnhancerMenu(pContainerId, this, this.dataAccess, pInventory);
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,7 +41,7 @@ import org.jetbrains.annotations.NotNull;
 public class IngotFusionTollEnhancerScreen
     extends AbstractContainerScreen<IngotFusionTollEnhancerMenu> implements RecipeUpdateListener {
   public static final ResourceLocation SCREEN_ID =
-      TemporalSmith.ArmorAndToolsMod.getModIdAndName(
+      TemporalSmith.TemporalSmith.getModIdAndName(
           "textures/gui/container/ingot_fusion_toll_enhancer.png");
   public final IngotFusionTollEnhancerRecipeBookComponent recipeBookComponent =
       new IngotFusionTollEnhancerRecipeBookComponent();

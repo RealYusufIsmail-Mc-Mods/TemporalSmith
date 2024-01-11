@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ package io.github.realyusufismail.temporalsmith.datagen.spirit
 
 import com.google.common.collect.ImmutableMap
 import io.github.realyusufismail.temporalsmith.TemporalSmith
-import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import java.util.*
 import net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile
