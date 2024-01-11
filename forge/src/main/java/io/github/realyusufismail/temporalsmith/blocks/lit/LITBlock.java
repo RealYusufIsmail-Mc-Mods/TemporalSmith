@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -98,7 +98,7 @@ public class LITBlock extends Block {
         var block = pLevel.getBlockState(pPos).getBlock();
         var particleColours = LITBlock.particleColours.get(block.getClass());
         var colour = particleColours.get(randomsource.nextInt(particleColours.size()));
-        TemporalSmith.ArmorAndToolsMod.getLogger()
+        TemporalSmith.TemporalSmith.getLogger()
             .debug(
                 "Colour: "
                     + colour

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.worldgen
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import net.minecraft.core.Holder
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.worldgen.BootstapContext

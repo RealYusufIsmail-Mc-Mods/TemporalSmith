@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.client.ClientEvents
 import io.github.realyusufismail.temporalsmith.client.TemporalSmithShieldItemRendererProvider
 import io.github.realyusufismail.temporalsmith.client.TemporalSmithTridentItemRendererProvider
@@ -91,7 +91,7 @@ class TemporalSmith {
         logger.info("Temporal Smith is loaded!")
     }
 
-    companion object ArmorAndToolsMod {
+    companion object TemporalSmith {
         @JvmStatic val logger: Logger = LoggerFactory.getLogger(TemporalSmith::class.java)
 
         @JvmStatic

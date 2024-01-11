@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.datagen
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.logger
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.logger
 import io.github.realyusufismail.temporalsmith.datagen.advancment.ModAdvancementProvider
 import io.github.realyusufismail.temporalsmith.datagen.lang.ModEnLangProvider
 import io.github.realyusufismail.temporalsmith.datagen.loot.ModLootTables

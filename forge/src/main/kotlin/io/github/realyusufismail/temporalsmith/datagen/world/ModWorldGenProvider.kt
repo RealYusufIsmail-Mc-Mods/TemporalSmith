@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.datagen.world
 
-import io.github.realyusufismail.temporalsmith.TemporalSmith.ArmorAndToolsMod.MOD_ID
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.worldgen.ModBiomeModifiers
 import io.github.realyusufismail.temporalsmith.worldgen.ModConfiguredFeatures
 import io.github.realyusufismail.temporalsmith.worldgen.ModPlacedFeatures
