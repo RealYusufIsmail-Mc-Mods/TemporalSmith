@@ -19,16 +19,6 @@ allprojects {
     }
 
     configurations { all { exclude(group = "org.slf4j", module = "slf4j-log4j12") } }
-
-    tasks.withType<JavaCompile> {
-        options.encoding = "UTF-8"
-        options.compilerArgs.addAll(listOf("-Xlint:all", "-Xdiags:verbose"))
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-        kotlinOptions.verbose = true
-    }
 }
 
 subprojects {
@@ -47,15 +37,6 @@ subprojects {
     tasks.test {
         useJUnitPlatform()
         finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
-    }
-
-    java {
-        toolchain {
-            withJavadocJar()
-            withSourcesJar()
-
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
     }
 
     tasks.jacocoTestReport {
@@ -92,7 +73,8 @@ subprojects {
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ """)
+ */ """
+            )
         }
 
         kotlinGradle {
@@ -127,21 +109,33 @@ subprojects {
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ """)
+ */ """
+            )
         }
     }
+
+    java {
+        toolchain {
+            withJavadocJar()
+            withSourcesJar()
+
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
+
+
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        options.compilerArgs.addAll(listOf("-Xlint:all", "-Xdiags:verbose"))
+    }
 }
+
 tasks.javadoc {
     if (JavaVersion.current().isJava9Compatible) {
         (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
     }
 }
 
-java {
-    toolchain {
-        withJavadocJar()
-        withSourcesJar()
-
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "17"
 }

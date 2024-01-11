@@ -217,6 +217,20 @@ object ClientEvents {
 
             val inventory = player.inventory
             val effects = player.activeEffectsMap
+
+            if (giveMjolnirToPlayer) {
+
+                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get()) &&
+                    !inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
+                    inventory.add(ItemInit.MJOLNIR.get().defaultInstance)
+                } else if (!effects.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
+                    player.sendSystemMessage(
+                        Component.literal("You are not worthy to wield thors hammer"))
+                }
+
+                giveMjolnirToPlayer = false
+            }
+
             // Check if the player is holding the specified item in the main hand
             val holdingMjolnir = player.mainHandItem.item == ItemInit.MJOLNIR.get()
 
@@ -224,6 +238,14 @@ object ClientEvents {
             if (!holdingMjolnir && wasHoldingMjolnir) {
                 // Start the tick counter when the item is no longer held
                 ticksHoldingMjolnir = 0
+            }
+
+            if (holdingMjolnir) {
+                if (!player.isCreative && !player.abilities.mayfly) {
+                    player.abilities.mayfly = true
+                    player.abilities.flyingSpeed = 0.1f
+                    player.abilities.invulnerable = true
+                }
             }
 
             // Check if the player is holding Mjolnir
@@ -238,10 +260,11 @@ object ClientEvents {
                 if (ticksHoldingMjolnir >= maxTicksToHold) {
                     // Perform actions when the item has not been held for the specified number of
                     // ticks
-                    player.abilities.mayfly = false
-                    player.abilities.flyingSpeed = 0.05f
-                    player.abilities.invulnerable = false
-
+                    if (!player.isCreative) {
+                        player.abilities.mayfly = false
+                        player.abilities.flyingSpeed = 0.05f
+                        player.abilities.invulnerable = false
+                    }
                     // Reset the ticks counter
                     ticksHoldingMjolnir = 0
                 }
@@ -249,19 +272,6 @@ object ClientEvents {
 
             // Update the boolean variable for the next tick
             wasHoldingMjolnir = holdingMjolnir
-
-            if (giveMjolnirToPlayer) {
-
-                if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get()) &&
-                    !inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
-                    inventory.add(ItemInit.MJOLNIR.get().defaultInstance)
-                } else if (!effects.contains(MobEffectsInit.WORTHY_EFFECT.get())) {
-                    player.sendSystemMessage(
-                        Component.literal("You are not worthy to wield thors hammer"))
-                }
-
-                giveMjolnirToPlayer = false
-            }
         }
     }
 
