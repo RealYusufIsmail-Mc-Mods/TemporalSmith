@@ -59,7 +59,11 @@ object ClientEvents {
     val MjolnirLayer = ModelLayerLocation(TemporalSmith.getModIdAndName("mjolnir"), "mjolnir")
     val EnderiteGolemLayer =
         ModelLayerLocation(TemporalSmith.getModIdAndName("enderite_golem"), "enderite_golem")
+
     private var giveMjolnirToPlayer = false
+    private var wasHoldingMjolnir = false
+    private var ticksHoldingMjolnir = 0
+    private val maxTicksToHold = 10
 
     fun clientSetup(event: FMLClientSetupEvent) {
         event.enqueueWork { registerScreens() }
@@ -198,21 +202,6 @@ object ClientEvents {
             val inventory = player.inventory
             val effects = player.activeEffectsMap
 
-            // if player does not have the hammer make sure they can't fly
-
-            if (!inventory.contains(ItemInit.MJOLNIR.get().defaultInstance)) {
-                // check if they are not in creative mode
-                if (!player.abilities.instabuild) {
-                    player.abilities.mayfly = false
-                    player.abilities.flyingSpeed = 0.05f
-                    player.abilities.invulnerable = false
-                }
-            } else {
-                player.abilities.mayfly = true
-                player.abilities.flyingSpeed = 0.07f
-                player.abilities.invulnerable = true
-            }
-
             if (giveMjolnirToPlayer) {
 
                 if (effects.contains(MobEffectsInit.WORTHY_EFFECT.get()) &&
@@ -225,9 +214,50 @@ object ClientEvents {
 
                 giveMjolnirToPlayer = false
             }
+
+            // Check if the player is holding the specified item in the main hand
+            val holdingMjolnir = player.mainHandItem.item == ItemInit.MJOLNIR.get()
+
+            // Check if the player just stopped holding Mjolnir in this tick
+            if (!holdingMjolnir && wasHoldingMjolnir) {
+                // Start the tick counter when the item is no longer held
+                ticksHoldingMjolnir = 0
+            }
+
+            if (holdingMjolnir) {
+                if (!player.isCreative && !player.abilities.mayfly) {
+                    player.abilities.mayfly = true
+                    player.abilities.flyingSpeed = 0.1f
+                    player.abilities.invulnerable = true
+                }
+            }
+
+            // Check if the player is holding Mjolnir
+            if (holdingMjolnir) {
+                // Reset the ticks counter if the player is holding Mjolnir
+                ticksHoldingMjolnir = 0
+            } else {
+                // Increment the ticks counter if the player is not holding Mjolnir
+                ticksHoldingMjolnir++
+
+                // Check if the player has not held Mjolnir for the required number of ticks
+                if (ticksHoldingMjolnir >= maxTicksToHold) {
+                    // Perform actions when the item has not been held for the specified number of
+                    // ticks
+                    if (!player.isCreative) {
+                        player.abilities.mayfly = false
+                        player.abilities.flyingSpeed = 0.05f
+                        player.abilities.invulnerable = false
+                    }
+                    // Reset the ticks counter
+                    ticksHoldingMjolnir = 0
+                }
+            }
+
+            // Update the boolean variable for the next tick
+            wasHoldingMjolnir = holdingMjolnir
         }
     }
-
     fun onLivingFallEvent(event: LivingFallEvent) {
         if (event.entity is Player) {
             val player = event.entity as Player

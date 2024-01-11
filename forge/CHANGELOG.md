@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.20.1-1.0.7.beta8] - 2023-12-05
+# [1.20.1-1.0.7.beta8] - 2024-1-11
 
 ### Fixed issue with Thor's hammer. It should now work as intended with no issues.
 
