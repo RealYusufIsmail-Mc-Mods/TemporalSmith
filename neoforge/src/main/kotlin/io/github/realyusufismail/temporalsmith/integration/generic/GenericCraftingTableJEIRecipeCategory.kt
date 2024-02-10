@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.integration.generic
 
-import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.getModIdAndName
 import mezz.jei.api.constants.VanillaTypes
 import mezz.jei.api.gui.drawable.IDrawable
 import mezz.jei.api.helpers.IGuiHelper
@@ -31,7 +31,7 @@ abstract class GenericCraftingTableJEIRecipeCategory<T>(guiHelper: IGuiHelper, v
     protected val bg: IDrawable
     protected val ic: IDrawable
     private val craftingTableGuiLocation =
-        temporalsmith.getModIdAndName("textures/gui/container/custom_crafting_table_Jei.png")
+        getModIdAndName("textures/gui/container/custom_crafting_table_Jei.png")
     private val w = 173
     private val h = 69
 

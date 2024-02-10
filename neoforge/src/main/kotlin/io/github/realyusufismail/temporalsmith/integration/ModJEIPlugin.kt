@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.integration
 
-import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.TemporalSmith
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
 import io.github.realyusufismail.temporalsmith.core.init.JEIRecipeTypes
 import io.github.realyusufismail.temporalsmith.core.init.RecipeTypeInit
@@ -37,9 +37,8 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
 
 @JeiPlugin
-class temporalsmithJEIPlugin : IModPlugin {
-    private val pluginId: ResourceLocation =
-        temporalsmith.getModIdAndName("armour_and_tools_mod_plugin")
+class ModJEIPlugin : IModPlugin {
+    private val pluginId: ResourceLocation = TemporalSmith.getModIdAndName("temporalsmith_plugin")
 
     override fun registerCategories(registration: IRecipeCategoryRegistration) {
         registration.addRecipeCategories(
@@ -50,13 +49,32 @@ class temporalsmithJEIPlugin : IModPlugin {
 
     override fun registerRecipes(registration: IRecipeRegistration) {
         val recipeManager = Minecraft.getInstance().level!!.recipeManager
+
         val recipesTool = recipeManager.getAllRecipesFor(RecipeTypeInit.TOOL_CRAFTING.get())
         val recipesArmour = recipeManager.getAllRecipesFor(RecipeTypeInit.ARMOUR_CRAFTING.get())
         val recipesIngotFusionTollEnhancer =
             recipeManager.getAllRecipesFor(RecipeTypeInit.INGOT_FUSION_TOLL_ENHANCER.get())
-        registration.addRecipes(toolCraftingTableRecipeType, recipesTool)
-        registration.addRecipes(armourCraftingTableRecipeType, recipesArmour)
-        registration.addRecipes(ingotFusionTollEnhancerRecipeType, recipesIngotFusionTollEnhancer)
+
+        val recipeToolList = mutableListOf<CustomToolCraftingTableRecipe>()
+        val recipeArmourList = mutableListOf<CustomArmourCraftingTableRecipe>()
+        val recipeIngotFusionTollEnhancerList = mutableListOf<IngotFusionTollEnhancerRecipe>()
+
+        for (recipe in recipesTool) {
+            recipeToolList.add(recipe.value())
+        }
+
+        for (recipe in recipesArmour) {
+            recipeArmourList.add(recipe.value())
+        }
+
+        for (recipe in recipesIngotFusionTollEnhancer) {
+            recipeIngotFusionTollEnhancerList.add(recipe.value())
+        }
+
+        registration.addRecipes(toolCraftingTableRecipeType, recipeToolList)
+        registration.addRecipes(armourCraftingTableRecipeType, recipeArmourList)
+        registration.addRecipes(
+            ingotFusionTollEnhancerRecipeType, recipeIngotFusionTollEnhancerList)
     }
 
     override fun registerRecipeCatalysts(registration: IRecipeCatalystRegistration) {

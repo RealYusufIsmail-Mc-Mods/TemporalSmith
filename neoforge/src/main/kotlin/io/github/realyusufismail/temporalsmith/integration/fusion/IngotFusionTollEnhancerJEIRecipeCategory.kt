@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,11 +18,11 @@
  */ 
 package io.github.realyusufismail.temporalsmith.integration.fusion
 
-import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.getModIdAndName
 import io.github.realyusufismail.temporalsmith.blocks.IngotFusionTollEnhancer
 import io.github.realyusufismail.temporalsmith.blocks.infusion.IngotFusionTollEnhancerBlockEntity
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
-import io.github.realyusufismail.temporalsmith.integration.temporalsmithJEIPlugin
+import io.github.realyusufismail.temporalsmith.integration.ModJEIPlugin
 import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
 import mezz.jei.api.constants.VanillaTypes
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
@@ -38,8 +38,7 @@ import net.minecraft.world.item.ItemStack
 class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
     IRecipeCategory<IngotFusionTollEnhancerRecipe> {
     private val fusionJEIGuiLocation =
-        temporalsmith.getModIdAndName(
-            "textures/gui/container/ingot_fusion_toll_enhancer_jei.png")
+        getModIdAndName("textures/gui/container/ingot_fusion_toll_enhancer_jei.png")
     private val bg: IDrawable
     private val ic: IDrawable
     private val w = 175
@@ -60,7 +59,7 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
      * @since 9.5.0
      */
     override fun getRecipeType(): RecipeType<IngotFusionTollEnhancerRecipe> {
-        return temporalsmithJEIPlugin.ingotFusionTollEnhancerRecipeType
+        return ModJEIPlugin.ingotFusionTollEnhancerRecipeType
     }
 
     /**
@@ -120,6 +119,6 @@ class IngotFusionTollEnhancerJEIRecipeCategory(guiHelper: IGuiHelper) :
     }
 
     companion object {
-        val UID = temporalsmith.getModIdAndName("ingot_fusion_toll_enhancer_jei")
+        val UID = getModIdAndName("ingot_fusion_toll_enhancer_jei")
     }
 }
