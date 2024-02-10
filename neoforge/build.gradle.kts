@@ -71,10 +71,9 @@ dependencies {
     implementation("io.github.realyusufismail:realyusufismailcore-neo:" + properties["coreVersion"])
 
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // TODO: Reinstate support once JEI releases support for NEoForge.
-    // compileOnly("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"])
-    // compileOnly("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"])
-    // runtimeOnly("mezz.jei:jei-${mcVersion}-forge:" + properties["jeiVersion"])
+    compileOnly("mezz.jei:jei-${mcVersion}-common-api:" + properties["jeiVersion"])
+    compileOnly("mezz.jei:jei-${mcVersion}-forge-api:" + properties["jeiVersion"])
+    runtimeOnly("mezz.jei:jei-${mcVersion}-neoforge:" + properties["jeiVersion"])
 
     // lombok
     compileOnly("org.projectlombok:lombok:" + properties["lombokVersion"])

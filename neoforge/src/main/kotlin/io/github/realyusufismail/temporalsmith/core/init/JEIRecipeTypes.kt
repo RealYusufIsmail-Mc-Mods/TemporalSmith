@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
  */ 
 package io.github.realyusufismail.temporalsmith.core.init
 
-import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.MOD_ID
 import io.github.realyusufismail.temporalsmith.recipe.armour.CustomArmourCraftingTableRecipe
 import io.github.realyusufismail.temporalsmith.recipe.infusion.IngotFusionTollEnhancerRecipe
 import io.github.realyusufismail.temporalsmith.recipe.tool.CustomToolCraftingTableRecipe
@@ -27,19 +27,13 @@ import mezz.jei.api.recipe.RecipeType
 object JEIRecipeTypes {
     val toolCrafting: RecipeType<CustomToolCraftingTableRecipe> =
         RecipeType.create(
-            temporalsmith.MOD_ID,
-            "custom_tool_crafting_table",
-            CustomToolCraftingTableRecipe::class.java)
+            MOD_ID, "custom_tool_crafting_table", CustomToolCraftingTableRecipe::class.java)
 
     val armourCrafting: RecipeType<CustomArmourCraftingTableRecipe> =
         RecipeType.create(
-            temporalsmith.MOD_ID,
-            "custom_armour_crafting_table",
-            CustomArmourCraftingTableRecipe::class.java)
+            MOD_ID, "custom_armour_crafting_table", CustomArmourCraftingTableRecipe::class.java)
 
     val ingotFusionTollEnhancer: RecipeType<IngotFusionTollEnhancerRecipe> =
         RecipeType.create(
-            temporalsmith.MOD_ID,
-            "ingot_fusion_toll_enhancer",
-            IngotFusionTollEnhancerRecipe::class.java)
+            MOD_ID, "ingot_fusion_toll_enhancer", IngotFusionTollEnhancerRecipe::class.java)
 }

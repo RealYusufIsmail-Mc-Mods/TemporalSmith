@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,10 +18,10 @@
  */ 
 package io.github.realyusufismail.temporalsmith.integration.tool
 
-import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.TemporalSmith
 import io.github.realyusufismail.temporalsmith.blocks.CustomToolCraftingTable
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
-import io.github.realyusufismail.temporalsmith.integration.temporalsmithJEIPlugin
+import io.github.realyusufismail.temporalsmith.integration.ModJEIPlugin
 import io.github.realyusufismail.temporalsmith.integration.generic.GenericCraftingTableJEIRecipeCategory
 import io.github.realyusufismail.temporalsmith.recipe.tool.CustomToolCraftingTableRecipe
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
@@ -37,7 +37,7 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
         guiHelper, BlockInit.CUSTOM_TOOL_CRAFTING_TABLE.get()) {
 
     override fun getRecipeType(): RecipeType<CustomToolCraftingTableRecipe> {
-        return temporalsmithJEIPlugin.toolCraftingTableRecipeType
+        return ModJEIPlugin.toolCraftingTableRecipeType
     }
 
     override fun getTitle(): Component {
@@ -67,15 +67,16 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
         // Define variables for each slot and add ingredients if they are not empty
         val slots =
             arrayOf(
-                Pair(30, 16),
-                Pair(48, 16),
-                Pair(66, 16),
-                Pair(30, 34),
-                Pair(48, 34),
-                Pair(66, 34),
-                Pair(30, 52),
-                Pair(48, 52),
-                Pair(66, 52))
+                Pair(30, 16), // Top-left slot (x=30, y=16)
+                Pair(48, 16), // Top-middle slot (x=48, y=16)
+                Pair(66, 16), // Top-right slot (x=66, y=16)
+                Pair(30, 34), // Middle-left slot (x=30, y=34)
+                Pair(48, 34), // Center slot (x=48, y=34)
+                Pair(66, 34), // Middle-right slot (x=66, y=34)
+                Pair(30, 52), // Bottom-left slot (x=30, y=52)
+                Pair(48, 52), // Bottom-middle slot (x=48, y=52)
+                Pair(66, 52) // Bottom-right slot (x=66, y=52)
+                )
 
         for (i in 0 until minOf(ingredients.size, slots.size)) {
             val (x, y) = slots[i]
@@ -89,6 +90,6 @@ class CustomToolCraftingTableJEIRecipeCategory(private val guiHelper: IGuiHelper
     }
 
     companion object {
-        val UID = temporalsmith.getModIdAndName("custom_tool_crafting_table")
+        val UID = TemporalSmith.getModIdAndName("custom_tool_crafting_table")
     }
 }

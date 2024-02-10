@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RealYusufIsmail.
+ * Copyright 2024 RealYusufIsmail.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,10 +18,10 @@
  */ 
 package io.github.realyusufismail.temporalsmith.integration.armour
 
-import io.github.realyusufismail.temporalsmith.temporalsmith
+import io.github.realyusufismail.temporalsmith.TemporalSmith.TemporalSmith.getModIdAndName
 import io.github.realyusufismail.temporalsmith.blocks.CustomArmourCraftingTable
 import io.github.realyusufismail.temporalsmith.core.init.BlockInit
-import io.github.realyusufismail.temporalsmith.integration.temporalsmithJEIPlugin
+import io.github.realyusufismail.temporalsmith.integration.ModJEIPlugin
 import io.github.realyusufismail.temporalsmith.integration.generic.GenericCraftingTableJEIRecipeCategory
 import io.github.realyusufismail.temporalsmith.recipe.armour.CustomArmourCraftingTableRecipe
 import java.util.*
@@ -38,7 +38,7 @@ class CustomArmourCraftingTableJEIRecipeCategory(guiHelper: IGuiHelper) :
         guiHelper, BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get()) {
 
     override fun getRecipeType(): RecipeType<CustomArmourCraftingTableRecipe> {
-        return temporalsmithJEIPlugin.armourCraftingTableRecipeType
+        return ModJEIPlugin.armourCraftingTableRecipeType
     }
 
     override fun getTitle(): Component {
@@ -85,6 +85,6 @@ class CustomArmourCraftingTableJEIRecipeCategory(guiHelper: IGuiHelper) :
     }
 
     companion object {
-        val UID = temporalsmith.getModIdAndName("custom_armour_crafting_table")
+        val UID = getModIdAndName("custom_armour_crafting_table")
     }
 }

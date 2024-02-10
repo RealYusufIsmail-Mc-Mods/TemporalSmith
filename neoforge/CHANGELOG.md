@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.4-2.0.0.beta12] - 2024-2-10
+
+### Reintroduced support for JEI for Neo Forge. It should now work as intended with no issues.
+
 # [1.20.4-2.0.0.beta11] - 2024-1-11
 
 ### Ported to 1.20.4 and fixed final issue with Thor's hammer. It should now work as intended with no issues.
