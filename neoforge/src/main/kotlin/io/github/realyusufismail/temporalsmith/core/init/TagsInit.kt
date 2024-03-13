@@ -127,6 +127,39 @@ object TagsInit {
         val PORTAL_MAKER_BLOCKS =
             ResourceLocation.tryParse("$MOD_ID:portal_maker_blocks")?.let { BlockTags.create(it) }
                 ?: throw Exception("Failed to create tag")
+
+        /// weather a tool is needed to mine the block
+        val NEEDS_RUBY_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_ruby_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
+        val NEEDS_RAINBOW_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_rainbow_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
+        val NEEDS_SAPPHIRE_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_sapphire_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
+        val NEEDS_GRAPHITE_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_graphite_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
+        val NEEDS_AMETHYST_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_amethyst_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
+        val NEEDS_AQUMARINE_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_aqumarine_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
+        val NEEDS_IMPERIUM_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_imperium_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
+
+        val NEEDS_ENDERITE_TOOL =
+            ResourceLocation.tryParse("$MOD_ID:needs_enderite_tool")?.let { BlockTags.create(it) }
+                ?: throw Exception("Failed to create tag")
     }
 
     object ItemTagsInit {
